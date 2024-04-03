@@ -78,7 +78,7 @@ $db['default'] = array(
 	'hostname' => 'os3-366-16227.vs.sakura.ne.jp',
 	'username' => 'ilead',
 	'password' => 'kxDugjblBM&NM)@CgTRcuGJM',
-	'database' => strpos($_SERVER['HTTP_HOST'], 'x0.com') === TRUE ? 'ilead' : 'ilead_dev',
+	'database' => strpos($_SERVER['HTTP_HOST'], 'x0.com') !== FALSE ? 'ilead' : 'ilead_dev',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,
