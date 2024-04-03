@@ -1,13 +1,3 @@
-<Files *.php>
-    Order Deny,Allow
-    Deny from all
-</Files>
-
-<Files "index.php">
-    Order Deny,Allow
-    Allow from all
-</Files>
-
 <IfModule mod_rewrite.c>
     RewriteEngine On
     RewriteCond %{REQUEST_FILENAME} !-f
