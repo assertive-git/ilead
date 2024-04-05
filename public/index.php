@@ -1,4 +1,7 @@
 <?php
+
+define('_ENVIRONMENT', strpos($_SERVER['HTTP_HOST'], 'x0.com') !== FALSE ? 'production' : 'development');
+
 /**
  * CodeIgniter
  *
@@ -129,7 +132,7 @@ switch (ENVIRONMENT)
  *
  * NO TRAILING SLASH!
  */
-	$view_folder = './';
+	$view_folder = '';
 
 
 /*

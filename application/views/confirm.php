@@ -61,7 +61,7 @@ if (!isset($_SESSION['index'])) {
   <meta property="og:url" content="https://pd.noren-kai.com/lp1/">
   <meta name="theme-color" content="#FF00FF">
   <link rel="canonical" href="https://pd.noren-kai.com/lp1/">
-  <link rel=”icon” href=“img/favicon.ico”>
+  <link rel="icon" href="img/favicon.ico">
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/reset.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">

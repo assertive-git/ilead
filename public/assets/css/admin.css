@@ -1,0 +1,22 @@
+html,
+body {
+    height: 100%;
+}
+
+body {
+    font-family: "Noto Sans JP", sans-serif;
+}
+
+nav {
+    background-color: #13b3e7;
+}
+
+.right {
+    max-width: 300px;
+}
+
+@media(max-width: 1024px) {
+    .right {
+        max-width: 100%;
+    }
+}
