@@ -24,7 +24,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 |
 */
 
-$http = strpos($_SERVER['HTTP_HOST'], 'dvv') !== FALSE ? 'http://' : 'https://';
+$http = strpos($_SERVER['HTTP_HOST'], 'dv') !== FALSE ? 'http://' : 'https://';
 
 $config['base_url'] = $http . $_SERVER['HTTP_HOST'];
 

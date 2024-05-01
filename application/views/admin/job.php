@@ -1136,7 +1136,7 @@ $traits = !empty($traits) ? explode(',', $traits) : [];
 
                             $('.delete').removeClass('justify-end').addClass('justify-between');
                             $('.delete-btn').removeClass('hidden');
-                            $('.delete-btn a').attr('href', '/admin/jobs/' + id);
+                            $('.delete-btn a').attr('href', '/admin/jobs/' + id + '/delete');
 
                             var c = 0;
                             if(custom_fields_ids.length != 0) {

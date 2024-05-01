@@ -162,7 +162,7 @@ $updated_at = !empty($updated_at) ? $updated_at : '';
 
                             $('.delete').removeClass('justify-end').addClass('justify-between');
                             $('.delete-btn').removeClass('hidden');
-                            $('.delete-btn a').attr('href', '/admin/news/' + id);
+                            $('.delete-btn a').attr('href', '/admin/news/' + id + '/delete');
 
                             $('#updated-successfully').fadeIn(function () {
                                 setTimeout(function () {
