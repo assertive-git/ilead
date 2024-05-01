@@ -15,8 +15,44 @@ nav {
     max-width: 300px;
 }
 
-@media(max-width: 1024px) {
+@media(max-width: 1280px) {
     .right {
         max-width: 100%;
+    }
+}
+
+.ql-toolbar {
+    background-color: white;
+}
+
+.ql-video {
+    width: 100%;
+    max-width: 450px !important;
+    height: 450px;
+}
+
+.ql-snow .ql-picker.ql-size .ql-picker-label[data-value=small]::before, .ql-snow .ql-picker.ql-size .ql-picker-item[data-value=small]::before {
+    content: '小' !important;
+}
+
+.ql-snow .ql-picker.ql-size .ql-picker-label::before, .ql-snow .ql-picker.ql-size .ql-picker-item::before {
+    content: '並' !important;
+}
+
+.ql-snow .ql-picker.ql-size .ql-picker-label[data-value=large]::before, .ql-snow .ql-picker.ql-size .ql-picker-item[data-value=large]::before {
+    content: '大' !important;
+}
+
+.ql-snow .ql-picker.ql-size .ql-picker-label[data-value=huge]::before, .ql-snow .ql-picker.ql-size .ql-picker-item[data-value=huge]::before {
+    content: '巨大' !important;
+}
+
+.updated-successfully {
+    top: 60px;
+}
+
+@media(max-width: 1280px) {
+    .updated-successfully {
+        top: 52px;
     }
 }

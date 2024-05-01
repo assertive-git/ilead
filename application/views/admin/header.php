@@ -21,40 +21,88 @@
 
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- <link rel="stylesheet" href="/assets/css/output.css"> -->
+
+    <!-- Quill CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/quill@2.0.0-rc.5/dist/quill.snow.css" rel="stylesheet" />
 
     <!-- Jquery -->
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 </head>
 
 <body>
-    <nav class="text-white">
-        <div class="flex justify-between py-3 lg:px-48 px-4 items-center">
-            <div class="flex lg:space-x-48 space-x-5 items-center">
-                <h1 class="lg:text-lg text-sm font-bold">アイリード株式会社</h1>
+    <nav class="text-white fixed w-full z-50">
+        <div class="max-w-screen-2xl mx-auto flex justify-between py-4 px-4 items-center">
+            <div class="flex xl:space-x-48 space-x-5 items-center">
+                <h1 class="xl:text-lg text-sm font-bold">アイリード株式会社</h1>
                 <?php if (!empty($_SESSION['logged_in'])): ?>
-                    <ul class="flex whitespace-nowrap lg:space-x-16 space-x-4 lg:text-base text-sm">
-                        <li><a href="#" class="<?= $_SERVER['REQUEST_URI'] == '/admin' ? 'font-bold' : '' ?>">ホーム</a></li>
-                        <li><a href="#" class="<?= $_SERVER['REQUEST_URI'] == '/admin/entries' ? 'font-bold' : '' ?>">応募</a></li>
-                        <li><a href="#" class="<?= $_SERVER['REQUEST_URI'] == '/admin/jobs' ? 'font-bold' : '' ?>">求人</a></li>
+                    <ul class="flex whitespace-nowrap xl:space-x-4 space-x-4 xl:text-base text-sm">
+                        <li>
+                            <div class="space-x-1">
+                                <i class="fas fa-home"></i>
+                                <a href="/admin"
+                                    class="<?= $_SERVER['REQUEST_URI'] == '/admin' ? 'font-bold' : '' ?>">ホーム</a>
+                            </div>
+                        </li>
+                        <li class="relative nav-jobs z-20">
+                            <div class="space-x-1 cursor-pointer">
+                                <i class="fas fa-list-alt"></i>
+                                <span class="<?= $_SERVER['REQUEST_URI'] == '/admin/jobs' ? 'font-bold' : '' ?>">
+                                    求人
+                                </span>
+                            </div>
+                            <ul
+                                class="absolute cursor-pointer bg-white border text-black p-1 whitespace-nowrap hidden nav-jobs-child top-10 xl:ml-[-10px] ml-[-25px]">
+                                <li class="px-4 py-1 hover:bg-slate-200">
+                                    <a href="/admin/jobs">求人一覧</a>
+                                </li>
+                                <li class="px-4 py-1 hover:bg-slate-200">
+                                    <a href="/admin/jobs/new">新規求人</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="relative nav-news z-20">
+                            <div class="space-x-1 cursor-pointer">
+                                <i class="fas fa-newspaper"></i>
+                                <span class="<?= $_SERVER['REQUEST_URI'] == '/admin/news' ? 'font-bold' : '' ?>">
+                                    ニュース
+                                </span>
+                            </div>
+                            <ul
+                                class="absolute cursor-pointer bg-white border text-black p-1 whitespace-nowrap hidden nav-news-child top-10 xl:ml-[-10px] ml-[-25px]">
+                                <li class="px-4 py-1 hover:bg-slate-200">
+                                    <a href="/admin/news">ニュース一覧</a>
+                                </li>
+                                <li class="px-4 py-1 hover:bg-slate-200">
+                                    <a href="/admin/news/new">新規ニュース</a>
+                                </li>
+                            </ul>
+                        </li>
                     </ul>
                 <?php endif; ?>
             </div>
 
             <?php if (!empty($_SESSION['logged_in'])): ?>
                 <div>
-                    <ul class="lg:text-base text-sm nav-settings">
-                        <li class="flex items-center cursor-pointer relative p-2">
-                            <i class="fas fa-cog pr-2"></i>
-                            <div class="hidden lg:block">
+                    <ul class="xl:text-base text-sm">
+                        <li class="flex items-center cursor-pointer relative nav-settings z-20">
+                            <i class="fas fa-cog xl:pr-2"></i>
+                            <div class="hidden xl:block">
                                 設定
                             </div>
                             <i class="fa-solid fa-arrow-down pl-2 text-xs"></i>
-                            <ul class="absolute cursor-pointer bg-white border text-black p-1 whitespace-nowrap hidden nav-settings-child"
-                                style="top: 43px; left: -40px">
+                            <ul
+                                class="absolute cursor-pointer bg-white border text-black p-1 whitespace-nowrap hidden nav-settings-child top-10 xl:ml-[-45px] ml-[-90px] z-10">
                                 <li class="px-4 py-1 hover:bg-slate-200">
+                                    <i class="fas fa-info-circle"></i>
+                                    <a href="/admin/logout">アカウント</a>
+                                </li>
+                                <li class="px-4 py-1 hover:bg-slate-200">
+                                    <i class="fas fa-sign-out"></i>
                                     <a href="/admin/logout">ログアウト</a>
                                 </li>
                             </ul>
+                        </li>
                     </ul>
                     <script>
                         $('.nav-settings').click(function () {
@@ -69,10 +117,30 @@
                                 $('.nav-settings-child').hide();
                             }
                         });
+
+                        $('.nav-jobs').click(function () {
+                            $('.nav-jobs-child').show();
+                        });
+
+                        $('.nav-news').click(function () {
+                            $('.nav-news-child').show();
+                        });
+
+                        $(document).mouseup(function (e) {
+
+                            var container = $('.nav-jobs');
+                            var container2 = $('.nav-news');
+
+                            if (!container.is(e.target) && container.has(e.target).length === 0) {
+                                $('.nav-jobs-child').hide();
+                            }
+
+                            if (!container2.is(e.target) && container2.has(e.target).length === 0) {
+                                $('.nav-news-child').hide();
+                            }
+                        });
                     </script>
                 </div>
             <?php endif; ?>
         </div>
-
-
     </nav>
