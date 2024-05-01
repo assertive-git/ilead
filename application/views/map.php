@@ -1,1 +1,132 @@
-<?php include('header.php'); ?>    <main id="map">  <!--<div class="registration"><a href="" target="_blank">まずは簡単登録</a></div>-->  <section class="search_area">    <div class="search_inner">      <ul>        <li class="workarea"><a href=""> エリアを選ぶ<span class="plus">+</span> </a></li>        <li class="station"><a href=""> 沿線・駅を選ぶ<span class="plus">+</span> </a></li>        <li class="facility"><a href=""> 施設・種別を選ぶ<span class="plus">+</span> </a></li>        <li class="form"><a href=""> 雇用形態/給与を選ぶ<span class="plus">+</span> </a> </li>        <li><a href="">こだわり<span class="plus">+</span> </a></li>        <li class="freeword">          <form><input type="text" placeholder="フリーワード"><input type="submit" value="&#xf002"></form>        </li>      </ul>      <div class="button_area">        <button type="reset" class="reset">すべてクリア</button>      </div>    </div>  </section>      <section class="side_list">    <div class="menu-trigger" href=""> <span><img src="assets/img/map_arrow_open.png"></span></div>    <div class="list">      <p>検索結果一覧　全<span class="number">270</span>件</p>      <ul class="list_inner">        <li><a href="">          <div class="list_item">            <div class="info">              <h5>20代・30代積極採用の薬剤師求人</h5>              <img src="assets/img/list_img.png" width="100" height="81">              <div class="info_inner">                <div class="category"><span>正社員</span><span>調剤薬局</span></div>                <ul>                  <li><span class="attribute">勤務地</span>東京都千代田区</li>                  <li><span class="attribute">給料</span>【時給】1,400円</li>                </ul>              </div>            </div>            <div class="arrow"><i class="fa-solid fa-angle-right"></i></div>          </div>        </a></li>      </ul>        <ul class="list_inner">        <li><a href="">          <div class="list_item">            <div class="info">              <h5>20代・30代積極採用の薬剤師求人</h5>              <img src="assets/img/list_img.png" width="100" height="81">              <div class="info_inner">                <div class="category"><span>正社員</span><span>調剤薬局</span></div>                <ul>                  <li><span class="attribute">勤務地</span>東京都千代田区</li>                  <li><span class="attribute">給料</span>【時給】1,400円</li>                </ul>              </div>            </div>            <div class="arrow"><i class="fa-solid fa-angle-right"></i></div>          </div>        </a></li>      </ul>        <ul class="list_inner">        <li><a href="">          <div class="list_item">            <div class="info">              <h5>20代・30代積極採用の薬剤師求人</h5>              <img src="assets/img/list_img.png" width="100" height="81">              <div class="info_inner">                <div class="category"><span>正社員</span><span>調剤薬局</span></div>                <ul>                  <li><span class="attribute">勤務地</span>東京都千代田区</li>                  <li><span class="attribute">給料</span>【時給】1,400円</li>                </ul>              </div>            </div>            <div class="arrow"><i class="fa-solid fa-angle-right"></i></div>          </div>        </a></li>      </ul>        <ul class="list_inner">        <li><a href="">          <div class="list_item">            <div class="info">              <h5>20代・30代積極採用の薬剤師求人</h5>              <img src="assets/img/list_img.png" width="100" height="81">              <div class="info_inner">                <div class="category"><span>正社員</span><span>調剤薬局</span></div>                <ul>                  <li><span class="attribute">勤務地</span>東京都千代田区</li>                  <li><span class="attribute">給料</span>【時給】1,400円</li>                </ul>              </div>            </div>            <div class="arrow"><i class="fa-solid fa-angle-right"></i></div>          </div>        </a></li>      </ul>        <ul class="list_inner">        <li><a href="">          <div class="list_item">            <div class="info">              <h5>20代・30代積極採用の薬剤師求人</h5>              <img src="assets/img/list_img.png" width="100" height="81">              <div class="info_inner">                <div class="category"><span>正社員</span><span>調剤薬局</span></div>                <ul>                  <li><span class="attribute">勤務地</span>東京都千代田区</li>                  <li><span class="attribute">給料</span>【時給】1,400円</li>                </ul>              </div>            </div>            <div class="arrow"><i class="fa-solid fa-angle-right"></i></div>          </div>        </a></li>      </ul>        <ul class="list_inner">        <li><a href="">          <div class="list_item">            <div class="info">              <h5>20代・30代積極採用の薬剤師求人</h5>              <img src="assets/img/list_img.png" width="100" height="81">              <div class="info_inner">                <div class="category"><span>正社員</span><span>調剤薬局</span></div>                <ul>                  <li><span class="attribute">勤務地</span>東京都千代田区</li>                  <li><span class="attribute">給料</span>【時給】1,400円</li>                </ul>              </div>            </div>            <div class="arrow"><i class="fa-solid fa-angle-right"></i></div>          </div>        </a></li>      </ul>        <ul class="list_inner">        <li><a href="">          <div class="list_item">            <div class="info">              <h5>20代・30代積極採用の薬剤師求人</h5>              <img src="assets/img/list_img.png" width="100" height="81">              <div class="info_inner">                <div class="category"><span>正社員</span><span>調剤薬局</span></div>                <ul>                  <li><span class="attribute">勤務地</span>東京都千代田区</li>                  <li><span class="attribute">給料</span>【時給】1,400円</li>                </ul>              </div>            </div>            <div class="arrow"><i class="fa-solid fa-angle-right"></i></div>          </div>        </a></li>      </ul>        <ul class="list_inner">        <li><a href="">          <div class="list_item">            <div class="info">              <h5>20代・30代積極採用の薬剤師求人</h5>              <img src="assets/img/list_img.png" width="100" height="81">              <div class="info_inner">                <div class="category"><span>正社員</span><span>調剤薬局</span></div>                <ul>                  <li><span class="attribute">勤務地</span>東京都千代田区</li>                  <li><span class="attribute">給料</span>【時給】1,400円</li>                </ul>              </div>            </div>            <div class="arrow"><i class="fa-solid fa-angle-right"></i></div>          </div>        </a></li>      </ul>    </div>  </section>          <section class="map">    <div class="google_map">      <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3280.5534032490914!2d135.4975939!3d34.6912193!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6000e77781358ff9%3A0x54502be550d884a1!2z5reA5bGL5qmL!5e0!3m2!1sja!2sjp!4v1710465236535!5m2!1sja!2sjp" width="800" height="1200" style="border:0; margin-right: calc(50% - 50vw); margin-left: calc(50% - 50vw); max-width: none; width: 100vw" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>    </div>  </section>                        </main>        <?php include('footer.php'); ?>
+<?php include ('header.php'); ?>
+
+<main id="map">
+
+  <!--<div class="registration"><a href="" target="_blank">まずは簡単登録</a></div>-->
+
+  <section class="search_area">
+    <div class="search_inner">
+      <ul>
+        <li class="workarea"><a href=""> エリアを選ぶ<span class="plus">+</span> </a></li>
+        <li class="station"><a href=""> 沿線・駅を選ぶ<span class="plus">+</span> </a></li>
+        <li class="facility"><a href=""> 施設・種別を選ぶ<span class="plus">+</span> </a></li>
+        <li class="form"><a href=""> 雇用形態/給与を選ぶ<span class="plus">+</span> </a> </li>
+        <li><a href="">こだわり<span class="plus">+</span> </a></li>
+        <li class="freeword">
+          <form><input type="text" placeholder="フリーワード"><input type="submit" value="&#xf002"></form>
+        </li>
+      </ul>
+      <div class="button_area">
+        <button type="reset" class="reset">すべてクリア</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="side_list">
+    <div class="menu-trigger" href=""> <span><img src="assets/img/map_arrow_open.png"></span></div>
+    <div class="list">
+      <p>検索結果一覧　全<span class="number">270</span>件</p>
+      <?php foreach ($jobs as $job): ?>
+        <ul class="list_inner">
+          <li>
+            <!-- <a href=""> -->
+            <div class="list_item">
+              <div class="info">
+                <h5><?= $job['title'] ?></h5>
+                <img src="<?= $job['top_picture'] ?>" width="100" height="81">
+                <div class="info_inner">
+                  <?php if (!empty($job['category'])): ?>
+                    <div class="category">
+                      <span><?= $job['employment_type'] ?></span>
+                      <?php foreach (explode(',', $job['category']) as $category): ?>
+                        <span><?= $category ?></span>
+                      <?php endforeach ?>
+                    </div>
+                  <?php endif; ?>
+                  <ul>
+                    <li><span class="attribute">勤務地</span><?= $job['city'] ?></li>
+                    <?php if (!empty($job['max_salary'])): ?>
+                      <li><span class="attribute">給料</span>【時給】<?= $job['min_salary'] ?>～<?= $job['max_salary'] ?>円</li>
+                    <?php else: ?>
+                      <li><span class="attribute">給料</span>【時給】<?= $job['min_salary'] ?>円</li>
+                    <?php endif; ?>
+                    <li><input id="map_address" type="hidden" value="<?= $job['map_address'] ?>"></li>
+                    <li><input id="lat" type="hidden" value="<?= $job['lat'] ?>"></li>
+                    <li><input id="lng" type="hidden" value="<?= $job['lng'] ?>"></li>
+                  </ul>
+                </div>
+              </div>
+              <div class="arrow"><i class="fa-solid fa-angle-right"></i></div>
+            </div>
+            <!-- </a> -->
+          </li>
+        </ul>
+      <?php endforeach; ?>
+    </div>
+  </section>
+
+
+  <section class="map">
+    <div id="_map" class="google_map"></div>
+    <script>
+      function initMap() {
+
+        var lat = 34.6733084;
+        var lng = 135.4969132;
+
+        var ileadPos = { lat, lng };
+
+        var map = new google.maps.Map(document.getElementById("_map"), {
+          center: ileadPos,
+          zoom: 14,
+        });
+
+        $.ajax({
+          type: "POST",
+          url: '/get_jobs',
+          dataType: 'json',
+          success: function (data) {
+
+            for (i = 0; i < data.jobs.length; i++) {
+
+              var marker = new google.maps.Marker({
+                position: { lat: parseFloat(data.jobs[i].lat), lng: parseFloat(data.jobs[i].lng) },
+                title: data.jobs[i].title,
+              });
+
+              marker.setMap(map);
+            }
+          },
+        });
+
+
+
+        $('.list_item').click(function () {
+
+          var lat = parseFloat($(this).find('#lat').val());
+          var lng = parseFloat($(this).find('#lng').val());
+
+          var title = $(this).find('#map_address').val();
+
+          map.setCenter({ lat: lat, lng: lng });
+
+          marker.setTitle(title);
+          marker.setPosition(new google.maps.LatLng(lat, lng));
+        });
+      }
+    </script>
+
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAmVMSJ-FB7idtnAQajLhCIo2SV7VZd7uw&callback=initMap"></script>
+  </section>
+
+
+
+
+
+
+
+</main>
+
+
+<?php include ('footer.php'); ?>
