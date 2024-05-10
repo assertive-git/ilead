@@ -32,8 +32,8 @@
 
 <body>
     <nav class="text-white fixed w-full z-50">
-        <div class="max-w-screen-2xl mx-auto flex justify-between py-4 px-4 items-center">
-            <div class="flex xl:space-x-48 space-x-5 items-center">
+        <div class="max-w-screen-2xl mx-auto flex justify-between xl:py-4 xl:px-4 py-2 px-2 items-center">
+            <div class="m-auto xl:m-0 lg:m-0 md:m-0 sm:m-0 flex xl:flex-row lg:flex-row md:flex-row sm:flex-row flex-col xl:space-x-48 space-x-5 xl:space-y-0 lg:space-y-0 md:space-y-0 sm:space-y-0 space-y-2 items-center">
                 <h1 class="xl:text-lg text-sm font-bold">アイリード株式会社</h1>
                 <?php if (!empty($_SESSION['logged_in'])): ?>
                     <ul class="flex whitespace-nowrap xl:space-x-4 space-x-4 xl:text-base text-sm">

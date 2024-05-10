@@ -13,7 +13,29 @@ class Jobs_model extends CI_Model
 
     public function get_all_admin()
     {
-        return $this->db->order_by('id', 'DESC')->get($this->table)->result_array();
+        $data = $this->db->order_by('id', 'DESC');
+
+
+        if (!empty($_POST['status'])) {
+            $status = $_POST['status'];
+
+            $data->where('status', $status);
+        }
+
+        if (!empty($_POST['keyword'])) {
+            $keyword = $_POST['keyword'];
+
+            $data->where('
+            (id LIKE "%' . $keyword . '%" 
+                OR title LIKE "%' . $keyword . '%"
+                OR job_type LIKE "%' . $keyword . '%"
+                OR city LIKE "%' . $keyword . '%"
+                OR memo LIKE "%' . $keyword . '%"
+            )'
+            );
+        }
+
+        return $data->get($this->table)->result_array();
     }
 
     public function get_all()
@@ -31,14 +53,30 @@ class Jobs_model extends CI_Model
         return $this->db->where('id', $id)->where('status', '公開')->get($this->table)->row_array();
     }
 
+    // Currently admin only function
+    public function get_multiple($ids)
+    {
+        return $this->db->where_in('id', $ids)->get($this->table)->result_array();
+    }
+
     public function delete($id)
     {
         return $this->db->where('id', $id)->delete($this->table);
     }
 
+    public function delete_multiple($ids)
+    {
+        return $this->db->where_in('id', $ids)->delete($this->table);
+    }
+
     public function update($id, $data)
     {
         return $this->db->where('id', $id)->update($this->table, $data);
+    }
+
+    public function update_multiple($ids, $data)
+    {
+        return $this->db->where_in('id', $ids)->update($this->table, $data);
     }
 
     public function insert($data)
@@ -51,7 +89,6 @@ class Jobs_model extends CI_Model
     {
         return [];
     }
-
 
     public function get_by_area($areas)
     {

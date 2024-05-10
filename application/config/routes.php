@@ -26,7 +26,12 @@ $route['admin/jobs/upload']['POST'] = 'admin/jobs_upload';
 $route['admin/jobs/delete_photo']['POST'] = 'admin/delete_photo';
 $route['admin/jobs/stations']['POST'] = 'admin/jobs_stations';
 $route['admin/jobs/stations/delete']['POST'] = 'admin/jobs_stations_delete';
+$route['admin/jobs/copy_multiple']['POST'] = 'admin/jobs_copy_multiple';
 $route['admin/jobs/(:num)/delete']['GET'] = 'admin/jobs_delete/$1';
+$route['admin/jobs/delete_multiple']['POST'] = 'admin/jobs_delete_multiple';
+$route['admin/jobs/memo/update']['POST'] = 'admin/jobs_single_col_update';
+$route['admin/jobs/status/update_multiple']['POST'] = 'admin/jobs_single_col_multiple_update';
+
 
 /* news */
 $route['admin/news']['GET'] = 'admin/news';
