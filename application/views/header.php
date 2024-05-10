@@ -66,7 +66,7 @@
 <body>
   <header>
     <div class="header_inner">
-      <h1 class="logo"> <a href="./"> <img src="/assets/img/logo.svg" alt="アイリード" width="176" height="35"> </a> </h1>
+      <h1 class="logo"> <a href="/"> <img src="/assets/img/logo.svg" alt="アイリード" width="176" height="35"> </a> </h1>
       <nav class="pc pc_nav">
         <ul class="nav_list">
           <li><a href="https://saiyo-connect.jp/ilead/search">求人情報</a></li>

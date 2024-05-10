@@ -191,13 +191,41 @@ class Admin extends CI_Controller
             echo json_encode(['top_pictures' => $data]);
         }
     }
+    public function jobs_copy_multiple()
+    {
+        if (isset($_POST['job_ids'])) {
+            $job_ids = $_POST['job_ids'];
+
+            $jobs = $this->jobs_model->get_multiple($job_ids);
+
+            foreach ($jobs as $job) {
+
+                unset($job['id']);  
+                unset($job['created_at']);
+                unset($job['updated_at']);
+
+                $this->jobs_model->insert($job);
+            }
+
+        }
+    }
 
     public function jobs_delete($id)
     {
-
-        $this->jobs_model->delete($id);
+        if (!empty($id)) {
+            $this->jobs_model->delete($id);
+        }
 
         redirect('/admin/jobs');
+    }
+
+    public function jobs_delete_multiple()
+    {
+        if (isset($_POST['job_ids'])) {
+            $job_ids = $_POST['job_ids'];
+
+            $this->jobs_model->delete_multiple($job_ids);
+        }
     }
 
     public function delete_photo()
@@ -290,5 +318,31 @@ class Admin extends CI_Controller
         $this->news_model->delete($id);
 
         redirect('/admin/news');
+    }
+
+    public function jobs_single_col_update()
+    {
+        if (isset($_POST['job_id']) && isset($_POST['column']) && isset($_POST['contents'])) {
+            $job_id = $_POST['job_id'];
+            $column = $_POST['column'];
+            $contents = $_POST['contents'];
+
+            $data = [$column => $contents];
+
+            $this->jobs_model->update($job_id, $data);
+        }
+    }
+
+    public function jobs_single_col_multiple_update()
+    {
+        if (isset($_POST['job_ids']) && isset($_POST['column']) && isset($_POST['contents'])) {
+            $job_ids = $_POST['job_ids'];
+            $column = $_POST['column'];
+            $contents = $_POST['contents'];
+
+            $data = [$column => $contents];
+
+            $this->jobs_model->update_multiple($job_ids, $data);
+        }
     }
 }

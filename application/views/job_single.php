@@ -117,7 +117,7 @@
             <li>
               <button>★ 検討中リストに追加する</button>
             </li>
-            <li><a href="">詳細を見る</a></li>
+            <!-- <li><a href="">詳細を見る</a></li> -->
           </ul>
         </div>
       </div>
