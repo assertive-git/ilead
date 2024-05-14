@@ -624,7 +624,7 @@
               <?php endfor; ?>
             </div>
             <dl>
-              <dt><a href="/jobs/<?= $new_job['id'] ?>"><?= $new_job['title'] ?></a></dt>
+              <dt><a href="/jobs/<?= $new_job['id'] ?>"><?= ellipsize($new_job['title'], 43) ?></a></dt>
               <dd><span class="attribute">勤務地</span><?= $new_job['a_pref'] ?><?= $new_job['city'] ?></dd>
               <?php if (!empty($new_job['max_salary'])): ?>
                 <dd><span class="attribute">給料</span><?= $new_job['min_salary'] ?>～<?= $new_job['max_salary'] ?>円</dd>

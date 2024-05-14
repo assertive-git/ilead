@@ -161,16 +161,20 @@ class Jobs_model extends CI_Model
         city LIKE '%$fw%' OR
         address LIKE '%$fw%' OR
         traits LIKE '%$fw%')
-        ")->where('status', '公開')->get('jobs')->result_array();
+        ")->where('status', '公開')->get($this->table)->result_array();
     }
 
     public function get_new_jobs()
     {
-        return $this->db->where('status', '公開')->order_by('id', 'desc')->limit(10)->get('jobs')->result_array();
+        return $this->db->where('status', '公開')->order_by('id', 'desc')->limit(10)->get($this->table)->result_array();
     }
 
     public function get_csv_export()
     {
-        return $this->db->order_by('id', 'desc')->get('jobs')->result_array();
+        return $this->db->order_by('id', 'desc')->get($this->table)->result_array();
+    }
+
+    public function get_by_ids($ids) {
+        return $this->db->where_in('id', $ids)->get($this->table)->result_array();
     }
 }

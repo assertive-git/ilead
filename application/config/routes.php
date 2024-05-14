@@ -48,7 +48,7 @@ $route['admin/news/(:num)/delete']['GET'] = 'admin/news_delete/$1';
 
 // API
 $route['get_lines_and_stations']['POST'] = 'home/get_lines_and_stations';
-$route['get_jobs']['POST'] = 'jobs/get_all';
+$route['get_jobs_by_ids']['POST'] = 'home/get_jobs_by_id';
 
 $route['(:any)'] = 'home/index/$1';
 $route['404_override'] = '';
