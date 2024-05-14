@@ -439,7 +439,9 @@ class Admin extends CI_Controller
 
         header('Content-Type: text/csv; charset=utf-8');
         header('Content-Disposition: attachment; filename=jobs.csv');
-        ob_end_clean();
+        if(ob_get_length() > 0) {
+            ob_clean();
+        }
 
         $output = fopen('php://output', 'w');
 
