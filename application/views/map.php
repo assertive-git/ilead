@@ -24,8 +24,19 @@
   </section>
 
   <section class="side_list">
-    <div class="menu-trigger" href=""> <span><img src="assets/img/map_arrow_open.png"></span></div>
-    <div class="list">
+    <div class="menu-trigger active" href=""> <span><img src="assets/img/map_arrow_open.png"></span></div>
+    <script>
+      $('.menu-trigger').click(function () {
+        var img = $(this).children('span').children('img');
+
+        if ($(this).hasClass('active')) {
+          img.attr('src', 'assets/img/map_arrow_open.png');
+        } else {
+          img.attr('src', 'assets/img/map_arrow_close.png');
+        }
+      })
+    </script>
+    <div class="list open">
       <p>検索結果一覧　全<span class="number"><?= count($jobs) ?></span>件</p>
       <?php $job_ids = []; ?>
       <?php foreach ($jobs as $job): ?>
