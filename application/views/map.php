@@ -13,7 +13,8 @@
         <li class="form"><a href=""> 雇用形態/給与を選ぶ<span class="plus">+</span> </a> </li>
         <li><a href="">こだわり<span class="plus">+</span> </a></li>
         <li class="freeword">
-          <form><input type="text" placeholder="フリーワード"><input type="submit" value="&#xf002"></form>
+          <form method="POST" action="/map?s=freeword"><input name="freeword" value="<?= set_value('freeword') ?>"
+              type="text" placeholder="フリーワード"><input type="submit" value="&#xf002"></form>
         </li>
       </ul>
       <div class="button_area">
@@ -34,14 +35,17 @@
             <!-- <a href=""> -->
             <div class="list_item">
               <div class="info">
-                <h5><?= ellipsize($job['title'], 43) ?></h5>
+                <h5><?= ellipsize($job['title'], 18) ?></h5>
                 <img src="/uploads/top_picture/<?= $job['top_picture'] ?>" width="100" height="81">
                 <div class="info_inner">
                   <?php if (!empty($job['category'])): ?>
+                    <?php $i = 0 ?>
                     <div class="category">
-                      <span><?= $job['employment_type'] ?></span>
                       <?php foreach (explode(',', $job['category']) as $category): ?>
-                        <span><?= $category ?></span>
+                        <span><?= ellipsize($category, 4) ?></span>
+                        <?php $i++; ?>
+                        <?php if ($i == 2)
+                          break ?>
                       <?php endforeach ?>
                     </div>
                   <?php endif; ?>
@@ -93,6 +97,7 @@
           },
           dataType: 'json',
           success: function (data) {
+
             for (i = 0; i < data.jobs.length; i++) {
 
               marker = new google.maps.Marker({

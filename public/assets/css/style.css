@@ -1681,10 +1681,6 @@ main .job_result .area.is-active {
 
 /*-------map---------*/
 
-#map {
-  overflow: hidden;
-}
-
 #map .google_map {
   position: relative;
   /* z-index: -1; */
@@ -1717,7 +1713,8 @@ main .job_result .area.is-active {
 
 #map .list {
   width: 400px;
-  height: auto;
+  height: 738px;
+  overflow: auto;
   background-color: #f3f7f7;
   position: absolute;
   top: 0;
