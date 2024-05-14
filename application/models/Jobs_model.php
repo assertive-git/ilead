@@ -113,7 +113,8 @@ class Jobs_model extends CI_Model
     public function get_by_line_and_stations($line, $stations)
     {
         $data = $this->db->join('jobs_stations', 'jobs_stations.job_id = jobs.id')
-            ->where('line', $line)->where_in('station', $stations)->where('status', '公開')->get($this->table)->result_array();
+            ->where('line', $line)->where_in('station', $stations)->where('status', '公開')
+            ->select('jobs.id as id, lat, lng, title, category, min_salary, max_salary, top_picture, employment_type, pref, city, map_address')->get($this->table)->result_array();
 
         return !empty($data) ? $data : [];
     }
