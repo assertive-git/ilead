@@ -40,14 +40,13 @@
                         <li>
                             <div class="space-x-1">
                                 <i class="fas fa-home"></i>
-                                <a href="/admin"
-                                    class="<?= $_SERVER['REQUEST_URI'] == '/admin' ? 'font-bold' : '' ?>">ホーム</a>
+                                <a href="/admin/jobs">ホーム</a>
                             </div>
                         </li>
                         <li class="relative nav-jobs z-20">
                             <div class="space-x-1 cursor-pointer">
                                 <i class="fas fa-list-alt"></i>
-                                <span class="<?= $_SERVER['REQUEST_URI'] == '/admin/jobs' ? 'font-bold' : '' ?>">
+                                <span>
                                     求人
                                 </span>
                             </div>
@@ -64,7 +63,7 @@
                         <li class="relative nav-news z-20">
                             <div class="space-x-1 cursor-pointer">
                                 <i class="fas fa-newspaper"></i>
-                                <span class="<?= $_SERVER['REQUEST_URI'] == '/admin/news' ? 'font-bold' : '' ?>">
+                                <span>
                                     ニュース
                                 </span>
                             </div>

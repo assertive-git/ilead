@@ -174,7 +174,20 @@ class Home extends CI_Controller
 		$this->load->view('job_list', $data);
 	}
 
-	public function mypage() {
-		$this->load->view('mypage');
+	public function mypage()
+	{
+		$data['jobs'] = [];
+
+		if (!empty($_COOKIE['ilead_favorites'])) {
+			$ids = explode(',', $_COOKIE['ilead_favorites']);
+
+
+			if (!empty($ids)) {
+				$ids = $_COOKIE['ilead_favorites'];
+				$data['jobs'] = $this->jobs_model->get_all_by_favorites($ids);
+			}
+		}
+
+		$this->load->view('mypage', $data);
 	}
 }

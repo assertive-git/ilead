@@ -520,6 +520,10 @@ $traits = !empty($traits) ? explode(',', $traits) : [];
                             <script>
                                 $('#add-station').click(function () {
 
+                                    var stations = $('#stations li');
+
+                                    if(stations.length == 3) return;
+
                                     var job_id = $('#id').val();
 
                                     var region = $.trim($('#s_region option:selected').text());
@@ -527,12 +531,6 @@ $traits = !empty($traits) ? explode(',', $traits) : [];
                                     var line = $('#line option:selected').val();
                                     var station = $('#station option:selected').val();
                                     var walking_distance = $('#walking_distance').val();
-
-                                    console.log(region);
-                                    console.log(pref);
-                                    console.log(line);
-                                    console.log(station);
-                                    console.log(walking_distance);
 
                                     if (region && pref && line && line != "路線を選択する" && station && station != "駅を選択する" && walking_distance) {
                                         $.ajax({
@@ -849,7 +847,7 @@ $traits = !empty($traits) ? explode(',', $traits) : [];
                         </div>
                         <div class="flex flex-col space-y-2 text-sm">
                             <?php if (!empty($top_picture)): ?>
-                                <img id="top_picture" src="<?= $top_picture ?>" alt="Image">
+                                <img id="top_picture" src="/uploads/top_picture/<?= $top_picture ?>" alt="Image">
                             <?php else: ?>
                                 <img id="top_picture" src="/uploads/top_picture/616f869cd0af9.jpg" alt="Image">
                             <?php endif; ?>
@@ -1065,7 +1063,7 @@ $traits = !empty($traits) ? explode(',', $traits) : [];
                 var gfj_listing_start_date = $('#gfj_listing_start_date').val();
                 var gfj_listing_end_date = $('#gfj_listing_end_date').val();
                 var status = $('#status').val();
-                var top_picture = $('#top_picture').attr('src');
+                var top_picture = $('#top_picture').attr('src').replace('/uploads/top_picture/', '');
                 var traits = get_checked_values($('.traits:checked'));
 
                 var custom_fields = [];

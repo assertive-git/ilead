@@ -19,21 +19,21 @@
       <div class="button_area">
         <button type="reset" class="reset">すべてクリア</button>
       </div>
-    </div>
+  </div>
   </section>
 
   <section class="side_list">
     <div class="menu-trigger" href=""> <span><img src="assets/img/map_arrow_open.png"></span></div>
     <div class="list">
-      <p>検索結果一覧　全<span class="number">270</span>件</p>
+      <p>検索結果一覧　全<span class="number"><?= count($jobs) ?></span>件</p>
       <?php foreach ($jobs as $job): ?>
         <ul class="list_inner">
           <li>
             <!-- <a href=""> -->
             <div class="list_item">
               <div class="info">
-                <h5><?= $job['title'] ?></h5>
-                <img src="<?= $job['top_picture'] ?>" width="100" height="81">
+                <h5><?= ellipsize($job['title'], 43) ?></h5>
+                <img src="/uploads/top_picture/<?= $job['top_picture'] ?>" width="100" height="81">
                 <div class="info_inner">
                   <?php if (!empty($job['category'])): ?>
                     <div class="category">

@@ -35,12 +35,23 @@ class Jobs_model extends CI_Model
             );
         }
 
-        return $data->get($this->table)->result_array();
+        $limit = !empty($_POST['limit']) && is_numeric($_POST['limit']) ? $_POST['limit'] : 20;
+
+        return $data->limit($limit)->get($this->table)->result_array();
     }
 
     public function get_all()
     {
         return $this->db->order_by('id', 'DESC')->where('status', '公開')->get($this->table)->result_array();
+    }
+
+    public function get_all_by_favorites($ids) {
+        return $this->db->where_in('id', $ids)->order_by('id', 'DESC')->where('status', '公開')->get($this->table)->result_array();
+    }
+
+    private function get_count()
+    {
+        return count($this->db->get($this->table)->result_array());
     }
 
     public function get_admin($id)
@@ -53,7 +64,11 @@ class Jobs_model extends CI_Model
         return $this->db->where('id', $id)->where('status', '公開')->get($this->table)->row_array();
     }
 
-    // Currently admin only function
+    public function get_keys()
+    {
+        return array_keys($this->db->get($this->table)->row_array());
+    }
+
     public function get_multiple($ids)
     {
         return $this->db->where_in('id', $ids)->get($this->table)->result_array();
@@ -97,7 +112,7 @@ class Jobs_model extends CI_Model
 
     public function get_by_line_and_stations($line, $stations)
     {
-        $data = $this->db->join('lines_stations', 'lines_stations.job_id = jobs.id')
+        $data = $this->db->join('jobs_stations', 'jobs_stations.job_id = jobs.id')
             ->where('line', $line)->where_in('station', $stations)->where('status', '公開')->get($this->table)->row_array();
 
         return !empty($data) ? $data : [];
@@ -152,5 +167,10 @@ class Jobs_model extends CI_Model
     public function get_new_jobs()
     {
         return $this->db->where('status', '公開')->order_by('id', 'desc')->limit(10)->get('jobs')->result_array();
+    }
+
+    public function get_csv_export()
+    {
+        return $this->db->order_by('id', 'desc')->get('jobs')->result_array();
     }
 }

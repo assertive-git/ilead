@@ -57,7 +57,7 @@
                     <?php endforeach; ?>
                   </div>
                 <?php endif; ?>
-                <p><?= $job['title'] ?></p>
+                <p><?= ellipsize($job['title'], 43) ?></p>
                 <div class="table_area">
                   <table>
                     <tr>
@@ -87,7 +87,7 @@
                   </table>
                   <small><?= str_replace(',', ' / ', $job['traits']) ?></small>
                 </div>
-                <img src="<?= $job['top_picture'] ?>" width="260" height="180">
+                <img src="/uploads/top_picture/<?= $job['top_picture'] ?>" width="260" height="180">
                 <ul class="button_area">
                   <li>
                     <button>★ 検討中リストに追加する</button>
