@@ -11,6 +11,8 @@ $route['job_list']['GET'] = 'home/job_list_get';
 $route['job_list']['POST'] = 'home/job_list_post';
 $route['jobs/(:num)']['GET'] = 'home/jobs/$1';
 $route['mypage']['GET'] = 'home/mypage';
+$route['mypage/delete']['GET'] = 'home/delete';
+$route['mypage/delete_all']['GET'] = 'home/delete_all';
 
 $route['admin'] = 'admin';
 $route['admin/login']['GET'] = 'admin/login_get';
@@ -31,6 +33,8 @@ $route['admin/jobs/(:num)/delete']['GET'] = 'admin/jobs_delete/$1';
 $route['admin/jobs/delete_multiple']['POST'] = 'admin/jobs_delete_multiple';
 $route['admin/jobs/memo/update']['POST'] = 'admin/jobs_single_col_update';
 $route['admin/jobs/status/update_multiple']['POST'] = 'admin/jobs_single_col_multiple_update';
+$route['admin/jobs/csv_export']['GET'] = 'admin/jobs_csv_export';
+$route['admin/jobs/csv_import']['POST'] = 'admin/jobs_csv_import';
 
 
 /* news */

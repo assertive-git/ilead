@@ -1333,6 +1333,8 @@ main .job_result .job_result_inner .job_result_wrap .inner table th {
   font-weight: 400;
   padding: 0.8rem 2rem;
   border-right: 2px solid #fff;
+  white-space: nowrap;
+  vertical-align: middle;
 }
 
 main .job_result .job_result_inner .job_result_wrap .inner table td {

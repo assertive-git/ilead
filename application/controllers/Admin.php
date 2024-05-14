@@ -19,11 +19,7 @@ class Admin extends CI_Controller
 
     public function index()
     {
-        $data['jobs'] = $this->jobs_model->get_all_admin();
-
-        $this->load->view('admin/header', $data);
-        $this->load->view('admin/jobs');
-        $this->load->view('admin/footer');
+        redirect('/admin/jobs');
     }
 
     public function login_get()
@@ -89,8 +85,15 @@ class Admin extends CI_Controller
     public function jobs_stations()
     {
 
-        if (!empty($_POST['job_id']) && !empty($_POST['region']) && !empty($_POST['pref']) && !empty($_POST['line']) && !empty($_POST['station']) && !empty($_POST['walking_distance'])) {
-
+        if (
+            !empty($_POST['job_id']) &&
+            !empty($_POST['region']) &&
+            !empty($_POST['pref']) &&
+            !empty($_POST['line']) &&
+            !empty($_POST['station']) &&
+            !empty($_POST['walking_distance']) &&
+            count($this->jobs_stations_model->get_all($_POST['job_id'])) < 3
+        ) {
             $data = [
                 'job_id' => $_POST['job_id'],
                 'region' => $_POST['region'],
@@ -200,7 +203,7 @@ class Admin extends CI_Controller
 
             foreach ($jobs as $job) {
 
-                unset($job['id']);  
+                unset($job['id']);
                 unset($job['created_at']);
                 unset($job['updated_at']);
 
@@ -344,5 +347,274 @@ class Admin extends CI_Controller
 
             $this->jobs_model->update_multiple($job_ids, $data);
         }
+    }
+
+    public function jobs_csv_export()
+    {
+
+        $titles = [
+            '求人ID',
+            '業務内容 ',
+            '求人見出し',
+            '求人内容',
+            '追加メールアドレス',
+            '会社または店舗名',
+            '雇用形態',
+            '給与形態',
+            '最低給与',
+            '最高給与',
+            '職種',
+            '施設・種別',
+            '住所（地域）',
+            '住所（都道府県）',
+            '住所（市区町村）',
+            '番地・ビル名',
+
+            '最寄り駅 (地方) 1',
+            '最寄り駅 (都道府県) 1',
+            '最寄り駅 (路線) 1',
+            '最寄り駅 (駅) 1',
+            '最寄り駅 (徒歩) 1',
+
+            '最寄り駅 (地方) 2',
+            '最寄り駅 (都道府県) 2',
+            '最寄り駅 (路線) 2',
+            '最寄り駅 (駅) 2',
+            '最寄り駅 (徒歩) 2',
+
+            '最寄り駅 (地方) 3',
+            '最寄り駅 (都道府県) 3',
+            '最寄り駅 (路線) 3',
+            '最寄り駅 (駅) 3',
+            '最寄り駅 (徒歩) 3',
+
+            '必要資格',
+
+            '募集要項 (項目) 1',
+            '募集要項 (内容) 1',
+
+            '募集要項 (項目) 2',
+            '募集要項 (内容) 2',
+
+            '募集要項 (項目) 3',
+            '募集要項 (内容) 3',
+
+            '募集要項 (項目) 4',
+            '募集要項 (内容) 4',
+
+            '募集要項 (項目) 5',
+            '募集要項 (内容) 5',
+
+            '募集要項 (項目) 6',
+            '募集要項 (内容) 6',
+
+            '募集要項 (項目) 7',
+            '募集要項 (内容) 7',
+
+            '募集要項 (項目) 8',
+            '募集要項 (内容) 8',
+
+            'GoogleマップURL',
+            '住所、駅名、施設名、ランドマーク',
+            '緯度',
+            '経度',
+            '「Googleしごと検索」を使用',
+            '雇用形態 (Google)',
+            '労働時間',
+            '掲載日',
+            '掲載期限',
+            'ステータス',
+            'トップ画像',
+            'こだわり',
+            'メモ',
+            '作成日時',
+            '更新日時'
+        ];
+
+        $data = $this->jobs_model->get_csv_export();
+
+        for ($i = 0; $i < count($titles); $i++) {
+            $titles[$i] = mb_convert_encoding($titles[$i], 'SJIS-win', 'UTF-8');
+        }
+
+        header('Content-Type: text/csv; charset=utf-8');
+        header('Content-Disposition: attachment; filename=jobs.csv');
+        ob_end_clean();
+
+        $output = fopen('php://output', 'w');
+
+        fputcsv($output, $titles, ',', '"', '"');
+
+        foreach ($data as $row) {
+
+
+            // station splice begins @ index 16
+            $values = ['', '', '', '', '', '', '', '', '', '', '', '', '', '', ''];
+            $values_index = 0;
+            $limit_index = 0;
+
+            $closest_stations = $this->jobs_stations_model->get_all($row['id']);
+
+            foreach ($closest_stations as $closest_station) {
+
+                unset($closest_station['id']);
+                unset($closest_station['created_at']);
+
+                foreach ($closest_station as $key => $value) {
+
+                    $values[$values_index] = $key == 'walking_distance' ? $value . '分' : $value;
+                    $values_index++;
+                }
+
+                $limit_index++;
+
+                if ($limit_index == 3)
+                    break;
+            }
+
+
+
+            array_splice($row, 16, 0, $values);
+
+            // custom fields splice begins @ index 32
+            $values = ['', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''];
+            $values_index = 0;
+            $limit_index = 0;
+
+            $custom_fields = $this->custom_fields_model->get_all($row['id']);
+
+            foreach ($custom_fields as $custom_field) {
+
+                unset($custom_field['id']);
+                unset($custom_field['created_at']);
+
+                foreach ($custom_field as $key => $value) {
+                    $values[$values_index] = $value;
+                    $values_index++;
+                }
+
+                $limit_index++;
+
+                if ($limit_index == 8)
+                    break;
+            }
+
+            array_splice($row, 32, 0, $values);
+
+
+            fputcsv($output, mb_convert_encoding($row, 'SJIS-win', 'UTF-8'));
+        }
+
+        fclose($output);
+    }
+
+    public function jobs_csv_import()
+    {
+        // $this->db->trans_start();
+
+        $file = fopen($_FILES['csv']['tmp_name'], "r");
+
+        $i = 0;
+
+        while (($column = fgetcsv($file, 10000, ',', '"', '"')) != false) {
+
+            mb_convert_variables('UTF-8', 'sjis-win', $column);
+
+            if ($i == 0) {
+                $i++;
+                continue;
+            }
+
+            $job_id = $column[0];
+
+            $job_keys = $this->jobs_model->get_keys();
+            unset($job_keys[0]);
+            $job_keys = array_values($job_keys);
+
+            $job_data = [];
+            $offsets = [1, 31, 48];
+            $lengths = [15, 1, null];
+
+            for ($i = 0; $i < 3; $i++) {
+                $column_copy = $column;
+                $job_data = array_merge($job_data, array_splice($column_copy, $offsets[$i], $lengths[$i]));
+            }
+
+            $job_data = array_combine($job_keys, array_values($job_data));
+
+            if (empty($job_id)) {
+                $job_id = $this->jobs_model->insert($job_data);
+            } else {
+                $this->jobs_model->update($job_id, $job_data);
+            }
+
+            $station_data = ['job_id' => $job_id, 'data' => []];
+            $offsets = [16, 21, 26];
+
+            for ($i = 0; $i < 3; $i++) {
+                $column_copy = $column;
+                $station_data['data'][] = array_combine(['region', 'pref', 'line', 'station', 'walking_distance'], array_values(array_splice($column_copy, $offsets[$i], 5)));
+            }
+
+            $stations = $this->jobs_stations_model->get_all($job_id);
+
+            for ($i = 0; $i < count($station_data['data']); $i++) {
+
+                $data = $station_data['data'][$i];
+
+                if (
+                    !empty($stations[$i]) &&
+                    !empty($data['region']) &&
+                    !empty($data['pref']) &&
+                    !empty($data['line']) &&
+                    !empty($data['station']) &&
+                    !empty($data['walking_distance'])
+                ) {
+                    $station_date = $stations[$i]['created_at'];
+                    $this->jobs_stations_model->update_by_date($station_date, $job_id, $data);
+                } else if (
+                    !empty($data['region']) &&
+                    !empty($data['pref']) &&
+                    !empty($data['line']) &&
+                    !empty($data['station']) &&
+                    !empty($data['walking_distance'])
+                ) {
+                    $data['job_id'] = $job_id;
+                    $this->jobs_stations_model->insert($data);
+                }
+            }
+
+            $custom_fields_data = ['job_id' => $job_id, 'data' => []];
+            $offsets = [32, 34, 36, 38, 40, 42, 44, 46];
+
+            for ($i = 0; $i < 8; $i++) {
+                $column_copy = $column;
+                $custom_fields_data['data'][] = array_combine(['title', 'detail'], array_values(array_splice($column_copy, $offsets[$i], 2)));
+            }
+
+            $custom_fields = $this->custom_fields_model->get_all($job_id);
+
+            for ($i = 0; $i < count($custom_fields_data['data']); $i++) {
+
+                $data = $custom_fields_data['data'][$i];
+
+                if (
+                    !empty($custom_fields[$i]) &&
+                    !empty($data['title']) &&
+                    !empty($data['detail'])
+                ) {
+                    $custom_fields_date = $stations[$i]['created_at'];
+                    $this->custom_fields_model->update_by_date($custom_fields_date, $job_id, $data);
+                } else if (
+                    !empty($data['title']) &&
+                    !empty($data['detail'])
+                ) {
+                    $data['job_id'] = $job_id;
+                    $this->custom_fields_model->insert($data);
+                }
+            }
+        }
+
+        // $this->db->trans_complete();
     }
 }

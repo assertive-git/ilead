@@ -1,5 +1,10 @@
+<?php $limit = !empty($_POST['limit']) && is_numeric($_POST['limit']) ? $_POST['limit'] : 20 ?>
 <?php $status = isset($_POST['status']) ? $_POST['status'] : '' ?>
 <?php $keyword = isset($_POST['keyword']) ? $_POST['keyword'] : '' ?>
+
+<div id="backdrop" class="hidden flex justify-center items-center fixed top-0 left-0 w-full h-full bg-black bg-opacity-60">
+    <div id="loader"><i class="fa-solid fa-spinner animate-spin text-white xl:text-4xl lg:text-4xl md:text-4xl sm:text-4xl text-3xl"></i></div>
+</div>
 
 <div class="py-28 px-4 bg-slate-100">
     <div class="max-w-screen-2xl mx-auto space-y-8">
@@ -8,7 +13,7 @@
             <a href="/admin/jobs/new"><button class="bg-[#13b3e7] text-white py-2 px-6 text-xl">+ 求人票を作成する</button></a>
         </div>
         <div class="flex xl:flex-row flex-col xl:space-y-0 space-y-2 justify-between">
-            <p><span class="text-[#13b3e7] font-bold text-3xl">0000</span>件 (1~20件目を表示中)</p>
+            <p><span class="text-[#13b3e7] font-bold text-3xl"><?= count($jobs); ?></span>件 (1~<?= count($jobs) ?>件目を表示中)</p>
             <form
                 class="flex xl:flex-row flex-col xl:space-y-0 space-y-2 bg-slate-500 p-2 xl:space-x-3 space-x-0 text-sm"
                 method="POST" action="/admin/jobs">
@@ -22,7 +27,8 @@
                     </select>
                 </div>
                 <div class="xl:space-x-1 space-x-0 xl:space-y-0 space-y-2">
-                    <input type="text" placeholder="求人検索・・・" class="px-2 py-1 xl:w-auto w-full" name="keyword" value="<?= $keyword ?>">
+                    <input type="text" placeholder="求人検索・・・" class="px-2 py-1 xl:w-auto w-full" name="keyword"
+                        value="<?= $keyword ?>">
                     <button type="submit"
                         class="bg-none border text-white hover:bg-white hover:text-black px-2 py-1 xl:w-auto w-full">検索</button>
                 </div>
@@ -46,13 +52,20 @@
                     エクスポート</button>
                 <button id="csv_import" class="bg-gray-500 p-2 text-white rounded"><i class="fa-solid fa-file-csv"></i>
                     インポート</button>
+                <input id="csv_file_input" class="hidden" type="file">
             </div>
         </div>
-        <div class="flex space-x-2 text-sm items-center">
+        <form method="POST" action="/admin/jobs" class="flex space-x-2 text-sm items-center">
             <span>行数：</span>
-            <input type="text" id="rows_input" class="px-2 py-1 w-[50px]">
+            <select name="limit" class="px-2 py-1 w-[65px]">
+                <option value="25" <?= $limit == 25 ? 'selected' : '' ?>>25</option>
+                <option value="50" <?= $limit == 50 ? 'selected' : '' ?>>50</option>
+                <option value="100" <?= $limit == 100 ? 'selected' : '' ?>>100</option>
+                <option value="250" <?= $limit == 250 ? 'selected' : '' ?>>250</option>
+                <option value="500" <?= $limit == 500 ? 'selected' : '' ?>>500</option>
+            </select>
             <button class="bg-gray-500 px-2 py-1 text-white" id="rows">更新</button>
-        </div>
+        </form>
         <div class="overflow-auto">
             <table class="bg-white p-8 border-collapse text-sm w-full" style="min-width: 1280px">
                 <thead>
@@ -78,7 +91,7 @@
                                     target="_blank"><?= $job['id'] ?></a></td>
                             <td class="p-2">
                                 <div class="flex flex-col space-y-1">
-                                    <span><?= $job['title'] ?></span>
+                                    <span><?= ellipsize($job['title'], 43) ?></span>
                                     <ul class="flex space-x-2">
                                         <li><a class="underline" href="/admin/jobs/<?= $job['id'] ?>">編集</a></li>
                                         <li><a class="delete" class="underline"
@@ -240,5 +253,54 @@
                             console.log('User has not selected a valid operation');
                     }
                 })
+            </script>
+
+            <script>
+                // CSV Export
+                $('#csv_export').click(function () {
+                    location = '/admin/jobs/csv_export';
+                });
+
+                // CSV Import
+
+                var csv_file_input = $('#csv_file_input');
+
+                $('#csv_import').click(function () {
+                    $('#csv_file_input').click();
+                });
+
+                csv_file_input.change(function (e) {
+                    var file = e.target.files[0];
+                    var extension = file.name.replace(/^.*\./, "");
+                    if (extension != "csv") {
+                        alert("CSVファイルのみ有効です。");
+                        $(this).val("");
+                    } else {
+                        var formData = new FormData();
+
+                        $('html').css('overflow', 'hidden');
+                        $('#backdrop').css('display', 'flex');
+
+                        formData.append('csv', file);
+                        // formData.append('csrf_token', getCookie('csrf_token'));
+
+                        $.ajax({
+                            url: "/admin/jobs/csv_import",
+                            type: "POST",
+                            data: formData,
+                            contentType: false,
+                            processData: false,
+                            success: function (response) {
+                                location.reload();
+                            },
+                            error: function (err) {
+                                console.log(err.responseText);
+                                $('html').css('overflow', 'visible');
+                                $('#backdrop').css('display', 'none');
+                                csv_file_input.val('');
+                            }
+                        });
+                    }
+                });
             </script>
         </div>
