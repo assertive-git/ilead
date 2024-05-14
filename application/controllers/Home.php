@@ -94,9 +94,9 @@ class Home extends CI_Controller
 
 		}
 
-		foreach ($data['jobs'] as $key => $job) {
-			$data['jobs'][$key]['jobs_stations'] = $this->jobs_stations_model->get_all($job['id']);
-		}
+		// foreach ($data['jobs'] as $key => $job) {
+		// 	$data['jobs'][$key]['jobs_stations'] = $this->jobs_stations_model->get_all($job['id']);
+		// }
 
 		$this->load->view('map', $data);
 	}
@@ -189,5 +189,13 @@ class Home extends CI_Controller
 		}
 
 		$this->load->view('mypage', $data);
+	}
+
+	public function get_jobs_by_id()
+	{
+		if (!empty($_POST['job_ids'])) {
+			$job_ids = $_POST['job_ids'];
+			echo json_encode(['jobs' => $this->jobs_model->get_by_ids($job_ids)]);
+		}
 	}
 }

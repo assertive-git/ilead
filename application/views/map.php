@@ -19,14 +19,16 @@
       <div class="button_area">
         <button type="reset" class="reset">すべてクリア</button>
       </div>
-  </div>
+    </div>
   </section>
 
   <section class="side_list">
     <div class="menu-trigger" href=""> <span><img src="assets/img/map_arrow_open.png"></span></div>
     <div class="list">
       <p>検索結果一覧　全<span class="number"><?= count($jobs) ?></span>件</p>
+      <?php $job_ids = []; ?>
       <?php foreach ($jobs as $job): ?>
+        <?php $job_ids[] = $job['id']; ?>
         <ul class="list_inner">
           <li>
             <!-- <a href=""> -->
@@ -81,15 +83,19 @@
           zoom: 14,
         });
 
+        var marker;
+
         $.ajax({
           type: "POST",
-          url: '/get_jobs',
+          url: '/get_jobs_by_ids',
+          data: {
+            job_ids: [<?= implode(',', $job_ids) ?>]
+          },
           dataType: 'json',
           success: function (data) {
-
             for (i = 0; i < data.jobs.length; i++) {
 
-              var marker = new google.maps.Marker({
+              marker = new google.maps.Marker({
                 position: { lat: parseFloat(data.jobs[i].lat), lng: parseFloat(data.jobs[i].lng) },
                 title: data.jobs[i].title,
               });

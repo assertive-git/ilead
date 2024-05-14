@@ -38,7 +38,7 @@
               <?php endforeach; ?>
             </div>
           <?php endif; ?>
-          <p><?= $job['title'] ?></p>
+          <p><?= ellipsize($job['title'], 43) ?></p>
           <img src="/assets/img/result_img.png" width="260" height="180">
           <div class="table_area">
             <table>
