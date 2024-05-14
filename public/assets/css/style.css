@@ -1681,6 +1681,10 @@ main .job_result .area.is-active {
 
 /*-------map---------*/
 
+#map {
+  overflow: hidden;
+}
+
 #map .google_map {
   position: relative;
   /* z-index: -1; */
