@@ -10,6 +10,8 @@ $route['map']['POST'] = 'home/map_post';
 $route['job_list']['GET'] = 'home/job_list_get';
 $route['job_list']['POST'] = 'home/job_list_post';
 $route['jobs/(:num)']['GET'] = 'home/jobs/$1';
+$route['get_lines_and_stations']['POST'] = 'home/get_lines_and_stations';
+$route['get_jobs_by_ids']['POST'] = 'home/get_jobs_by_id';
 $route['mypage']['GET'] = 'home/mypage';
 $route['mypage/delete']['GET'] = 'home/delete';
 $route['mypage/delete_all']['GET'] = 'home/delete_all';
@@ -35,6 +37,7 @@ $route['admin/jobs/memo/update']['POST'] = 'admin/jobs_single_col_update';
 $route['admin/jobs/status/update_multiple']['POST'] = 'admin/jobs_single_col_multiple_update';
 $route['admin/jobs/csv_export']['GET'] = 'admin/jobs_csv_export';
 $route['admin/jobs/csv_import']['POST'] = 'admin/jobs_csv_import';
+$route['admin/jobs/base64_to_png']['POST'] = 'admin/base64_to_png';
 
 
 /* news */
@@ -43,12 +46,6 @@ $route['admin/news/(:num)']['GET'] = 'admin/news_get/$1';
 $route['admin/news/new']['GET'] = 'admin/news_new';
 $route['admin/news/update']['POST'] = 'admin/news_update';
 $route['admin/news/(:num)/delete']['GET'] = 'admin/news_delete/$1';
-
-
-
-// API
-$route['get_lines_and_stations']['POST'] = 'home/get_lines_and_stations';
-$route['get_jobs_by_ids']['POST'] = 'home/get_jobs_by_id';
 
 $route['(:any)'] = 'home/index/$1';
 $route['404_override'] = '';
