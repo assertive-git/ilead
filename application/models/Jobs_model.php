@@ -35,9 +35,10 @@ class Jobs_model extends CI_Model
             );
         }
 
-        $limit = !empty($_POST['limit']) && is_numeric($_POST['limit']) ? $_POST['limit'] : 20;
+        // $limit = !empty($_POST['limit']) && is_numeric($_POST['limit']) ? $_POST['limit'] : 20;
 
-        return $data->limit($limit)->get($this->table)->result_array();
+        // return $data->limit($limit)->get($this->table)->result_array();
+        return $data->get($this->table)->result_array();
     }
 
     public function get_all()
