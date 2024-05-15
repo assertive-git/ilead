@@ -44,7 +44,7 @@
         <ul class="list_inner">
           <li>
             <!-- <a href=""> -->
-            <div class="list_item">
+            <div class="list_item" job-link="/jobs/<?= $job['id'] ?>">
               <div class="info">
                 <h5><?= ellipsize($job['title'], 18) ?></h5>
                 <img src="/uploads/top_picture/<?= $job['top_picture'] ?>" width="100" height="81">
@@ -53,7 +53,7 @@
                     <?php $i = 0 ?>
                     <div class="category">
                       <?php foreach (explode(',', $job['category']) as $category): ?>
-                        <span><?= ellipsize($category, 4) ?></span>
+                        <span><?= ellipsize($category, 3) ?></span>
                         <?php $i++; ?>
                         <?php if ($i == 2)
                           break ?>
@@ -116,8 +116,18 @@
         });
 
 
-
         $('.list_item').click(function () {
+
+          if(!$('.list_item.active').is($(this))) {
+            $('.list_item.active').removeClass('active');
+          }
+
+          if ($(this).hasClass('active')) {
+            window.location.href = $(this).attr('job-link');
+            return;
+          } else {
+            $(this).addClass('active');
+          }
 
           var lat = parseFloat($(this).find('#lat').val());
           var lng = parseFloat($(this).find('#lng').val());

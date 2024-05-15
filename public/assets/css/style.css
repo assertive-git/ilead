@@ -1728,6 +1728,10 @@ main .job_result .area.is-active {
   transition: all .5s;
 }
 
+#map .list_item.active {
+  border: 3px solid #f1f102;
+}
+
 #map .list.open {
   transform: translateZ(0);
 }
