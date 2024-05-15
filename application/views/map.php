@@ -88,17 +88,7 @@
     <script>
       function initMap() {
 
-        var lat = 34.6733084;
-        var lng = 135.4969132;
-
-        var ileadPos = { lat, lng };
-
-        var map = new google.maps.Map(document.getElementById("_map"), {
-          center: ileadPos,
-          zoom: 14,
-        });
-
-        var marker;
+        var map = new google.maps.Map(document.getElementById("_map"));
 
         $.ajax({
           type: "POST",
@@ -109,15 +99,19 @@
           dataType: 'json',
           success: function (data) {
 
+            var bounds = new google.maps.LatLngBounds();
+
             for (i = 0; i < data.jobs.length; i++) {
 
-              marker = new google.maps.Marker({
+              var marker = new google.maps.Marker({
                 position: { lat: parseFloat(data.jobs[i].lat), lng: parseFloat(data.jobs[i].lng) },
                 title: data.jobs[i].title,
               });
 
               marker.setMap(map);
+              bounds.extend(marker.getPosition());
             }
+            map.fitBounds(bounds);
           },
         });
 
@@ -131,9 +125,7 @@
           var title = $(this).find('#map_address').val();
 
           map.setCenter({ lat: lat, lng: lng });
-
-          marker.setTitle(title);
-          marker.setPosition(new google.maps.LatLng(lat, lng));
+          map.setZoom(15);
         });
       }
     </script>
