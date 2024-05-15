@@ -1682,7 +1682,7 @@ main .job_result .area.is-active {
 /*-------map---------*/
 
 #map {
-  overflow: hidden;
+  overflow: hidden;:
 }
 
 #map .google_map {
