@@ -198,4 +198,21 @@ class Home extends CI_Controller
 			echo json_encode(['jobs' => $this->jobs_model->get_by_ids($job_ids)]);
 		}
 	}
+
+	// public function get_top_picture($image)
+	// {
+	// 	$content = file_get_contents('../../production/public/top_picture/' . $image);
+
+	// 	if (empty($content)) {
+	// 		show_404();
+	// 	}
+
+	// 	header('Content-Type: image/png');
+	// 	echo $content;
+	// }
+
+	// public function get_job_image()
+	// {
+
+	// }
 }
