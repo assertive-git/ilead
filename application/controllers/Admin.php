@@ -527,20 +527,39 @@ class Admin extends CI_Controller
 
             $job_id = $column[0];
 
-            $job_keys = $this->jobs_model->get_keys();
-            unset($job_keys[0]);
-            $job_keys = array_values($job_keys);
-
-            $job_data = [];
-            $offsets = [1, 31, 48];
-            $lengths = [15, 1, null];
-
-            for ($i = 0; $i < 3; $i++) {
-                $column_copy = $column;
-                $job_data = array_merge($job_data, array_splice($column_copy, $offsets[$i], $lengths[$i]));
-            }
-
-            $job_data = array_combine($job_keys, array_values($job_data));
+            $job_data = [
+                'business_content' => $column[1],
+                'title' => $column[2],
+                'body' => $column[3],
+                'tantosha' => $column[4],
+                'company_or_store_name' => $column[5],
+                'employment_type' => $column[6],
+                'salary_type' => $column[7],
+                'min_salary' => $column[8],
+                'max_salary' => $column[9],
+                'job_type' => $column[10],
+                'category' => $column[11],
+                'a_region' => $column[12],
+                'a_pref' => $column[13],
+                'city' => $column[14],
+                'address' => $column[15],
+                'has_requirement' => $column[31],
+                'map_url' => $column[48],
+                'map_address' => $column[49],
+                'lat' => $column[50],
+                'lng' => $column[51],
+                'gfj' => $column[52],
+                'gfj_employment_type' => $column[53],
+                'gfj_working_hours' => $column[54],
+                'gfj_listing_start_date' => $column[55],
+                'gfj_listing_end_date' => $column[56],
+                'status' => $column[57],
+                'top_picture' => $column[58],
+                'traits' => $column[59],
+                'memo' => $column[60],
+                'created_at' => $column[61],
+                'updated_at' => $column[62],
+            ];
 
             if (empty($job_id)) {
                 $job_id = $this->jobs_model->insert($job_data);
@@ -548,13 +567,32 @@ class Admin extends CI_Controller
                 $this->jobs_model->update($job_id, $job_data);
             }
 
-            $station_data = ['job_id' => $job_id, 'data' => []];
-            $offsets = [16, 21, 26];
-
-            for ($i = 0; $i < 3; $i++) {
-                $column_copy = $column;
-                $station_data['data'][] = array_combine(['region', 'pref', 'line', 'station', 'walking_distance'], array_values(array_splice($column_copy, $offsets[$i], 5)));
-            }
+            $station_data = [
+                'job_id' => $job_id,
+                'data' => [
+                    [
+                        'region' => $column[16],
+                        'pref' => $column[17],
+                        'line' => $column[18],
+                        'station' => $column[19],
+                        'walking_distance' => $column[20],
+                    ],
+                    [
+                        'region' => $column[21],
+                        'pref' => $column[22],
+                        'line' => $column[23],
+                        'station' => $column[24],
+                        'walking_distance' => $column[25],
+                    ],
+                    [
+                        'region' => $column[26],
+                        'pref' => $column[27],
+                        'line' => $column[28],
+                        'station' => $column[29],
+                        'walking_distance' => $column[30],
+                    ]
+                ]
+            ];
 
             $stations = $this->jobs_stations_model->get_all($job_id);
 
@@ -584,13 +622,43 @@ class Admin extends CI_Controller
                 }
             }
 
-            $custom_fields_data = ['job_id' => $job_id, 'data' => []];
-            $offsets = [32, 34, 36, 38, 40, 42, 44, 46];
-
-            for ($i = 0; $i < 8; $i++) {
-                $column_copy = $column;
-                $custom_fields_data['data'][] = array_combine(['title', 'detail'], array_values(array_splice($column_copy, $offsets[$i], 2)));
-            }
+            $custom_fields_data = [
+                'job_id' => $job_id,
+                'data' => [
+                    [
+                        'title' => $column[32],
+                        'detail' => $column[33],
+                    ],
+                    [
+                        'title' => $column[34],
+                        'detail' => $column[35],
+                    ],
+                    [
+                        'title' => $column[36],
+                        'detail' => $column[37],
+                    ],
+                    [
+                        'title' => $column[38],
+                        'detail' => $column[39],
+                    ],
+                    [
+                        'title' => $column[40],
+                        'detail' => $column[41],
+                    ],
+                    [
+                        'title' => $column[42],
+                        'detail' => $column[43],
+                    ],
+                    [
+                        'title' => $column[44],
+                        'detail' => $column[45],
+                    ],
+                    [
+                        'title' => $column[46],
+                        'detail' => $column[47],
+                    ]
+                ]
+            ];
 
             $custom_fields = $this->custom_fields_model->get_all($job_id);
 
