@@ -1053,6 +1053,7 @@ $traits = !empty($traits) ? explode(',', $traits) : [];
 
                             if(src.indexOf('data:image') !== -1 && src.indexOf('base64') !== -1) {
                                 img.attr('src', data[i]);
+                                img.removeAttr('alt');
                             }
 
                         });
