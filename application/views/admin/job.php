@@ -859,7 +859,7 @@ $traits = !empty($traits) ? explode(',', $traits) : [];
                             <div class="max-w-screen-md w-full">
                                 <div class="bg-slate-100 p-4 h-[600px] overflow-auto">
                                     <div id="photos-grid" class="grid xl:grid-cols-4 grid-cols-1 gap-4">
-                                        <?php foreach (glob('../../production/public/uploads/top_picture/*') as $photo): ?>
+                                        <?php foreach (glob('./uploads/top_picture/*') as $photo): ?>
                                             <?php $photo = str_replace('./', '/', $photo); ?>
                                             <div class="border flex-1 group relative select-top-picture-highlight">
                                                 <img src="<?= $photo ?>" alt="top picture">
