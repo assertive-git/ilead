@@ -1036,125 +1036,151 @@ $traits = !empty($traits) ? explode(',', $traits) : [];
 
             $('#update').click(function () {
 
-                var id = $('#id').val();
-                var business_content = $('#business_content').val();
-                var title = $('#title').val();
                 var body = $('.ql-editor').html();
-                var tantosha = $('#tantosha').val();
-                var company_or_store_name = $('#company_or_store_name').val();
-                var employment_type = $('.employment_type:checked').val();
-                var salary_type = $('#salary_type').children('option:selected').val();
-                var min_salary = $('#min_salary').val();
-                var max_salary = $('#max_salary').val();
-                var job_type = $('#job_type').val();
-                var category = get_checked_values($('.category:checked'));
-                var a_region = $.trim($('#a_region').children('option:selected').text());
-                var a_pref = $.trim($('#a_pref').children('option:selected').text());
-                var city = $('#city').val();
-                var address = $('#address').val();
-                var has_requirement = $('.has_requirement:checked').val();
-                var map_url = $('#map_url').val();
-                var map_address = $('#map_address').val();
-                var lat = $('#lat').val();
-                var lng = $('#lng').val();
-                var gfj = $('#gfj').is(':checked') ? 1 : 0;
-                var gfj_employment_type = $('#gfj_employment_type').val();
-                var gfj_working_hours = $('#gfj_working_hours').val();
-                var gfj_listing_start_date = $('#gfj_listing_start_date').val();
-                var gfj_listing_end_date = $('#gfj_listing_end_date').val();
-                var status = $('#status').val();
-                var top_picture = $('#top_picture').attr('src').replace('/uploads/top_picture/', '');
-                var traits = get_checked_values($('.traits:checked'));
-
-                var custom_fields = [];
-
-                $('.custom-field').each(function () {
-                    custom_fields.push({
-                        job_id: id,
-                        id: $(this).attr('custom-field-id'),
-                        title: $(this).find('.custom-field-title').val(),
-                        detail: $(this).find('.custom-field-detail').val(),
-                        action: !$(this).attr('custom-field-id') ? 'new' : 'update'
-                    });
-                });
 
                 $.ajax({
                     type: "POST",
-                    url: '/admin/jobs/update',
+                    url: '/admin/jobs/base64_to_png',
                     data: {
-                        id: id,
-                        business_content: business_content,
-                        title: title,
-                        body: body,
-                        tantosha: tantosha,
-                        company_or_store_name: company_or_store_name,
-                        employment_type: employment_type,
-                        salary_type: salary_type,
-                        min_salary: min_salary,
-                        max_salary: max_salary,
-                        job_type: job_type,
-                        category: category,
-                        a_region: a_region,
-                        a_pref: a_pref,
-                        city: city,
-                        address: address,
-                        has_requirement: has_requirement,
-                        map_url: map_url,
-                        map_address: map_address,
-                        lat: lat,
-                        lng: lng,
-                        gfj: gfj,
-                        gfj_employment_type: gfj_employment_type,
-                        gfj_working_hours: gfj_working_hours,
-                        gfj_listing_start_date: gfj_listing_start_date,
-                        gfj_listing_end_date: gfj_listing_end_date,
-                        status: status,
-                        top_picture: top_picture,
-                        traits: traits,
-                        custom_fields: JSON.stringify(custom_fields),
-                        remove_custom_fields: JSON.stringify(remove_custom_fields)
+                        body: body
                     },
                     success: function (data) {
-                        if (data.id) {
-                            var id = data.id;
-                            var updated_at = data.updated_at;
-                            var custom_fields_ids = data.custom_fields_ids;
 
-                            window.history.pushState({}, null, '/admin/jobs/' + id);
-                            $('#id').val(id);
 
-                            $('#job_id').text('<?= base_url() ?>jobs/' + id).attr('href', '/jobs/' + id);
-                            $('.job-id').removeClass('hidden').addClass('flex');
+                        $('.ql-editor img').each(function(i, el) {
+                            var img = $(this);
+                            var src = $(this).attr('src');
 
-                            $('#updated_at').text(updated_at);
-                            $('.updated-at').removeClass('hidden').addClass('flex');
-
-                            $('#preview').attr('href', '<?= base_url() ?>jobs/' + id)
-                            $('.preview').removeClass('hidden').addClass('flex');
-
-                            $('.delete').removeClass('justify-end').addClass('justify-between');
-                            $('.delete-btn').removeClass('hidden');
-                            $('.delete-btn a').attr('href', '/admin/jobs/' + id + '/delete');
-
-                            var c = 0;
-                            if(custom_fields_ids.length != 0) {
-                                $('.custom-field').each(function() {
-                                    if(!$(this).attr('custom-field-id')) {
-                                        $(this).attr('custom-field-id', custom_fields_ids[c]);
-                                        c++;
-                                    }
-                                });
+                            if(src.indexOf('data:image') !== -1 && src.indexOf('base64') !== -1) {
+                                img.attr('src', data[i]);
                             }
 
-                            $('#updated-successfully').fadeIn(function () {
-                                setTimeout(function () {
-                                    $('#updated-successfully').fadeOut();
-                                }, 3000);
+                        });
+
+                        var id = $('#id').val();
+                        var business_content = $('#business_content').val();
+                        var title = $('#title').val();
+                        var body = $('.ql-editor').html();
+                        var tantosha = $('#tantosha').val();
+                        var company_or_store_name = $('#company_or_store_name').val();
+                        var employment_type = $('.employment_type:checked').val();
+                        var salary_type = $('#salary_type').children('option:selected').val();
+                        var min_salary = $('#min_salary').val();
+                        var max_salary = $('#max_salary').val();
+                        var job_type = $('#job_type').val();
+                        var category = get_checked_values($('.category:checked'));
+                        var a_region = $.trim($('#a_region').children('option:selected').text());
+                        var a_pref = $.trim($('#a_pref').children('option:selected').text());
+                        var city = $('#city').val();
+                        var address = $('#address').val();
+                        var has_requirement = $('.has_requirement:checked').val();
+                        var map_url = $('#map_url').val();
+                        var map_address = $('#map_address').val();
+                        var lat = $('#lat').val();
+                        var lng = $('#lng').val();
+                        var gfj = $('#gfj').is(':checked') ? 1 : 0;
+                        var gfj_employment_type = $('#gfj_employment_type').val();
+                        var gfj_working_hours = $('#gfj_working_hours').val();
+                        var gfj_listing_start_date = $('#gfj_listing_start_date').val();
+                        var gfj_listing_end_date = $('#gfj_listing_end_date').val();
+                        var status = $('#status').val();
+                        var top_picture = $('#top_picture').attr('src').replace('/uploads/top_picture/', '');
+                        var traits = get_checked_values($('.traits:checked'));
+
+                        var custom_fields = [];
+
+                        $('.custom-field').each(function () {
+                            custom_fields.push({
+                                job_id: id,
+                                id: $(this).attr('custom-field-id'),
+                                title: $(this).find('.custom-field-title').val(),
+                                detail: $(this).find('.custom-field-detail').val(),
+                                action: !$(this).attr('custom-field-id') ? 'new' : 'update'
                             });
-                        }
+                        });
+
+                        $.ajax({
+                            type: "POST",
+                            url: '/admin/jobs/update',
+                            data: {
+                                id: id,
+                                business_content: business_content,
+                                title: title,
+                                body: body,
+                                tantosha: tantosha,
+                                company_or_store_name: company_or_store_name,
+                                employment_type: employment_type,
+                                salary_type: salary_type,
+                                min_salary: min_salary,
+                                max_salary: max_salary,
+                                job_type: job_type,
+                                category: category,
+                                a_region: a_region,
+                                a_pref: a_pref,
+                                city: city,
+                                address: address,
+                                has_requirement: has_requirement,
+                                map_url: map_url,
+                                map_address: map_address,
+                                lat: lat,
+                                lng: lng,
+                                gfj: gfj,
+                                gfj_employment_type: gfj_employment_type,
+                                gfj_working_hours: gfj_working_hours,
+                                gfj_listing_start_date: gfj_listing_start_date,
+                                gfj_listing_end_date: gfj_listing_end_date,
+                                status: status,
+                                top_picture: top_picture,
+                                traits: traits,
+                                custom_fields: JSON.stringify(custom_fields),
+                                remove_custom_fields: JSON.stringify(remove_custom_fields)
+                            },
+                            success: function (data) {
+                                if (data.id) {
+                                    var id = data.id;
+                                    var updated_at = data.updated_at;
+                                    var custom_fields_ids = data.custom_fields_ids;
+
+                                    window.history.pushState({}, null, '/admin/jobs/' + id);
+                                    $('#id').val(id);
+
+                                    $('#job_id').text('<?= base_url() ?>jobs/' + id).attr('href', '/jobs/' + id);
+                                    $('.job-id').removeClass('hidden').addClass('flex');
+
+                                    $('#updated_at').text(updated_at);
+                                    $('.updated-at').removeClass('hidden').addClass('flex');
+
+                                    $('#preview').attr('href', '<?= base_url() ?>jobs/' + id)
+                                    $('.preview').removeClass('hidden').addClass('flex');
+
+                                    $('.delete').removeClass('justify-end').addClass('justify-between');
+                                    $('.delete-btn').removeClass('hidden');
+                                    $('.delete-btn a').attr('href', '/admin/jobs/' + id + '/delete');
+
+                                    var c = 0;
+                                    if(custom_fields_ids.length != 0) {
+                                        $('.custom-field').each(function() {
+                                            if(!$(this).attr('custom-field-id')) {
+                                                $(this).attr('custom-field-id', custom_fields_ids[c]);
+                                                c++;
+                                            }
+                                        });
+                                    }
+
+                                    $('#updated-successfully').fadeIn(function () {
+                                        setTimeout(function () {
+                                            $('#updated-successfully').fadeOut();
+                                        }, 3000);
+                                    });
+                                }
+                            },
+                            dataType: 'json'
+                        });
                     },
                     dataType: 'json'
                 });
+
+                
             });
 
             function get_checked_values(key) {

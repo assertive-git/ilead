@@ -122,8 +122,6 @@ class Admin extends CI_Controller
 
     public function jobs_update()
     {
-
-
         $custom_fields = [];
         $remove_custom_fields = [];
 
@@ -439,7 +437,7 @@ class Admin extends CI_Controller
 
         header('Content-Type: text/csv; charset=utf-8');
         header('Content-Disposition: attachment; filename=jobs.csv');
-        if(ob_get_length() > 0) {
+        if (ob_get_length() > 0) {
             ob_clean();
         }
 
@@ -618,5 +616,36 @@ class Admin extends CI_Controller
         }
 
         // $this->db->trans_complete();
+    }
+
+    public function base64_to_png()
+    {
+        $body = $_POST['body'];
+
+        $doc = new DOMDocument;
+        $doc->loadHTML($body);
+
+        $path = './uploads/' . date('Y') . '/' . date('m');
+        if (!file_exists($path)) {
+            mkdir($path, 0777, true);
+        }
+
+        $imgs = [];
+        $pattern = '#^data:image/\w+;base64,#i';
+
+        foreach ($doc->getElementsByTagName('img') as $img) {
+
+            $src = $img->getAttribute('src');
+
+            if (preg_match($pattern, $src)) {
+                $data = base64_decode(preg_replace($pattern, '', $src));
+
+                $file = $path . '/' . uniqid() . '.png';
+                file_put_contents($file, $data);
+                $imgs[] = str_replace('./', '/', $file);
+            }
+        }
+
+        echo json_encode($imgs);
     }
 }
