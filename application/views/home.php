@@ -322,7 +322,10 @@
 
         $('#modal1 .prefectures input[name="prefecture_area"]').change(function () {
           var pref = $(this).next().text();
+          setAreas(pref);
+        });
 
+        function setAreas(pref) {
           var choice = $('#modal1 .search_inner .choice');
 
           $.ajax({
@@ -345,7 +348,9 @@
               console.log(err);
             }
           });
-        });
+        }
+
+        setAreas('大阪府');
 
         $('#modal2 .region input[name="region_route"]').change(function () {
 
