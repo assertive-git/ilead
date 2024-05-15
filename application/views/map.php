@@ -125,7 +125,6 @@
           var title = $(this).find('#map_address').val();
 
           map.setCenter({ lat: lat, lng: lng });
-          map.setZoom(13);
         });
       }
     </script>
