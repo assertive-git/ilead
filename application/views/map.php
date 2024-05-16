@@ -114,11 +114,9 @@
             map.fitBounds(bounds);
 
             
-            if(map.getZoom() > 15) {
-              map.setZoom(15);
-              console.log('setZoom');
+            if(map.getZoom() > 17) {
+              map.setZoom(17);
             }
-            console.log(map.getZoom());
           },
         });
 
