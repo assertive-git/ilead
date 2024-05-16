@@ -71,9 +71,11 @@ function GethashID(hashIDName) {
         // $(hashIDName).addClass("is-active"); //表示させたいエリアのタブリンク名をクリックしたら、表示エリアにis-activeクラスを追加 
       }
 
-      // if(hashIDName == '#list') {
-      //   $('form')
-      // }
+      if(hashIDName == '#list') {
+        $('form').attr('action', '/job_list')
+      } else {
+        $('form').attr('action', '/map');
+      }
     });
 
     $('.picup .tab li').find('a').each(function () { //タブ内のaタグ全てを取得
