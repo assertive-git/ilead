@@ -26,7 +26,7 @@
     </div>
   </section>
   <section class="search_result">
-    <p>検索結果一覧　全<span class="number">0</span>件</p>
+    <p>検索結果一覧　全<span class="number"><?= count($jobs) ?></span>件</p>
   </section>
   <section class="job_result">
     <div class="pagination">

@@ -110,6 +110,12 @@
 
               marker.setMap(map);
               bounds.extend(marker.getPosition());
+
+              if(map.zoom > 8) {
+                map.setZoom(8);
+              }
+
+              console.log(map.zoom);
             }
             map.fitBounds(bounds);
           },
