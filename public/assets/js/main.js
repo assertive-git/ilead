@@ -44,18 +44,17 @@ $('.temporary_slider').slick({
 function GethashID(hashIDName) {
   if (hashIDName) {
 
+    // // フォーム遷移先
+    // var form_action = hashIDName == '#googlemap' ? '/map' : '/job_list';
 
-    // フォーム遷移先
-    var form_action = hashIDName == '#googlemap' ? '/map' : '/job_list';
+    // $('.modal_form').each(function() {
 
-    $('.modal_form').each(function() {
+    //   var params = new URLSearchParams($(this).attr('action').split('?')[1]);
 
-      var params = new URLSearchParams($(this).attr('action').split('?')[1]);
+    //   var s = params.get('s');
 
-      var s = params.get('s');
-
-      $(this).attr('action', form_action + '?s=' + s);
-    });
+    //   $(this).attr('action', form_action);
+    // });
 
     //タブ設定
     $('.tab li').find('a').each(function () { //タブ内のaタグ全てを取得
@@ -66,7 +65,10 @@ function GethashID(hashIDName) {
         $(parentElm).addClass("active"); //リンク元の指定されたURLのハッシュタグとタブ内のリンク名が同じであれば、liにactiveクラスを追加
         //表示させるエリア設定
         $(".area").removeClass("is-active"); //もともとついているis-activeクラスを取り除き
-        $(hashIDName).addClass("is-active"); //表示させたいエリアのタブリンク名をクリックしたら、表示エリアにis-activeクラスを追加 
+        setTimeout(function () {
+          $('.area').addClass("is-active"); //表示させたいエリアのタブリンク名をクリックしたら、表示エリアにis-activeクラスを追加 
+        }, 1);
+        // $(hashIDName).addClass("is-active"); //表示させたいエリアのタブリンク名をクリックしたら、表示エリアにis-activeクラスを追加 
       }
     });
   }
@@ -81,8 +83,8 @@ $('.tab a').on('click', function () {
 
 // 上記の動きをページが読み込まれたらすぐに動かす
 $(window).on('load', function () {
-  $('.tab li:first-of-type').addClass("active"); //最初のliにactiveクラスを追加
-  $('.area:first-of-type').addClass("is-active"); //最初の.areaにis-activeクラスを追加
+  // $('.tab li:first-of-type').addClass("active"); //最初のliにactiveクラスを追加
+  // $('.area:first-of-type').addClass("is-active"); //最初の.areaにis-activeクラスを追加
   var hashName = location.hash; //リンク元の指定されたURLのハッシュタグを取得
   GethashID(hashName);//設定したタブの読み込み
 });

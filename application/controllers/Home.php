@@ -57,48 +57,20 @@ class Home extends CI_Controller
 
 	public function map_post()
 	{
-		$s = $_GET['s'];
+		$pref = isset($_POST['pref']) ? $_POST['pref'] : [];
+		$areas = isset($_POST['areas']) ? $_POST['areas'] : [];
+		$line = isset($_POST['line']) ? $_POST['line'] : '';
+		$stations = isset($_POST['stations']) ? $_POST['stations'] : [];
+		$employment_type = isset($_POST['employment_type']) ? $_POST['$employment_type'] : [];
+		$job_type = isset($_POST['job_type']) ? $_POST['job_type'] : [];
+		$category = isset($_POST['category']) ? $_POST['category'] : [];
+		$traits = isset($_POST['traits']) ? implode('|', $_POST['traits']) : [];
+		$freeword = isset($_POST['freeword']) ? $_POST['freeword'] : '';
 
-		switch ($s) {
-			case 'area':
-				$areas = $_POST['areas'];
-
-				$data['jobs'] = $this->jobs_model->get_by_area($areas);
-				break;
-
-			case 'ls':
-				$line = $_POST['line'];
-				$stations = $_POST['stations'];
-
-				$data['jobs'] = $this->jobs_model->get_by_line_and_stations($line, $stations);
-				break;
-			case 'employment_type':
-				$employment_type = $_POST['employment_type'];
-				$data['jobs'] = $this->jobs_model->get_by_employment_type($employment_type);
-				break;
-			case 'job_type':
-				$job_type = $_POST['job_type'];
-				$data['jobs'] = $this->jobs_model->get_by_job_type($job_type);
-				break;
-			case 'category':
-				$category = $_POST['category'];
-				$data['jobs'] = $this->jobs_model->get_by_category($category);
-				break;
-			case 'traits':
-				$traits = $_POST['traits'];
-				$data['jobs'] = $this->jobs_model->get_by_traits($traits);
-				break;
-			default:
-				$fw = $_POST['freeword'];
-				$data['jobs'] = $this->jobs_model->get_by_freeword($fw);
-
-		}
-
-		// foreach ($data['jobs'] as $key => $job) {
-		// 	$data['jobs'][$key]['jobs_stations'] = $this->jobs_stations_model->get_all($job['id']);
-		// }
+		$data['jobs'] = $this->jobs_model->get_by($pref, $areas, $line, $stations, $employment_type, $job_type, $category, $traits, $freeword);
 
 		$this->load->view('map', $data);
+
 	}
 
 	public function jobs($id)
@@ -130,42 +102,17 @@ class Home extends CI_Controller
 	public function job_list_post()
 	{
 
-		$s = $_GET['s'];
+		$pref = isset($_POST['pref']) ? $_POST['pref'] : [];
+		$areas = isset($_POST['areas']) ? $_POST['areas'] : [];
+		$line = isset($_POST['line']) ? $_POST['line'] : '';
+		$stations = isset($_POST['stations']) ? $_POST['stations'] : [];
+		$employment_type = isset($_POST['employment_type']) ? $_POST['$employment_type'] : [];
+		$job_type = isset($_POST['job_type']) ? $_POST['job_type'] : [];
+		$category = isset($_POST['category']) ? $_POST['category'] : [];
+		$traits = isset($_POST['traits']) ? $_POST['traits'] : [];
+		$freeword = isset($_POST['freeword']) ? $_POST['freeword'] : '';
 
-		switch ($s) {
-			case 'area':
-				$areas = $_POST['areas'];
-
-				$data['jobs'] = $this->jobs_model->get_by_area($areas);
-				break;
-
-			case 'ls':
-				$line = $_POST['line'];
-				$stations = $_POST['stations'];
-
-				$data['jobs'] = $this->jobs_model->get_by_line_and_stations($line, $stations);
-				break;
-			case 'employment_type':
-				$employment_type = $_POST['employment_type'];
-				$data['jobs'] = $this->jobs_model->get_by_employment_type($employment_type);
-				break;
-			case 'job_type':
-				$job_type = $_POST['job_type'];
-				$data['jobs'] = $this->jobs_model->get_by_job_type($job_type);
-				break;
-			case 'category':
-				$category = $_POST['category'];
-				$data['jobs'] = $this->jobs_model->get_by_category($category);
-				break;
-			case 'traits':
-				$traits = $_POST['traits'];
-				$data['jobs'] = $this->jobs_model->get_by_traits($traits);
-				break;
-			default:
-				$fw = $_POST['freeword'];
-				$data['jobs'] = $this->jobs_model->get_by_freeword($fw);
-
-		}
+		$data['jobs'] = $this->jobs_model->get_by($pref, $areas, $line, $stations, $employment_type, $job_type, $category, $traits, $freeword);
 
 		foreach ($data['jobs'] as $key => $job) {
 			$data['jobs'][$key]['jobs_stations'] = $this->jobs_stations_model->get_all($job['id']);

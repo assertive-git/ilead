@@ -259,6 +259,10 @@ main .search .button_area button.reset {
   transform: translate(0%, -50%);
 }
 
+.plus.active {
+  color: #65b9e7;
+}
+
 /*-----タブメニュー-----*/
 /*tabの形状*/
 main .search .tab {
@@ -297,9 +301,9 @@ main .search .tab li.active a {
 
 /*エリアの表示非表示と形状*/
 main .search .area {
-  display: none;
+  /* display: none; */
   /*はじめは非表示*/
-  opacity: 0;
+  /* opacity: 0; */
   /*透過0*/
   background: #fff;
   padding: 44px;
@@ -1276,13 +1280,18 @@ main .job_result .job_result_inner .job_result_wrap .inner .button_area {
   margin: 2rem auto 0;
 }
 
-main .job_result .job_result_inner .job_result_wrap .inner .button_area button {
+main .job_result .job_result_inner .job_result_wrap .inner .button_area .favorite_btn {
   color: #ff8900;
   border: 2px #ff8900 solid;
   border-radius: 8px;
   text-align: center;
   line-height: 3.2;
   width: min(25vw, 350px);
+}
+
+main .job_result .job_result_inner .job_result_wrap .inner .button_area .favorite_btn--remove {
+  color: gray;
+  border-color: gray;
 }
 
 main .job_result .job_result_inner .job_result_wrap .inner .button_area a {
@@ -1375,9 +1384,9 @@ main .job_result .tab li.active a {
 
 /*エリアの表示非表示と形状*/
 main .job_result .area {
-  display: none;
+  /* display: none; */
   /*はじめは非表示*/
-  opacity: 0;
+  /* opacity: 0; */
   /*透過0*/
 }
 

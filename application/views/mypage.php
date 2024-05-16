@@ -53,7 +53,7 @@
               <img src="/uploads/top_picture/<?= $job['top_picture'] ?>" width="260" height="180">
               <ul class="button_area">
                 <li>
-                  <button>★ 検討中リストに追加する</button>
+                  <button>★ 検討中リストから削除する</button>
                 </li>
                 <li><a href="/jobs/<?= $job['id'] ?>">詳細を見る</a></li>
               </ul>

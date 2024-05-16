@@ -118,7 +118,7 @@
 
         $('.list_item').click(function () {
 
-          if(!$('.list_item.active').is($(this))) {
+          if (!$('.list_item.active').is($(this))) {
             $('.list_item.active').removeClass('active');
           }
 
@@ -139,8 +139,8 @@
       }
     </script>
 
-    <script
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAmVMSJ-FB7idtnAQajLhCIo2SV7VZd7uw&callback=initMap"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAmVMSJ-FB7idtnAQajLhCIo2SV7VZd7uw&callback=initMap"> 
+    </script>
   </section>
 
 

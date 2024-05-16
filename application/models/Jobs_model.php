@@ -46,7 +46,8 @@ class Jobs_model extends CI_Model
         return $this->db->order_by('id', 'DESC')->where('status', '公開')->get($this->table)->result_array();
     }
 
-    public function get_all_by_favorites($ids) {
+    public function get_all_by_favorites($ids)
+    {
         return $this->db->where_in('id', $ids)->order_by('id', 'DESC')->where('status', '公開')->get($this->table)->result_array();
     }
 
@@ -106,65 +107,106 @@ class Jobs_model extends CI_Model
         return [];
     }
 
-    public function get_by_area($areas)
+    public function get_by($pref, $areas, $line, $stations, $job_types, $employment_type, $category, $traits, $freeword)
     {
-        return $this->db->where('status', '公開')->where_in('CONCAT(a_pref, city)', $areas)->get($this->table)->result_array();
-    }
+        $data = $this->db->join('jobs_stations', 'jobs_stations.job_id = jobs.id', 'left');
 
-    public function get_by_line_and_stations($line, $stations)
-    {
-        $data = $this->db->join('jobs_stations', 'jobs_stations.job_id = jobs.id')
-            ->where('line', $line)->where_in('station', $stations)->where('status', '公開')
-            ->select('jobs.id as id, lat, lng, title, category, min_salary, max_salary, top_picture, employment_type, pref, city, map_address')->get($this->table)->result_array();
+        $pref = $_POST['pref'];
 
-        return !empty($data) ? $data : [];
-    }
-
-
-    public function get_by_job_type($job_type)
-    {
-        return $this->db->where('status', '公開')->where_in('job_type', $job_type)->get($this->table)->result_array();
-    }
-
-    public function get_by_employment_type($employment_type)
-    {
-        return $this->db->where('status', '公開')->where_in('employment_type', $employment_type)->get($this->table)->result_array();
-    }
-
-    public function get_by_category($category)
-    {
-        return $this->db->where('status', '公開')->where_in('category', $category)->get($this->table)->result_array();
-    }
-
-    public function get_by_traits($traits)
-    {
-
-        foreach ($traits as $trait) {
-            $this->db->or_like('traits', $trait);
+        if (!empty($areas)) {
+            $data->where('a_pref', $pref);
+            $data->where_in('city', $areas);
         }
 
-        return $this->db->where('status', '公開')->get($this->table)->result_array();
+        if (!empty($line) && !empty($stations)) {
+            $data->where('line', $line);
+            $data->where_in('station', $line);
+        }
+
+        if (!empty($job_types)) {
+            $this->db->where('job_types', $job_types);
+        }
+
+        if (!empty($employment_type)) {
+            $this->db->where('employment_type', $employment_type);
+        }
+
+        if (!empty($category)) {
+            $this->db->where('category', $category);
+        }
+
+        if (!empty($traits)) {
+            $this->db->where('traits REGEXP "' . $traits . '"');
+        }
+
+        if (!empty($freeword)) {
+            $this->db->where("
+                (business_content LIKE '%$freeword%' OR
+                title LIKE '%$freeword%' OR
+                body LIKE '%$freeword%' OR
+                employment_type LIKE '%$freeword%' OR
+                salary_type LIKE '%$freeword%' OR
+                min_salary LIKE '%$freeword%' OR
+                max_salary LIKE '%$freeword%' OR
+                job_type LIKE '%$freeword%' OR
+                category LIKE '%$freeword%' OR
+                a_region LIKE '%$freeword%' OR
+                a_pref LIKE '%$freeword%' OR
+                city LIKE '%$freeword%' OR
+                address LIKE '%$freeword%' OR
+                traits LIKE '%$freeword%')
+                ");
+        }
+
+        $data = $data->where('status', '公開')->group_by('jobs.id')->select('jobs.id as id, lat, lng, business_content, title, category, min_salary, max_salary, top_picture, employment_type, a_pref as pref, city, address, map_address, traits')->get($this->table)->result_array();
+
+        return $data;
     }
 
-    public function get_by_freeword($fw)
-    {
-        return $this->db->where("
-        (business_content LIKE '%$fw%' OR
-        title LIKE '%$fw%' OR
-        body LIKE '%$fw%' OR
-        employment_type LIKE '%$fw%' OR
-        salary_type LIKE '%$fw%' OR
-        min_salary LIKE '%$fw%' OR
-        max_salary LIKE '%$fw%' OR
-        job_type LIKE '%$fw%' OR
-        category LIKE '%$fw%' OR
-        a_region LIKE '%$fw%' OR
-        a_pref LIKE '%$fw%' OR
-        city LIKE '%$fw%' OR
-        address LIKE '%$fw%' OR
-        traits LIKE '%$fw%')
-        ")->where('status', '公開')->get($this->table)->result_array();
-    }
+    // public function get_by_area($areas)
+    // {
+    //     return $this->db->where('status', '公開')->where_in('CONCAT(a_pref, city)', $areas)->get($this->table)->result_array();
+    // }
+
+    // public function get_by_line_and_stations($line, $stations)
+    // {
+    //     $data = $this->db->join('jobs_stations', 'jobs_stations.job_id = jobs.id')
+    //         ->where('line', $line)->where_in('station', $stations)->where('status', '公開')
+    //         ->select('jobs.id as id, lat, lng, title, category, min_salary, max_salary, top_picture, employment_type, pref, city, map_address')->get($this->table)->result_array();
+
+    //     return !empty($data) ? $data : [];
+    // }
+
+
+    // public function get_by_job_type($job_type)
+    // {
+    //     return $this->db->where('status', '公開')->where_in('job_type', $job_type)->get($this->table)->result_array();
+    // }
+
+    // public function get_by_employment_type($employment_type)
+    // {
+    //     return $this->db->where('status', '公開')->where_in('employment_type', $employment_type)->get($this->table)->result_array();
+    // }
+
+    // public function get_by_category($category)
+    // {
+    //     return $this->db->where('status', '公開')->where_in('category', $category)->get($this->table)->result_array();
+    // }
+
+    // public function get_by_traits($traits)
+    // {
+
+    //     foreach ($traits as $trait) {
+    //         $this->db->or_like('traits', $trait);
+    //     }
+
+    //     return $this->db->where('status', '公開')->get($this->table)->result_array();
+    // }
+
+    // public function get_by_freeword($fw)
+    // {
+
+    // }
 
     public function get_new_jobs()
     {
@@ -176,7 +218,8 @@ class Jobs_model extends CI_Model
         return $this->db->order_by('id', 'desc')->get($this->table)->result_array();
     }
 
-    public function get_by_ids($ids) {
+    public function get_by_ids($ids)
+    {
         return $this->db->where_in('id', $ids)->get($this->table)->result_array();
     }
 }
