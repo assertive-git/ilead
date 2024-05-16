@@ -124,9 +124,7 @@ class Jobs_model extends CI_Model
             $yearly = $salary['yearly'];
             $hourly = $salary['hourly'];
 
-            if (!empty($yearly) && !empty($hourly)) {
-                $this->db->where('( (salary_type = "年収" AND min_salary >= ' . $yearly . ') OR (salary_type = "時給" and min_salary >= ' . $hourly . '))');
-            }
+            $this->db->where('( (salary_type = "年収" AND max_salary >= ' . $yearly . ') OR (salary_type = "時給" and max_salary >= ' . $hourly . '))');
         }
 
 
