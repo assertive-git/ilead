@@ -129,20 +129,16 @@ $traits = !empty($traits) ? explode(',', $traits) : [];
                                 <?= in_array('契約社員', $employment_type) ? 'checked' : '' ?>><span>契約社員</span>
                         </label>
                         <label class="flex space-x-1">
-                            <input class="employment_type" type="radio" name="employment_type" value="出向社員"
-                                <?= in_array('出向社員', $employment_type) ? 'checked' : '' ?>><span>出向社員</span>
+                            <input class="employment_type" type="radio" name="employment_type" value="パート"
+                                <?= in_array('パート', $employment_type) ? 'checked' : '' ?>><span>パート</span>
                         </label>
                         <label class="flex space-x-1">
                             <input class="employment_type" type="radio" name="employment_type" value="パートアルバイト"
                                 <?= in_array('パートアルバイト', $employment_type) ? 'checked' : '' ?>><span>パートアルバイト</span>
                         </label>
                         <label class="flex space-x-1">
-                            <input class="employment_type" type="radio" name="employment_type" value="派遣"
-                                <?= in_array('派遣', $employment_type) ? 'checked' : '' ?>><span>派遣</span>
-                        </label>
-                        <label class="flex space-x-1">
-                            <input class="employment_type" type="radio" name="employment_type" value="紹介予定派遣"
-                                <?= in_array('紹介予定派遣', $employment_type) ? 'checked' : '' ?>><span>紹介予定派遣</span>
+                            <input class="employment_type" type="radio" name="employment_type" value="派遣・在籍出向"
+                                <?= in_array('派遣・在籍出向', $employment_type) ? 'checked' : '' ?>><span>派遣・在籍出向</span>
                         </label>
                     </div>
                 </div>
@@ -153,8 +149,8 @@ $traits = !empty($traits) ? explode(',', $traits) : [];
                     <div class="flex">
                         <select id="salary_type" name="salary_type" class="p-2">
                             <option value="">選択する</option>
-                            <option value="時給" <?= $salary_type == '時給' ? 'selected' : '' ?>>時給</option>
                             <option value="年収" <?= $salary_type == '年収' ? 'selected' : '' ?>>年収</option>
+                            <option value="時給" <?= $salary_type == '時給' ? 'selected' : '' ?>>時給</option>
                         </select>
                     </div>
                 </div>
@@ -233,6 +229,18 @@ $traits = !empty($traits) ? explode(',', $traits) : [];
                                 <label class="flex space-x-1 items-center">
                                     <input class="category" type="checkbox" value="福祉施設" <?= in_array('福祉施設', $category) ? 'checked' : '' ?>>
                                     <span>福祉施設</span>
+                                </label>
+                                <label class="flex space-x-1 items-center">
+                                    <input class="category" type="checkbox" value="訪問看護ステーション" <?= in_array('訪問看護ステーション', $category) ? 'checked' : '' ?>>
+                                    <span>訪問看護ステーション</span>
+                                </label>
+                                <label class="flex space-x-1 items-center">
+                                    <input class="category" type="checkbox" value="美容クリニック" <?= in_array('美容クリニック', $category) ? 'checked' : '' ?>>
+                                    <span>美容クリニック</span>
+                                </label>
+                                <label class="flex space-x-1 items-center">
+                                    <input class="category" type="checkbox" value="動物病院" <?= in_array('動物病院', $category) ? 'checked' : '' ?>>
+                                    <span>動物病院</span>
                                 </label>
                                 <label class="flex space-x-1 items-center">
                                     <input class="category" type="checkbox" value="その他" <?= in_array('その他', $category) ? 'checked' : '' ?>>

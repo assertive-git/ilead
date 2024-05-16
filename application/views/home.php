@@ -417,6 +417,12 @@
                 <label for="facility5">ドラッグストア（調剤併設）</label>
                 <input type="checkbox" id="facility6" name="categories[]" value="福祉施設">
                 <label for="facility6">福祉施設</label>
+                <input type="checkbox" id="facility7" name="categories[]" value="訪問看護ステーション">
+                <label for="facility6">訪問看護ステーション</label>
+                <input type="checkbox" id="facility8" name="categories[]" value="美容クリニック">
+                <label for="facility6">美容クリニック</label>
+                <input type="checkbox" id="facility9" name="categories[]" value="動物病院">
+                <label for="facility6">動物病院</label>
                 <input type="checkbox" id="facility7" name="categories[]" value="その他">
                 <label for="facility7">その他</label>
               </div>
@@ -448,35 +454,37 @@
                 <label for="status1">正社員</label>
                 <input type="checkbox" id="status2" name="employment_types[]" value="契約社員">
                 <label for="status2">契約社員</label>
-                <input type="checkbox" id="status3" name="employment_types[]" value="出向社員">
-                <label for="status3">出向社員</label>
-                <input type="checkbox" id="status4" name="employment_types[]" value="パート・アルバイト">
-                <label for="status4">パート・アルバイト</label>
-                <input type="checkbox" id="status5" name="employment_types[]" value="派遣">
-                <label for="status5">派遣</label>
-                <input type="checkbox" id="status6" name="employment_types[]" value="紹介予定派遣">
-                <label for="status6">紹介予定派遣</label>
+                <input type="checkbox" id="status3" name="employment_types[]" value="パート">
+                <label for="status3">パート</label>
+                <input type="checkbox" id="status4" name="employment_types[]" value="派遣・在籍出向">
+                <label for="status4">派遣・在籍出向</label>
               </div>
               <h5>給与</h5>
               <ul class="salary">
-                <li>月給
-                  <select name="salary">
-                    <option value="salary1">指定なし</option>
-                    <option value="salary2">20</option>
-                    <option value="salary3">30</option>
-                    <option value="salary4">50</option>
-                    <option value="salary5">100</option>
+                <li>年収
+                  <select name="salary[yearly]">
+                    <option value="0">指定なし</option>
+                    <option value="2000000">200</option>
+                    <option value="25000000">250</option>
+                    <option value="30000000">300</option>
+                    <option value="40000000">400</option>
+                    <option value="45000000">450</option>
+                    <option value="50000000">500</option>
+                    <option value="55000000">550</option>
+                    <option value="60000000">600</option>
                   </select>
                   万円以上
                 </li>
                 <li>時給
-                  <select name="hourly">
-                    <option value="hourly1">指定なし</option>
-                    <option value="hourly2">1000</option>
-                    <option value="hourly3">1200</option>
-                    <option value="hourly4">1500</option>
-                    <option value="hourly5">2000</option>
-                    <option value="hourly6">3000</option>
+                  <select name="salary[hourly]">
+                    <option value="0">指定なし</option>
+                    <option value="1000">1,000</option>
+                    <option value="1500">1,500</option>
+                    <option value="2000">2,000</option>
+                    <option value="2500">2,500</option>
+                    <option value="3000">3,000</option>
+                    <option value="3500">3,500</option>
+                    <option value="4000">4,000</option>
                   </select>
                   円以上
                 </li>

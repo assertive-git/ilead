@@ -102,7 +102,7 @@ class Jobs_model extends CI_Model
         return [];
     }
 
-    public function get_all($pref = '', $areas = [], $line = '', $stations = [], $employment_types = [], $job_types = [], $categories = [], $traits = [], $freeword = '')
+    public function get_all($pref = '', $areas = [], $line = '', $stations = [], $employment_types = [], $salary = [], $job_types = [], $categories = [], $traits = [], $freeword = '')
     {
         $data = $this->db->join('jobs_stations', 'jobs_stations.job_id = jobs.id', 'left');
 
@@ -119,6 +119,16 @@ class Jobs_model extends CI_Model
         if (!empty($employment_types)) {
             $this->db->where_in('employment_type', $employment_types);
         }
+
+        if (!empty($salary)) {
+            $yearly = $salary['yearly'];
+            $hourly = $salary['hourly'];
+
+            if (!empty($yearly) && !empty($hourly)) {
+                $this->db->where('( (salary_type = "年収" AND min_salary >= ' . $yearly . ') OR (salary_type = "時給" and min_salary >= ' . $hourly . '))');
+            }
+        }
+
 
         if (!empty($job_types)) {
             $this->db->where_in('job_type', $job_types);
@@ -151,7 +161,7 @@ class Jobs_model extends CI_Model
                 ");
         }
 
-        $data = $data->where('status', '公開')->group_by('jobs.id')->select('jobs.id as id, lat, lng, business_content, title, category, min_salary, max_salary, top_picture, employment_type, a_pref as pref, city, address, map_address, traits')->get($this->table)->result_array();
+        $data = $data->where('status', '公開')->order_by('id', 'DESC')->group_by('jobs.id')->select('jobs.id as id, lat, lng, business_content, title, category, min_salary, max_salary, top_picture, employment_type, a_pref as pref, city, address, map_address, traits')->get($this->table)->result_array();
 
         return $data;
     }
