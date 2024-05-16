@@ -102,7 +102,7 @@ class Jobs_model extends CI_Model
         return [];
     }
 
-    public function get_all($pref = '', $areas = [], $line = '', $stations = [], $job_types = [], $employment_types = [], $categories = [], $traits = [], $freeword = '')
+    public function get_all($pref = '', $areas = [], $line = '', $stations = [], $employment_types = [], $job_types = [], $categories = [], $traits = [], $freeword = '')
     {
         $data = $this->db->join('jobs_stations', 'jobs_stations.job_id = jobs.id', 'left');
 
@@ -116,12 +116,12 @@ class Jobs_model extends CI_Model
             $data->where_in('station', $stations);
         }
 
-        if (!empty($job_types)) {
-            $this->db->where_in('job_type', $job_types);
-        }
-
         if (!empty($employment_types)) {
             $this->db->where_in('employment_type', $employment_types);
+        }
+
+        if (!empty($job_types)) {
+            $this->db->where_in('job_type', $job_types);
         }
 
         if (!empty($categories)) {

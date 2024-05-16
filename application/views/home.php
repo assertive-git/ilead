@@ -425,7 +425,7 @@
             <ul class="button_area">
               <!-- <li>該当件数<span class="number">270</span>件</li> -->
               <li>
-                <button type="submit" class="submit">選択した内容を反映する</button>
+                <button type="submit" class="button">選択した内容を反映する</button>
               </li>
               <!-- <li>
             <button type="reset" class="reset">すべてクリア</button>
