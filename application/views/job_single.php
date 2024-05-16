@@ -115,7 +115,7 @@
           </table>
           <ul class="button_area">
             <li>
-              <button>★ 検討中リストに追加する</button>
+              <button class="favorite_btn">★ 検討中リストに追加する</button>
             </li>
             <!-- <li><a href="">詳細を見る</a></li> -->
           </ul>

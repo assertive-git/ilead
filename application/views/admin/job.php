@@ -119,7 +119,7 @@ $traits = !empty($traits) ? explode(',', $traits) : [];
                 <div class="flex flex-col space-y-2">
                     <span class="font-bold">雇用形態 *</span>
 
-                    <div class="bg-white p-2 border border-slate-200">
+                    <div class="bg-white p-2 border border-slate-200 space-y-2">
                         <label class="flex space-x-1">
                             <input class="employment_type" type="radio" name="employment_type" value="正社員"
                                 <?= in_array('正社員', $employment_type) ? 'checked' : '' ?>><span>正社員</span>
@@ -129,12 +129,20 @@ $traits = !empty($traits) ? explode(',', $traits) : [];
                                 <?= in_array('契約社員', $employment_type) ? 'checked' : '' ?>><span>契約社員</span>
                         </label>
                         <label class="flex space-x-1">
-                            <input class="employment_type" type="radio" name="employment_type" value="パート"
-                                <?= in_array('パート', $employment_type) ? 'checked' : '' ?>><span>パート</span>
+                            <input class="employment_type" type="radio" name="employment_type" value="出向社員"
+                                <?= in_array('出向社員', $employment_type) ? 'checked' : '' ?>><span>出向社員</span>
+                        </label>
+                        <label class="flex space-x-1">
+                            <input class="employment_type" type="radio" name="employment_type" value="パートアルバイト"
+                                <?= in_array('パートアルバイト', $employment_type) ? 'checked' : '' ?>><span>パートアルバイト</span>
                         </label>
                         <label class="flex space-x-1">
                             <input class="employment_type" type="radio" name="employment_type" value="派遣"
                                 <?= in_array('派遣', $employment_type) ? 'checked' : '' ?>><span>派遣</span>
+                        </label>
+                        <label class="flex space-x-1">
+                            <input class="employment_type" type="radio" name="employment_type" value="紹介予定派遣"
+                                <?= in_array('紹介予定派遣', $employment_type) ? 'checked' : '' ?>><span>紹介予定派遣</span>
                         </label>
                     </div>
                 </div>
@@ -183,6 +191,11 @@ $traits = !empty($traits) ? explode(',', $traits) : [];
                     <div>
                         <select id="job_type" name="job_type" class="border border-slate-200 p-1">
                             <option value="薬剤師">薬剤師</option>
+                            <option value="看護師">看護師</option>
+                            <option value="獣医師">獣医師</option>
+                            <option value="事務（病院、薬局）">事務（病院、薬局）</option>
+                            <option value="作業療法士・理学療法士・言語聴覚士">作業療法士・理学療法士・言語聴覚士</option>
+                            <option value="その他">その他</option>
                         </select>
                     </div>
                 </div>
@@ -196,18 +209,30 @@ $traits = !empty($traits) ? explode(',', $traits) : [];
                                     <input class="category" type="checkbox" value="調剤薬局" <?= in_array('調剤薬局', $category) ? 'checked' : '' ?>>
                                     <span>調剤薬局</span>
                                 </label>
-                                <label class="flex space-x-1 items-center">
-                                    <input class="category" type="checkbox" value="ドラッグストア （調剤併設）"
-                                        <?= in_array('ドラッグストア （調剤併設）', $category) ? 'checked' : '' ?>>
-                                    <span>ドラッグストア （調剤併設）</span>
-                                </label>
+
                                 <label class="flex space-x-1 items-center">
                                     <input class="category" type="checkbox" value="病院" <?= in_array('病院', $category) ? 'checked' : '' ?>>
                                     <span>病院</span>
                                 </label>
+
+                                <label class="flex space-x-1 items-center">
+                                    <input class="category" type="checkbox" value="クリニック" <?= in_array('クリニック', $category) ? 'checked' : '' ?>>
+                                    <span>クリニック</span>
+                                </label>
+
                                 <label class="flex space-x-1 items-center">
                                     <input class="category" type="checkbox" value="企業" <?= in_array('企業', $category) ? 'checked' : '' ?>>
                                     <span>企業</span>
+                                </label>
+
+                                <label class="flex space-x-1 items-center">
+                                    <input class="category" type="checkbox" value="ドラッグストア（調剤併設）"
+                                        <?= in_array('ドラッグストア（調剤併設）', $category) ? 'checked' : '' ?>>
+                                    <span>ドラッグストア（調剤併設）</span>
+                                </label>
+                                <label class="flex space-x-1 items-center">
+                                    <input class="category" type="checkbox" value="福祉施設" <?= in_array('福祉施設', $category) ? 'checked' : '' ?>>
+                                    <span>福祉施設</span>
                                 </label>
                                 <label class="flex space-x-1 items-center">
                                     <input class="category" type="checkbox" value="その他" <?= in_array('その他', $category) ? 'checked' : '' ?>>
@@ -241,7 +266,7 @@ $traits = !empty($traits) ? explode(',', $traits) : [];
                                         <option value="<?= $prefecture ?>" <?= $prefecture == $a_pref ? 'selected' : '' ?>>
                                             <?= $prefecture ?>
                                         </option>
-                                    <?php elseif(empty($a_region)): ?>
+                                    <?php elseif (empty($a_region)): ?>
                                         <option value="<?= $prefecture ?>" <?= $prefecture == '大阪' ? 'selected' : '' ?>>
                                             <?= $prefecture ?>
                                         </option>
@@ -522,7 +547,7 @@ $traits = !empty($traits) ? explode(',', $traits) : [];
 
                                     var stations = $('#stations li');
 
-                                    if(stations.length == 3) return;
+                                    if (stations.length == 3) return;
 
                                     var job_id = $('#id').val();
 
@@ -1047,11 +1072,11 @@ $traits = !empty($traits) ? explode(',', $traits) : [];
                     success: function (data) {
 
 
-                        $('.ql-editor img').each(function(i, el) {
+                        $('.ql-editor img').each(function (i, el) {
                             var img = $(this);
                             var src = $(this).attr('src');
 
-                            if(src.indexOf('data:image') !== -1 && src.indexOf('base64') !== -1) {
+                            if (src.indexOf('data:image') !== -1 && src.indexOf('base64') !== -1) {
                                 img.attr('src', data[i]);
                                 img.removeAttr('alt');
                             }
@@ -1159,9 +1184,9 @@ $traits = !empty($traits) ? explode(',', $traits) : [];
                                     $('.delete-btn a').attr('href', '/admin/jobs/' + id + '/delete');
 
                                     var c = 0;
-                                    if(custom_fields_ids.length != 0) {
-                                        $('.custom-field').each(function() {
-                                            if(!$(this).attr('custom-field-id')) {
+                                    if (custom_fields_ids.length != 0) {
+                                        $('.custom-field').each(function () {
+                                            if (!$(this).attr('custom-field-id')) {
                                                 $(this).attr('custom-field-id', custom_fields_ids[c]);
                                                 c++;
                                             }
@@ -1181,7 +1206,7 @@ $traits = !empty($traits) ? explode(',', $traits) : [];
                     dataType: 'json'
                 });
 
-                
+
             });
 
             function get_checked_values(key) {

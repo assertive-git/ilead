@@ -106,7 +106,7 @@ class Home extends CI_Controller
 		$areas = isset($_POST['areas']) ? $_POST['areas'] : [];
 		$line = isset($_POST['line']) ? $_POST['line'] : '';
 		$stations = isset($_POST['stations']) ? $_POST['stations'] : [];
-		$employment_types = isset($_POST['employment_types']) ? $_POST['employment_types'] : [];
+		$employment_types = isset($_POST['employment_types']) ? implode('|', $_POST['employment_types']) : [];
 		$job_types = isset($_POST['job_types']) ? $_POST['job_types'] : [];
 		$categories = isset($_POST['categories']) ? $_POST['categories'] : [];
 		$traits = isset($_POST['traits']) ? implode('|', $_POST['traits']) : [];

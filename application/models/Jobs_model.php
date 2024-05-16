@@ -125,11 +125,11 @@ class Jobs_model extends CI_Model
         }
 
         if (!empty($categories)) {
-            $this->db->where_in('category', $categories);
+            $this->db->where('category REGEXP "' . $categories . '"');
         }
 
         if (!empty($traits)) {
-            $this->db->where_in('traits REGEXP "' . $traits . '"');
+            $this->db->where('traits REGEXP "' . $traits . '"');
         }
 
         if (!empty($freeword)) {

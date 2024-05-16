@@ -403,22 +403,25 @@
           <div class="modal-top"> <span class="modal-close">×</span> </div>
           <div class="modal_container">
             <h4>施設・種別を選ぶ</h4>
-            <div class="choice">
-              <input type="checkbox" id="facility1" name="categories[]" value="調剤薬局">
-              <label for="facility1">調剤薬局</label>
-              <input type="checkbox" id="facility2" name="categories[]" value="病院">
-              <label for="facility2">病院</label>
-              <input type="checkbox" id="facility3" name="categories[]" value="クリニック">
-              <label for="facility3">クリニック</label>
-              <input type="checkbox" id="facility4" name="categories[]" value="企業">
-              <label for="facility4">企業</label>
-              <input type="checkbox" id="facility5" name="categories[]" value="ドラッグストア">
-              <label for="facility5">ドラッグストア</label>
-              <input type="checkbox" id="facility6" name="categories[]" value="福祉施設">
-              <label for="facility6">福祉施設</label>
-              <input type="checkbox" id="facility7" name="categories[]" value="その他">
-              <label for="facility7">その他</label>
+            <div class="search_inner">
+              <div class="choice">
+                <input type="checkbox" id="facility1" name="categories[]" value="調剤薬局">
+                <label for="facility1">調剤薬局</label>
+                <input type="checkbox" id="facility2" name="categories[]" value="病院">
+                <label for="facility2">病院</label>
+                <input type="checkbox" id="facility3" name="categories[]" value="クリニック">
+                <label for="facility3">クリニック</label>
+                <input type="checkbox" id="facility4" name="categories[]" value="企業">
+                <label for="facility4">企業</label>
+                <input type="checkbox" id="facility5" name="categories[]" value="ドラッグストア（調剤併設）">
+                <label for="facility5">ドラッグストア（調剤併設）</label>
+                <input type="checkbox" id="facility6" name="categories[]" value="福祉施設">
+                <label for="facility6">福祉施設</label>
+                <input type="checkbox" id="facility7" name="categories[]" value="その他">
+                <label for="facility7">その他</label>
+              </div>
             </div>
+
             <ul class="button_area">
               <!-- <li>該当件数<span class="number">270</span>件</li> -->
               <li>
