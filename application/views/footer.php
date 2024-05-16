@@ -51,9 +51,9 @@
   function set_pluses() {
     $('input[name="areas[]"]:checked').length ? $('.areas .plus').addClass('active') : $('.areas .plus').removeClass('active');
     $('input[name="stations[]"]:checked').length ? $('.stations .plus').addClass('active') : $('.stations .plus').removeClass('active');
-    $('input[name="category[]"]:checked').length ? $('.category .plus').addClass('active') : $('.category .plus').removeClass('active');
-    $('input[name="job_type[]"]:checked').length ? $('.job_type .plus').addClass('active') : $('.job_type .plus').removeClass('active');
-    $('input[name="employment_type[]"]:checked').length ? $('.employment_type .plus').addClass('active') : $('.employment_type .plus').removeClass('active');
+    $('input[name="categories[]"]:checked').length ? $('.categories .plus').addClass('active') : $('.categories .plus').removeClass('active');
+    $('input[name="job_types[]"]:checked').length ? $('.job_types .plus').addClass('active') : $('.job_types .plus').removeClass('active');
+    $('input[name="employment_types[]"]:checked').length ? $('.employment_types .plus').addClass('active') : $('.employment_types .plus').removeClass('active');
     $('input[name="traits[]"]:checked').length ? $('.traits .plus').addClass('active') : $('.traits .plus').removeClass('active');
   }
 </script>

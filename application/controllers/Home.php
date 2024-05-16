@@ -57,17 +57,17 @@ class Home extends CI_Controller
 
 	public function map_post()
 	{
-		$pref = isset($_POST['pref']) ? $_POST['pref'] : [];
+		$pref = isset($_POST['pref']) ? $_POST['pref'] : '';
 		$areas = isset($_POST['areas']) ? $_POST['areas'] : [];
 		$line = isset($_POST['line']) ? $_POST['line'] : '';
 		$stations = isset($_POST['stations']) ? $_POST['stations'] : [];
-		$employment_type = isset($_POST['employment_type']) ? $_POST['$employment_type'] : [];
-		$job_type = isset($_POST['job_type']) ? $_POST['job_type'] : [];
-		$category = isset($_POST['category']) ? $_POST['category'] : [];
+		$employment_types = isset($_POST['employment_types']) ? $_POST['employment_types'] : [];
+		$job_types = isset($_POST['job_types']) ? $_POST['job_types'] : [];
+		$categories = isset($_POST['categories']) ? $_POST['categories'] : [];
 		$traits = isset($_POST['traits']) ? implode('|', $_POST['traits']) : [];
 		$freeword = isset($_POST['freeword']) ? $_POST['freeword'] : '';
 
-		$data['jobs'] = $this->jobs_model->get_by($pref, $areas, $line, $stations, $employment_type, $job_type, $category, $traits, $freeword);
+		$data['jobs'] = $this->jobs_model->get_all($pref, $areas, $line, $stations, $employment_types, $job_types, $categories, $traits, $freeword);
 
 		$this->load->view('map', $data);
 
@@ -102,17 +102,17 @@ class Home extends CI_Controller
 	public function job_list_post()
 	{
 
-		$pref = isset($_POST['pref']) ? $_POST['pref'] : [];
+		$pref = isset($_POST['pref']) ? $_POST['pref'] : '';
 		$areas = isset($_POST['areas']) ? $_POST['areas'] : [];
 		$line = isset($_POST['line']) ? $_POST['line'] : '';
 		$stations = isset($_POST['stations']) ? $_POST['stations'] : [];
-		$employment_type = isset($_POST['employment_type']) ? $_POST['$employment_type'] : [];
-		$job_type = isset($_POST['job_type']) ? $_POST['job_type'] : [];
-		$category = isset($_POST['category']) ? $_POST['category'] : [];
-		$traits = isset($_POST['traits']) ? $_POST['traits'] : [];
+		$employment_types = isset($_POST['employment_types']) ? $_POST['employment_types'] : [];
+		$job_types = isset($_POST['job_types']) ? $_POST['job_types'] : [];
+		$categories = isset($_POST['categories']) ? $_POST['categories'] : [];
+		$traits = isset($_POST['traits']) ? implode('|', $_POST['traits']) : [];
 		$freeword = isset($_POST['freeword']) ? $_POST['freeword'] : '';
 
-		$data['jobs'] = $this->jobs_model->get_by($pref, $areas, $line, $stations, $employment_type, $job_type, $category, $traits, $freeword);
+		$data['jobs'] = $this->jobs_model->get_all($pref, $areas, $line, $stations, $employment_types, $job_types, $categories, $traits, $freeword);
 
 		foreach ($data['jobs'] as $key => $job) {
 			$data['jobs'][$key]['jobs_stations'] = $this->jobs_stations_model->get_all($job['id']);

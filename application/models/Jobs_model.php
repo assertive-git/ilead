@@ -41,11 +41,6 @@ class Jobs_model extends CI_Model
         return $data->get($this->table)->result_array();
     }
 
-    public function get_all()
-    {
-        return $this->db->order_by('id', 'DESC')->where('status', '公開')->get($this->table)->result_array();
-    }
-
     public function get_all_by_favorites($ids)
     {
         return $this->db->where_in('id', $ids)->order_by('id', 'DESC')->where('status', '公開')->get($this->table)->result_array();
@@ -107,11 +102,9 @@ class Jobs_model extends CI_Model
         return [];
     }
 
-    public function get_by($pref, $areas, $line, $stations, $job_types, $employment_type, $category, $traits, $freeword)
+    public function get_all($pref = '', $areas = [], $line = '', $stations = [], $job_types = [], $employment_types = [], $categories = [], $traits = [], $freeword = '')
     {
         $data = $this->db->join('jobs_stations', 'jobs_stations.job_id = jobs.id', 'left');
-
-        $pref = $_POST['pref'];
 
         if (!empty($areas)) {
             $data->where('a_pref', $pref);
@@ -120,23 +113,23 @@ class Jobs_model extends CI_Model
 
         if (!empty($line) && !empty($stations)) {
             $data->where('line', $line);
-            $data->where_in('station', $line);
+            $data->where_in('station', $stations);
         }
 
         if (!empty($job_types)) {
-            $this->db->where('job_types', $job_types);
+            $this->db->where_in('job_type', $job_types);
         }
 
-        if (!empty($employment_type)) {
-            $this->db->where('employment_type', $employment_type);
+        if (!empty($employment_types)) {
+            $this->db->where_in('employment_type', $employment_types);
         }
 
-        if (!empty($category)) {
-            $this->db->where('category', $category);
+        if (!empty($categories)) {
+            $this->db->where_in('category', $categories);
         }
 
         if (!empty($traits)) {
-            $this->db->where('traits REGEXP "' . $traits . '"');
+            $this->db->where_in('traits REGEXP "' . $traits . '"');
         }
 
         if (!empty($freeword)) {

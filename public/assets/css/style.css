@@ -724,8 +724,28 @@ main .picup .area {
   padding: 30px 40px;
 }
 
+main .picup .area2 {
+  display: none;
+  /*はじめは非表示*/
+  opacity: 0;
+  /*透過0*/
+  background: #fff;
+  padding: 30px 40px;
+}
+
 /*areaにis-activeというクラスがついた時の形状*/
 main .picup .area.is-active {
+  display: block;
+  /*表示*/
+  border-top: 6px solid #65b9e7;
+  animation-name: displayAnime;
+  /*ふわっと表示させるためのアニメーション*/
+  animation-duration: 2s;
+  animation-fill-mode: forwards;
+}
+
+/*areaにis-activeというクラスがついた時の形状*/
+main .picup .area2.is-active {
   display: block;
   /*表示*/
   border-top: 6px solid #65b9e7;
@@ -1935,6 +1955,12 @@ main .job_result .area.is-active {
   }
 
   main .search .area {
+    padding: 2rem;
+    border-radius: 0 0 5px 5px;
+    box-shadow: 0px 2px #d3d3d3;
+  }
+
+  main .search .area2 {
     padding: 2rem;
     border-radius: 0 0 5px 5px;
     box-shadow: 0px 2px #d3d3d3;

@@ -27,15 +27,15 @@
             <button type="button" type="button" class="modal-toggle btn-example"
               data-modal="modal2">沿線・駅<small>を選ぶ</small><span class="plus">+</span></button>
           </li>
-          <li class="job_type">
+          <li class="job_types">
             <button type="button" type="button" class="modal-toggle btn-example"
               data-modal="modal3">職種<small>を選ぶ</small><span class="plus">+</span></button>
           </li>
-          <li class="category">
+          <li class="categories">
             <button type="button" type="button" class="modal-toggle btn-example"
               data-modal="modal4">施設・種別<small>を選ぶ</small><span class="plus">+</span></button>
           </li>
-          <li class="employment_type">
+          <li class="employment_types">
             <button type="button" type="button" class="modal-toggle btn-example"
               data-modal="modal5">雇用形態/給与<small>を選ぶ</small><span class="plus">+</span></button>
           </li>
@@ -370,17 +370,17 @@
             <h4>職種を選ぶ</h4>
             <div class="search_inner">
               <div class="choice">
-                <input type="checkbox" id="occupation1" name="job_type[]" value="薬剤師">
+                <input type="checkbox" id="occupation1" name="job_types[]" value="薬剤師">
                 <label for="occupation1">薬剤師</label>
-                <input type="checkbox" id="occupation2" name="job_type[]" value="看護師">
+                <input type="checkbox" id="occupation2" name="job_types[]" value="看護師">
                 <label for="occupation2">看護師</label>
-                <input type="checkbox" id="occupation3" name="job_type[]" value="獣医師">
+                <input type="checkbox" id="occupation3" name="job_types[]" value="獣医師">
                 <label for="occupation3">獣医師</label>
-                <input type="checkbox" id="occupation4" name="job_type[]" value="事務（病院、薬局）">
+                <input type="checkbox" id="occupation4" name="job_types[]" value="事務（病院、薬局）">
                 <label for="occupation4">事務（病院、薬局）</label>
-                <input type="checkbox" id="occupation5" name="job_type[]" value="作業療法士・理学療法士・言語聴覚士">
+                <input type="checkbox" id="occupation5" name="job_types[]" value="作業療法士・理学療法士・言語聴覚士">
                 <label for="occupation5">作業療法士・<br>理学療法士・<br>言語聴覚士</label>
-                <input type="checkbox" id="occupation6" name="job_type[]" value="その他">
+                <input type="checkbox" id="occupation6" name="job_types[]" value="その他">
                 <label for="occupation6">その他</label>
               </div>
             </div>
@@ -404,19 +404,19 @@
           <div class="modal_container">
             <h4>施設・種別を選ぶ</h4>
             <div class="choice">
-              <input type="checkbox" id="facility1" name="category[]" value="調剤薬局">
+              <input type="checkbox" id="facility1" name="categories[]" value="調剤薬局">
               <label for="facility1">調剤薬局</label>
-              <input type="checkbox" id="facility2" name="category[]" value="病院">
+              <input type="checkbox" id="facility2" name="categories[]" value="病院">
               <label for="facility2">病院</label>
-              <input type="checkbox" id="facility3" name="category[]" value="クリニック">
+              <input type="checkbox" id="facility3" name="categories[]" value="クリニック">
               <label for="facility3">クリニック</label>
-              <input type="checkbox" id="facility4" name="category[]" value="企業">
+              <input type="checkbox" id="facility4" name="categories[]" value="企業">
               <label for="facility4">企業</label>
-              <input type="checkbox" id="facility5" name="category[]" value="ドラッグストア">
+              <input type="checkbox" id="facility5" name="categories[]" value="ドラッグストア">
               <label for="facility5">ドラッグストア</label>
-              <input type="checkbox" id="facility6" name="category[]" value="福祉施設">
+              <input type="checkbox" id="facility6" name="categories[]" value="福祉施設">
               <label for="facility6">福祉施設</label>
-              <input type="checkbox" id="facility7" name="category[]" value="その他">
+              <input type="checkbox" id="facility7" name="categories[]" value="その他">
               <label for="facility7">その他</label>
             </div>
             <ul class="button_area">
@@ -441,17 +441,17 @@
             <div class="search_inner">
               <h5>雇用形態</h5>
               <div class="choice">
-                <input type="checkbox" id="status1" name="employment_type[]" value="正社員">
+                <input type="checkbox" id="status1" name="employment_types[]" value="正社員">
                 <label for="status1">正社員</label>
-                <input type="checkbox" id="status2" name="employment_type[]" value="契約社員">
+                <input type="checkbox" id="status2" name="employment_types[]" value="契約社員">
                 <label for="status2">契約社員</label>
-                <input type="checkbox" id="status3" name="employment_type[]" value="出向社員">
+                <input type="checkbox" id="status3" name="employment_types[]" value="出向社員">
                 <label for="status3">出向社員</label>
-                <input type="checkbox" id="status4" name="employment_type[]" value="パート・アルバイト">
+                <input type="checkbox" id="status4" name="employment_types[]" value="パート・アルバイト">
                 <label for="status4">パート・アルバイト</label>
-                <input type="checkbox" id="status5" name="employment_type[]" value="派遣">
+                <input type="checkbox" id="status5" name="employment_types[]" value="派遣">
                 <label for="status5">派遣</label>
-                <input type="checkbox" id="status6" name="employment_type[]" value="紹介予定派遣">
+                <input type="checkbox" id="status6" name="employment_types[]" value="紹介予定派遣">
                 <label for="status6">紹介予定派遣</label>
               </div>
               <h5>給与</h5>
@@ -568,10 +568,10 @@
     <div class="picup_wrap">
       <h3>PICK UP 求人特集</h3>
       <ul class="tab">
-        <li><a href="#directly">直接雇用</a></li>
+        <li class="active"><a href="#directly">直接雇用</a></li>
         <li><a href="#temporary">出向・派遣</a></li>
       </ul>
-      <div id="directly" class="area">
+      <div id="directly" class="area2 is-active">
         <div class="temporary_slider_wrap">
           <div class="temporary_slider">
             <div class="slide_item"> <img src="assets/img/rec_img1.png">
@@ -627,7 +627,7 @@
       </div>
 
 
-      <div id="temporary" class="area">
+      <div id="temporary" class="area2">
         <div class="temporary_slider_wrap">
           <div class="temporary_slider">
             <div class="slide_item"> <img src="assets/img/rec_img1.png">
