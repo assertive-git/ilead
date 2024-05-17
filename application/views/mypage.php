@@ -33,6 +33,10 @@
                 <table>
                   <tr>
                     <th class="attribute">給料</th>
+                    <?php $new_job['min_salary'] = number_format($new_job['min_salary']); ?>
+                    <?php $new_job['max_salary'] = number_format($new_job['max_salary']); ?>
+                    <?php $new_job['min_salary'] = substr_count($new_job['min_salary'], '0') >= 6 ? (intval(str_replace(',', '', $new_job['min_salary']) / 10000)) . '万' : $new_job['min_salary']; ?>
+                    <?php $new_job['max_salary'] = substr_count($new_job['max_salary'], '0') >= 6 ? (intval(str_replace(',', '', $new_job['max_salary']) / 10000)) . '万' : $new_job['max_salary']; ?>
                     <td>年収　350万円～450万円</td>
                   </tr>
                   <tr>

@@ -465,13 +465,13 @@
                   <select name="salary[yearly]">
                     <option value="0">指定なし</option>
                     <option value="2000000">200</option>
-                    <option value="25000000">250</option>
-                    <option value="30000000">300</option>
-                    <option value="40000000">400</option>
-                    <option value="45000000">450</option>
-                    <option value="50000000">500</option>
-                    <option value="55000000">550</option>
-                    <option value="60000000">600</option>
+                    <option value="2500000">250</option>
+                    <option value="3000000">300</option>
+                    <option value="4000000">400</option>
+                    <option value="4500000">450</option>
+                    <option value="5000000">500</option>
+                    <option value="5500000">550</option>
+                    <option value="6000000">600</option>
                   </select>
                   万円以上
                 </li>
@@ -559,10 +559,14 @@
             <dl>
               <dt><a href="/jobs/<?= $new_job['id'] ?>"><?= ellipsize($new_job['title'], 43) ?></a></dt>
               <dd><span class="attribute">勤務地</span><?= $new_job['a_pref'] ?><?= $new_job['city'] ?></dd>
+              <?php $new_job['min_salary'] = number_format($new_job['min_salary']); ?>
+              <?php $new_job['max_salary'] = number_format($new_job['max_salary']); ?>
+              <?php $new_job['min_salary'] = substr_count($new_job['min_salary'], '0') >= 6 ? (intval(str_replace(',', '', $new_job['min_salary']) / 10000)) . '万' : $new_job['min_salary']; ?>
+              <?php $new_job['max_salary'] = substr_count($new_job['max_salary'], '0') >= 6 ? (intval(str_replace(',', '', $new_job['max_salary']) / 10000)) . '万' : $new_job['max_salary']; ?>
               <?php if (!empty($new_job['max_salary'])): ?>
-                <dd><span class="attribute">給料</span><?= $new_job['min_salary'] ?>～<?= $new_job['max_salary'] ?>円</dd>
+                <dd><span class="attribute">給料</span>¥<?= $new_job['min_salary'] ?>～<?= $new_job['max_salary'] ?></dd>
               <?php else: ?>
-                <dd><span class="attribute">給料</span><?= $new_job['min_salary'] ?>円</dd>
+                <dd><span class="attribute">給料</span>¥<?= $new_job['min_salary'] ?></dd>
               <?php endif; ?>
             </dl>
           </div>

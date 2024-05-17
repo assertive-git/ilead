@@ -46,7 +46,11 @@
                 <th cl ass="attribute">給料</th>
                 <td>
                   <?= $job['salary_type'] ?>
-                  <?= $job['min_salary'] ?><?php if (!empty($job['max_salary'])): ?>～<?= $job['max_salary'] ?>円
+                  <?php $job['min_salary'] = number_format($job['min_salary']); ?>
+                  <?php $job['max_salary'] = number_format($job['max_salary']); ?>
+                  <?php $job['min_salary'] = substr_count($job['min_salary'], '0') >= 6 ? (intval(str_replace(',', '', $job['min_salary']) / 10000)) . '万' : $job['min_salary']; ?>
+                  <?php $job['max_salary'] = substr_count($job['max_salary'], '0') >= 6 ? (intval(str_replace(',', '', $job['max_salary']) / 10000)) . '万' : $job['max_salary']; ?>
+                  ¥<?= $job['min_salary'] ?><?php if (!empty($job['max_salary'])): ?>～<?= $job['max_salary'] ?>
                   <?php endif; ?>
                 </td>
               </tr>
@@ -87,7 +91,13 @@
             </tr>
             <tr>
               <th class="attribute">給与</th>
-              <td><?= $job['salary_type'] ?> <?= $job['min_salary'] ?> ～ <?= $job['max_salary'] ?>円</td>
+              <td>
+                <?php if (empty($job['max_salary'])): ?>
+                  <?= $job['salary_type'] ?> ¥<?= $job['min_salary'] ?>
+                <?php else: ?>
+                  <?= $job['salary_type'] ?> ¥<?= $job['min_salary'] ?>～<?= $job['max_salary'] ?>
+                <?php endif; ?>
+              </td>
             </tr>
             <tr>
               <th class="attribute">職種名</th>

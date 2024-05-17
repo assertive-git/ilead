@@ -63,10 +63,14 @@
                   <table>
                     <tr>
                       <th class="attribute">給料</th>
+                      <?php $job['min_salary'] = number_format($job['min_salary']); ?>
+                      <?php $job['max_salary'] = number_format($job['max_salary']); ?>
+                      <?php $job['min_salary'] = substr_count($job['min_salary'], '0') >= 6 ? (intval(str_replace(',', '', $job['min_salary']) / 10000)) . '万' : $job['min_salary']; ?>
+                      <?php $job['max_salary'] = substr_count($job['max_salary'], '0') >= 6 ? (intval(str_replace(',', '', $job['max_salary']) / 10000)) . '万' : $job['max_salary']; ?>
                       <?php if (!empty($job['max_salary'])): ?>
-                        <td><?= $job['min_salary'] ?>～<?= $job['max_salary'] ?>円</td>
+                        <td>¥<?= $job['min_salary'] ?>～<?= $job['max_salary'] ?></td>
                       <?php else: ?>
-                        <td><?= $job['min_salary'] ?>円</td>
+                        <td>¥<?= $job['min_salary'] ?></td>
                       <?php endif; ?>
                     </tr>
                     <tr>
