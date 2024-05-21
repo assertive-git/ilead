@@ -14,7 +14,10 @@ class Home extends CI_Controller
 		}
 
 		if ($page == 'home') {
+			$data['total_jobs'] = $this->jobs_model->get_total_jobs();
 			$data['new_jobs'] = $this->jobs_model->get_new_jobs();
+			$data['direct'] = $this->jobs_model->get_direct();
+			$data['deployment'] = $this->jobs_model->get_deployment();
 			$data['news'] = $this->news_model->get_new_news();
 		}
 
@@ -71,6 +74,25 @@ class Home extends CI_Controller
 		$data['jobs'] = $this->jobs_model->get_all($pref, $areas, $line, $stations, $employment_types, $salary, $job_types, $categories, $traits, $freeword);
 
 		$this->load->view('map', $data);
+
+	}
+
+	public function total_jobs()
+	{
+		$pref = isset($_POST['pref']) ? $_POST['pref'] : '';
+		$areas = isset($_POST['areas']) ? $_POST['areas'] : [];
+		$line = isset($_POST['line']) ? $_POST['line'] : '';
+		$stations = isset($_POST['stations']) ? $_POST['stations'] : [];
+		$employment_types = isset($_POST['employment_types']) ? $_POST['employment_types'] : [];
+		$salary = isset($_POST['salary']) ? $_POST['salary'] : [];
+		$job_types = isset($_POST['job_types']) ? $_POST['job_types'] : [];
+		$categories = isset($_POST['categories']) ? implode('|', $_POST['categories']) : [];
+		$traits = isset($_POST['traits']) ? implode('|', $_POST['traits']) : [];
+		$freeword = isset($_POST['freeword']) ? $_POST['freeword'] : '';
+
+		$cnt = $this->jobs_model->get_all_cnt($pref, $areas, $line, $stations, $employment_types, $salary, $job_types, $categories, $traits, $freeword);
+
+		echo json_encode(['total_jobs' => $cnt]);
 
 	}
 

@@ -7,6 +7,7 @@ $route['news']['GET'] = 'home/news';
 $route['news/(:num)']['GET'] = 'home/news_single/$1';
 $route['map']['GET'] = 'home/map_get';
 $route['map']['POST'] = 'home/map_post';
+$route['total_jobs']['POST'] = 'home/total_jobs';
 $route['job_list']['GET'] = 'home/job_list_get';
 $route['job_list']['POST'] = 'home/job_list_post';
 // $route['/uploads/top_picture/(:any)']['GET'] = 'home/get_top_image/';

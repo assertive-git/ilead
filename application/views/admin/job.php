@@ -148,9 +148,8 @@ $traits = !empty($traits) ? explode(',', $traits) : [];
 
                     <div class="flex">
                         <select id="salary_type" name="salary_type" class="p-2">
-                            <option value="">選択する</option>
-                            <option value="年収" <?= $salary_type == '年収' ? 'selected' : '' ?>>年収</option>
                             <option value="時給" <?= $salary_type == '時給' ? 'selected' : '' ?>>時給</option>
+                            <option value="年収" <?= $salary_type == '年収' ? 'selected' : '' ?>>年収</option>
                         </select>
                     </div>
                 </div>

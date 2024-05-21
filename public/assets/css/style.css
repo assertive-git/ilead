@@ -334,6 +334,19 @@ main .search .area.is-active {
   transition: all 1s ease-in-out;
 }
 
+.modal .button_area {
+  margin-top: 0 !important;
+  justify-content: space-between !important;
+}
+
+.modal .button_area button.submit {
+  margin-right: 0 !important;
+}
+
+.modal .button_area button.reset {
+  margin-right: 0 !important;
+}
+
 .modal-content {
   background: #FFF;
   overflow-y: auto;

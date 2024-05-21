@@ -67,9 +67,9 @@
                     <?php $job['min_salary'] = substr_count($job['min_salary'], '0') >= 6 ? (intval(str_replace(',', '', $job['min_salary']) / 10000)) . '万' : $job['min_salary']; ?>
                     <?php $job['max_salary'] = substr_count($job['max_salary'], '0') >= 6 ? (intval(str_replace(',', '', $job['max_salary']) / 10000)) . '万' : $job['max_salary']; ?>
                     <?php if (!empty($job['max_salary'])): ?>
-                      <li>¥<span class="attribute">給料</span>【時給】<?= $job['min_salary'] ?>～<?= $job['max_salary'] ?></li>
+                      <li>¥<span class="attribute">給料</span>【<?= $job['salary_type'] ?>】<?= $job['min_salary'] ?>～<?= $job['max_salary'] ?></li>
                     <?php else: ?>
-                      <li>¥<span class="attribute">給料</span>【時給】<?= $job['min_salary'] ?></li>
+                      <li>¥<span class="attribute">給料</span>【<?= $job['salary_type'] ?>】<?= $job['min_salary'] ?></li>
                     <?php endif; ?>
                     <li><input id="map_address" type="hidden" value="<?= $job['map_address'] ?>"></li>
                     <li><input id="lat" type="hidden" value="<?= $job['lat'] ?>"></li>

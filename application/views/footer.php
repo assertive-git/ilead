@@ -37,14 +37,12 @@
     btn.onclick = function () {
       var modal = btn.closest('.modal');
       modal.style.display = "none";
-      set_pluses();
     };
   });
 
   window.onclick = function (event) {
     if (event.target.className === "modal") {
       event.target.style.display = "none";
-      set_pluses();
     }
   }
 
@@ -53,7 +51,7 @@
     $('input[name="stations[]"]:checked').length ? $('.stations .plus').addClass('active') : $('.stations .plus').removeClass('active');
     $('input[name="categories[]"]:checked').length ? $('.categories .plus').addClass('active') : $('.categories .plus').removeClass('active');
     $('input[name="job_types[]"]:checked').length ? $('.job_types .plus').addClass('active') : $('.job_types .plus').removeClass('active');
-    $('input[name="employment_types[]"]:checked').length ? $('.employment_types .plus').addClass('active') : $('.employment_types .plus').removeClass('active');
+    $('input[name="employment_types[]"]:checked').length || $('select[name="salary[yearly]"]').val() || $('select[name="salary[hourly]"]').val() ? $('.employment_types .plus').addClass('active') : $('.employment_types .plus').removeClass('active');
     $('input[name="traits[]"]:checked').length ? $('.traits .plus').addClass('active') : $('.traits .plus').removeClass('active');
   }
 </script>

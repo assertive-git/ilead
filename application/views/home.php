@@ -48,16 +48,16 @@
             <input type="text" placeholder="例：残業なし" name="freeword">
           </li>
           <li class="number_text">
-            <!-- <p class="number">該当件数<span class="big">270</span>件</p> -->
+            <p class="number">該当件数<span class="big"><?= $total_jobs ?></span>件</p>
           </li>
         </ul>
         <ul class="button_area">
           <li>
             <button type="submit" class="submit">検索する <i class="fa-solid fa-magnifying-glass"></i></button>
           </li>
-          <!-- <li>
-          <button type="reset" class="reset">すべてクリア</button>
-        </li> -->
+          <li>
+            <button type="button" class="reset">すべてクリア</button>
+          </li>
         </ul>
       </div>
 
@@ -78,8 +78,7 @@
               <?php foreach ($japan_regions as $japan_region_key => $japan_region): ?>
                 <?php foreach ($japan_region['prefectures'] as $pref_id => $prefecture): ?>
                   <?php if ($japan_region['name'] == '近畿'): ?>
-                    <input type="radio" id="prefectures_area_<?= $pref_id ?>" value="<?= $pref_id ?>" name="prefecture_area"
-                      <?= $pref_id == 27 ? 'checked' : '' ?>>
+                    <input type="radio" id="prefectures_area_<?= $pref_id ?>" value="<?= $pref_id ?>" name="prefecture_area">
                     <label class="prefecture_area" region_id="<?= $japan_region_key ?>"
                       for="prefectures_area_<?= $pref_id ?>"><?= $prefecture ?></label>
                   <?php else: ?>
@@ -95,13 +94,13 @@
               <div class="choice"></div>
             </div>
             <ul class="button_area">
-              <!-- <li>該当件数<span class="number">270</span>件</li>
-            <li> -->
-              <button type="submit" class="submit">選択した内容を反映する</button>
+              <li>該当件数<span class="big"><?= $total_jobs ?></span>件</li>
+              <li>
+                <button type="button" class="submit reflect">選択した内容を反映する</button>
               </li>
-              <!-- <li>
-            <button type="reset" class="reset">すべてクリア</button>
-          </li> -->
+              <li>
+                <button type="button" class="reset">すべてクリア</button>
+              </li>
             </ul>
           </div>
         </div>
@@ -115,8 +114,7 @@
             <h4>沿線・駅を選ぶ</h4>
             <div class="region">
               <?php foreach ($japan_regions as $japan_region_key => $japan_region): ?>
-                <input class="region_route" type="radio" id="region_<?= $japan_region_key ?>" name="region_route"
-                  <?= $japan_region['name'] == '近畿' ? 'checked' : '' ?>>
+                <input class="region_route" type="radio" id="region_<?= $japan_region_key ?>" name="region_route">
                 <label for="region_<?= $japan_region_key ?>"><?= $japan_region['name'] ?></label>
               <?php endforeach; ?>
             </div>
@@ -124,8 +122,7 @@
               <?php foreach ($japan_regions as $japan_region_key => $japan_region): ?>
                 <?php foreach ($japan_region['prefectures'] as $pref_id => $prefecture): ?>
                   <?php if ($japan_region['name'] == '近畿'): ?>
-                    <input type="radio" id="prefecture_route_<?= $pref_id ?>" value="<?= $pref_id ?>" name="prefecture_route"
-                      <?= $pref_id == 27 ? 'checked' : '' ?>>
+                    <input type="radio" id="prefecture_route_<?= $pref_id ?>" value="<?= $pref_id ?>" name="prefecture_route">
                     <label class="prefecture_route" region_id="<?= $japan_region_key ?>"
                       for="prefecture_route_<?= $pref_id ?>"><?= $prefecture ?></label>
                   <?php else: ?>
@@ -140,39 +137,35 @@
 
               <div class="route">
                 <h5>路線を選択</h5>
-                <div class="choice_inner">
-                  <p class="choice_ttl"><span class="choice_ttl_pref">大阪府</span>の路線</p>
+                <div class="choice_inner" style="visibility: hidden">
+                  <p class="choice_ttl"><span class="choice_ttl_pref"></span></p>
                   <ul class="scroll_inner"></ul>
                 </div>
               </div>
 
               <div class="station">
                 <h5>駅を選択</h5>
-                <div class="choice_inner">
-                  <p class="choice_ttl"><span class="choice_ttl_line">大阪環状線</span>の駅</p>
-                  <ul class="scroll_inner">
-                    <li>
-                      <input type="checkbox" id="station0001" name="station" value="">
-                      <label for="station0001"><i class="fa-solid fa-circle-check"></i>大阪環状線の駅すべて</label>
-                    </li>
-                  </ul>
+                <div class="choice_inner" style="visibility: hidden">
+                  <p class="choice_ttl"><span class="choice_ttl_line"></span></p>
+                  <ul class="scroll_inner"></ul>
                 </div>
               </div>
 
             </div>
             <ul class="button_area">
-              <!-- <li>該当件数<span class="number">270</span>件</li> -->
+              <li>該当件数<span class="big"><?= $total_jobs ?></span>件</li>
               <li>
-                <button type="submit" class="submit">選択した内容を反映する</button>
+                <button type="button" class="submit reflect">選択した内容を反映する</button>
               </li>
-              <!-- <li>
-            <button type="reset" class="reset">すべてクリア</button>
-          </li> -->
+              <li>
+                <button type="button" class="reset">すべてクリア</button>
+              </li>
             </ul>
           </div>
         </div>
 
         <script>
+
           var lines = [];
           var pref_cd = 26;
           var stations = [];
@@ -218,17 +211,22 @@
                 }
               });
 
-              var html = '';
+              // var html = '';
 
-              for (i = 0; i < lines_and_stations[pref_cd].lines.length; i++) {
-                html += '<li><input id="line000' + (i + 1) + '" type="radio" style="display: none" value="' + lines_and_stations[pref_cd].lines[i].line_name + '" name="line"><label for="line000' + (i + 1) + '">' + lines_and_stations[pref_cd].lines[i].line_name + '</label></li>';
-              }
+              // for (i = 0; i < lines_and_stations[pref_cd].lines.length; i++) {
+              //   html += '<li><input id="line000' + (i + 1) + '" type="radio" style="display: none" value="' + lines_and_stations[pref_cd].lines[i].line_name + '" name="line"><label for="line000' + (i + 1) + '">' + lines_and_stations[pref_cd].lines[i].line_name + '</label></li>';
+              // }
 
-              scroll_inner.append(html);
+              // $('#region_5').prop('checked', true);
+              // $('input[id="prefecture_route_27"]').prop('checked', true);
 
-              // 路線
-              $('.route .scroll_inner li').eq(4).children('input').prop('checked', true);
-              $('.route .scroll_inner li').eq(4).children('input').change();
+              // scroll_inner.append(html);
+
+              // // 路線
+              // $('.route .scroll_inner li').eq(4).children('input').prop('checked', true);
+              // $('.route .scroll_inner li').eq(4).children('input').change();
+
+              $('input').prop('checked', false);
             },
           });
 
@@ -276,7 +274,7 @@
             });
           }
 
-          setAreas('大阪府');
+          // setAreas('大阪府');
 
           $('#modal2 .region input[name="region_route"]').change(function () {
 
@@ -357,8 +355,6 @@
           $('body').on('change', '#municipalities_all', function () {
             $('input[name="areas[]"]').prop('checked', $(this).is(':checked'));
           });
-
-
         </script>
       </div>
 
@@ -385,13 +381,13 @@
               </div>
             </div>
             <ul class="button_area">
-              <!-- <li>該当件数<span class="number">270</span>件</li> -->
+              <li>該当件数<span class="big"><?= $total_jobs ?></span>件</li>
               <li>
-                <button type="submit" class="submit">選択した内容を反映する</button>
+                <button type="button" class="submit reflect">選択した内容を反映する</button>
               </li>
-              <!-- <li>
-            <button type="reset" class="reset">すべてクリア</button>
-          </li> -->
+              <li>
+                <button type="button" class="reset">すべてクリア</button>
+              </li>
             </ul>
           </div>
         </div>
@@ -418,24 +414,24 @@
                 <input type="checkbox" id="facility6" name="categories[]" value="福祉施設">
                 <label for="facility6">福祉施設</label>
                 <input type="checkbox" id="facility7" name="categories[]" value="訪問看護ステーション">
-                <label for="facility6">訪問看護ステーション</label>
+                <label for="facility7">訪問看護ステーション</label>
                 <input type="checkbox" id="facility8" name="categories[]" value="美容クリニック">
-                <label for="facility6">美容クリニック</label>
+                <label for="facility8">美容クリニック</label>
                 <input type="checkbox" id="facility9" name="categories[]" value="動物病院">
-                <label for="facility6">動物病院</label>
-                <input type="checkbox" id="facility7" name="categories[]" value="その他">
-                <label for="facility7">その他</label>
+                <label for="facility9">動物病院</label>
+                <input type="checkbox" id="facility10" name="categories[]" value="その他">
+                <label for="facility10">その他</label>
               </div>
             </div>
 
             <ul class="button_area">
-              <!-- <li>該当件数<span class="number">270</span>件</li> -->
+              <li>該当件数<span class="big"><?= $total_jobs ?></span>件</li>
               <li>
-                <button type="submit" class="button">選択した内容を反映する</button>
+                <button type="submit" class="submit">選択した内容を反映する</button>
               </li>
-              <!-- <li>
-            <button type="reset" class="reset">すべてクリア</button>
-          </li> -->
+              <li>
+                <button type="button" class="reset">すべてクリア</button>
+              </li>
             </ul>
           </div>
         </div>
@@ -463,7 +459,7 @@
               <ul class="salary">
                 <li>年収
                   <select name="salary[yearly]">
-                    <option value="0">指定なし</option>
+                    <option value="">指定なし</option>
                     <option value="2000000">200</option>
                     <option value="2500000">250</option>
                     <option value="3000000">300</option>
@@ -477,7 +473,7 @@
                 </li>
                 <li>時給
                   <select name="salary[hourly]">
-                    <option value="0">指定なし</option>
+                    <option value="">指定なし</option>
                     <option value="1000">1,000</option>
                     <option value="1500">1,500</option>
                     <option value="2000">2,000</option>
@@ -491,13 +487,13 @@
               </ul>
             </div>
             <ul class="button_area">
-              <!-- <li>該当件数<span class="number">270</span>件</li> -->
+              <li>該当件数<span class="big"><?= $total_jobs ?></span>件</li>
               <li>
-                <button type="submit" class="submit">選択した内容を反映する</button>
+                <button type="button" class="submit reflect">選択した内容を反映する</button>
               </li>
-              <!-- <li>
-            <button type="reset" class="reset">すべてクリア</button>
-          </li> -->
+              <li>
+                <button type="button" class="reset">すべてクリア</button>
+              </li>
             </ul>
           </div>
         </div>
@@ -526,17 +522,101 @@
               </div>
             </div>
             <ul class="button_area">
-              <!-- <li>該当件数<span class="number">270</span>件</li> -->
+              <li>該当件数<span class="big"><?= $total_jobs ?></span>件</li>
               <li>
-                <button type="submit" class="submit">選択した内容を反映する</button>
+                <button type="button" class="submit reflect">選択した内容を反映する</button>
               </li>
-              <!-- <li>
-              <button type="reset" class="reset">すべてクリア</button>
-            </li> -->
+              <li>
+                <button type="button" class="reset">すべてクリア</button>
+              </li>
             </ul>
           </div>
         </div>
       </div>
+      <script>
+        $('.reflect').click(function () {
+          $('.modal').hide();
+          set_pluses();
+        });
+      </script>
+
+      <script>
+
+        $('body').on('change', '.modal input, .modal select', function () {
+
+          var pref = $('input[name="pref"]').val();
+          var line = $('input[name="line"]:checked').val();
+
+          var areas = [];
+          var _areas = $('input[name="areas[]"]:checked');
+          $(_areas).each(function (i, el) {
+            areas.push($(_areas[i]).val());
+          });
+
+          var stations = [];
+          var _stations = $('input[name="stations[]"]:checked');
+          $(_stations).each(function (i, el) {
+            stations.push($(_stations[i]).val());
+          });
+
+          var categories = [];
+          var _categories = $('input[name="categories[]"]:checked');
+          $(_categories).each(function (i, el) {
+            categories.push($(_categories[i]).val());
+          });
+
+          console.log(categories);
+
+          var job_types = [];
+          var _job_types = $('input[name="job_types[]"]:checked');
+          $(_job_types).each(function (i, el) {
+            job_types.push($(_job_types[i]).val());
+          });
+
+          var employment_types = [];
+          var _employment_types = $('input[name="employment_types[]"]:checked');
+          $(_employment_types).each(function (i, el) {
+            employment_types.push($(_employment_types[i]).val());
+          });
+
+          var yearly = $('input[name="salary[yearly]"]').val();
+          var hourly = $('input[name="salary[hourly]"]').val();
+
+          var traits = [];
+          var _traits = $('input[name="traits[]"]:checked');
+          $(_traits).each(function (i, el) {
+            traits.push($(_traits[i]).val());
+          });
+
+          $.ajax({
+            type: "POST",
+            url: '/total_jobs',
+            dataType: 'json',
+            data: {
+              pref: pref,
+              line: line,
+              areas: areas,
+              stations: stations,
+              salary: {
+                yearly,
+                hourly,
+              },
+              categories: categories,
+              job_types: job_types,
+              employment_types: employment_types,
+              traits: traits
+            },
+            success: function (data) {
+
+              console.log(data);
+
+              if(data.total_jobs) {
+                $('.big').text(data.total_jobs);
+              }
+            }
+          });
+        });
+      </script>
     </form>
   </section>
 
@@ -589,54 +669,30 @@
       <div id="directly" class="area2 is-active">
         <div class="temporary_slider_wrap">
           <div class="temporary_slider">
-            <div class="slide_item"> <img src="assets/img/rec_img1.png">
-              <div class="category"><span>出向社員</span><span>調剤薬局</span></div>
-              <dl>
-                <dt>20代・30代積極採用の薬剤師求人</dt>
-                <dd><span class="attribute">勤務地</span>東京都千代田区</dd>
-                <dd><span class="attribute">給料</span>【時給】1,400円</dd>
-              </dl>
-            </div>
-            <div class="slide_item"> <img src="assets/img/rec_img1.png">
-              <div class="category"><span>出向社員</span><span>調剤薬局</span></div>
-              <dl>
-                <dt>20代・30代積極採用の薬剤師求人</dt>
-                <dd><span class="attribute">勤務地</span>東京都千代田区</dd>
-                <dd><span class="attribute">給料</span>【時給】1,400円</dd>
-              </dl>
-            </div>
-            <div class="slide_item"> <img src="assets/img/rec_img1.png">
-              <div class="category"><span>出向社員</span><span>調剤薬局</span></div>
-              <dl>
-                <dt>20代・30代積極採用の薬剤師求人</dt>
-                <dd><span class="attribute">勤務地</span>東京都千代田区</dd>
-                <dd><span class="attribute">給料</span>【時給】1,400円</dd>
-              </dl>
-            </div>
-            <div class="slide_item"> <img src="assets/img/rec_img1.png">
-              <div class="category"><span>出向社員</span><span>調剤薬局</span></div>
-              <dl>
-                <dt>20代・30代積極採用の薬剤師求人</dt>
-                <dd><span class="attribute">勤務地</span>東京都千代田区</dd>
-                <dd><span class="attribute">給料</span>【時給】1,400円</dd>
-              </dl>
-            </div>
-            <div class="slide_item"> <img src="assets/img/rec_img1.png">
-              <div class="category"><span>出向社員</span><span>調剤薬局</span></div>
-              <dl>
-                <dt>20代・30代積極採用の薬剤師求人</dt>
-                <dd><span class="attribute">勤務地</span>東京都千代田区</dd>
-                <dd><span class="attribute">給料</span>【時給】1,400円</dd>
-              </dl>
-            </div>
-            <div class="slide_item"> <img src="assets/img/rec_img1.png">
-              <div class="category"><span>出向社員</span><span>調剤薬局</span></div>
-              <dl>
-                <dt>20代・30代積極採用の薬剤師求人</dt>
-                <dd><span class="attribute">勤務地</span>東京都千代田区</dd>
-                <dd><span class="attribute">給料</span>【時給】1,400円</dd>
-              </dl>
-            </div>
+            <?php foreach ($direct as $job): ?>
+              <div class="slide_item">
+                <a href="/jobs/<?= $job['id'] ?>"><img src="/uploads/top_picture/<?= $job['top_picture'] ?>">
+                  <div class="category">
+                    <?php $i = 0; ?>
+                    <?php foreach (explode(',', $job['category']) as $category): ?>
+                      <span><?= ellipsize($category, 3) ?></span>
+                      <?php $i++; ?>
+                      <?php if ($i == 2)
+                        break; ?>
+                    <?php endforeach; ?>
+                  </div>
+                  <dl>
+                    <dt><?= ellipsize($job['title'], 25) ?></dt>
+                    <dd><span class="attribute">勤務地</span><?= $job['a_pref'] . $job['city'] ?></dd>
+                    <?php $job['min_salary'] = number_format($job['min_salary']); ?>
+                    <?php $job['max_salary'] = number_format($job['max_salary']); ?>
+                    <?php $job['min_salary'] = substr_count($job['min_salary'], '0') >= 6 ? (intval(str_replace(',', '', $job['min_salary']) / 10000)) . '万' : $job['min_salary']; ?>
+                    <?php $job['max_salary'] = substr_count($job['max_salary'], '0') >= 6 ? (intval(str_replace(',', '', $job['max_salary']) / 10000)) . '万' : $job['max_salary']; ?>
+                    <dd><span class="attribute">給料</span>【<?= $job['salary_type'] ?>】<?= $job['min_salary'] ?>円</dd>
+                  </dl>
+                </a>
+              </div>
+            <?php endforeach; ?>
           </div>
         </div>
       </div>
@@ -645,54 +701,30 @@
       <div id="temporary" class="area2">
         <div class="temporary_slider_wrap">
           <div class="temporary_slider">
-            <div class="slide_item"> <img src="assets/img/rec_img1.png">
-              <div class="category"><span>出向社員</span><span>調剤薬局</span></div>
-              <dl>
-                <dt>20代・30代積極採用の薬剤師求人</dt>
-                <dd><span class="attribute">勤務地</span>東京都千代田区</dd>
-                <dd><span class="attribute">給料</span>【時給】1,400円</dd>
-              </dl>
-            </div>
-            <div class="slide_item"> <img src="assets/img/rec_img1.png">
-              <div class="category"><span>出向社員</span><span>調剤薬局</span></div>
-              <dl>
-                <dt>20代・30代積極採用の薬剤師求人</dt>
-                <dd><span class="attribute">勤務地</span>東京都千代田区</dd>
-                <dd><span class="attribute">給料</span>【時給】1,400円</dd>
-              </dl>
-            </div>
-            <div class="slide_item"> <img src="assets/img/rec_img1.png">
-              <div class="category"><span>出向社員</span><span>調剤薬局</span></div>
-              <dl>
-                <dt>20代・30代積極採用の薬剤師求人</dt>
-                <dd><span class="attribute">勤務地</span>東京都千代田区</dd>
-                <dd><span class="attribute">給料</span>【時給】1,400円</dd>
-              </dl>
-            </div>
-            <div class="slide_item"> <img src="assets/img/rec_img1.png">
-              <div class="category"><span>出向社員</span><span>調剤薬局</span></div>
-              <dl>
-                <dt>20代・30代積極採用の薬剤師求人</dt>
-                <dd><span class="attribute">勤務地</span>東京都千代田区</dd>
-                <dd><span class="attribute">給料</span>【時給】1,400円</dd>
-              </dl>
-            </div>
-            <div class="slide_item"> <img src="assets/img/rec_img1.png">
-              <div class="category"><span>出向社員</span><span>調剤薬局</span></div>
-              <dl>
-                <dt>20代・30代積極採用の薬剤師求人</dt>
-                <dd><span class="attribute">勤務地</span>東京都千代田区</dd>
-                <dd><span class="attribute">給料</span>【時給】1,400円</dd>
-              </dl>
-            </div>
-            <div class="slide_item"> <img src="assets/img/rec_img1.png">
-              <div class="category"><span>出向社員</span><span>調剤薬局</span></div>
-              <dl>
-                <dt>20代・30代積極採用の薬剤師求人</dt>
-                <dd><span class="attribute">勤務地</span>東京都千代田区</dd>
-                <dd><span class="attribute">給料</span>【時給】1,400円</dd>
-              </dl>
-            </div>
+            <?php foreach ($direct as $job): ?>
+              <div class="slide_item">
+                <a href="/jobs/<?= $job['id'] ?>"><img src="/uploads/top_picture/<?= $job['top_picture'] ?>">
+                  <div class="category">
+                    <?php $i = 0; ?>
+                    <?php foreach (explode(',', $job['category']) as $category): ?>
+                      <span><?= ellipsize($category, 3) ?></span>
+                      <?php $i++; ?>
+                      <?php if ($i == 2)
+                        break; ?>
+                    <?php endforeach; ?>
+                  </div>
+                  <dl>
+                    <dt><?= ellipsize($job['title'], 25) ?></dt>
+                    <dd><span class="attribute">勤務地</span><?= $job['a_pref'] . $job['city'] ?></dd>
+                    <?php $job['min_salary'] = number_format($job['min_salary']); ?>
+                    <?php $job['max_salary'] = number_format($job['max_salary']); ?>
+                    <?php $job['min_salary'] = substr_count($job['min_salary'], '0') >= 6 ? (intval(str_replace(',', '', $job['min_salary']) / 10000)) . '万' : $job['min_salary']; ?>
+                    <?php $job['max_salary'] = substr_count($job['max_salary'], '0') >= 6 ? (intval(str_replace(',', '', $job['max_salary']) / 10000)) . '万' : $job['max_salary']; ?>
+                    <dd><span class="attribute">給料</span>【<?= $job['salary_type'] ?>】<?= $job['min_salary'] ?>円</dd>
+                  </dl>
+                </a>
+              </div>
+            <?php endforeach; ?>
           </div>
         </div>
         <!--/area-->

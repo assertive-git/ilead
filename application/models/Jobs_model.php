@@ -181,6 +181,85 @@ class Jobs_model extends CI_Model
         return $data;
     }
 
+    public function get_all_cnt($pref = '', $areas = [], $line = '', $stations = [], $employment_types = [], $salary = [], $job_types = [], $categories = [], $traits = [], $freeword = '')
+    {
+        $data = $this->db->join('jobs_stations', 'jobs_stations.job_id = jobs.id', 'left');
+
+        if (!empty($areas)) {
+            $data->where('a_pref', $pref);
+            $data->where_in('city', $areas);
+        }
+
+        if (!empty($line) && !empty($stations)) {
+            $data->where('line', $line);
+            $data->where_in('station', $stations);
+        }
+
+        if (!empty($employment_types)) {
+            $this->db->where_in('employment_type', $employment_types);
+        }
+
+        if (!empty($salary)) {
+            $yearly = $salary['yearly'];
+            $hourly = $salary['hourly'];
+
+            $sql = "";
+
+            if (!empty($yearly)) {
+                $sql .= '(salary_type = "年収" AND max_salary >= ' . $yearly . ')';
+            }
+
+            if (!empty($sql) && !empty($hourly)) {
+                $sql .= ' OR ';
+            }
+
+            if (!empty($hourly)) {
+                $sql .= '(salary_type = "時給" and max_salary >= ' . $hourly . ')';
+            }
+
+            if (!empty($yearly) || !empty($hourly)) {
+                $this->db->where('(' . $sql . ')');
+            }
+
+        }
+
+
+        if (!empty($job_types)) {
+            $this->db->where_in('job_type', $job_types);
+        }
+
+        if (!empty($categories)) {
+            $this->db->where('category REGEXP "' . $categories . '"');
+        }
+
+        if (!empty($traits)) {
+            $this->db->where('traits REGEXP "' . $traits . '"');
+        }
+
+        if (!empty($freeword)) {
+            $this->db->where("
+                (business_content LIKE '%$freeword%' OR
+                title LIKE '%$freeword%' OR
+                body LIKE '%$freeword%' OR
+                employment_type LIKE '%$freeword%' OR
+                salary_type LIKE '%$freeword%' OR
+                min_salary LIKE '%$freeword%' OR
+                max_salary LIKE '%$freeword%' OR
+                job_type LIKE '%$freeword%' OR
+                category LIKE '%$freeword%' OR
+                a_region LIKE '%$freeword%' OR
+                a_pref LIKE '%$freeword%' OR
+                city LIKE '%$freeword%' OR
+                address LIKE '%$freeword%' OR
+                traits LIKE '%$freeword%')
+                ");
+        }
+
+        $data = count($data->where('status', '公開')->select('jobs.id')->group_by('jobs.id')->get($this->table)->result_array());
+
+        return $data;
+    }
+
     // public function get_by_area($areas)
     // {
     //     return $this->db->where('status', '公開')->where_in('CONCAT(a_pref, city)', $areas)->get($this->table)->result_array();
@@ -239,5 +318,20 @@ class Jobs_model extends CI_Model
     public function get_by_ids($ids)
     {
         return $this->db->where_in('id', $ids)->get($this->table)->result_array();
+    }
+
+    public function get_deployment()
+    {
+        return $this->db->where('employment_type', '派遣')->limit(6)->get($this->table)->result_array();
+    }
+
+    public function get_direct()
+    {
+        return $this->db->where('employment_type <>', '派遣')->limit(6)->get($this->table)->result_array();
+    }
+
+    public function get_total_jobs()
+    {
+        return $this->db->select('count(*) as cnt')->get($this->table)->row_array()['cnt'];
     }
 }
