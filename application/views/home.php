@@ -481,6 +481,9 @@
                     <option value="3000">3,000</option>
                     <option value="3500">3,500</option>
                     <option value="4000">4,000</option>
+                    <option value="5000">5,000</option>
+                    <option value="6000">6,000</option>
+                    <option value="7000">7,000</option>
                   </select>
                   円以上
                 </li>
@@ -579,8 +582,8 @@
             employment_types.push($(_employment_types[i]).val());
           });
 
-          var yearly = $('input[name="salary[yearly]"]').val();
-          var hourly = $('input[name="salary[hourly]"]').val();
+          var yearly = $('select[name="salary[yearly]"]').val();
+          var hourly = $('select[name="salary[hourly]"]').val();
 
           var traits = [];
           var _traits = $('input[name="traits[]"]:checked');
@@ -598,8 +601,8 @@
               areas: areas,
               stations: stations,
               salary: {
-                yearly,
-                hourly,
+                yearly: yearly,
+                hourly: hourly,
               },
               categories: categories,
               job_types: job_types,
@@ -607,12 +610,7 @@
               traits: traits
             },
             success: function (data) {
-
-              console.log(data);
-
-              if(data.total_jobs) {
                 $('.big').text(data.total_jobs);
-              }
             }
           });
         });
