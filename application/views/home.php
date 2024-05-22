@@ -696,7 +696,7 @@
       <div id="temporary" class="area2">
         <div class="temporary_slider_wrap">
           <div class="temporary_slider">
-            <?php foreach ($direct as $job): ?>
+            <?php foreach ($deployment as $job): ?>
               <div class="slide_item">
                 <a href="/jobs/<?= $job['id'] ?>"><img src="/uploads/top_picture/<?= $job['top_picture'] ?>">
                   <div class="category">
