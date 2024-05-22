@@ -134,10 +134,6 @@ class Home extends CI_Controller
 
 		$data['jobs'] = $this->jobs_model->get_all($pref, $areas, $line, $stations, $employment_types, $salary, $job_types, $categories, $traits, $freeword);
 
-		foreach ($data['jobs'] as $key => $job) {
-			$data['jobs'][$key]['jobs_stations'] = $this->jobs_stations_model->get_all($job['id']);
-		}
-
 		$this->load->view('job_list', $data);
 	}
 
