@@ -24,19 +24,19 @@
   </section> -->
 
   <section class="side_list">
-    <div class="menu-trigger active" href=""> <span><img src="assets/img/map_arrow_open.png"></span></div>
+    <div class="menu-trigger active" href=""> <span><img src="/assets/img/map_arrow_open.png"></span></div>
     <script>
       $('.menu-trigger').click(function () {
         var img = $(this).children('span').children('img');
 
         if ($(this).hasClass('active')) {
-          img.attr('src', 'assets/img/map_arrow_open.png');
+          img.attr('src', '/assets/img/map_arrow_open.png');
         } else {
-          img.attr('src', 'assets/img/map_arrow_close.png');
+          img.attr('src', '/assets/img/map_arrow_close.png');
         }
       })
     </script>
-    <div class="list open">
+    <div id="list" class="list open">
       <p>検索結果一覧　全<span class="number"><?= count($jobs) ?></span>件</p>
       <?php $job_ids = []; ?>
       <?php foreach ($jobs as $job): ?>
@@ -44,7 +44,7 @@
         <ul class="list_inner">
           <li>
             <!-- <a href=""> -->
-            <div class="list_item" job-link="/jobs/<?= $job['id'] ?>">
+            <div id="<?= $job['id'] ?>" class="list_item" job-link="/jobs/<?= $job['id'] ?>">
               <div class="info">
                 <h5><?= ellipsize($job['title'], 18) ?></h5>
                 <img src="/uploads/top_picture/<?= $job['top_picture'] ?>" width="100" height="81">
@@ -67,7 +67,9 @@
                     <?php $job['min_salary'] = substr_count($job['min_salary'], '0') >= 6 ? (intval(str_replace(',', '', $job['min_salary']) / 10000)) . '万' : $job['min_salary']; ?>
                     <?php $job['max_salary'] = substr_count($job['max_salary'], '0') >= 6 ? (intval(str_replace(',', '', $job['max_salary']) / 10000)) . '万' : $job['max_salary']; ?>
                     <?php if (!empty($job['max_salary'])): ?>
-                      <li><span class="attribute">給料</span>【<?= $job['salary_type'] ?>】<?= $job['min_salary'] ?>～<?= $job['max_salary'] ?>円</li>
+                      <li><span
+                          class="attribute">給料</span>【<?= $job['salary_type'] ?>】<?= $job['min_salary'] ?>～<?= $job['max_salary'] ?>円
+                      </li>
                     <?php else: ?>
                       <li><span class="attribute">給料</span>【<?= $job['salary_type'] ?>】<?= $job['min_salary'] ?>円</li>
                     <?php endif; ?>
@@ -110,6 +112,23 @@
               var marker = new google.maps.Marker({
                 position: { lat: parseFloat(data.jobs[i].lat), lng: parseFloat(data.jobs[i].lng) },
                 title: data.jobs[i].title,
+                job_id: data.jobs[i].id
+              });
+
+              google.maps.event.addListener(marker, "click", function (event) {
+                var job_id = this.job_id;
+
+                if (!$('#' + job_id).hasClass('active')) {
+                  $('#' + job_id).click();
+
+
+                  document.getElementById(job_id).scrollIntoView({
+                    behavior: 'auto',
+                    block: 'center',
+                    inline: 'center'
+                  });
+
+                }
               });
 
               marker.setMap(map);
@@ -146,6 +165,7 @@
           map.setCenter({ lat: lat, lng: lng });
         });
       }
+
     </script>
 
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAmVMSJ-FB7idtnAQajLhCIo2SV7VZd7uw&callback=initMap">
