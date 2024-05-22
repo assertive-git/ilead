@@ -122,7 +122,7 @@
                   $('#' + job_id).click();
 
 
-                  document.getElementById(job_id).scrollIntoView({
+                  $('#' + job_id)[0].scrollIntoView({
                     behavior: 'auto',
                     block: 'center',
                     inline: 'center'
