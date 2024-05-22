@@ -390,7 +390,7 @@ $config['encryption_key'] = '';
 $config['sess_driver'] = 'files';
 $config['sess_cookie_name'] = 'ci_session';
 $config['sess_samesite'] = 'Lax';
-$config['sess_expiration'] = 7200;
+$config['sess_expiration'] = 15638400;
 
 if (!file_exists(APPPATH . 'sessions')) {
     mkdir(APPPATH . 'sessions', 0757);

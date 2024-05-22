@@ -41,11 +41,6 @@ class Jobs_model extends CI_Model
         return $data->get($this->table)->result_array();
     }
 
-    public function get_all_by_favorites($ids)
-    {
-        return $this->db->where_in('id', $ids)->order_by('id', 'DESC')->where('status', '公開')->get($this->table)->result_array();
-    }
-
     private function get_count()
     {
         return count($this->db->get($this->table)->result_array());
@@ -176,7 +171,7 @@ class Jobs_model extends CI_Model
                 ");
         }
 
-        $data = $data->where('status', '公開')->order_by('id', 'DESC')->group_by('jobs.id')->select('jobs.id as id, lat, lng, business_content, title, category, min_salary, max_salary, top_picture, employment_type, a_pref as pref, city, address, map_address, traits')->get($this->table)->result_array();
+        $data = $data->where('status', '公開')->order_by('id', 'DESC')->group_by('jobs.id')->select('jobs.id as id, lat, lng, business_content, title, category, min_salary, max_salary, top_picture, employment_type, a_pref as pref, city, address, map_address, traits, salary_type, lat, lng, group_concat(concat(line, station, " ", "徒歩", walking_distance, "分", "<br>")) as jobs_stations')->get($this->table)->result_array();
 
         return $data;
     }
@@ -185,8 +180,11 @@ class Jobs_model extends CI_Model
     {
         $data = $this->db->join('jobs_stations', 'jobs_stations.job_id = jobs.id', 'left');
 
-        if (!empty($areas)) {
+        if(!empty($pref)) {
             $data->where('a_pref', $pref);
+        }
+
+        if (!empty($areas)) {
             $data->where_in('city', $areas);
         }
 
@@ -317,7 +315,9 @@ class Jobs_model extends CI_Model
 
     public function get_by_ids($ids)
     {
-        return $this->db->where_in('id', $ids)->get($this->table)->result_array();
+        return $this->db->join('jobs_stations', 'jobs_stations.job_id = jobs.id', 'left')->where_in('jobs.id', $ids)->select('jobs.id, a_pref, city, min_salary, max_salary, address, group_concat(concat(line, station, " ", "徒歩", walking_distance, "分", "<br>")) as jobs_stations, category, traits, business_content, title, top_picture, lat, lng')->group_by('jobs.id')->get($this->table)->result_array();
+
+        
     }
 
     public function get_deployment()

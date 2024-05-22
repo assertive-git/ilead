@@ -1,3 +1,4 @@
+<?php $favorites = $_SESSION['favorites'] = !empty($_SESSION['favorites']) ? $_SESSION['favorites'] : [] ?>
 <!doctype html>
 <html lang="ja" class="no-js">
 
@@ -76,7 +77,7 @@
           <li><a href="https://ilead-hr.co.jp/contact">お問い合わせ</a></li>
           <li><a href="https://www.instagram.com/ilead.company/"><img src="/assets/img/insta_icon.png" alt="instaアイコン"
                 width="24" height="24" class="insta"></a></li>
-          <li><a href="/mypage" class="consider_list" type="button">★検討中リスト</a></li>
+          <li><a href="/favorites" class="consider_list" type="button">★検討中リスト</a></li>
         </ul>
 
       </nav>

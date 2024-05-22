@@ -125,10 +125,13 @@
           </table>
           <ul class="button_area">
             <li>
-              <button class="favorite_btn">★ 検討中リストに追加する</button>
+              <button class="favorite_btn<?= in_array($job['id'], $favorites) ? ' favorite_btn--remove' : '' ?>"
+                status="<?= !in_array($job['id'], $favorites) ? 0 : 1 ?>" job-id="<?= $job['id'] ?>">★
+                <?= in_array($job['id'], $favorites) ? '検討中リストから削除する' : '検討中リストに追加する' ?></button>
             </li>
-            <!-- <li><a href="">詳細を見る</a></li> -->
+            <li><a href="/jobs/<?= $job['id'] ?>/entry">応募する</a></li>
           </ul>
+          <script src="/assets/js/favorite_btn.js"></script>
         </div>
       </div>
     </div>

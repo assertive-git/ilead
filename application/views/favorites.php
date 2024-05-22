@@ -6,7 +6,20 @@
   </section>
   <section class="job_result">
     <div class="job_result_inner">
-      <button type="reset" class="reset">☆検討中リストから全て削除する</button>
+      <button type="button" class="reset" id="clear">☆検討中リストから全て削除する</button>
+      <script>
+        $('#clear').click(function () {
+          if (confirm('検討中リストから全て削除しますか？')) {
+            $.ajax({
+              type: "POST",
+              url: '/favorites/clear',
+              success: function () {
+                location.reload();
+              },
+            });
+          }
+        });
+      </script>
       <div class="pagination">
         <button class="arrow_before"></button>
         <div class="page">
@@ -29,45 +42,52 @@
                 </div>
               <?php endif; ?>
               <p>店舗責任者候補を募集！薬剤師として成長したい方歓迎！</p>
-              < class="table_area">
+              <div class="table_area">
                 <table>
                   <tr>
                     <th class="attribute">給料</th>
-                    <?php $new_job['min_salary'] = number_format($new_job['min_salary']); ?>
-                    <?php $new_job['max_salary'] = number_format($new_job['max_salary']); ?>
-                    <?php $new_job['min_salary'] = substr_count($new_job['min_salary'], '0') >= 6 ? (intval(str_replace(',', '', $new_job['min_salary']) / 10000)) . '万' : $new_job['min_salary']; ?>
-                    <?php $new_job['max_salary'] = substr_count($new_job['max_salary'], '0') >= 6 ? (intval(str_replace(',', '', $new_job['max_salary']) / 10000)) . '万' : $new_job['max_salary']; ?>
-                    <td>年収　350万円～450万円</td>
+                    <?php $job['min_salary'] = number_format($job['min_salary']); ?>
+                    <?php $job['max_salary'] = number_format($job['max_salary']); ?>
+                    <?php $job['min_salary'] = substr_count($job['min_salary'], '0') >= 6 ? (intval(str_replace(',', '', $job['min_salary']) / 10000)) . '万' : $job['min_salary']; ?>
+                    <?php $job['max_salary'] = substr_count($job['max_salary'], '0') >= 6 ? (intval(str_replace(',', '', $job['max_salary']) / 10000)) . '万' : $job['max_salary']; ?>
+                    <?php if (!empty($job['max_salary'])): ?>
+                      <td>¥<?= $job['min_salary'] ?>～<?= $job['max_salary'] ?></td>
+                    <?php else: ?>
+                      <td>¥<?= $job['min_salary'] ?></td>
+                    <?php endif; ?>
                   </tr>
                   <tr>
                     <th class="attribute">勤務地</th>
-                    <td>大阪府大阪市中央区</td>
+                    <td><?= $job['a_pref'] ?><?= $job['city'] ?><?= $job['address'] ?></td>
                   </tr>
                   <tr>
                     <th class="attribute">最寄り駅</th>
-                    <td>大阪メトロ谷町線 谷町九丁目駅 徒歩4分</td>
+                    <td>
+                      <?= $job['jobs_stations'] ?>
+                    </td>
                   </tr>
                   <tr>
                     <th class="attribute">業務内容</th>
-                    <td>調剤／監査／服薬指導</td>
+                    <td><?= $job['business_content'] ?></td>
                   </tr>
                 </table>
-                <small>未経験者OK / 高収入 / 土日祝日休み</small>
-              </>
+                <small><?= str_replace(',', ' / ', $job['traits']) ?></small>
+              </div>
               <img src="/uploads/top_picture/<?= $job['top_picture'] ?>" width="260" height="180">
               <ul class="button_area">
                 <li>
-                  <button class="favorite_btn favorite_btn--remove">★ 検討中リストから削除する</button>
+                  <button class="favorite_btn favorite_btn--remove" job-id="<?= $job['id'] ?>">★ 検討中リストから削除する</button>
                 </li>
                 <li><a href="/jobs/<?= $job['id'] ?>">詳細を見る</a></li>
               </ul>
             </div>
           </div>
         <?php endforeach; ?>
+        <script src="/assets/js/favorite_btn.js"></script>
       <?php endif; ?>
 
 
-      <p class="number2">新着求人：<span class="big">0</span>件（1～10件）</p>
+      <p class="number2">新着求人：<span class="big"><?= count($jobs) ?></span>件（1～10件）</p>
       <div class="pagination">
         <button class="arrow_before"></button>
         <div class="page">

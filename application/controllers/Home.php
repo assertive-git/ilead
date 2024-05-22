@@ -114,10 +114,6 @@ class Home extends CI_Controller
 	{
 		$data['jobs'] = $this->jobs_model->get_all();
 
-		foreach ($data['jobs'] as $key => $job) {
-			$data['jobs'][$key]['jobs_stations'] = $this->jobs_stations_model->get_all($job['id']);
-		}
-
 		$this->load->view('job_list', $data);
 
 	}
@@ -145,21 +141,45 @@ class Home extends CI_Controller
 		$this->load->view('job_list', $data);
 	}
 
-	public function mypage()
+	public function jobs_entry($id)
+	{
+
+		$data['id'] = $id;
+
+		$this->load->view('entry', $data);
+	}
+
+	public function jobs_confirm($id)
+	{
+		if (isset($_POST['action']) && $_POST['action'] == 1) {
+			$this->sendmail($id);
+		} else {
+			$data['id'] = $id;
+			$this->load->view('confirm', $data);
+		}
+
+
+	}
+
+	public function jobs_complete($id)
+	{
+		if (isset($_SESSION['complete'])) {
+			unset($_SESSION['complete']);
+		} else {
+			redirect('/jobs/' . $id . '/entry');
+		}
+	}
+
+	public function favorites()
 	{
 		$data['jobs'] = [];
 
-		if (!empty($_COOKIE['ilead_favorites'])) {
-			$ids = explode(',', $_COOKIE['ilead_favorites']);
-
-
-			if (!empty($ids)) {
-				$ids = $_COOKIE['ilead_favorites'];
-				$data['jobs'] = $this->jobs_model->get_all_by_favorites($ids);
-			}
+		if (!empty($_SESSION['favorites'])) {
+			$ids = $_SESSION['favorites'];
+			$data['jobs'] = $this->jobs_model->get_by_ids($ids);
 		}
 
-		$this->load->view('mypage', $data);
+		$this->load->view('favorites', $data);
 	}
 
 	public function get_jobs_by_id()
@@ -186,4 +206,37 @@ class Home extends CI_Controller
 	// {
 
 	// }
+
+	public function favorites_add()
+	{
+		$id = $_POST['id'];
+
+		if (!in_array($id, $_SESSION['favorites'])) {
+			$_SESSION['favorites'][] = $id;
+		}
+	}
+
+	public function favorites_delete()
+	{
+
+		$id = $_POST['id'];
+
+		foreach ($_SESSION['favorites'] as $key => $value) {
+			if ($value == $id) {
+				unset($_SESSION['favorites'][$key]);
+				break;
+			}
+		}
+	}
+
+	public function favorites_clear()
+	{
+		$_SESSION['favorites'] = [];
+	}
+
+	private function sendmail($id)
+	{
+		$_SESSION['complete'] = '';
+		redirect('/jobs/' . $id . '/complete');
+	}
 }

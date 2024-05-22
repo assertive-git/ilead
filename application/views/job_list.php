@@ -1,5 +1,4 @@
 <?php include ('header.php'); ?>
-<?php $ilead_favorites = []; ?>
 
 <main>
 
@@ -80,9 +79,7 @@
                     <tr>
                       <th class="attribute">最寄り駅</th>
                       <td>
-                        <?php foreach ($job['jobs_stations'] as $job_station): ?>
-                          <?= $job_station['line'] ?>&nbsp;<?= str_replace('駅', '', $job_station['station']) ?>駅&nbsp;徒歩<?= $job_station['walking_distance'] ?>分<br />
-                        <?php endforeach; ?>
+                        <?= $job['jobs_stations'] ?>
                       </td>
                     </tr>
                     <tr>
@@ -95,22 +92,16 @@
                 <img src="/uploads/top_picture/<?= $job['top_picture'] ?>" width="260" height="180">
                 <ul class="button_area">
                   <li>
-                    <button
-                      class="favorite_btn<?= in_array($job['id'], $ilead_favorites) ? ' favorite_btn--remove' : '' ?>">★
-                      <?= in_array($job['id'], $ilead_favorites) ? '検討中リストから削除する' : '検討中リストに追加する' ?></button>
+                    <button class="favorite_btn<?= in_array($job['id'], $favorites) ? ' favorite_btn--remove' : '' ?>"
+                      status="<?= !in_array($job['id'], $favorites) ? 0 : 1 ?>" job-id="<?= $job['id'] ?>">★
+                      <?= in_array($job['id'], $favorites) ? '検討中リストから削除する' : '検討中リストに追加する' ?></button>
                   </li>
                   <li><a href="/jobs/<?= $job['id'] ?>">詳細を見る</a></li>
                 </ul>
               </div>
             </div>
           <?php endforeach; ?>
-          <script>
-            $('.favorite_btn').click(function () {
-              if (confirm('検討中リストに追加しますか')) {
-
-              }
-            });
-          </script>
+          <script src="/assets/js/favorite_btn.js"></script>
         <?php endif; ?>
       </div>
       <p class="number2">新着求人：<span class="big">0</span>件（1～10件）</p>

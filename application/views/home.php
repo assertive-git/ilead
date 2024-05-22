@@ -48,7 +48,7 @@
             <input type="text" placeholder="例：残業なし" name="freeword">
           </li>
           <li class="number_text">
-            <p class="number">該当件数<span class="big"><?= $total_jobs ?></span>件</p>
+            <p class="number">該当件数<span class="big total_jobs"><?= $total_jobs ?></span>件</p>
           </li>
         </ul>
         <ul class="button_area">
@@ -94,7 +94,7 @@
               <div class="choice"></div>
             </div>
             <ul class="button_area">
-              <li>該当件数<span class="big"><?= $total_jobs ?></span>件</li>
+              <li>該当件数<span class="big total_jobs"><?= $total_jobs ?></span>件</li>
               <li>
                 <button type="button" class="submit reflect">選択した内容を反映する</button>
               </li>
@@ -153,7 +153,7 @@
 
             </div>
             <ul class="button_area">
-              <li>該当件数<span class="big"><?= $total_jobs ?></span>件</li>
+              <li>該当件数<span class="big total_jobs"><?= $total_jobs ?></span>件</li>
               <li>
                 <button type="button" class="submit reflect">選択した内容を反映する</button>
               </li>
@@ -381,7 +381,7 @@
               </div>
             </div>
             <ul class="button_area">
-              <li>該当件数<span class="big"><?= $total_jobs ?></span>件</li>
+              <li>該当件数<span class="big total_jobs"><?= $total_jobs ?></span>件</li>
               <li>
                 <button type="button" class="submit reflect">選択した内容を反映する</button>
               </li>
@@ -425,7 +425,7 @@
             </div>
 
             <ul class="button_area">
-              <li>該当件数<span class="big"><?= $total_jobs ?></span>件</li>
+              <li>該当件数<span class="big total_jobs"><?= $total_jobs ?></span>件</li>
               <li>
                 <button type="submit" class="submit">選択した内容を反映する</button>
               </li>
@@ -481,16 +481,13 @@
                     <option value="3000">3,000</option>
                     <option value="3500">3,500</option>
                     <option value="4000">4,000</option>
-                    <option value="5000">5,000</option>
-                    <option value="6000">6,000</option>
-                    <option value="7000">7,000</option>
                   </select>
                   円以上
                 </li>
               </ul>
             </div>
             <ul class="button_area">
-              <li>該当件数<span class="big"><?= $total_jobs ?></span>件</li>
+              <li>該当件数<span class="big total_jobs"><?= $total_jobs ?></span>件</li>
               <li>
                 <button type="button" class="submit reflect">選択した内容を反映する</button>
               </li>
@@ -525,7 +522,7 @@
               </div>
             </div>
             <ul class="button_area">
-              <li>該当件数<span class="big"><?= $total_jobs ?></span>件</li>
+              <li>該当件数<span class="big total_jobs"><?= $total_jobs ?></span>件</li>
               <li>
                 <button type="button" class="submit reflect">選択した内容を反映する</button>
               </li>
