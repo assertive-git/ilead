@@ -56,7 +56,7 @@
             <button type="submit" class="submit">検索する <i class="fa-solid fa-magnifying-glass"></i></button>
           </li>
           <li>
-            <button type="button" class="reset">すべてクリア</button>
+            <!--<button type="button" class="reset">すべてクリア</button>-->
           </li>
         </ul>
       </div>
@@ -99,7 +99,7 @@
                 <button type="button" class="submit reflect">選択した内容を反映する</button>
               </li>
               <li>
-                <button type="button" class="reset">すべてクリア</button>
+                <!--<button type="button" class="reset">すべてクリア</button>-->
               </li>
             </ul>
           </div>
@@ -158,7 +158,7 @@
                 <button type="button" class="submit reflect">選択した内容を反映する</button>
               </li>
               <li>
-                <button type="button" class="reset">すべてクリア</button>
+                <!--<button type="button" class="reset">すべてクリア</button>-->
               </li>
             </ul>
           </div>
@@ -386,7 +386,7 @@
                 <button type="button" class="submit reflect">選択した内容を反映する</button>
               </li>
               <li>
-                <button type="button" class="reset">すべてクリア</button>
+                <!--<button type="button" class="reset">すべてクリア</button>-->
               </li>
             </ul>
           </div>
@@ -430,7 +430,7 @@
                 <button type="submit" class="submit">選択した内容を反映する</button>
               </li>
               <li>
-                <button type="button" class="reset">すべてクリア</button>
+                <!--<button type="button" class="reset">すべてクリア</button>-->
               </li>
             </ul>
           </div>
@@ -492,7 +492,7 @@
                 <button type="button" class="submit reflect">選択した内容を反映する</button>
               </li>
               <li>
-                <button type="button" class="reset">すべてクリア</button>
+                <!--<button type="button" class="reset">すべてクリア</button>-->
               </li>
             </ul>
           </div>
@@ -527,7 +527,7 @@
                 <button type="button" class="submit reflect">選択した内容を反映する</button>
               </li>
               <li>
-                <button type="button" class="reset">すべてクリア</button>
+                <!--<button type="button" class="reset">すべてクリア</button>-->
               </li>
             </ul>
           </div>
