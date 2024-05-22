@@ -4,7 +4,7 @@
 
   <!--<div class="registration"><a href="" target="_blank">まずは簡単登録</a></div>-->
 
-  <section class="search_area">
+  <!-- <section class="search_area">
     <div class="search_inner">
       <ul>
         <li class="workarea"><a href=""> エリアを選ぶ<span class="plus">+</span> </a></li>
@@ -23,7 +23,7 @@
         <button type="reset" class="reset">すべてクリア</button>
       </div>
     </div>
-  </section>
+  </section> -->
   <section class="search_result">
     <button href="" id="return" class="arrow_before">一覧へ戻る</button>
   </section>
