@@ -322,12 +322,12 @@ class Jobs_model extends CI_Model
 
     public function get_deployment()
     {
-        return $this->db->where('employment_type', '派遣')->limit(6)->get($this->table)->result_array();
+        return $this->db->where('employment_type', '派遣・在籍出向')->limit(6)->get($this->table)->result_array();
     }
 
     public function get_direct()
     {
-        return $this->db->where('employment_type <>', '派遣')->limit(6)->get($this->table)->result_array();
+        return $this->db->where('employment_type <>', '派遣・在籍出向')->limit(6)->get($this->table)->result_array();
     }
 
     public function get_total_jobs()
