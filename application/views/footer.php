@@ -26,10 +26,13 @@
 <script>
   //検索モーダル
   const modalBtns = document.querySelectorAll(".modal-toggle");
+  let current_modal = null;
   modalBtns.forEach(function (btn) {
     btn.onclick = function () {
       var modal = btn.getAttribute('data-modal');
+      current_modal = modal;
       document.getElementById(modal).style.display = "block";
+      
     };
   });
   const closeBtns = document.querySelectorAll(".modal-close");
@@ -37,22 +40,15 @@
     btn.onclick = function () {
       var modal = btn.closest('.modal');
       modal.style.display = "none";
+      reset_one_plus(current_modal);
     };
   });
 
   window.onclick = function (event) {
     if (event.target.className === "modal") {
       event.target.style.display = "none";
+      reset_one_plus(current_modal);
     }
-  }
-
-  function set_pluses() {
-    $('input[name="areas[]"]:checked').length ? $('.areas .plus').addClass('active') : $('.areas .plus').removeClass('active');
-    $('input[name="stations[]"]:checked').length ? $('.stations .plus').addClass('active') : $('.stations .plus').removeClass('active');
-    $('input[name="categories[]"]:checked').length ? $('.categories .plus').addClass('active') : $('.categories .plus').removeClass('active');
-    $('input[name="job_types[]"]:checked').length ? $('.job_types .plus').addClass('active') : $('.job_types .plus').removeClass('active');
-    $('input[name="employment_types[]"]:checked').length || $('select[name="salary[yearly]"]').val() || $('select[name="salary[hourly]"]').val() ? $('.employment_types .plus').addClass('active') : $('.employment_types .plus').removeClass('active');
-    $('input[name="traits[]"]:checked').length ? $('.traits .plus').addClass('active') : $('.traits .plus').removeClass('active');
   }
 </script>
 
@@ -75,6 +71,9 @@
     }
   });
 </script>
+
+<!-- ILEAD SEARCH SYSTEM -->
+<script src="/assets/js/search_system.js"></script>
 </body>
 
 </html>

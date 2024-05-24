@@ -4,14 +4,14 @@
 
   <!--<div class="registration"><a href="" target="_blank">まずは簡単登録</a></div>-->
 
-  <!-- <section class="search_area">
+  <section class="search_area">
     <div class="search_inner">
       <ul>
-        <li class="workarea"><a href=""> エリアを選ぶ<span class="plus">+</span> </a></li>
-        <li class="station"><a href=""> 沿線・駅を選ぶ<span class="plus">+</span> </a></li>
-        <li class="facility"><a href=""> 施設・種別を選ぶ<span class="plus">+</span> </a></li>
-        <li class="form"><a href=""> 雇用形態/給与を選ぶ<span class="plus">+</span> </a> </li>
-        <li><a href="">こだわり<span class="plus">+</span> </a></li>
+        <li class="workarea">エリアを選ぶ<span class="plus">+</span></li>
+        <li class="station">沿線・駅を選ぶ<span class="plus">+</span></li>
+        <li class="facility">施設・種別を選ぶ<span class="plus">+</span></li>
+        <li class="form">雇用形態/給与を選ぶ<span class="plus">+</span> </li>
+        <li class="traits">こだわり<span class="plus">+</span></li>
         <li class="freeword">
           <form>
             <input type="text" placeholder="フリーワード">
@@ -23,7 +23,8 @@
         <button type="reset" class="reset">すべてクリア</button>
       </div>
     </div>
-  </section> -->
+  </section>
+  <?php include APPPATH . 'includes/search_modal.php' ?>
   <section class="search_result">
     <p>検索結果一覧　全<span class="number"><?= count($jobs) ?></span>件</p>
   </section>
