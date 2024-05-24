@@ -60,10 +60,9 @@
           </li>
         </ul>
       </div>
-
+      <?php include_once APPPATH . 'includes/search_modal.php' ?>
     </form>
   </section>
-  <?php include_once APPPATH . 'includes/search_modal.php' ?>
 
   <section class="recruitment">
     <h2><span>求人情報</span>Recruitment</h2>
