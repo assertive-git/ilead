@@ -322,9 +322,4 @@ class Jobs_model extends CI_Model
     {
         return $this->db->where('employment_type <>', '派遣・在籍出向')->limit(6)->get($this->table)->result_array();
     }
-
-    public function get_total_jobs()
-    {
-        return $this->db->select('count(*) as cnt')->get($this->table)->row_array()['cnt'];
-    }
 }
