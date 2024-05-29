@@ -108,11 +108,12 @@ class Home extends CI_Controller
 
 	public function job_list_get($page = 1)
 	{
-		$data['total_jobs'] = $this->jobs_model->get_total_jobs();
-
+		
 		$limit = 10;
 		$offset = ($page * $limit) - $limit;
 		$data['jobs'] = $this->jobs_model->get_all($offset, $limit, [], [], [], [], [], [], [], '');
+
+		$data['total_jobs'] = $this->jobs_model->get_total_jobs();
 
 		$data['current_index_start'] = ($limit * ($page - 1)) + 1;
 		$data['current_index_end'] = ($limit * ($page - 1)) + 10;
@@ -129,7 +130,6 @@ class Home extends CI_Controller
 
 	public function job_list_post()
 	{
-
 		$areas = isset($_POST['areas']) ? $_POST['areas'] : [];
 		$stations = isset($_POST['stations']) ? $_POST['stations'] : [];
 		$employment_types = isset($_POST['employment_types']) ? $_POST['employment_types'] : [];
@@ -138,10 +138,13 @@ class Home extends CI_Controller
 		$categories = isset($_POST['categories']) ? implode('|', $_POST['categories']) : [];
 		$traits = isset($_POST['traits']) ? implode('|', $_POST['traits']) : [];
 		$freeword = isset($_POST['freeword']) ? $_POST['freeword'] : '';
-
+		
+		
+		$limit = 10;
+		$offset = (1 * $limit) - $limit;
+		$data['jobs'] = $this->jobs_model->get_all($offset, $limit, $areas, $stations, $employment_types, $salary, $job_types, $categories, $traits, $freeword);
+		
 		$data['total_jobs'] = $this->jobs_model->get_total_jobs();
-
-		$data['jobs'] = $this->jobs_model->get_all($areas, $stations, $employment_types, $salary, $job_types, $categories, $traits, $freeword);
 
 		$this->init_pagination($data['total_jobs'], 'job_list', $limit);
 
