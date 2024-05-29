@@ -1,3 +1,4 @@
+<?php include (APPPATH . 'includes/japan_regions.php'); ?>
 <div class="modals">
 
     <!-- modal1 -->
@@ -8,26 +9,19 @@
                 <h4>エリアを選ぶ</h4>
                 <div class="region">
                     <?php foreach ($japan_regions as $japan_region_key => $japan_region): ?>
-                        <input type="radio" id="region_area_<?= $japan_region_key ?>" name="region_area"
-                            <?= $japan_region['name'] == '近畿' ? 'checked' : '' ?>>
+                        <input type="radio" id="region_area_<?= $japan_region_key ?>" region_id="<?= $japan_region_key ?>"
+                            name="region_area">
                         <label for="region_area_<?= $japan_region_key ?>"><?= $japan_region['name'] ?></label>
                     <?php endforeach; ?>
                 </div>
                 <div class="prefectures">
                     <?php foreach ($japan_regions as $japan_region_key => $japan_region): ?>
                         <?php foreach ($japan_region['prefectures'] as $pref_id => $prefecture): ?>
-                            <?php if ($japan_region['name'] == '近畿'): ?>
-                                <input type="radio" id="prefectures_area_<?= $pref_id ?>" value="<?= $pref_id ?>"
-                                    name="prefecture_area">
-                                <label class="prefecture_area" region_id="<?= $japan_region_key ?>"
-                                    for="prefectures_area_<?= $pref_id ?>"><?= $prefecture ?></label>
-                            <?php else: ?>
-                                <input type="radio" id="prefectures_area_<?= $pref_id ?>" value="<?= $pref_id ?>"
-                                    name="prefecture_area">
-                                <label class="prefecture_area" region_id="<?= $japan_region_key ?>" style="display: none"
-                                    for="prefectures_area_<?= $pref_id ?>"><?= $prefecture ?></label>
-                                <?php ?>
-                            <?php endif; ?>
+                            <div class="prefectures_group" pref_id="<?= $pref_id ?>" region_id="<?= $japan_region_key ?>">
+                                <input class="prefectures_area" id="prefectures_area_<?= $pref_id ?>" type="radio"
+                                    name="prefectures_area_region_<?= $japan_region_key ?>">
+                                <label for="prefectures_area_<?= $pref_id ?>"><?= $prefecture ?></label>
+                            </div>
                         <?php endforeach; ?>
                     <?php endforeach; ?>
                 </div>
@@ -55,24 +49,19 @@
                 <h4>沿線・駅を選ぶ</h4>
                 <div class="region">
                     <?php foreach ($japan_regions as $japan_region_key => $japan_region): ?>
-                        <input class="region_route" type="radio" id="region_<?= $japan_region_key ?>" name="region_route">
+                        <input class="region_route" type="radio" region_id="<?= $japan_region_key ?>"
+                            id="region_<?= $japan_region_key ?>" region_id="<?= $japan_region_key ?>" name="region_route">
                         <label for="region_<?= $japan_region_key ?>"><?= $japan_region['name'] ?></label>
                     <?php endforeach; ?>
                 </div>
                 <div class="prefectures">
                     <?php foreach ($japan_regions as $japan_region_key => $japan_region): ?>
                         <?php foreach ($japan_region['prefectures'] as $pref_id => $prefecture): ?>
-                            <?php if ($japan_region['name'] == '近畿'): ?>
-                                <input type="radio" id="prefecture_route_<?= $pref_id ?>" value="<?= $pref_id ?>"
-                                    name="prefecture_route">
-                                <label class="prefecture_route" region_id="<?= $japan_region_key ?>"
-                                    for="prefecture_route_<?= $pref_id ?>"><?= $prefecture ?></label>
-                            <?php else: ?>
-                                <input type="radio" id="prefecture_route_<?= $pref_id ?>" value="<?= $pref_id ?>"
-                                    name="prefecture_route">
-                                <label class="prefecture_route" region_id="<?= $japan_region_key ?>"
-                                    for="prefecture_route_<?= $pref_id ?>" style="display: none"><?= $prefecture ?></label>
-                            <?php endif; ?>
+                            <div class="prefectures_group" pref_id="<?= $pref_id ?>" region_id="<?= $japan_region_key ?>">
+                                <input class="prefectures_route" type="radio" id="prefectures_route_<?= $pref_id ?>"
+                                    name="prefectures_route_<?= $japan_region_key ?>">
+                                <label for="prefectures_route_<?= $pref_id ?>"><?= $prefecture ?></label>
+                            </div>
                         <?php endforeach; ?>
                     <?php endforeach; ?>
                 </div>
@@ -80,7 +69,7 @@
 
                     <div class="route">
                         <h5>路線を選択</h5>
-                        <div class="choice_inner" style="visibility: hidden">
+                        <div class="choice_inner">
                             <p class="choice_ttl"><span class="choice_ttl_pref"></span></p>
                             <ul class="scroll_inner"></ul>
                         </div>
@@ -88,7 +77,7 @@
 
                     <div class="station">
                         <h5>駅を選択</h5>
-                        <div class="choice_inner" style="visibility: hidden">
+                        <div class="choice_inner">
                             <p class="choice_ttl"><span class="choice_ttl_line"></span></p>
                             <ul class="scroll_inner"></ul>
                         </div>

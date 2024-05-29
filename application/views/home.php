@@ -1,5 +1,4 @@
 <?php include ('header.php'); ?>
-<?php include (APPPATH . 'libraries/japan_regions.php'); ?>
 
 <main>
   <section class="main_img">
@@ -18,7 +17,7 @@
     </ul>
     <form id="list" class="area is-active" action="/job_list" method="POST">
       <div class="search_inner">
-        <ul class="main7">
+        <ul class="main7">  
           <li class="areas">
             <button type="button" type="button" class="modal-toggle btn-example"
               data-modal="modal1">エリア<small>を選ぶ</small><span class="plus">+</span></button>

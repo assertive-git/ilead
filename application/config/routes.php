@@ -9,6 +9,7 @@ $route['map']['GET'] = 'home/map_get';
 $route['map']['POST'] = 'home/map_post';
 $route['total_jobs']['POST'] = 'home/total_jobs';
 $route['job_list']['GET'] = 'home/job_list_get';
+$route['job_list/(:num)']['GET'] = 'home/job_list_get/$1';
 $route['job_list']['POST'] = 'home/job_list_post';
 $route['jobs/(:num)']['GET'] = 'home/jobs/$1';
 $route['jobs/(:num)/entry']['GET'] = 'home/jobs_entry/$1';

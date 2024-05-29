@@ -5,42 +5,47 @@
   <!--<div class="registration"><a href="" target="_blank">まずは簡単登録</a></div>-->
 
   <section class="search_area">
-    <div class="search_inner">
-      <ul>
-        <li class="workarea">エリアを選ぶ<span class="plus">+</span></li>
-        <li class="station">沿線・駅を選ぶ<span class="plus">+</span></li>
-        <li class="facility">施設・種別を選ぶ<span class="plus">+</span></li>
-        <li class="form">雇用形態/給与を選ぶ<span class="plus">+</span> </li>
-        <li class="traits">こだわり<span class="plus">+</span></li>
-        <li class="freeword">
-          <form>
+    <form class="search_form">
+      <div class="search_inner">
+        <ul>
+          <li class="areas"><button type="button" data-modal="modal1" class="modal-toggle">エリアを選ぶ<span
+                class="plus">+</span></button>
+          </li>
+          <li class="stations"><button type="button" data-modal="modal2" class="modal-toggle">沿線・駅を選ぶ<span
+                class="plus">+</span></button></li>
+          <li class="categories"><button type="button" data-modal="modal4" class="modal-toggle">施設・種別を選ぶ<span
+                class="plus">+</span></button></li>
+          <li class="employment_types"><button type="button" data-modal="modal5" class="modal-toggle">雇用形態/給与を選ぶ<span
+                class="plus">+</span></button></li>
+          <li class="traits"><button type="button" data-modal="modal6" class="modal-toggle">こだわり<span
+                class="plus">+</span></button>
+          </li>
+          <li class="freeword">
             <input type="text" placeholder="フリーワード">
             <input type="submit" value="&#xf002">
-          </form>
-        </li>
-      </ul>
-      <div class="button_area">
-        <button type="reset" class="reset">すべてクリア</button>
+          </li>
+        </ul>
+        <div class="button_area">
+          <button type="reset" class="reset">すべてクリア</button>
+        </div>
       </div>
-    </div>
+      <?php include APPPATH . 'includes/search_modal.php' ?>
+    </form>
+
   </section>
-  <?php include APPPATH . 'includes/search_modal.php' ?>
+
   <section class="search_result">
-    <p>検索結果一覧　全<span class="number"><?= count($jobs) ?></span>件</p>
+    <p>検索結果一覧　全<span class="number"><?= $total_jobs ?></span>件</p>
   </section>
   <section class="job_result">
     <div class="pagination">
-      <button class="arrow_before"></button>
       <div class="page">
-        <button>1</button>
-        <button>2</button>
-        <button>3</button>
-        <button>4</button>
+        <?= $this->pagination->create_links(); ?>
       </div>
-      <button class="arrow_next"></button>
     </div>
     <div class="job_result_inner">
-      <p class="number">新着求人：<span class="big"><?= count($jobs) ?></span>件（1～10件）</p>
+      <p class="number">新着求人：<span
+          class="big"><?= $total_jobs ?></span>件（<?= $current_index_start ?>～<?= $current_index_end ?>件）</p>
       <!-- <ul class="tab">
         <li><a href="#new_arrival">新着順</a></li>
         <li><a href="#annual_income">年収順</a></li>
@@ -105,17 +110,12 @@
           <script src="/assets/js/favorite_btn.js"></script>
         <?php endif; ?>
       </div>
-      <p class="number2">新着求人：<span class="big">0</span>件（1～10件）</p>
+      <p class="number2">新着求人：<span class="big"><?= $total_jobs ?></span>件（<?= $current_index_start ?>～<?= $current_index_end ?>件）</p>
     </div>
     <div class="pagination">
-      <button class="arrow_before"></button>
       <div class="page">
-        <button>1</button>
-        <button>2</button>
-        <button>3</button>
-        <button>4</button>
+        <?= $this->pagination->create_links(); ?>
       </div>
-      <button class="arrow_next"></button>
     </div>
   </section>
 </main>

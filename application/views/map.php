@@ -4,24 +4,34 @@
 
   <!--<div class="registration"><a href="" target="_blank">まずは簡単登録</a></div>-->
 
-  <!-- <section class="search_area">
-    <div class="search_inner">
-      <ul>
-        <li class="workarea"><a href=""> エリアを選ぶ<span class="plus">+</span> </a></li>
-        <li class="station"><a href=""> 沿線・駅を選ぶ<span class="plus">+</span> </a></li>
-        <li class="facility"><a href=""> 施設・種別を選ぶ<span class="plus">+</span> </a></li>
-        <li class="form"><a href=""> 雇用形態/給与を選ぶ<span class="plus">+</span> </a> </li>
-        <li><a href="">こだわり<span class="plus">+</span> </a></li>
-        <li class="freeword">
-          <form method="POST" action="/map?s=freeword"><input name="freeword" value="<?= set_value('freeword') ?>"
-              type="text" placeholder="フリーワード"><input type="submit" value="&#xf002"></form>
-        </li>
-      </ul>
-      <div class="button_area">
-        <button type="reset" class="reset">すべてクリア</button>
+  <section class="search_area">
+    <form class="search_form">
+      <div class="search_inner">
+        <ul>
+          <li class="areas"><button type="button" data-modal="modal1" class="modal-toggle">エリアを選ぶ<span
+                class="plus">+</span></button>
+          </li>
+          <li class="stations"><button type="button" data-modal="modal2" class="modal-toggle">沿線・駅を選ぶ<span
+                class="plus">+</span></button></li>
+          <li class="categories"><button type="button" data-modal="modal4" class="modal-toggle">施設・種別を選ぶ<span
+                class="plus">+</span></button></li>
+          <li class="employment_types"><button type="button" data-modal="modal5" class="modal-toggle">雇用形態/給与を選ぶ<span
+                class="plus">+</span></button></li>
+          <li class="traits"><button type="button" data-modal="modal6" class="modal-toggle">こだわり<span
+                class="plus">+</span></button>
+          </li>
+          <li class="freeword">
+            <input type="text" placeholder="フリーワード">
+            <input type="submit" value="&#xf002">
+          </li>
+        </ul>
+        <div class="button_area">
+          <button type="reset" class="reset">すべてクリア</button>
+        </div>
       </div>
-    </div>
-  </section> -->
+      <?php include APPPATH . 'includes/search_modal.php' ?>
+    </form>
+  </section>
 
   <section class="side_list">
     <div class="menu-trigger active" href=""> <span><img src="/assets/img/map_arrow_open.png"></span></div>

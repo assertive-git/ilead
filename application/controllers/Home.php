@@ -60,9 +60,7 @@ class Home extends CI_Controller
 
 	public function map_post()
 	{
-		$pref = isset($_POST['pref']) ? $_POST['pref'] : '';
 		$areas = isset($_POST['areas']) ? $_POST['areas'] : [];
-		$line = isset($_POST['line']) ? $_POST['line'] : '';
 		$stations = isset($_POST['stations']) ? $_POST['stations'] : [];
 		$employment_types = isset($_POST['employment_types']) ? $_POST['employment_types'] : [];
 		$salary = isset($_POST['salary']) ? $_POST['salary'] : [];
@@ -71,7 +69,7 @@ class Home extends CI_Controller
 		$traits = isset($_POST['traits']) ? implode('|', $_POST['traits']) : [];
 		$freeword = isset($_POST['freeword']) ? $_POST['freeword'] : '';
 
-		$data['jobs'] = $this->jobs_model->get_all($pref, $areas, $line, $stations, $employment_types, $salary, $job_types, $categories, $traits, $freeword);
+		$data['jobs'] = $this->jobs_model->get_all($areas, $stations, $employment_types, $salary, $job_types, $categories, $traits, $freeword);
 
 		$this->load->view('map', $data);
 
@@ -79,9 +77,7 @@ class Home extends CI_Controller
 
 	public function total_jobs()
 	{
-		$pref = isset($_POST['pref']) ? $_POST['pref'] : '';
 		$areas = isset($_POST['areas']) ? $_POST['areas'] : [];
-		$line = isset($_POST['line']) ? $_POST['line'] : '';
 		$stations = isset($_POST['stations']) ? $_POST['stations'] : [];
 		$employment_types = isset($_POST['employment_types']) ? $_POST['employment_types'] : [];
 		$salary = isset($_POST['salary']) ? $_POST['salary'] : [];
@@ -90,7 +86,7 @@ class Home extends CI_Controller
 		$traits = isset($_POST['traits']) ? implode('|', $_POST['traits']) : [];
 		$freeword = isset($_POST['freeword']) ? $_POST['freeword'] : '';
 
-		$cnt = $this->jobs_model->get_all_cnt($pref, $areas, $line, $stations, $employment_types, $salary, $job_types, $categories, $traits, $freeword);
+		$cnt = $this->jobs_model->get_all_cnt($areas, $stations, $employment_types, $salary, $job_types, $categories, $traits, $freeword);
 
 		echo json_encode(['total_jobs' => $cnt]);
 
@@ -110,9 +106,22 @@ class Home extends CI_Controller
 		$this->load->view('job_single', $data);
 	}
 
-	public function job_list_get()
+	public function job_list_get($page = 1)
 	{
-		$data['jobs'] = $this->jobs_model->get_all();
+		$data['total_jobs'] = $this->jobs_model->get_total_jobs();
+
+		$limit = 10;
+		$offset = ($page * $limit) - $limit;
+		$data['jobs'] = $this->jobs_model->get_all($offset, $limit, [], [], [], [], [], [], [], '');
+
+		$data['current_index_start'] = ($limit * ($page - 1)) + 1;
+		$data['current_index_end'] = ($limit * ($page - 1)) + 10;
+
+		if ($data['current_index_end'] > $data['total_jobs']) {
+			$data['current_index_end'] = $data['total_jobs'];
+		}
+
+		$this->init_pagination($data['total_jobs'], 'job_list', $limit);
 
 		$this->load->view('job_list', $data);
 
@@ -121,9 +130,7 @@ class Home extends CI_Controller
 	public function job_list_post()
 	{
 
-		$pref = isset($_POST['pref']) ? $_POST['pref'] : '';
 		$areas = isset($_POST['areas']) ? $_POST['areas'] : [];
-		$line = isset($_POST['line']) ? $_POST['line'] : '';
 		$stations = isset($_POST['stations']) ? $_POST['stations'] : [];
 		$employment_types = isset($_POST['employment_types']) ? $_POST['employment_types'] : [];
 		$salary = isset($_POST['salary']) ? $_POST['salary'] : [];
@@ -132,7 +139,11 @@ class Home extends CI_Controller
 		$traits = isset($_POST['traits']) ? implode('|', $_POST['traits']) : [];
 		$freeword = isset($_POST['freeword']) ? $_POST['freeword'] : '';
 
-		$data['jobs'] = $this->jobs_model->get_all($pref, $areas, $line, $stations, $employment_types, $salary, $job_types, $categories, $traits, $freeword);
+		$data['total_jobs'] = $this->jobs_model->get_total_jobs();
+
+		$data['jobs'] = $this->jobs_model->get_all($areas, $stations, $employment_types, $salary, $job_types, $categories, $traits, $freeword);
+
+		$this->init_pagination($data['total_jobs'], 'job_list', $limit);
 
 		$this->load->view('job_list', $data);
 	}
@@ -234,5 +245,19 @@ class Home extends CI_Controller
 	{
 		$_SESSION['complete'] = '';
 		redirect('/jobs/' . $id . '/complete');
+	}
+
+	private function init_pagination($total_rows, $page, $limit)
+	{
+		$config['base_url'] = base_url() . $page;
+		$config['total_rows'] = $total_rows;
+		$config['per_page'] = $limit;
+		$config['attributes'] = ['class' => 'pagination-item'];
+		$config['prev_link'] = '<button class="arrow_before"></button>';
+		$config['next_link'] = '<button class="arrow_next"></button>';
+		$config['first_link'] = FALSE;
+		$config['last_link'] = FALSE;
+		$config['use_page_numbers'] = TRUE;
+		$this->pagination->initialize($config);
 	}
 }

@@ -401,6 +401,7 @@ main .search .area.is-active {
   background-color: #f3f7f7;
   width: 100%;
   padding: 40px;
+  height: 374px;
 }
 
 .modal_container .region,
@@ -408,6 +409,10 @@ main .search .area.is-active {
   display: flex;
   justify-content: center;
   border-top: 1px #cfcfcf solid;
+}
+
+.modal_container .prefectures_group {
+  display: none;
 }
 
 .modal_container .region label,
@@ -537,7 +542,7 @@ main .search .area.is-active {
   display: block;
 }
 
-.modal_container .choice2 .choice_inner li input:checked + label i {
+.modal_container .choice2 .choice_inner li input:checked+label i {
   color: #65b9e7;
 }
 
@@ -1157,9 +1162,17 @@ main .job_result {
   align-items: center;
 }
 
-.pagination .page button {
+.pagination .page .pagination-item {
   margin: 0 0.6em;
   color: #999;
+}
+
+.pagination .page .pagination-item:last-child {
+  margin: 0;
+}
+
+.pagination .page strong {
+  margin: 0 0.6em;
 }
 
 button.arrow_before,
@@ -1724,7 +1737,8 @@ main .job_result .area.is-active {
 /*-------map---------*/
 
 #map {
-  overflow: hidden;:
+  overflow: hidden;
+  :
 }
 
 #map .google_map {

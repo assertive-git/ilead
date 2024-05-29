@@ -73,7 +73,7 @@
 </script>
 
 <!-- ILEAD SEARCH SYSTEM -->
-<script src="/assets/js/search_system.js"></script>
+<script src="/assets/js/search_system.js?v=<?= date('YmdHis') ?>"></script>
 </body>
 
 </html>
