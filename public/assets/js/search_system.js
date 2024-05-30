@@ -270,6 +270,23 @@
     });
 }());
 
+(function () {
+
+    var x;
+
+    $('body').on('keyup', 'input[name="freeword"]', function () {
+
+        if (x) {
+            clearTimeout(x);
+        }
+
+        x = setTimeout(function () {
+            total_jobs_update();
+        }, 300);
+
+    });
+}());
+
 
 function reset_all_pluses() {
     // $('#municipalities_all').prop('checked', false);
@@ -359,6 +376,8 @@ function total_jobs_update() {
         traits.push($(_traits[i]).val());
     });
 
+    var freeword = $('input[name="freeword"]').val();
+
     $.ajax({
         type: "POST",
         url: '/total_jobs',
@@ -373,7 +392,8 @@ function total_jobs_update() {
             categories: categories,
             job_types: job_types,
             employment_types: employment_types,
-            traits: traits
+            traits: traits,
+            freeword: freeword
         },
         success: function (data) {
             $('.big').text(data.total_jobs);
