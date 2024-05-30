@@ -510,7 +510,7 @@ class Admin extends CI_Controller
 
     public function jobs_csv_import()
     {
-        // $this->db->trans_start();
+        $this->db->trans_start();
 
         $file = fopen($_FILES['csv']['tmp_name'], "r");
 
@@ -596,7 +596,9 @@ class Admin extends CI_Controller
 
             $stations = $this->jobs_stations_model->get_all($job_id);
 
-            for ($i = 0; $i < count($station_data['data']); $i++) {
+            $station_data_count = count($station_data['data']);
+
+            for ($i = 0; $i < $station_data_count; $i++) {
 
                 $data = $station_data['data'][$i];
 
@@ -662,7 +664,9 @@ class Admin extends CI_Controller
 
             $custom_fields = $this->custom_fields_model->get_all($job_id);
 
-            for ($i = 0; $i < count($custom_fields_data['data']); $i++) {
+            $custom_fields_data_count = count($station_data['data']);
+
+            for ($i = 0; $i < $custom_fields_data_count; $i++) {
 
                 $data = $custom_fields_data['data'][$i];
 
@@ -683,7 +687,7 @@ class Admin extends CI_Controller
             }
         }
 
-        // $this->db->trans_complete();
+        $this->db->trans_complete();
     }
 
     public function base64_to_png()

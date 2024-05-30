@@ -161,10 +161,7 @@ class Jobs_model extends CI_Model
                 max_salary LIKE '%$freeword%' OR
                 job_type LIKE '%$freeword%' OR
                 category LIKE '%$freeword%' OR
-                a_region LIKE '%$freeword%' OR
-                a_pref LIKE '%$freeword%' OR
-                city LIKE '%$freeword%' OR
-                address LIKE '%$freeword%' OR
+                concat(a_region, a_pref, city, address) LIKE '%$freeword%' OR
                 traits LIKE '%$freeword%')
                 ");
         }
@@ -238,10 +235,7 @@ class Jobs_model extends CI_Model
                 max_salary LIKE '%$freeword%' OR
                 job_type LIKE '%$freeword%' OR
                 category LIKE '%$freeword%' OR
-                a_region LIKE '%$freeword%' OR
-                a_pref LIKE '%$freeword%' OR
-                city LIKE '%$freeword%' OR
-                address LIKE '%$freeword%' OR
+                concat(a_region, a_pref, city, address) LIKE '%$freeword%' OR
                 traits LIKE '%$freeword%')
                 ");
         }

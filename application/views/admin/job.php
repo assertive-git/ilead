@@ -1,6 +1,6 @@
 <?php
 
-include APPPATH . 'libraries/japan_regions.php';
+include APPPATH . 'includes/japan_regions.php';
 
 $id = !empty($id) ? $id : '';
 $business_content = !empty($business_content) ? $business_content : '';
