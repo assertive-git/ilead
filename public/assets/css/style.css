@@ -504,6 +504,10 @@ main .search .area.is-active {
   gap: 5rem;
 }
 
+.modal_container .choice2.first {
+  visibility: hidden;
+}
+
 .modal_container .choice2 h5 {
   font-size: 1.6rem;
   font-weight: 600;
@@ -516,6 +520,7 @@ main .search .area.is-active {
 
 .modal_container .choice2 .station {
   width: 50%;
+  visibility: hidden;
 }
 
 .modal_container .choice2 .choice_inner {

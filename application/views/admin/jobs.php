@@ -52,7 +52,7 @@
                     エクスポート</button>
                 <button id="csv_import" class="bg-gray-500 p-2 text-white rounded"><i class="fa-solid fa-file-csv"></i>
                     インポート</button>
-                <input id="csv_file_input" class="hidden" type="file">
+                <input id="csv_file_input" class="hidden" type="file" accept=".csv">
             </div>
         </div>
         <form method="POST" action="/admin/jobs" class="flex space-x-2 text-sm items-center">

@@ -65,7 +65,7 @@
                         <?php endforeach; ?>
                     <?php endforeach; ?>
                 </div>
-                <div class="choice2">
+                <div class="choice2 first">
 
                     <div class="route">
                         <h5>路線を選択</h5>

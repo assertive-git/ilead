@@ -143,13 +143,10 @@
             var choice2 = $('#modal2 #choice2_pref_' + prev_pref_index + ' .line:checked').closest('.choice2');
             var line_id = $('#modal2 #choice2_pref_' + prev_pref_index + ' .line:checked').attr('line_id');
             choice2.find('.station_line_' + line_id).show();
-            console.log('line 1');
         } else if (prev_pref_index) {
             $('#modal2 #choice2_pref_' + prev_pref_index + ' .station').show();
-            console.log('line 2');
         } else {
             $('#modal2 .choice2:eq(0) .station').show();
-            console.log('line 3');
         }
     });
 
@@ -173,6 +170,7 @@
         } else {
             $('#modal2 #choice2_pref_' + pref_cd + ' .station:eq(0)').show();
         }
+
     });
 
     function fetch_lines_stations_view(pref, pref_index) {
@@ -214,13 +212,12 @@
         } else {
             load_stations(pref_index, line_index);
         }
-
     });
 
     function fetch_stations(line, line_index, pref_index) {
 
         lines = lines_and_stations[pref_index].lines;
-        $('#choice2_pref_' + pref_index + ' .station').last().after('<div class= "station station_line_' + line_index + '" ><h5>駅を選択</h5><div class="choice_inner"><p class="choice_ttl"><span class="choice_ttl_line"></span></p><ul class="scroll_inner"></ul></div>');
+        $('#choice2_pref_' + pref_index + ' .station').last().after('<div class="station station_line_' + line_index + '" style="visibility: visible"><h5>駅を選択</h5><div class="choice_inner"><p class="choice_ttl"><span class="choice_ttl_line"></span></p><ul class="scroll_inner"></ul></div>');
         $('#choice2_pref_' + pref_index + ' .station_line_' + line_index + ' .choice_ttl_line').text(line);
         var scroll_inner2 = $('#choice2_pref_' + pref_index + ' .station_line_' + line_index + ' .scroll_inner');
         scroll_inner2.append('<li><input class="stations_all" type="checkbox" id="station0001_pref_' + pref_index + '_line_' + line_index + '"><label for="station0001_pref_' + pref_index + '_line_' + line_index + '"><i class="fa-solid fa-circle-check"></i>' + line + '駅のすべて' + '</label></li>');
@@ -303,11 +300,15 @@ function reset_all_pluses() {
     $('select').find('option:eq(0)').prop('selected', true);
 
     set_pluses();
+
     $('.prefectures_group').hide();
     $('#modal1 .search_inner').hide();
     $('#modal1 .search_inner').eq(0).show();
-    $('#modal2 .search_inner').hide();
-    $('#modal2 .search_inner').eq(0).show();
+    $('#modal2 .choice2').hide();
+    $('#modal2 .choice2').eq(0).show();
+    $('#modal2 .station').hide();
+    $('#modal2 .station').eq(0).show();
+    $('.scroll_inner li').removeAttr('style');
     total_jobs_update();
 }
 

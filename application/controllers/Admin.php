@@ -557,8 +557,8 @@ class Admin extends CI_Controller
                 'top_picture' => $column[58],
                 'traits' => $column[59],
                 'memo' => $column[60],
-                'created_at' => $column[61],
-                'updated_at' => $column[62],
+                'created_at' => empty(trim($column[61])) ? date('Y-m-d H:i:s') : $column[61],
+                'updated_at' => empty(trim($column[62])) ? date('Y-m-d H:i:s') : $column[62],
             ];
 
             if (empty($job_id)) {
