@@ -1,9 +1,8 @@
-<?php $limit = !empty($_POST['limit']) && is_numeric($_POST['limit']) ? $_POST['limit'] : 20 ?>
-<?php $status = isset($_POST['status']) ? $_POST['status'] : '' ?>
-<?php $keyword = isset($_POST['keyword']) ? $_POST['keyword'] : '' ?>
-
-<div id="backdrop" class="hidden flex justify-center items-center fixed top-0 left-0 w-full h-full bg-black bg-opacity-60">
-    <div id="loader"><i class="fa-solid fa-spinner animate-spin text-white xl:text-4xl lg:text-4xl md:text-4xl sm:text-4xl text-3xl"></i></div>
+<div id="backdrop"
+    class="hidden flex justify-center items-center fixed top-0 left-0 w-full h-full bg-black bg-opacity-60">
+    <div id="loader"><i
+            class="fa-solid fa-spinner animate-spin text-white xl:text-4xl lg:text-4xl md:text-4xl sm:text-4xl text-3xl"></i>
+    </div>
 </div>
 
 <div class="py-28 px-4 bg-slate-100">
@@ -13,7 +12,8 @@
             <a href="/admin/jobs/new"><button class="bg-[#13b3e7] text-white py-2 px-6 text-xl">+ 求人票を作成する</button></a>
         </div>
         <div class="flex xl:flex-row flex-col xl:space-y-0 space-y-2 justify-between">
-            <p><span class="text-[#13b3e7] font-bold text-3xl"><?= count($jobs); ?></span>件 (1~<?= count($jobs) ?>件目を表示中)</p>
+            <p><span class="text-[#13b3e7] font-bold text-3xl"><?= $total_jobs ?></span>件
+                (<?= $current_index_start ?>~<?= $current_index_end ?>件目を表示中)</p>
             <form
                 class="flex xl:flex-row flex-col xl:space-y-0 space-y-2 bg-slate-500 p-2 xl:space-x-3 space-x-0 text-sm"
                 method="POST" action="/admin/jobs">
@@ -66,6 +66,9 @@
             </select>
             <button class="bg-gray-500 px-2 py-1 text-white" id="rows">更新</button>
         </form>
+        <div class="pagination space-x-5 flex max-w-lg mx-auto justify-center items-center bg-[#555] text-white p-2">
+            <?= $this->pagination->create_links(); ?>
+        </div>
         <div class="overflow-auto">
             <table class="bg-white p-8 border-collapse text-sm w-full" style="min-width: 1280px">
                 <thead>
@@ -303,4 +306,7 @@
                     }
                 });
             </script>
+        </div>
+        <div class="pagination space-x-5 flex max-w-lg mx-auto justify-center items-center bg-[#555] text-white p-2">
+            <?= $this->pagination->create_links(); ?>
         </div>

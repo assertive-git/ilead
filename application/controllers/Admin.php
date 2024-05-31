@@ -15,6 +15,12 @@ class Admin extends CI_Controller
         if (!in_array($route, $public) && empty($_SESSION['logged_in'])) {
             redirect('/admin/login');
         }
+
+        if ($this->router->fetch_method() != 'jobs_admin_get' && $this->router->fetch_method() != 'jobs_admin_post') {
+            if (isset($_SESSION['search_sess']['admin'])) {
+                unset($_SESSION['search_sess']['admin']);
+            }
+        }
     }
 
     public function index()
@@ -54,9 +60,70 @@ class Admin extends CI_Controller
         redirect('/admin/login');
     }
 
-    public function jobs()
+    public function jobs_admin_get($page = 1)
     {
-        $data['jobs'] = $this->jobs_model->get_all_admin();
+        $status = isset($_SESSION['search_sess']['admin']['status']) ? $_SESSION['search_sess']['admin']['status'] : '';
+        $keyword = isset($_SESSION['search_sess']['admin']['keyword']) ? $_SESSION['search_sess']['admin']['keyword'] : '';
+        $limit = isset($_SESSION['search_sess']['admin']['limit']) ? $_SESSION['search_sess']['admin']['limit'] : 25;
+
+        $data['status'] = $status;
+        $data['keyword'] = $keyword;
+        $data['limit'] = $limit;
+
+        $offset = ($page * $limit) - $limit;
+        $data['jobs'] = $this->jobs_model->get_all_admin($offset, $limit);
+
+        $data['total_jobs'] = $this->jobs_model->get_all_cnt_admin($status, $keyword);
+
+        $data['current_index_start'] = ($limit * ($page - 1)) + 1;
+        $data['current_index_end'] = ($limit * ($page - 1)) + $limit;
+
+        if ($data['current_index_end'] > $data['total_jobs']) {
+            $data['current_index_end'] = $data['total_jobs'];
+        }
+
+        $this->init_pagination($data['total_jobs'], 'admin/jobs/p', $limit);
+
+        $this->load->view('admin/header', $data);
+        $this->load->view('admin/jobs');
+        $this->load->view('admin/footer');
+    }
+
+    public function jobs_admin_post()
+    {
+        $status = '';
+
+        if (isset($_POST['status'])) {
+            $status = $_POST['status'];
+            $_SESSION['search_sess']['admin']['status'] = $status;
+        } else if (!empty($_SESSION['search_sess']['admin']['status'])) {
+            $status = $_SESSION['search_sess']['admin']['status'];
+        }
+
+        $keyword = '';
+
+        if (isset($_POST['keyword'])) {
+            $keyword = $_POST['keyword'];
+            $_SESSION['search_sess']['admin']['keyword'] = $keyword;
+        } else if (!empty($_SESSION['search_sess']['admin']['keyword'])) {
+            $keyword = $_SESSION['search_sess']['admin']['keyword'];
+        }
+
+        $limit = isset($_POST['limit']) ? $_POST['limit'] : 25;
+
+        $data['status'] = $status;
+        $data['keyword'] = $keyword;
+        $data['limit'] = $limit;
+
+        $offset = 0;
+        $data['jobs'] = $this->jobs_model->get_all_admin($offset, $limit);
+
+        $data['total_jobs'] = $this->jobs_model->get_all_cnt_admin($status, $keyword);
+
+        $data['current_index_start'] = 1;
+        $data['current_index_end'] = $limit;
+
+        $this->init_pagination($data['total_jobs'], 'admin/jobs/p', $limit);
 
         $this->load->view('admin/header', $data);
         $this->load->view('admin/jobs');
@@ -719,5 +786,19 @@ class Admin extends CI_Controller
         }
 
         echo json_encode($imgs);
+    }
+
+    private function init_pagination($total_rows, $page, $limit)
+    {
+        $config['base_url'] = base_url() . $page;
+        $config['total_rows'] = $total_rows;
+        $config['per_page'] = $limit;
+        $config['attributes'] = ['class' => 'pagination-item'];
+        $config['prev_link'] = '<button class="text-white"><i class="fa-solid fa-circle-chevron-left" style="font-size: 22px"></i></button>';
+        $config['next_link'] = '<button class="text-white"><i class="fa-solid fa-circle-chevron-right" style="font-size: 22px"></i></button>';
+        $config['first_link'] = FALSE;
+        $config['last_link'] = FALSE;
+        $config['use_page_numbers'] = TRUE;
+        $this->pagination->initialize($config);
     }
 }

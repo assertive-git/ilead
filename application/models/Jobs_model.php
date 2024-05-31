@@ -11,7 +11,7 @@ class Jobs_model extends CI_Model
         $this->table = 'jobs';
     }
 
-    public function get_all_admin()
+    public function get_all_admin($offset, $limit)
     {
         $data = $this->db->order_by('id', 'DESC');
 
@@ -35,10 +35,7 @@ class Jobs_model extends CI_Model
             );
         }
 
-        // $limit = !empty($_POST['limit']) && is_numeric($_POST['limit']) ? $_POST['limit'] : 20;
-
-        // return $data->limit($limit)->get($this->table)->result_array();
-        return $data->get($this->table)->result_array();
+        return $data->limit($limit, $offset)->get($this->table)->result_array();
     }
 
     private function get_count()
@@ -241,6 +238,34 @@ class Jobs_model extends CI_Model
         }
 
         $data = count($data->where('status', '公開')->select('jobs.id')->group_by('jobs.id')->get($this->table)->result_array());
+
+        return $data;
+    }
+
+    public function get_all_cnt_admin($status, $keyword)
+    {
+
+        if (!empty($status)) {
+            $this->db->where('status', $status);
+        }
+
+        if (!empty($keyword)) {
+            $this->db->where("
+                (business_content LIKE '%$keyword%' OR
+                title LIKE '%$keyword%' OR
+                body LIKE '%$keyword%' OR
+                employment_type LIKE '%$keyword%' OR
+                salary_type LIKE '%$keyword%' OR
+                min_salary LIKE '%$keyword%' OR
+                max_salary LIKE '%$keyword%' OR
+                job_type LIKE '%$keyword%' OR
+                category LIKE '%$keyword%' OR
+                concat(a_region, a_pref, city, address) LIKE '%$keyword%' OR
+                traits LIKE '%$keyword%')
+                ");
+        }
+
+        $data = count($this->db->select('jobs.id')->group_by('jobs.id')->get($this->table)->result_array());
 
         return $data;
     }

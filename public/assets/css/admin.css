@@ -63,3 +63,10 @@ nav {
 .ql-snow .ql-picker.ql-size .ql-picker-item[data-value=huge]::before {
     content: '巨大' !important;
 }
+
+.pagination strong {
+    background-color: white;
+    color: #555;
+    padding: 0 5px;
+    border-radius: 4px;
+}
