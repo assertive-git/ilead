@@ -26,7 +26,7 @@
   <!-- Tailwind CSS -->
   <!-- <link rel="stylesheet" href="/assets/css/tw.css"> -->
 
-  <link rel="stylesheet" href="/assets/css/reset.css">
+  <link rel="stylesheet" href="/assets/css/reset.css?v=<?= date('YmdHis') ?>">
   <link rel="stylesheet" href="/assets/css/style.css?v=<?= date('YmdHis') ?>">
 
   <!--Adobe font 秀英角ゴシック銀-->

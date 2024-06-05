@@ -74,9 +74,10 @@ class Home extends CI_Controller
 		$freeword = isset($_SESSION['search_sess']['freeword']) ? $_SESSION['search_sess']['freeword'] : '';
 
 		$offset = 0;
-		$limit = 1000;
+		$limit = 100;
 
 		$data['jobs'] = $this->jobs_model->get_all($offset, $limit, $areas, $stations, $employment_types, $salary, $job_types, $categories, $traits, $freeword);
+		$data['total_jobs'] = $this->jobs_model->get_all_cnt($areas, $stations, $employment_types, $salary, $job_types, $categories, $traits, $freeword);
 
 		$this->load->view('map', $data);
 	}
@@ -92,10 +93,20 @@ class Home extends CI_Controller
 		$traits = isset($_POST['traits']) ? implode('|', $_POST['traits']) : [];
 		$freeword = isset($_POST['freeword']) ? $_POST['freeword'] : '';
 
+		$_SESSION['search_sess']['areas'] = $areas;
+		$_SESSION['search_sess']['stations'] = $stations;
+		$_SESSION['search_sess']['employment_types'] = $employment_types;
+		$_SESSION['search_sess']['salary'] = $salary;
+		$_SESSION['search_sess']['job_types'] = $job_types;
+		$_SESSION['search_sess']['categories'] = $categories;
+		$_SESSION['search_sess']['traits'] = $traits;
+
 		$offset = 0;
-		$limit = 1000;
+		$limit = 100;
 
 		$data['jobs'] = $this->jobs_model->get_all($offset, $limit, $areas, $stations, $employment_types, $salary, $job_types, $categories, $traits, $freeword);
+
+		$data['total_jobs'] = $this->jobs_model->get_all_cnt($areas, $stations, $employment_types, $salary, $job_types, $categories, $traits, $freeword);
 
 		$this->load->view('map', $data);
 
@@ -229,7 +240,7 @@ class Home extends CI_Controller
 		}
 	}
 
-	public function favorites()
+	public function favorites($page = 1)
 	{
 		$data['jobs'] = [];
 
@@ -237,6 +248,17 @@ class Home extends CI_Controller
 			$ids = $_SESSION['favorites'];
 			$data['jobs'] = $this->jobs_model->get_by_ids($ids);
 		}
+
+		$limit = 10;
+
+		$data['current_index_start'] = ($limit * ($page - 1)) + 1;
+		$data['current_index_end'] = ($limit * ($page - 1)) + $limit;
+
+		if ($data['current_index_end'] > count($data['jobs'])) {
+			$data['current_index_end'] = count($data['jobs']);
+		}
+
+		$this->init_pagination(count($data['jobs']), 'job_list', $limit);
 
 		$this->load->view('favorites', $data);
 	}

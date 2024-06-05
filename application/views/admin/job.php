@@ -83,7 +83,7 @@ $traits = !empty($traits) ? explode(',', $traits) : [];
                                 modules: {
                                     toolbar: [
                                         // [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
-                                        [{ size: ['small', false, 'large', 'huge'] }],
+                                        // [{ size: ['small', false, 'large', 'huge'] }],
                                         ['bold', 'italic', 'underline', 'strike'],
                                         ['link', 'image', 'video'], // Add image and video options to the toolbar
                                         [
@@ -131,10 +131,6 @@ $traits = !empty($traits) ? explode(',', $traits) : [];
                         <label class="flex space-x-1">
                             <input class="employment_type" type="radio" name="employment_type" value="パート"
                                 <?= in_array('パート', $employment_type) ? 'checked' : '' ?>><span>パート</span>
-                        </label>
-                        <label class="flex space-x-1">
-                            <input class="employment_type" type="radio" name="employment_type" value="パートアルバイト"
-                                <?= in_array('パートアルバイト', $employment_type) ? 'checked' : '' ?>><span>パートアルバイト</span>
                         </label>
                         <label class="flex space-x-1">
                             <input class="employment_type" type="radio" name="employment_type" value="派遣・在籍出向"
@@ -795,7 +791,10 @@ $traits = !empty($traits) ? explode(',', $traits) : [];
                         <div class="flex flex-col space-y-2">
                             <span class="font-bold">雇用形態 *</span>
                             <select id="gfj_employment_type" class="p-2" name="gfj_employment_type border-slate-200">
-                                <option value="アルバイト">アルバイト</option>
+                                <option value="正社員">正社員</option>
+                                <option value="契約社員">契約社員</option>
+                                <option value="パート">パート</option>
+                                <option value="派遣・在籍出向">派遣・在籍出向</option>
                             </select>
                         </div>
                         <div class="flex flex-col space-y-2">

@@ -11,9 +11,48 @@ class News_model extends CI_Model
         $this->table = 'news';
     }
 
-    public function get_all_admin()
+    public function get_all_admin($offset, $limit)
     {
-        return $this->db->order_by('id', 'desc')->get($this->table)->result_array();
+        $data = $this->db->order_by('id', 'DESC');
+
+
+        if (!empty($_POST['status'])) {
+            $status = $_POST['status'];
+
+            $data->where('status', $status);
+        }
+
+        if (!empty($_POST['keyword'])) {
+            $keyword = $_POST['keyword'];
+
+            $data->where('
+            (id LIKE "%' . $keyword . '%" 
+                OR title LIKE "%' . $keyword . '%"
+                OR body LIKE "%' . $keyword . '%"
+            )'
+            );
+        }
+
+        return $data->limit($limit, $offset)->get($this->table)->result_array();
+    }
+
+    public function get_all_cnt_admin($status, $keyword)
+    {
+
+        if (!empty($status)) {
+            $this->db->where('status', $status);
+        }
+
+        if (!empty($keyword)) {
+            $this->db->where("
+                title LIKE '%$keyword%' OR
+                body LIKE '%$keyword%'
+                ");
+        }
+
+        $data = count($this->db->select('news.id')->group_by('news.id')->get($this->table)->result_array());
+
+        return $data;
     }
 
     public function get_all()

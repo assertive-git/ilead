@@ -21,14 +21,9 @@
         });
       </script>
       <div class="pagination">
-        <button class="arrow_before"></button>
         <div class="page">
-          <button>1</button>
-          <button>2</button>
-          <button>3</button>
-          <button>4</button>
+          <?= $this->pagination->create_links(); ?>
         </div>
-        <button class="arrow_next"></button>
       </div>
       <?php if (!empty($jobs)): ?>
         <?php foreach ($jobs as $job): ?>
@@ -48,8 +43,8 @@
                     <th class="attribute">給料</th>
                     <?php $job['min_salary'] = number_format($job['min_salary']); ?>
                     <?php $job['max_salary'] = number_format($job['max_salary']); ?>
-                    <?php $job['min_salary'] = substr_count($job['min_salary'], '0') >= 6 ? (intval(str_replace(',', '', $job['min_salary']) / 10000)) . '万' : $job['min_salary']; ?>
-                    <?php $job['max_salary'] = substr_count($job['max_salary'], '0') >= 6 ? (intval(str_replace(',', '', $job['max_salary']) / 10000)) . '万' : $job['max_salary']; ?>
+                    <?php $job['min_salary'] = strlen($job['min_salary']) >= 5 ? (intval(str_replace(',', '', $job['min_salary']) / 10000)) . '万' : $job['min_salary']; ?>
+                    <?php $job['max_salary'] = strlen($job['max_salary']) >= 5 ? (intval(str_replace(',', '', $job['max_salary']) / 10000)) . '万' : $job['max_salary']; ?>
                     <?php if (!empty($job['max_salary'])): ?>
                       <td>¥<?= $job['min_salary'] ?>～<?= $job['max_salary'] ?></td>
                     <?php else: ?>
@@ -70,6 +65,10 @@
                     <th class="attribute">業務内容</th>
                     <td><?= $job['business_content'] ?></td>
                   </tr>
+                  <tr>
+                    <th class="attribute">必要資格</th>
+                    <td><?= $job['has_requirement'] ?></td>
+                  </tr>
                 </table>
                 <small><?= str_replace(',', ' / ', $job['traits']) ?></small>
               </div>
@@ -87,16 +86,14 @@
       <?php endif; ?>
 
 
-      <p class="number2">新着求人：<span class="big"><?= count($jobs) ?></span>件（1～10件）</p>
+      <p class="number2">新着求人：<span class="big"><?= count($jobs) ?></span>件
+        <?php if (count($jobs) > 10): ?>
+          （<?= $current_index_start ?>～<?= $current_index_end ?>件）
+        <?php endif; ?>
       <div class="pagination">
-        <button class="arrow_before"></button>
         <div class="page">
-          <button>1</button>
-          <button>2</button>
-          <button>3</button>
-          <button>4</button>
+          <?= $this->pagination->create_links(); ?>
         </div>
-        <button class="arrow_next"></button>
       </div>
     </div>
   </section>

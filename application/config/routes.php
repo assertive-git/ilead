@@ -18,6 +18,7 @@ $route['jobs/(:num)/complete']['GET'] = 'home/jobs_complete/$1';
 $route['get_lines_and_stations']['POST'] = 'home/get_lines_and_stations';
 $route['get_jobs_by_ids']['POST'] = 'home/get_jobs_by_id';
 $route['favorites']['GET'] = 'home/favorites';
+$route['favorites/:num']['GET'] = 'home/favorites/$1';
 $route['favorites/add']['POST'] = 'home/favorites_add';
 $route['favorites/delete']['POST'] = 'home/favorites_delete';
 $route['favorites/clear']['POST'] = 'home/favorites_clear';
@@ -55,11 +56,13 @@ $route['admin/jobs/base64_to_png']['POST'] = 'admin/base64_to_png';
 
 
 /* news */
-$route['admin/news']['GET'] = 'admin/news';
+$route['admin/news']['GET'] = 'admin/news_admin_get';
+$route['admin/news']['POST'] = 'admin/news_admin_post';
 $route['admin/news/(:num)']['GET'] = 'admin/news_get/$1';
 $route['admin/news/new']['GET'] = 'admin/news_new';
 $route['admin/news/update']['POST'] = 'admin/news_update';
 $route['admin/news/(:num)/delete']['GET'] = 'admin/news_delete/$1';
+$route['admin/api/set_coordinates'] = 'admin/set_coordinates';
 
 $route['(:any)'] = 'home/index/$1';
 $route['404_override'] = '';

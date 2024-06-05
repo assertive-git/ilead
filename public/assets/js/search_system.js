@@ -13,15 +13,15 @@
         $('.prefectures_group').hide();
         $('.prefectures_group[region_id="' + region_id + '"]').show();
 
-        if ($('#modal1 .search_inner').length > 1) {
-            $('#modal1 .search_inner').hide();
+        if ($('#modal1 .search_inner2').length > 1) {
+            $('#modal1 .search_inner2').hide();
 
             var prev_pref_index = $('.prefectures_group[region_id="' + region_id + '"] input:checked').parent().attr('pref_id');
 
             if (prev_pref_index) {
                 load_area(prev_pref_index);
             } else {
-                $('#modal1 .search_inner').eq(0).show();
+                $('#modal1 .search_inner2').eq(0).show();
             }
         }
     });
@@ -30,7 +30,7 @@
         var pref = $(this).next().text();
         var pref_index = $(this).parent().attr('pref_id');
 
-        $('#modal1 .search_inner').hide();
+        $('#modal1 .search_inner2').hide();
 
         if (fetched_areas.indexOf(pref_index) === -1) {
             fetch_areas(pref, pref_index);
@@ -41,9 +41,9 @@
 
     function fetch_areas(pref, pref_index) {
 
-        $('#modal1 .search_inner').last().after('<div id="search_inner_pref_' + pref_index + '" class="search_inner"><div class="choice"></div></div>');
+        $('#modal1 .search_inner2').last().after('<div id="search_inner2_pref_' + pref_index + '" class="search_inner2"><div class="choice"></div></div>');
 
-        var choice = $('#modal1 .search_inner').last().children('.choice');
+        var choice = $('#modal1 .search_inner2').last().children('.choice');
 
         $.ajax({
             dataType: 'jsonp',
@@ -67,7 +67,7 @@
     }
 
     function load_area(pref_index) {
-        $('#modal1 #search_inner_pref_' + pref_index).show();
+        $('#modal1 #search_inner2_pref_' + pref_index).show();
     }
 
     $('body').on('change', '.municipalities_all', function () {
@@ -302,8 +302,8 @@ function reset_all_pluses() {
     set_pluses();
 
     $('.prefectures_group').hide();
-    $('#modal1 .search_inner').hide();
-    $('#modal1 .search_inner').eq(0).show();
+    $('#modal1 .search_inner2').hide();
+    $('#modal1 .search_inner2').eq(0).show();
     $('#modal2 .choice2').hide();
     $('#modal2 .choice2').eq(0).show();
     $('#modal2 .station').hide();
@@ -328,10 +328,10 @@ function reset_one_plus(modal) {
     $('#' + modal + ' select').find('option:eq(0)').prop('selected', true);
 
     $('.prefectures_group').hide();
-    $('#modal1 .search_inner').hide();
-    $('#modal1 .search_inner').eq(0).show();
-    $('#modal2 .search_inner').hide();
-    $('#modal2 .search_inner').eq(0).show();
+    $('#modal1 .search_inner2').hide();
+    $('#modal1 .search_inner2').eq(0).show();
+    $('#modal2 .search_inner2').hide();
+    $('#modal2 .search_inner2').eq(0).show();
 
     set_pluses();
     total_jobs_update();

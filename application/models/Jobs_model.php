@@ -163,7 +163,7 @@ class Jobs_model extends CI_Model
                 ");
         }
 
-        $data = $data->where('status', '公開')->order_by('id', 'DESC')->group_by('jobs.id')->limit($limit, $offset)->select('jobs.id as id, lat, lng, business_content, title, category, min_salary, max_salary, top_picture, employment_type, a_pref as pref, city, address, map_address, traits, salary_type, lat, lng, group_concat(concat(line, station, " ", "徒歩", walking_distance, "分", "<br>")) as jobs_stations')->get($this->table)->result_array();
+        $data = $data->where('status', '公開')->order_by('id', 'DESC')->group_by('jobs.id')->limit($limit, $offset)->select('jobs.id as id, lat, lng, business_content, title, category, min_salary, max_salary, has_requirement, top_picture, employment_type, a_pref as pref, city, address, map_address, traits, salary_type, lat, lng, group_concat(concat(line, station, " ", "徒歩", walking_distance, "分") SEPARATOR "<br>") as jobs_stations')->get($this->table)->result_array();
 
         return $data;
     }
@@ -191,7 +191,7 @@ class Jobs_model extends CI_Model
             $sql = "";
 
             if (!empty($yearly)) {
-                $sql .= '(salary_type = "年収" AND max_salary >= ' . $yearly . ')';
+                $sql .= '(salary_type = "年収" AND min_salary >= ' . $yearly . ')';
             }
 
             if (!empty($sql) && !empty($hourly)) {
@@ -199,7 +199,7 @@ class Jobs_model extends CI_Model
             }
 
             if (!empty($hourly)) {
-                $sql .= '(salary_type = "時給" and max_salary >= ' . $hourly . ')';
+                $sql .= '(salary_type = "時給" and min_salary >= ' . $hourly . ')';
             }
 
             if (!empty($yearly) || !empty($hourly)) {
@@ -327,7 +327,7 @@ class Jobs_model extends CI_Model
 
     public function get_by_ids($ids)
     {
-        return $this->db->join('jobs_stations', 'jobs_stations.job_id = jobs.id', 'left')->where_in('jobs.id', $ids)->select('jobs.id, a_pref, city, min_salary, max_salary, address, group_concat(concat(line, station, " ", "徒歩", walking_distance, "分", "<br>")) as jobs_stations, category, traits, business_content, title, top_picture, lat, lng')->group_by('jobs.id')->get($this->table)->result_array();
+        return $this->db->join('jobs_stations', 'jobs_stations.job_id = jobs.id', 'left')->where_in('jobs.id', $ids)->select('jobs.id, a_pref, city, min_salary, max_salary, address, has_requirement, group_concat(concat(line, station, " ", "徒歩", walking_distance, "分") SEPARATOR "<br>") as jobs_stations, category, traits, business_content, title, top_picture, lat, lng')->group_by('jobs.id')->get($this->table)->result_array();
 
 
     }
