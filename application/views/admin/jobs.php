@@ -66,7 +66,7 @@
             </select>
             <button class="bg-gray-500 px-2 py-1 text-white" id="rows">更新</button>
         </form>
-        <div class="pagination space-x-5 flex max-w-lg mx-auto justify-center items-center bg-[#555] text-white p-2">
+        <div class="pagination space-x-5 flex max-w-lg mx-auto justify-center items-center bg-gray-500 text-white p-2">
             <?= $this->pagination->create_links(); ?>
         </div>
         <div class="overflow-auto">
@@ -307,6 +307,6 @@
                 });
             </script>
         </div>
-        <div class="pagination space-x-5 flex max-w-lg mx-auto justify-center items-center bg-[#555] text-white p-2">
+        <div class="pagination space-x-5 flex max-w-lg mx-auto justify-center items-center bg-gray-500 text-white p-2">
             <?= $this->pagination->create_links(); ?>
         </div>

@@ -70,8 +70,8 @@
                       <th class="attribute">給料</th>
                       <?php $job['min_salary'] = number_format($job['min_salary']); ?>
                       <?php $job['max_salary'] = number_format($job['max_salary']); ?>
-                      <?php $job['min_salary'] = substr_count($job['min_salary'], '0') >= 6 ? (intval(str_replace(',', '', $job['min_salary']) / 10000)) . '万' : $job['min_salary']; ?>
-                      <?php $job['max_salary'] = substr_count($job['max_salary'], '0') >= 6 ? (intval(str_replace(',', '', $job['max_salary']) / 10000)) . '万' : $job['max_salary']; ?>
+                      <?php $job['min_salary'] = strlen($job['min_salary']) >= 5 ? (intval(str_replace(',', '', $job['min_salary']) / 10000)) . '万' : $job['min_salary']; ?>
+                      <?php $job['max_salary'] = strlen($job['max_salary']) >= 5 ? (intval(str_replace(',', '', $job['max_salary']) / 10000)) . '万' : $job['max_salary']; ?>
                       <?php if (!empty($job['max_salary'])): ?>
                         <td>¥<?= $job['min_salary'] ?>～<?= $job['max_salary'] ?></td>
                       <?php else: ?>
@@ -92,6 +92,10 @@
                       <th class="attribute">業務内容</th>
                       <td><?= $job['business_content'] ?></td>
                     </tr>
+                    <tr>
+                      <th class="attribute">必要資格</th>
+                      <td><?= $job['has_requirement'] ?></td>
+                    </tr>
                   </table>
                   <small><?= str_replace(',', ' / ', $job['traits']) ?></small>
                 </div>
@@ -110,7 +114,11 @@
           <script src="/assets/js/favorite_btn.js"></script>
         <?php endif; ?>
       </div>
-      <p class="number2">新着求人：<span class="big"><?= $total_jobs ?></span>件（<?= $current_index_start ?>～<?= $current_index_end ?>件）</p>
+      <p class="number2">新着求人：<span class="big"><?= $total_jobs ?></span>件
+        <?php if (count($jobs) > 10): ?>
+          （<?= $current_index_start ?>～<?= $current_index_end ?>件）
+        <?php endif; ?>
+      </p>
     </div>
     <div class="pagination">
       <div class="page">

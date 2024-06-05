@@ -38,7 +38,7 @@
               <?php endforeach; ?>
             </div>
           <?php endif; ?>
-          <p><?= ellipsize($job['title'], 43) ?></p>
+          <p><?= $job['title'] ?></p>
           <img src="/assets/img/result_img.png" width="260" height="180">
           <div class="table_area">
             <table>
@@ -48,8 +48,8 @@
                   <?= $job['salary_type'] ?>
                   <?php $job['min_salary'] = number_format($job['min_salary']); ?>
                   <?php $job['max_salary'] = number_format($job['max_salary']); ?>
-                  <?php $job['min_salary'] = substr_count($job['min_salary'], '0') >= 6 ? (intval(str_replace(',', '', $job['min_salary']) / 10000)) . '万' : $job['min_salary']; ?>
-                  <?php $job['max_salary'] = substr_count($job['max_salary'], '0') >= 6 ? (intval(str_replace(',', '', $job['max_salary']) / 10000)) . '万' : $job['max_salary']; ?>
+                  <?php $job['min_salary'] = strlen($job['min_salary']) >= 5 ? (intval(str_replace(',', '', $job['min_salary']) / 10000)) . '万' : $job['min_salary']; ?>
+                  <?php $job['max_salary'] = strlen($job['max_salary']) >= 5 ? (intval(str_replace(',', '', $job['max_salary']) / 10000)) . '万' : $job['max_salary']; ?>
                   ¥<?= $job['min_salary'] ?><?php if (!empty($job['max_salary'])): ?>～<?= $job['max_salary'] ?>
                   <?php endif; ?>
                 </td>
@@ -71,15 +71,19 @@
                 <th class="attribute">業務内容</th>
                 <td><?= $job['business_content'] ?></td>
               </tr>
+              <tr>
+                <th class="attribute">必要資格</th>
+                <td><?= $job['has_requirement'] ?></td>
+              </tr>
             </table>
             <small><?= str_replace(',', ' / ', $job['traits']) ?></small>
           </div>
 
-          <dl class="job_detail">
-            <dt>【仕事内容】</dt>
-            <dd><?= $job['body'] ?></dd>
-          </dl>
-          <img src="/assets/img/detail_img.png" width="336" height="207" class="detail_img">
+          <div class="job_detail">
+            <!-- <dt>【仕事内容】</dt> -->
+            <div><?= $job['body'] ?></div>
+          </div>
+          <!-- <img src="/assets/img/detail_img.png" width="336" height="207" class="detail_img"> -->
           <table class="company_detail">
             <tr>
               <th cl ass="attribute">会社名または店舗名</th>

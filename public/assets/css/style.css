@@ -260,7 +260,7 @@ main .search .button_area button.reset {
 }
 
 .plus.active {
-  color: #65b9e7;
+  color: #65b9e7 !important;
 }
 
 /*-----タブメニュー-----*/
@@ -398,6 +398,13 @@ main .search .area.is-active {
 }
 
 .modal_container .search_inner {
+  background-color: #f3f7f7;
+  width: 100%;
+  padding: 40px;
+  height: 374px;
+}
+
+.modal_container .search_inner2 {
   background-color: #f3f7f7;
   width: 100%;
   padding: 40px;
@@ -1071,7 +1078,7 @@ main .search_area .search_inner {
   margin: 0 auto;
 }
 
-main .search_area ul {
+main .search_area .search_inner ul {
   width: 90%;
   display: flex;
   flex-wrap: wrap;

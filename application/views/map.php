@@ -5,7 +5,7 @@
   <!--<div class="registration"><a href="" target="_blank">まずは簡単登録</a></div>-->
 
   <section class="search_area">
-    <form class="search_form">
+    <form id="list" class="area is-active" action="/map" method="POST">
       <div class="search_inner">
         <ul>
           <li class="areas"><button type="button" data-modal="modal1" class="modal-toggle">エリアを選ぶ<span
@@ -21,7 +21,7 @@
                 class="plus">+</span></button>
           </li>
           <li class="freeword">
-            <input type="text" placeholder="フリーワード">
+            <input name="freeword" type="text" placeholder="フリーワード">
             <input type="submit" value="&#xf002">
           </li>
         </ul>
@@ -74,8 +74,8 @@
                     <li><span class="attribute">勤務地</span><?= $job['city'] ?></li>
                     <?php $job['min_salary'] = number_format($job['min_salary']); ?>
                     <?php $job['max_salary'] = number_format($job['max_salary']); ?>
-                    <?php $job['min_salary'] = substr_count($job['min_salary'], '0') >= 6 ? (intval(str_replace(',', '', $job['min_salary']) / 10000)) . '万' : $job['min_salary']; ?>
-                    <?php $job['max_salary'] = substr_count($job['max_salary'], '0') >= 6 ? (intval(str_replace(',', '', $job['max_salary']) / 10000)) . '万' : $job['max_salary']; ?>
+                    <?php $job['min_salary'] = strlen($job['min_salary']) >= 5 ? (intval(str_replace(',', '', $job['min_salary']) / 10000)) . '万' : $job['min_salary']; ?>
+                      <?php $job['max_salary'] = strlen($job['max_salary']) >= 5 ? (intval(str_replace(',', '', $job['max_salary']) / 10000)) . '万' : $job['max_salary']; ?>
                     <?php if (!empty($job['max_salary'])): ?>
                       <li><span
                           class="attribute">給料</span>【<?= $job['salary_type'] ?>】<?= $job['min_salary'] ?>～<?= $job['max_salary'] ?>円
@@ -119,6 +119,8 @@
 
             for (i = 0; i < data.jobs.length; i++) {
 
+              if (!data.jobs[i].lat || !data.jobs[i].lng) continue;
+
               var marker = new google.maps.Marker({
                 position: { lat: parseFloat(data.jobs[i].lat), lng: parseFloat(data.jobs[i].lng) },
                 title: data.jobs[i].title,
@@ -144,7 +146,10 @@
               marker.setMap(map);
               bounds.extend(marker.getPosition());
             }
-            map.fitBounds(bounds);
+
+            if (bounds) {
+              map.fitBounds(bounds);
+            }
 
 
             if (map.getZoom() > 17) {

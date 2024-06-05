@@ -49,7 +49,7 @@ $updated_at = !empty($updated_at) ? $updated_at : '';
                                 modules: {
                                     toolbar: [
                                         // [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
-                                        [{ size: ['small', false, 'large', 'huge'] }],
+                                        // [{ size: ['small', false, 'large', 'huge'] }],
                                         ['bold', 'italic', 'underline', 'strike'],
                                         ['link', 'image', 'video'], // Add image and video options to the toolbar
                                         [

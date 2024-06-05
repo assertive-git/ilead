@@ -25,7 +25,7 @@
                         <?php endforeach; ?>
                     <?php endforeach; ?>
                 </div>
-                <div class="search_inner">
+                <div class="search_inner2">
                     <div class="choice"></div>
                 </div>
                 <ul class="button_area">
@@ -103,7 +103,7 @@
             <div class="modal-top"> <span class="modal-close">×</span> </div>
             <div class="modal_container">
                 <h4>職種を選ぶ</h4>
-                <div class="search_inner">
+                <div class="search_inner2">
                     <div class="choice">
                         <input type="checkbox" id="occupation1" name="job_types[]" value="薬剤師">
                         <label for="occupation1">薬剤師</label>
@@ -138,7 +138,7 @@
             <div class="modal-top"> <span class="modal-close">×</span> </div>
             <div class="modal_container">
                 <h4>施設・種別を選ぶ</h4>
-                <div class="search_inner">
+                <div class="search_inner2">
                     <div class="choice">
                         <input type="checkbox" id="facility1" name="categories[]" value="調剤薬局">
                         <label for="facility1">調剤薬局</label>
@@ -166,7 +166,7 @@
                 <ul class="button_area">
                     <li>該当件数<span class="big total_jobs"><?= $total_jobs ?></span>件</li>
                     <li>
-                        <button type="submit" class="submit">選択した内容を反映する</button>
+                        <button type="button" class="submit reflect">選択した内容を反映する</button>
                     </li>
                     <li>
                         <button type="button" class="reset">すべてクリア</button>
@@ -182,7 +182,7 @@
             <div class="modal-top"> <span class="modal-close"><i class="fa-solid fa-xmark"></i></span> </div>
             <div class="modal_container">
                 <h4>雇用形態 / 給与を選ぶ</h4>
-                <div class="search_inner">
+                <div class="search_inner2">
                     <h5>雇用形態</h5>
                     <div class="choice">
                         <input type="checkbox" id="status1" name="employment_types[]" value="正社員">
@@ -244,7 +244,7 @@
             <div class="modal-top"> <span class="modal-close">×</span> </div>
             <div class="modal_container">
                 <h4>こだわりを選ぶ</h4>
-                <div class="search_inner">
+                <div class="search_inner2">
                     <div class="choice">
                         <input type="checkbox" id="commitment1" name="traits[]" value="高収入">
                         <label for="commitment1">高収入</label>

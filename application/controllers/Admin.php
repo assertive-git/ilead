@@ -21,6 +21,12 @@ class Admin extends CI_Controller
                 unset($_SESSION['search_sess']['admin']);
             }
         }
+
+        if ($this->router->fetch_method() != 'news_admin_get' && $this->router->fetch_method() != 'news_admin_post') {
+            if (isset($_SESSION['news_sess']['admin'])) {
+                unset($_SESSION['news_sess']['admin']);
+            }
+        }
     }
 
     public function index()
@@ -338,9 +344,30 @@ class Admin extends CI_Controller
         }
     }
 
-    public function news()
+    public function news_admin_get($page = 1)
     {
-        $data['news'] = $this->news_model->get_all_admin();
+
+        $status = isset($_SESSION['news_sess']['admin']['status']) ? $_SESSION['news_sess']['admin']['status'] : '';
+        $keyword = isset($_SESSION['news_sess']['admin']['keyword']) ? $_SESSION['news_sess']['admin']['keyword'] : '';
+        $limit = isset($_SESSION['news_sess']['admin']['limit']) ? $_SESSION['news_sess']['admin']['limit'] : 25;
+
+        $data['status'] = $status;
+        $data['keyword'] = $keyword;
+        $data['limit'] = $limit;
+
+        $offset = ($page * $limit) - $limit;
+
+        $data['news'] = $this->news_model->get_all_admin($offset, $limit);
+        $data['total_news'] = $this->news_model->get_all_cnt_admin($status, $keyword);
+
+        $data['current_index_start'] = ($limit * ($page - 1)) + 1;
+        $data['current_index_end'] = ($limit * ($page - 1)) + $limit;
+
+        if ($data['current_index_end'] > $data['total_news']) {
+            $data['current_index_end'] = $data['total_news'];
+        }
+
+        $this->init_pagination($data['total_news'], 'admin/news/p', $limit);
 
         $this->load->view('admin/header', $data);
         $this->load->view('admin/news');
@@ -348,19 +375,59 @@ class Admin extends CI_Controller
 
     }
 
-    public function news_new()
+    public function news_get($id)
     {
-        $this->load->view('admin/header');
+        $data = $this->news_model->get_admin($id);
+
+        $this->load->view('admin/header', $data);
         $this->load->view('admin/news-single');
         $this->load->view('admin/footer');
     }
 
-    public function news_get($id)
+    public function news_admin_post()
     {
+        $status = '';
 
-        $data = $this->news_model->get_admin($id);
+        if (isset($_POST['status'])) {
+            $status = $_POST['status'];
+            $_SESSION['news_sess']['admin']['status'] = $status;
+        } else if (!empty($_SESSION['news_sess']['admin']['status'])) {
+            $status = $_SESSION['news_sess']['admin']['status'];
+        }
+
+        $keyword = '';
+
+        if (isset($_POST['keyword'])) {
+            $keyword = $_POST['keyword'];
+            $_SESSION['news_sess']['admin']['keyword'] = $keyword;
+        } else if (!empty($_SESSION['news_sess']['admin']['keyword'])) {
+            $keyword = $_SESSION['news_sess']['admin']['keyword'];
+        }
+
+        $limit = isset($_POST['limit']) ? $_POST['limit'] : 25;
+
+        $data['status'] = $status;
+        $data['keyword'] = $keyword;
+        $data['limit'] = $limit;
+
+        $offset = 0;
+        $data['news'] = $this->news_model->get_all_admin($offset, $limit);
+
+        $data['total_news'] = $this->news_model->get_all_cnt_admin($status, $keyword);
+
+        $data['current_index_start'] = 1;
+        $data['current_index_end'] = $limit;
+
+        $this->init_pagination($data['total_news'], 'admin/news/p', $limit);
 
         $this->load->view('admin/header', $data);
+        $this->load->view('admin/news');
+        $this->load->view('admin/footer');
+    }
+
+    public function news_new()
+    {
+        $this->load->view('admin/header');
         $this->load->view('admin/news-single');
         $this->load->view('admin/footer');
     }
