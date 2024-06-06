@@ -43,8 +43,8 @@
                     <th class="attribute">給料</th>
                     <?php $job['min_salary'] = number_format($job['min_salary']); ?>
                     <?php $job['max_salary'] = number_format($job['max_salary']); ?>
-                    <?php $job['min_salary'] = strlen($job['min_salary']) >= 5 ? (intval(str_replace(',', '', $job['min_salary']) / 10000)) . '万' : $job['min_salary']; ?>
-                    <?php $job['max_salary'] = strlen($job['max_salary']) >= 5 ? (intval(str_replace(',', '', $job['max_salary']) / 10000)) . '万' : $job['max_salary']; ?>
+                    <?php $job['min_salary'] = strlen(str_replace(',', '', $job['min_salary'])) >= 5 ? (intval(str_replace(',', '', $job['min_salary']) / 10000)) . '万' : $job['min_salary']; ?>
+                    <?php $job['max_salary'] = strlen(str_replace(',', '', $job['max_salary'])) >= 5 ? (intval(str_replace(',', '', $job['max_salary']) / 10000)) . '万' : $job['max_salary']; ?>
                     <?php if (!empty($job['max_salary'])): ?>
                       <td>¥<?= $job['min_salary'] ?>～<?= $job['max_salary'] ?></td>
                     <?php else: ?>
