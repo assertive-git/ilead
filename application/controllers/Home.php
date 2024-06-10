@@ -226,8 +226,12 @@ class Home extends CI_Controller
 
 	public function jobs_complete($id)
 	{
-		if (isset($_SESSION['complete'])) {
-			unset($_SESSION['complete']);
+		if (isset($_SESSION['confirm'])) {
+			unset($_SESSION['confirm']);
+			// mail logic here.
+			// var_dump($_POST);
+
+			$this->load->view('complete');
 		} else {
 			redirect('/jobs/' . $id . '/entry');
 		}
