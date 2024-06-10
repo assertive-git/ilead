@@ -1583,13 +1583,6 @@ main .job_result .area.is-active {
   margin-bottom: 5rem;
 }
 
-@media(max-width: 768px) {
-  #job_single .job_detail {
-    margin-top: 4rem;
-    order: 5;
-  }
-}
-
 /*-------mypage-------*/
 #mypage .search_result {
   background-color: #ff7d00;
@@ -1668,12 +1661,12 @@ main .job_result .area.is-active {
 }
 
 /*-------form---------*/
-#form section {
+#form {
   width: min(86%, 1200px);
   margin: 4rem auto 0;
 }
 
-#form section h2 {
+#form h2 {
   font-size: 3.3rem;
   font-weight: 600;
   color: #333;
@@ -1732,12 +1725,10 @@ main .job_result .area.is-active {
   border-left: none;
 }
 
-#form form {
-  border: 1px solid #ccc;
-}
-
 #form form dl {
   display: flex;
+    border-right: 1px solid #ccc;
+    border-left: 1px solid #ccc;
 }
 
 #form form dl div.address {
@@ -1746,6 +1737,10 @@ main .job_result .area.is-active {
 
 #form form dl:not(:last-child) {
   border-bottom: 1px solid #ccc;
+}
+
+#form form dl:first-child {
+  border-top: 1px solid #ccc;
 }
 
 #form form dt {
@@ -1792,17 +1787,17 @@ main .job_result .area.is-active {
   color: #ccc;
 }
 
-#form section p.privacy {
+#form p.privacy {
   text-align: center;
-  margin: 8rem 0 0;
+  margin: 6rem 0 0;
 }
 
-#form section .form_btn {
+#form .form_btn {
   display: flex;
   justify-content: space-around;
 }
 
-#form section .form_btn input {
+#form .form_btn input {
   display: block;
   font-size: 2.5rem;
   color: #fff;
@@ -1813,6 +1808,38 @@ main .job_result .area.is-active {
   border-radius: 6px;
   margin: 6rem auto 10rem;
   letter-spacing: 0.1em;
+}
+
+#form .form_btn input.btn_submit_back {
+
+    color: #fff;
+    background-color: #999;
+}
+
+.confirm {
+    
+width: min(86%, 1200px);
+    margin: 4rem auto 0;
+}
+
+.confirm .contact_h {
+    font-size: 3.3rem;
+    font-weight: 600;
+    color: #333;
+    text-align: left;
+}
+
+.complete {
+    
+width: min(86%, 1200px);
+    margin: 4rem auto 0;
+}
+
+.complete .contact_h {
+    font-size: 3.3rem;
+    font-weight: 600;
+    color: #333;
+    text-align: left;
 }
 
 
@@ -2314,6 +2341,10 @@ main .job_result .area.is-active {
   main .search_area .search_inner .plus {
     font-size: 6vw;
   }
+    
+    main .search_area .search_inner ul {
+        width:92%;
+    }
   main .search_area .search_inner ul li {
     width: 44vw;
     font-size: 3vw;
@@ -2359,6 +2390,10 @@ main .job_result .area.is-active {
     height: 53vh;
     overflow: auto;
   }
+    
+    .modal_container .search_inner2 {
+      padding: 5vw;
+    }
   .modal_container .button_area {
     padding: 1vh 4vh 4vh;
     position: absolute;
@@ -2376,8 +2411,7 @@ main .job_result .area.is-active {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    gap: 1rem 1rem;
-    /*overflow: auto;*/
+    gap: 1.6vw 1rem;
   }
   .modal_container .choice label {
     width: 100%;
@@ -2832,13 +2866,13 @@ main .job_result .job_result_inner .job_result_wrap .inner p.title {
     margin-left: 1rem;
   }
 
-  #form section p.privacy {
+  #form p.privacy {
     text-align: justify;
     margin: 3rem 0 0;
     font-size: 1.4rem;
   }
 
-  #form section .form_btn input {
+  #form .form_btn input {
     font-size: 2rem;
     width: min(86%, 400px);
     margin: 3rem auto 5rem;
