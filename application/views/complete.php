@@ -1,1 +1,15 @@
-<?phpif ( empty( $_POST ) ) {  header( "Location: ./entry" );  exit;}?><?php include ('header.php'); ?><div id="form" class="complete">  <div class="contact_h">送信完了</div>  <p> この度はご登録いただき、<br class="sp">    誠にありがとうございます。<br>    <br>    ご入力いただきましたメールアドレス宛に、<br>    登録受付完了メールを<br class="sp">    お送りさせていただいております。<br>    <br>    ご確認の程、よろしくお願い致します。<br>  </p>  <p class="top_button"><a href="./">トップへ戻る</a></p></div><?php include ('footer.php'); ?>
+<?php include ('header.php'); ?>
+<div id="form" class="complete">
+  <div class="contact_h">送信完了</div>
+  <p> この度はご登録いただき、<br class="sp">
+    誠にありがとうございます。<br>
+    <br>
+    ご入力いただきましたメールアドレス宛に、<br>
+    登録受付完了メールを<br class="sp">
+    お送りさせていただいております。<br>
+    <br>
+    ご確認の程、よろしくお願い致します。<br>
+  </p>
+  <p class="top_button"><a href="./">トップへ戻る</a></p>
+</div>
+<?php include ('footer.php'); ?>
