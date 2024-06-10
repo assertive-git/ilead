@@ -437,7 +437,7 @@ main .search .area.is-active {
 .modal_container .wrap {
     display: flex;
     flex-wrap: nowrap;
-    overflow: scroll;
+    overflow: auto;
 }
 
 .modal_container .search_inner {

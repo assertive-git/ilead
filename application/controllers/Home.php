@@ -14,24 +14,18 @@ class Home extends CI_Controller
 		}
 	}
 
-	public function index($page = 'home')
+	public function index()
 	{
 		$data = [];
 
-		if (strpos($page, '.php') !== FALSE || !file_exists(APPPATH . 'views/' . $page . '.php')) {
-			show_404();
-		}
-
-		if ($page == 'home') {
 			$data['total_jobs'] = $this->jobs_model->get_all_cnt();
 			$data['new_jobs'] = $this->jobs_model->get_new_jobs();
 			$data['direct'] = $this->jobs_model->get_direct();
 			$data['deployment'] = $this->jobs_model->get_deployment();
 			$data['news'] = $this->news_model->get_new_news();
-		}
 
 
-		$this->load->view($page, $data);
+		$this->load->view('home', $data);
 	}
 
 	public function get_lines_and_stations()
@@ -213,7 +207,6 @@ class Home extends CI_Controller
 
 	public function jobs_entry($id)
 	{
-
 		$data['id'] = $id;
 
 		$this->load->view('entry', $data);

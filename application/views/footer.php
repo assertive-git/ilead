@@ -40,14 +40,12 @@
     btn.onclick = function () {
       var modal = btn.closest('.modal');
       modal.style.display = "none";
-      reset_one_plus(current_modal);
     };
   });
 
   window.onclick = function (event) {
     if (event.target.className === "modal") {
       event.target.style.display = "none";
-      reset_one_plus(current_modal);
     }
   }
 </script>

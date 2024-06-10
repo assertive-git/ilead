@@ -194,6 +194,7 @@
 
     function load_lines_stations_view(pref_index) {
         $('#modal2 #choice2_pref_' + pref_index).show();
+        $('#modal2 #choice2_pref_' + pref_index).css({visibility: 'visible'});
     }
 
     $('body').on('change', '#modal2 .line', function () {
@@ -252,17 +253,18 @@
 (function () {
     $('.reflect').click(function () {
         $('.modal').hide();
-        set_pluses();
     });
 
     $('.reset').click(function () {
-        reset_all_pluses();
+        var modal_id = $(this).closest('.modal').attr('id');
+        reset_one_plus(modal_id);
     });
 }());
 
 /* 検索の該当件数更新 */
 (function () {
     $('body').on('change', '.modal input[name="areas[]"], .modal input[name="stations[]"], .modal input[name="job_types[]"], .modal input[name="employment_types[]"], .modal input[name="categories[]"], .modal select[name="salary[yearly]"], .modal select[name="salary[hourly]"], .modal input[name="traits[]"]', function () {
+        set_pluses();
         total_jobs_update();
     });
 }());
@@ -332,6 +334,9 @@ function reset_one_plus(modal) {
     $('#modal1 .search_inner2').eq(0).show();
     $('#modal2 .search_inner2').hide();
     $('#modal2 .search_inner2').eq(0).show();
+    $('#modal2 .choice2').css({ visibility: 'hidden' });
+    $('#modal2 .station').hide();
+    $('.scroll_inner li').removeAttr('style');
 
     set_pluses();
     total_jobs_update();
@@ -397,7 +402,7 @@ function total_jobs_update() {
             freeword: freeword
         },
         success: function (data) {
-            $('.big').text(data.total_jobs);
+            $('.total_jobs').text(data.total_jobs);
         }
     });
 }

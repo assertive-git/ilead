@@ -64,6 +64,6 @@ $route['admin/news/update']['POST'] = 'admin/news_update';
 $route['admin/news/(:num)/delete']['GET'] = 'admin/news_delete/$1';
 $route['admin/api/set_coordinates'] = 'admin/set_coordinates';
 
-$route['(:any)'] = 'home/index/$1';
+// $route['(:any)'] = 'home/index';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;

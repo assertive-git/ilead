@@ -5,7 +5,7 @@
   <!--<div class="registration"><a href="" target="_blank">まずは簡単登録</a></div>-->
 
   <section class="search_area">
-    <form class="search_form">
+    <form class="search_form" action="/job_list" method="POST">
       <div class="search_inner">
         <ul>
           <li class="areas"><button type="button" data-modal="modal1" class="modal-toggle">エリアを選ぶ<span
