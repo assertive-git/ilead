@@ -272,11 +272,11 @@ main .modal_container .button_area {
 }
 
 main .modal_container .button_area button.submit {
-    margin-right: 0;
+  margin-right: 0;
 }
 
 main .search .button_area button.reset {
-    margin-right: 0;
+  margin-right: 0;
 }
 
 
@@ -435,9 +435,9 @@ main .search .area.is-active {
 }
 
 .modal_container .wrap {
-    display: flex;
-    flex-wrap: nowrap;
-    overflow: auto;
+  display: flex;
+  flex-wrap: nowrap;
+  overflow: auto;
 }
 
 .modal_container .search_inner {
@@ -445,7 +445,7 @@ main .search .area.is-active {
   width: 100%;
   padding: 40px;
   height: 374px;
-    overflow: auto;
+  overflow: auto;
 }
 
 .modal_container .search_inner2 {
@@ -453,7 +453,7 @@ main .search .area.is-active {
   width: 100%;
   padding: 40px;
   height: 374px;
-    overflow: auto;
+  overflow: auto;
 }
 
 .modal_container .region,
@@ -471,7 +471,7 @@ main .search .area.is-active {
 .modal_container .prefectures label {
   display: block;
   width: auto;
-  white-space:nowrap;
+  white-space: nowrap;
   color: #000;
   padding: 1.6rem 2rem;
   text-align: center;
@@ -585,8 +585,8 @@ main .search .area.is-active {
   padding: 0.6rem 2rem;
   border-top: 1px solid #ccc;
   font-size: 1.4rem;
-    line-height: 1.6;
-    background-color: #fff;
+  line-height: 1.6;
+  background-color: #fff;
 }
 
 .modal_container .choice2 .choice_inner li:hover {
@@ -610,7 +610,7 @@ main .search .area.is-active {
   background-color: #e4e4e4;
   padding: 0.6rem 2rem;
   font-size: 1.4rem;
-    line-height: 1.6;
+  line-height: 1.6;
 }
 
 .modal_container .choice2 .station .scroll_inner li:not(:first-child) {
@@ -1177,9 +1177,9 @@ main .search_area .search_inner ul li.freeword input[type="submit"] {
 
 main .search_area .button_area button.reset {
   background-color: #fff;
-  width: min(15vw,140px);
-  height:min(6vw, 48px);
-    font-size:1.5rem;
+  width: min(15vw, 140px);
+  height: min(6vw, 48px);
+  font-size: 1.5rem;
   font-weight: 500;
   color: #65b9e7;
   border-radius: 3vw;
@@ -1378,6 +1378,7 @@ main .job_result .job_result_inner .job_result_wrap .inner {
   flex-wrap: wrap;
   gap: 0 1rem;
 }
+
 main .job_result .job_result_inner .job_result_wrap .inner p.title {
   font-size: 2rem;
   font-weight: 400;
@@ -1727,8 +1728,8 @@ main .job_result .area.is-active {
 
 #form form dl {
   display: flex;
-    border-right: 1px solid #ccc;
-    border-left: 1px solid #ccc;
+  border-right: 1px solid #ccc;
+  border-left: 1px solid #ccc;
 }
 
 #form form dl div.address {
@@ -1750,7 +1751,7 @@ main .job_result .area.is-active {
   display: flex;
   align-items: center;
   justify-content: space-between;
-    font-weight: 500;
+  font-weight: 500;
 }
 
 #form form dt span {
@@ -1812,34 +1813,34 @@ main .job_result .area.is-active {
 
 #form .form_btn input.btn_submit_back {
 
-    color: #fff;
-    background-color: #999;
+  color: #fff;
+  background-color: #999;
 }
 
 .confirm {
-    
-width: min(86%, 1200px);
-    margin: 4rem auto 0;
+
+  width: min(86%, 1200px);
+  margin: 4rem auto 0;
 }
 
 .confirm .contact_h {
-    font-size: 3.3rem;
-    font-weight: 600;
-    color: #333;
-    text-align: left;
+  font-size: 3.3rem;
+  font-weight: 600;
+  color: #333;
+  text-align: left;
 }
 
 .complete {
-    
-width: min(86%, 1200px);
-    margin: 4rem auto 0;
+
+  width: min(86%, 1200px);
+  margin: 4rem auto 0;
 }
 
 .complete .contact_h {
-    font-size: 3.3rem;
-    font-weight: 600;
-    color: #333;
-    text-align: left;
+  font-size: 3.3rem;
+  font-weight: 600;
+  color: #333;
+  text-align: left;
 }
 
 
@@ -1956,6 +1957,16 @@ width: min(86%, 1200px);
   font-size: 1.6rem;
   font-weight: 500;
   margin-bottom: 0.4rem;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  width: 310px;
+}
+
+@media(max-width: 768px) {
+  #map .list_item h5 {
+    width: 390px;
+  }
 }
 
 #map .list_item .info_inner {
@@ -2012,79 +2023,89 @@ width: min(86%, 1200px);
 }
 
 #map .toggle {
-      display: none;
-    }
+  display: none;
+}
 
 @media (max-width: 768px) {
-    
-    
-    /*ベース*/
-    .toggle {
-      display: none;
-    }
-    
-    .menu_accordion {
-      display: block;
-      width: 100%;
-      background-color: #65b9e7;
-        font-size: 1.4rem;
-      color: #fff;
-      text-align: center;
-        line-height: 1;
-        padding: 3vw;
-    }
-    
-    .menu_accordion::after { /*タイトル横の矢印*/
-      content:url(../img/menu_arrow.svg);
-      position: absolute;
-      top: 20%;
-      right: 6vw;
-        transition: all 0.3s;
-    }
-    .menu_accordion, .search_area {
-      -webkit-backface-visibility: hidden;
-      backface-visibility: hidden;
-      transform: translateZ(0);
-      transition: all 0.3s;
-    }
-    .search_area { /*本文*/
-      height: 0;
-      overflow: hidden;
-    }
-    .toggle:checked + .menu_accordion + .search_area { /*開閉時*/
-      height: auto;
-      transition: all .3s;
-    }
-    .toggle:checked + .menu_accordion::after {
-      transform: rotate(180deg);
-    }
-    
-    main#map .search_area {
-        padding: 0;
-    }
-    
-    main#map .search_area .search_inner {
-        margin: 2rem auto;
-    }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+
+
+  /*ベース*/
+  .toggle {
+    display: none;
+  }
+
+  .menu_accordion {
+    display: block;
+    width: 100%;
+    background-color: #65b9e7;
+    font-size: 1.4rem;
+    color: #fff;
+    text-align: center;
+    line-height: 1;
+    padding: 3vw;
+  }
+
+  .menu_accordion::after {
+    /*タイトル横の矢印*/
+    content: url(../img/menu_arrow.svg);
+    position: absolute;
+    top: 20%;
+    right: 6vw;
+    transition: all 0.3s;
+  }
+
+  .menu_accordion,
+  .search_area {
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    transform: translateZ(0);
+    transition: all 0.3s;
+  }
+
+  .search_area {
+    /*本文*/
+    height: 0;
+    overflow: hidden;
+  }
+
+  .toggle:checked+.menu_accordion+.search_area {
+    /*開閉時*/
+    height: auto;
+    transition: all .3s;
+  }
+
+  .toggle:checked+.menu_accordion::after {
+    transform: rotate(180deg);
+  }
+
+  main#map .search_area {
+    padding: 0;
+  }
+
+  main#map .search_area .search_inner {
+    margin: 2rem auto;
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
   #map {
     position: relative;
   }
+
   #map .side_list {
     position: static;
   }
+
   #map .menu-trigger {
     width: 6vh;
     height: 6vh;
@@ -2094,15 +2115,19 @@ width: min(86%, 1200px);
     z-index: 100;
     transition: transform .5s;
   }
+
   #map .menu-trigger img {
     width: 100%;
   }
+
   #map .menu-trigger.active {
     transform: translateY(40vh);
   }
+
   #map .menu-trigger.active span {
     background-color: #fff;
   }
+
   #map .list {
     width: 100%;
     height: 40vh;
@@ -2116,47 +2141,49 @@ width: min(86%, 1200px);
     transform: translateY(-40vh);
     transition: all .5s;
   }
-    
-    #map .list p {
-        font-size: 1.4rem;
-  height: 10vw;
-  padding-left: 1.2rem;
-        margin-bottom: 3.4vw;
-}
 
-#map .list p .number {
-  font-size: 1.4rem;
-}
-    
-    #map .list .list_inner {
+  #map .list p {
+    font-size: 1.4rem;
+    height: 10vw;
+    padding-left: 1.2rem;
+    margin-bottom: 3.4vw;
+  }
+
+  #map .list p .number {
+    font-size: 1.4rem;
+  }
+
+  #map .list .list_inner {
     margin: 1.2vh auto;
-}
-    
-    #map .list_item {
+  }
+
+  #map .list_item {
     width: 90vw;
     padding: 2.4vw 4vw 3vw;
-}
-    
-    #map .list_item h5 {
+  }
+
+  #map .list_item h5 {
     font-size: 1.4rem;
-}
-    #map .list_item li {
+  }
+
+  #map .list_item li {
     font-size: 1.2rem;
-        letter-spacing: 0.02em;
-}
-    #map .list_item .category span {
+    letter-spacing: 0.02em;
+  }
+
+  #map .list_item .category span {
     font-size: min(40 / 1200* 100vw, 1.4rem);
     padding: 0 0.8em;
-}
-    
-    #map .list_item li span.attribute {
+  }
+
+  #map .list_item li span.attribute {
     padding: 0.3em auto;
     width: 15vw;
     margin-right: 0.6em;
-}
-    
-    
-    
+  }
+
+
+
 }
 
 
@@ -2193,19 +2220,24 @@ width: min(86%, 1200px);
   .pc {
     display: none;
   }
+
   .sp {
     display: inline-block;
   }
+
   header .header_inner {
     height: 8vh;
     width: 86%;
   }
+
   header .header_inner .logo img {
     width: 110px;
   }
+
   header .header_inner .pc_nav {
     display: none;
   }
+
   main .main_img {
     position: relative;
     width: 100%;
@@ -2216,47 +2248,58 @@ width: min(86%, 1200px);
     background-position: 61% center;
     border-radius: 0;
   }
+
   main .main_img p.main_copy {
     font-size: 7vw;
     margin-left: 7%;
     margin-top: 8%;
   }
+
   main .main_img span.sub_copy {
     font-size: 3vw;
   }
+
   main .search {
     width: 95%;
     margin: -34vw auto 0;
   }
+
   main .search .freeword h4 {
     line-height: 1.4;
     margin-bottom: 1rem;
   }
+
   main .search .tab li {
     width: 49%;
     background: none;
     padding: 0;
     margin-bottom: 0;
   }
+
   main .search .tab li.active a {
     font-size: 3.4vw;
   }
+
   main .search .tab li a {
     padding: 10px;
     font-size: 3.4vw;
     border-radius: 6px 6px 0 0;
   }
+
   main .search .tab li a i {
     font-size: 4vw;
   }
+
   main .search .main7 li {
     width: 100%;
     padding: 1rem 2.4rem;
   }
+
   main .registration {
     display: flex;
     justify-content: center;
   }
+
   main .registration a {
     position: relative;
     width: 95%;
@@ -2268,6 +2311,7 @@ width: min(86%, 1200px);
     box-shadow: 0 2px #ff6868;
     z-index: 999;
   }
+
   main .search li {
     width: 100%;
     padding: 0;
@@ -2279,22 +2323,27 @@ width: min(86%, 1200px);
     letter-spacing: 0.1em;
     margin-bottom: 0;
   }
+
   main .search .area {
     padding: 2rem;
     border-radius: 0 0 5px 5px;
     box-shadow: 0px 2px #d3d3d3;
   }
+
   main .search .area2 {
     padding: 2rem;
     border-radius: 0 0 5px 5px;
     box-shadow: 0px 2px #d3d3d3;
   }
+
   main .search .main7 li.freeword {
     width: 100%;
   }
+
   main .search li.number_text {
     margin-top: 0;
   }
+
   main .search .form {
     width: 100%;
     margin-bottom: 1rem;
@@ -2302,62 +2351,75 @@ width: min(86%, 1200px);
     box-shadow: 0px 1px #cfcfcf;
     font-size: 1.6rem;
   }
+
   .plus {
     right: 5%;
   }
+
   main .search .button_area {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
   }
+
   main .search .button_area button.submit {
     margin-right: 0;
     padding: 0.6vh 0;
     width: 100%;
     font-size: 2vh;
   }
+
   main .search .button_area button.reset {
     margin-top: 1.2rem;
     width: 100%;
     padding: 0.6vh 0;
     font-size: 2vh;
   }
+
   main .search .number_text {
     order: 3;
   }
+
   main .search_area {
     background-color: #e3f7f6;
     padding: 2rem 0;
   }
+
   main .search_area ul {
     width: 90%;
     justify-content: space-between;
     gap: 8px 7px;
     margin: 0 auto;
   }
+
   main .search_area .search_inner {
     width: 100%;
   }
+
   main .search_area .search_inner .plus {
     font-size: 6vw;
   }
-    
-    main .search_area .search_inner ul {
-        width:92%;
-    }
+
+  main .search_area .search_inner ul {
+    width: 92%;
+  }
+
   main .search_area .search_inner ul li {
     width: 44vw;
     font-size: 3vw;
     padding: 1.4vw 5vw 1.4vw 4vw;
     border-radius: 3px;
   }
+
   main .search_area .search_inner ul li.freeword {
     width: 90vw;
   }
+
   main .search_area .search_inner ul li.freeword input[type="submit"] {
     width: 10vw;
     border-radius: 0 3px 3px 0;
   }
+
   main .search_area .search_inner .button_area {
     width: 100vw;
     border-top: 1px solid #fff;
@@ -2365,45 +2427,53 @@ width: min(86%, 1200px);
     padding-top: 4vw;
     text-align: center;
   }
+
   main .search_area .button_area button.reset {
     width: 34vw;
     height: 10vw;
     border-radius: 5vw;
     font-size: 3.2vw;
   }
+
   a.consider_list {
     font-size: 3.2vw;
     width: 34vw;
     height: 10vw;
     border-radius: 5vw;
   }
+
   .modal-top {
     right: 20px;
     top: 1.3vh;
   }
+
   main .modal-content {
     width: 100%;
     height: 100%;
   }
+
   .modal_container .search_inner {
     padding: 5vw;
     height: 53vh;
     overflow: auto;
   }
-    
-    .modal_container .search_inner2 {
-      padding: 5vw;
-    }
+
+  .modal_container .search_inner2 {
+    padding: 5vw;
+  }
+
   .modal_container .button_area {
     padding: 1vh 4vh 4vh;
     position: absolute;
     bottom: 0;
     background-color: #fff;
   }
+
   .modal_container .button_area .number {
     text-align: center;
     letter-spacing: 0;
   }
+
   .modal_container .choice {
     width: 100%;
     max-height: 63vh;
@@ -2413,72 +2483,82 @@ width: min(86%, 1200px);
     flex-wrap: wrap;
     gap: 1.6vw 1rem;
   }
+
   .modal_container .choice label {
     width: 100%;
     font-size: 1.2rem;
     padding: 0.6rem 1rem;
   }
-  .modal_container .region label, .modal_container .prefectures label {
+
+  .modal_container .region label,
+  .modal_container .prefectures label {
     font-size: 1.2rem;
     padding: 1rem 1.6rem;
   }
+
   .modal_container h4 {
     font-size: 1.6rem;
     margin: 2.2vh auto;
   }
+
   .modal_container .choice2 {
     height: 58vh;
     padding: 5vw;
     gap: 4vw;
   }
+
   .modal_container .choice2 .route {
     width: 50%;
   }
+
   .modal_container .choice2 .choice_inner {
     height: 44vh;
   }
+
   .modal_container .choice2 .choice_inner li {
     padding: 0.4rem 1rem;
     font-size: 1.2rem;
   }
+
   .modal_container .choice2 .station .scroll_inner li:not(:first-child) {
     padding-left: 1rem;
   }
-    
-    .modal_container .salary li {
+
+  .modal_container .salary li {
     font-size: 1.2rem;
   }
+
   main .search .freeword span {
     font-size: 1.2rem;
     margin-left: 0;
   }
-  
-    
-    
 
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   h2 span {
     font-size: 3vw;
@@ -2720,9 +2800,11 @@ width: min(86%, 1200px);
   main .job_result .job_result_inner .job_result_wrap .inner .button_area a {
     width: 70vw;
   }
-main .job_result .job_result_inner .job_result_wrap .inner p.title {
+
+  main .job_result .job_result_inner .job_result_wrap .inner p.title {
     font-size: 4vw;
   }
+
   main .job_result .job_result_inner .job_result_wrap .inner p {
     font-size: 3.4vw;
   }
@@ -2730,10 +2812,10 @@ main .job_result .job_result_inner .job_result_wrap .inner p.title {
   main .job_result .job_result_inner .job_result_wrap .inner .category span {
     font-size: 2.6vw;
   }
-    
-    main .job_result .job_result_inner .job_result_wrap .inner .button_area .favorite_btn {
-  width: 70vw;
-}
+
+  main .job_result .job_result_inner .job_result_wrap .inner .button_area .favorite_btn {
+    width: 70vw;
+  }
 
   main .job_result .tab {
     margin: 1rem auto 0;
@@ -2877,4 +2959,21 @@ main .job_result .job_result_inner .job_result_wrap .inner p.title {
     width: min(86%, 400px);
     margin: 3rem auto 5rem;
   }
+}
+
+.map_loader {
+  display: none;
+  position: sticky;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.map_loader.show {
+  display: flex;
 }

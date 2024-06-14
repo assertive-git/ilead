@@ -9,24 +9,24 @@
       <div class="search_inner">
         <ul>
           <li class="areas"><button type="button" data-modal="modal1" class="modal-toggle">エリアを選ぶ<span
-                class="plus">+</span></button>
+                class="plus <?= !empty($areas) ? 'active' : '' ?>">+</span></button>
           </li>
           <li class="stations"><button type="button" data-modal="modal2" class="modal-toggle">沿線・駅を選ぶ<span
-                class="plus">+</span></button></li>
+                class="plus <?= !empty($stations) ? 'active' : '' ?>">+</span></button></li>
           <li class="categories"><button type="button" data-modal="modal4" class="modal-toggle">施設・種別を選ぶ<span
-                class="plus">+</span></button></li>
+                class="plus <?= !empty($categories) ? 'active' : '' ?>">+</span></button></li>
           <li class="employment_types"><button type="button" data-modal="modal5" class="modal-toggle">雇用形態/給与を選ぶ<span
-                class="plus">+</span></button></li>
+                class="plus <?= !empty($employment_types) ? 'active' : '' ?>">+</span></button></li>
           <li class="traits"><button type="button" data-modal="modal6" class="modal-toggle">こだわり<span
-                class="plus">+</span></button>
+                class="plus <?= !empty($traits) ? 'active' : '' ?>">+</span></button>
           </li>
           <li class="freeword">
-            <input type="text" placeholder="フリーワード">
+            <input type="text" placeholder="フリーワード" name="freeword" value="<?= $freeword ?>">
             <input type="submit" value="&#xf002">
           </li>
         </ul>
         <div class="button_area">
-          <button type="reset" class="reset">すべてクリア</button>
+          <!-- <button type="reset" class="reset">すべてクリア</button> -->
         </div>
       </div>
       <?php include APPPATH . 'includes/search_modal.php' ?>
@@ -44,8 +44,11 @@
       </div>
     </div>
     <div class="job_result_inner">
-      <p class="number">新着求人：<span
-          class="big"><?= $total_jobs ?></span>件（<?= $current_index_start ?>～<?= $current_index_end ?>件）</p>
+      <p class="number">新着求人：<span class="big"><?= $total_jobs ?></span>件
+        <?php if ($total_jobs > 10): ?>
+          （<?= $current_index_start ?>～<?= $current_index_end ?>件）
+        <?php endif; ?>
+      </p>
       <!-- <ul class="tab">
         <li><a href="#new_arrival">新着順</a></li>
         <li><a href="#annual_income">年収順</a></li>
@@ -68,15 +71,7 @@
                   <table>
                     <tr>
                       <th class="attribute">給料</th>
-                      <?php $job['min_salary'] = number_format($job['min_salary']); ?>
-                      <?php $job['max_salary'] = number_format($job['max_salary']); ?>
-                      <?php $job['min_salary'] = strlen(str_replace(',', '', $job['min_salary'])) >= 5 ? (intval(str_replace(',', '', $job['min_salary']) / 10000)) . '万' : $job['min_salary']; ?>
-                      <?php $job['max_salary'] = strlen(str_replace(',', '', $job['max_salary'])) >= 5 ? (intval(str_replace(',', '', $job['max_salary']) / 10000)) . '万' : $job['max_salary']; ?>
-                      <?php if (!empty($job['max_salary'])): ?>
-                        <td>¥<?= $job['min_salary'] ?>～<?= $job['max_salary'] ?></td>
-                      <?php else: ?>
-                        <td>¥<?= $job['min_salary'] ?></td>
-                      <?php endif; ?>
+                      <td><?= $job['salary'] ?></td>
                     </tr>
                     <tr>
                       <th class="attribute">勤務地</th>
@@ -115,7 +110,7 @@
         <?php endif; ?>
       </div>
       <p class="number2">新着求人：<span class="big"><?= $total_jobs ?></span>件
-        <?php if (count($jobs) > 10): ?>
+        <?php if ($total_jobs > 10): ?>
           （<?= $current_index_start ?>～<?= $current_index_end ?>件）
         <?php endif; ?>
       </p>

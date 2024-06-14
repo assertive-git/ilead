@@ -82,15 +82,7 @@
             <dl>
               <dt><a href="/jobs/<?= $new_job['id'] ?>"><?= ellipsize($new_job['title'], 43) ?></a></dt>
               <dd><span class="attribute">勤務地</span><?= $new_job['a_pref'] ?><?= $new_job['city'] ?></dd>
-              <?php $new_job['min_salary'] = number_format($new_job['min_salary']); ?>
-              <?php $new_job['max_salary'] = number_format($new_job['max_salary']); ?>
-              <?php $new_job['min_salary'] = strlen(str_replace(',', '', $new_job['min_salary'])) >= 5 ? (intval(str_replace(',', '', $new_job['min_salary']) / 10000)) . '万' : $new_job['min_salary']; ?>
-              <?php $new_job['max_salary'] = strlen(str_replace(',', '', $new_job['max_salary'])) >= 5 ? (intval(str_replace(',', '', $new_job['max_salary']) / 10000)) . '万' : $new_job['max_salary']; ?>
-              <?php if (!empty($new_job['max_salary'])): ?>
-                <dd><span class="attribute">給料</span>¥<?= $new_job['min_salary'] ?>～<?= $new_job['max_salary'] ?></dd>
-              <?php else: ?>
-                <dd><span class="attribute">給料</span>¥<?= $new_job['min_salary'] ?></dd>
-              <?php endif; ?>
+              <dd><span class="attribute">給料</span><?= $new_job['salary'] ?></dd>
             </dl>
           </div>
         <?php endforeach; ?>
@@ -123,11 +115,7 @@
                   <dl>
                     <dt><?= ellipsize($job['title'], 25) ?></dt>
                     <dd><span class="attribute">勤務地</span><?= $job['a_pref'] . $job['city'] ?></dd>
-                    <?php $job['min_salary'] = number_format($job['min_salary']); ?>
-                    <?php $job['max_salary'] = number_format($job['max_salary']); ?>
-                    <?php $job['min_salary'] = strlen(str_replace(',', '', $job['min_salary'])) >= 5 ? (intval(str_replace(',', '', $job['min_salary']) / 10000)) . '万' : $job['min_salary']; ?>
-                    <?php $job['max_salary'] = strlen(str_replace(',', '', $job['max_salary'])) >= 5 ? (intval(str_replace(',', '', $job['max_salary']) / 10000)) . '万' : $job['max_salary']; ?>
-                    <dd><span class="attribute">給料</span>【<?= $job['salary_type'] ?>】<?= $job['min_salary'] ?>円</dd>
+                    <dd><span class="attribute">給料</span><?= $job['salary'] ?></dd>
                   </dl>
                 </a>
               </div>
@@ -154,11 +142,7 @@
                   <dl>
                     <dt><?= ellipsize($job['title'], 25) ?></dt>
                     <dd><span class="attribute">勤務地</span><?= $job['a_pref'] . $job['city'] ?></dd>
-                    <?php $job['min_salary'] = number_format($job['min_salary']); ?>
-                    <?php $job['max_salary'] = number_format($job['max_salary']); ?>
-                    <?php $job['min_salary'] = strlen(str_replace(',', '', $job['min_salary'])) ? (intval(str_replace(',', '', $job['min_salary']) / 10000)) . '万' : $job['min_salary']; ?>
-                    <?php $job['max_salary'] = strlen(str_replace(',', '', $job['max_salary']) >= 5) ? (intval(str_replace(',', '', $job['max_salary']) / 10000)) . '万' : $job['max_salary']; ?>
-                    <dd><span class="attribute">給料</span>【<?= $job['salary_type'] ?>】<?= $job['min_salary'] ?>円</dd>
+                    <dd><span class="attribute">給料</span><?= $job['salary'] ?></dd>
                   </dl>
                 </a>
               </div>
@@ -221,7 +205,15 @@
       </ul>
     </div>
   </section>
+  <script>
+    $(window).on('load', function () {
+      $('input, select').each(function () {
+        $(this).prop('checked', false);
+        if ($(this).is('select')) {
+          $(this)[0].selectedIndex = 0;
+        }
+      });
+    });
+  </script>
 </main>
-
-
 <?php include ('footer.php'); ?>

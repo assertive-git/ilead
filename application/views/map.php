@@ -29,7 +29,7 @@
           </li>
         </ul>
         <div class="button_area">
-          <button type="reset" class="reset">すべてクリア</button>
+          <!-- <button type="reset" class="reset">すべてクリア</button> -->
         </div>
       </div>
       <?php include APPPATH . 'includes/search_modal.php' ?>
@@ -50,23 +50,24 @@
       })
     </script>
     <div id="list" class="list open">
-      <p>検索結果一覧　全<span class="number"><?= count($jobs) ?></span>件</p>
+      <div class="map_loader">読込中・・・</div>
+      <p>検索結果一覧　全<span class="number"><?= $total_jobs ?></span>件</p>
       <?php $job_ids = []; ?>
       <?php foreach ($jobs as $job): ?>
         <?php $job_ids[] = $job['id']; ?>
         <ul class="list_inner">
           <li>
             <!-- <a href=""> -->
-            <div id="<?= $job['id'] ?>" class="list_item" job-link="/jobs/<?= $job['id'] ?>">
+            <div id="<?= $job['id'] ?>" class="list_item id" job-link="/jobs/<?= $job['id'] ?>">
               <div class="info">
-                <h5><?= ellipsize($job['title'], 18) ?></h5>
-                <img src="/uploads/top_picture/<?= $job['top_picture'] ?>" width="100" height="81">
+                <h5 class="title"><?= $job['title'] ?></h5>
+                <img class="top-picture" src="/uploads/top_picture/<?= $job['top_picture'] ?>" width="100" height="81">
                 <div class="info_inner">
                   <?php if (!empty($job['category'])): ?>
                     <?php $i = 0 ?>
                     <div class="category">
                       <?php foreach (explode(',', $job['category']) as $category): ?>
-                        <span><?= ellipsize($category, 3) ?></span>
+                        <span><?= $category ?></span>
                         <?php $i++; ?>
                         <?php if ($i == 2)
                           break ?>
@@ -74,21 +75,14 @@
                     </div>
                   <?php endif; ?>
                   <ul>
-                    <li><span class="attribute">勤務地</span><?= $job['city'] ?></li>
-                    <?php $job['min_salary'] = number_format($job['min_salary']); ?>
-                    <?php $job['max_salary'] = number_format($job['max_salary']); ?>
-                    <?php $job['min_salary'] = strlen(str_replace(',', '', $job['min_salary'])) >= 5 ? (intval(str_replace(',', '', $job['min_salary']) / 10000)) . '万' : $job['min_salary']; ?>
-                    <?php $job['max_salary'] = strlen(str_replace(',', '', $job['max_salary'])) >= 5 ? (intval(str_replace(',', '', $job['max_salary']) / 10000)) . '万' : $job['max_salary']; ?>
-                    <?php if (!empty($job['max_salary'])): ?>
-                      <li><span
-                          class="attribute">給料</span>【<?= $job['salary_type'] ?>】<?= $job['min_salary'] ?>～<?= $job['max_salary'] ?>円
-                      </li>
-                    <?php else: ?>
-                      <li><span class="attribute">給料</span>【<?= $job['salary_type'] ?>】<?= $job['min_salary'] ?>円</li>
-                    <?php endif; ?>
-                    <li><input id="map_address" type="hidden" value="<?= $job['map_address'] ?>"></li>
-                    <li><input id="lat" type="hidden" value="<?= $job['lat'] ?>"></li>
-                    <li><input id="lng" type="hidden" value="<?= $job['lng'] ?>"></li>
+                    <li><span class="attribute">勤務地</span><span class="city"><?= $job['city'] ?></span></li>
+                    <li>
+                      <span class="attribute">給料</span>
+                      <span class="salary"><?= $job['salary'] ?></span>
+                    </li>
+                    <li><input class="map_address" type="hidden" value="<?= $job['map_address'] ?>"></li>
+                    <li><input class="lat" type="hidden" value="<?= $job['lat'] ?>"></li>
+                    <li><input class="lng" type="hidden" value="<?= $job['lng'] ?>"></li>
                   </ul>
                 </div>
               </div>
@@ -162,7 +156,7 @@
         });
 
 
-        $('.list_item').click(function () {
+        $('body').on('click', '.list_item', function () {
 
           if (!$('.list_item.active').is($(this))) {
             $('.list_item.active').removeClass('active');
@@ -175,10 +169,10 @@
             $(this).addClass('active');
           }
 
-          var lat = parseFloat($(this).find('#lat').val());
-          var lng = parseFloat($(this).find('#lng').val());
+          var lat = parseFloat($(this).find('.lat').val());
+          var lng = parseFloat($(this).find('.lng').val());
 
-          var title = $(this).find('#map_address').val();
+          var title = $(this).find('.map_address').val();
 
           map.setCenter({ lat: lat, lng: lng });
         });
@@ -186,16 +180,71 @@
 
     </script>
 
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAmVMSJ-FB7idtnAQajLhCIo2SV7VZd7uw&callback=initMap">
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAmVMSJ-FB7idtnAQajLhCIo2SV7VZd7uw&callback=initMap"></script>
+    <script>
+
+      // var offset = 0;
+      // var total = $('#list .number').text();
+
+      // $('div[id="list"]').on('scroll', function (e) {
+
+      //   var list = $(this);
+
+      //   console.log(list.scrollTop() + list.innerHeight());
+      //   console.log(list[0].scrollHeight);
+
+      //   if (list.scrollTop() + list.innerHeight() >= list[0].scrollHeight - 1) {
+
+      //     offset += 20;
+
+      //     $.ajax({
+      //       type: "POST",
+      //       url: '/map',
+      //       data: {
+      //         offset: offset
+      //       },
+      //       beforeSend: function () {
+      //         if(offset)
+      //         $('.map_loader').addClass('show');
+      //       },
+      //       dataType: 'json',
+      //       success: function (data) {
+
+      //         $('.map_loader').removeClass('show');
+
+      //         if (data) {
+      //           for (var i = 0; i < data.length; i++) {
+
+      //             var clone = $('.list_inner').eq(0).clone();
+      //             clone.find('.id').attr('id', data[i].id).attr('job-link', '/jobs/' + data[i].id).removeClass('active');
+      //             clone.find('.title').text(data[i].title);
+      //             clone.find('.top-picture').text(data[i].top_picture);
+      //             clone.find('.category').children('span').remove();
+
+      //             if (data[i].category) {
+      //               var category = data[i].category.split(',');
+      //               for (var j = 0; j < category.length; j++) {
+      //                 clone.find('.category').append('<span>' + category[j] + '</span>');
+
+      //                 if (j == 1) {
+      //                   break;
+      //                 }
+      //               }
+      //             }
+
+      //             clone.find('.city').text(data[i].city);
+      //             clone.find('.salary').text(data[i].salary);
+
+      //             list.append(clone);
+      //           }
+      //         }
+      //       }
+      //     });
+      //   }
+      // });
     </script>
   </section>
-
-
-
-
-
-
-
 </main>
 
 

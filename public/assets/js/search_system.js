@@ -194,7 +194,7 @@
 
     function load_lines_stations_view(pref_index) {
         $('#modal2 #choice2_pref_' + pref_index).show();
-        $('#modal2 #choice2_pref_' + pref_index).css({visibility: 'visible'});
+        $('#modal2 #choice2_pref_' + pref_index).css({ visibility: 'visible' });
     }
 
     $('body').on('change', '#modal2 .line', function () {

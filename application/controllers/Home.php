@@ -6,23 +6,17 @@ class Home extends CI_Controller
 	public function __construct()
 	{
 		parent::__construct();
-
-		if ($this->router->fetch_method() != 'job_list_get') {
-			if (isset($_SESSION['search_sess'])) {
-				unset($_SESSION['search_sess']);
-			}
-		}
 	}
 
 	public function index()
 	{
 		$data = [];
 
-			$data['total_jobs'] = $this->jobs_model->get_all_cnt();
-			$data['new_jobs'] = $this->jobs_model->get_new_jobs();
-			$data['direct'] = $this->jobs_model->get_direct();
-			$data['deployment'] = $this->jobs_model->get_deployment();
-			$data['news'] = $this->news_model->get_new_news();
+		$data['total_jobs'] = $this->jobs_model->get_all_cnt();
+		$data['new_jobs'] = $this->jobs_model->get_new_jobs();
+		$data['direct'] = $this->jobs_model->get_direct();
+		$data['deployment'] = $this->jobs_model->get_deployment();
+		$data['news'] = $this->news_model->get_new_news();
 
 
 		$this->load->view('home', $data);
@@ -68,7 +62,7 @@ class Home extends CI_Controller
 		$freeword = isset($_SESSION['search_sess']['freeword']) ? $_SESSION['search_sess']['freeword'] : '';
 
 		$offset = 0;
-		$limit = 100;
+		$limit = 20;
 
 		$data['jobs'] = $this->jobs_model->get_all($offset, $limit, $areas, $stations, $employment_types, $salary, $job_types, $categories, $traits, $freeword);
 		$data['total_jobs'] = $this->jobs_model->get_all_cnt($areas, $stations, $employment_types, $salary, $job_types, $categories, $traits, $freeword);
@@ -94,16 +88,19 @@ class Home extends CI_Controller
 		$_SESSION['search_sess']['job_types'] = $job_types;
 		$_SESSION['search_sess']['categories'] = $categories;
 		$_SESSION['search_sess']['traits'] = $traits;
+		$_SESSION['search_sess']['freeword'] = $freeword;
 
 		$offset = 0;
-		$limit = 100;
+		$limit = 99999;
 
 		$data['jobs'] = $this->jobs_model->get_all($offset, $limit, $areas, $stations, $employment_types, $salary, $job_types, $categories, $traits, $freeword);
 
+		// if (!empty($offset)) {
+		// 	echo json_encode($data['jobs']);
+		// } else {
 		$data['total_jobs'] = $this->jobs_model->get_all_cnt($areas, $stations, $employment_types, $salary, $job_types, $categories, $traits, $freeword);
-
 		$this->load->view('map', $data);
-
+		// }
 	}
 
 	public function total_jobs()
@@ -167,6 +164,15 @@ class Home extends CI_Controller
 
 		$this->init_pagination($data['total_jobs'], 'job_list', $limit);
 
+		$data['areas'] = $areas;
+		$data['stations'] = $stations;
+		$data['salary'] = $salary;
+		$data['employment_types'] = $employment_types;
+		$data['job_types'] = $job_types;
+		$data['categories'] = $categories;
+		$data['traits'] = $traits;
+		$data['freeword'] = $freeword;
+
 		$this->load->view('job_list', $data);
 
 	}
@@ -189,7 +195,7 @@ class Home extends CI_Controller
 		$_SESSION['search_sess']['job_types'] = $job_types;
 		$_SESSION['search_sess']['categories'] = $categories;
 		$_SESSION['search_sess']['traits'] = $traits;
-
+		$_SESSION['search_sess']['freeword'] = $freeword;
 
 		$limit = 10;
 		$offset = (1 * $limit) - $limit;
@@ -201,6 +207,15 @@ class Home extends CI_Controller
 		$data['total_jobs'] = $this->jobs_model->get_all_cnt($areas, $stations, $employment_types, $salary, $job_types, $categories, $traits, $freeword);
 
 		$this->init_pagination($data['total_jobs'], 'job_list', $limit);
+
+		$data['areas'] = $areas;
+		$data['stations'] = $stations;
+		$data['salary'] = $salary;
+		$data['employment_types'] = $employment_types;
+		$data['job_types'] = $job_types;
+		$data['categories'] = $categories;
+		$data['traits'] = $traits;
+		$data['freeword'] = $freeword;
 
 		$this->load->view('job_list', $data);
 	}
@@ -255,7 +270,7 @@ class Home extends CI_Controller
 			$data['current_index_end'] = count($data['jobs']);
 		}
 
-		$this->init_pagination(count($data['jobs']), 'job_list', $limit);
+		$this->init_pagination(count($data['jobs']), 'favorites', $limit);
 
 		$this->load->view('favorites', $data);
 	}
