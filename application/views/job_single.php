@@ -1,9 +1,8 @@
-<?php include ('header.php'); ?>
-
-<main id="job_single">
-
-  <!--<div class="registration"><a href="" target="_blank">まずは簡単登録</a></div>-->
-
+﻿<?php include ('header.php'); ?>
+<main id="job_single"> 
+  
+  <!--<div class="registration"><a href="" target="_blank">まずは簡単登録</a></div>--> 
+  
   <!-- <section class="search_area">
     <div class="search_inner">
       <ul>
@@ -32,14 +31,18 @@
       <div class="job_result_wrap">
         <div class="inner">
           <?php if (!empty($job['category'])): ?>
-            <div class="category">
-              <?php foreach (explode(',', $job['category']) as $category): ?>
-                <span><?= $category ?></span>
-              <?php endforeach; ?>
-            </div>
+          <div class="category">
+            <?php foreach (explode(',', $job['category']) as $category): ?>
+            <span>
+            <?= $category ?>
+            </span>
+            <?php endforeach; ?>
+          </div>
           <?php endif; ?>
-          <p><?= $job['title'] ?></p>
-          <img src="/assets/img/result_img.png" width="260" height="180">
+          <p class="result_title">
+            <?= $job['title'] ?>
+          </p>
+          <div class="result_img1"><img src="/assets/img/result_img.png"></div>
           <div class="table_area">
             <table>
               <tr>
@@ -48,16 +51,19 @@
               </tr>
               <tr>
                 <th class="attribute">勤務地</th>
-                <td><?= $job['a_pref'] ?><?= $job['city'] ?></td>
+                <td><?= $job['a_pref'] ?>
+                  <?= $job['city'] ?></td>
               </tr>
               <tr>
                 <th class="attribute">最寄り駅</th>
-                <td>
-                  <?php foreach ($job['jobs_stations'] as $job_station): ?>
-                    <?= $job_station['line'] ?>   <?= str_replace('駅', '', $job_station['station']) ?>駅
-                    徒歩<?= $job_station['walking_distance'] ?>分<br />
-                  <?php endforeach; ?>
-                </td>
+                <td><?php foreach ($job['jobs_stations'] as $job_station): ?>
+                  <?= $job_station['line'] ?>
+                  <?= str_replace('駅', '', $job_station['station']) ?>
+                  駅
+                  徒歩
+                  <?= $job_station['walking_distance'] ?>
+                  分<br />
+                  <?php endforeach; ?></td>
               </tr>
               <tr>
                 <th class="attribute">業務内容</th>
@@ -68,12 +74,15 @@
                 <td><?= $job['has_requirement'] ?></td>
               </tr>
             </table>
-            <small><?= str_replace(',', ' / ', $job['traits']) ?></small>
+            <small>
+            <?= str_replace(',', ' / ', $job['traits']) ?>
+            </small>
           </div>
-
-          <div class="job_detail">
+          <div class="job_detail"> 
             <!-- <dt>【仕事内容】</dt> -->
-            <div><?= $job['body'] ?></div>
+            <div>
+              <?= $job['body'] ?>
+            </div>
           </div>
           <!-- <img src="/assets/img/detail_img.png" width="336" height="207" class="detail_img"> -->
           <table class="company_detail">
@@ -95,33 +104,38 @@
             </tr>
             <tr>
               <th class="attribute">住所</th>
-              <td><?= $job['a_pref'] ?><?= $job['city'] ?><?= $job['address'] ?></td>
+              <td><?= $job['a_pref'] ?>
+                <?= $job['city'] ?>
+                <?= $job['address'] ?></td>
             </tr>
             <tr>
               <th class="attribute">最寄り駅</th>
-              <td>
-                <?php foreach ($job['jobs_stations'] as $job_station): ?>
-                  <?= $job_station['line'] ?>   <?= str_replace('駅', '', $job_station['station']) ?>駅
-                  徒歩<?= $job_station['walking_distance'] ?>分<br />
-                <?php endforeach; ?>
-              </td>
+              <td><?php foreach ($job['jobs_stations'] as $job_station): ?>
+                <?= $job_station['line'] ?>
+                <?= str_replace('駅', '', $job_station['station']) ?>
+                駅
+                徒歩
+                <?= $job_station['walking_distance'] ?>
+                分<br />
+                <?php endforeach; ?></td>
             </tr>
             <tr>
               <?php foreach ($job['custom_fields'] as $custom_field): ?>
-                <th class="attribute"><?= $custom_field['title'] ?></th>
-                <td><?= nl2br($custom_field['detail']) ?></td>
-              </tr>
+              <th class="attribute"><?= $custom_field['title'] ?></th>
+              <td><?= nl2br($custom_field['detail']) ?></td>
+            </tr>
             <?php endforeach; ?>
           </table>
           <ul class="button_area">
             <li>
               <button class="favorite_btn<?= in_array($job['id'], $favorites) ? ' favorite_btn--remove' : '' ?>"
                 status="<?= !in_array($job['id'], $favorites) ? 0 : 1 ?>" job-id="<?= $job['id'] ?>">★
-                <?= in_array($job['id'], $favorites) ? '検討中リストから削除する' : '検討中リストに追加する' ?></button>
+              <?= in_array($job['id'], $favorites) ? '検討中リストから削除する' : '検討中リストに追加する' ?>
+              </button>
             </li>
             <li><a href="/jobs/<?= $job['id'] ?>/entry">応募する</a></li>
           </ul>
-          <script src="/assets/js/favorite_btn.js"></script>
+          <script src="/assets/js/favorite_btn.js"></script> 
         </div>
       </div>
     </div>
@@ -180,7 +194,6 @@
         </div>
       </div>
     </div>
-  </section> -->
+  </section> --> 
 </main>
-
 <?php include ('footer.php'); ?>

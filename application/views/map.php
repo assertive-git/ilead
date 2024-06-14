@@ -1,4 +1,4 @@
-<?php include ('header.php'); ?>
+﻿<?php include ('header.php'); ?>
 
 <main id="map">
 
@@ -37,20 +37,19 @@
   </section>
 
   <section class="side_list">
-    <div class="menu-trigger active" href=""> <span><img src="/assets/img/map_arrow_open.png"></span></div>
+    <div class="menu-trigger active"> <span><img src="/assets/img/map_arrow_open.png"></span></div>
     <script>
       $('.menu-trigger').click(function () {
         var img = $(this).children('span').children('img');
 
         if ($(this).hasClass('active')) {
-          img.attr('src', '/assets/img/map_arrow_open.png');
-        } else {
           img.attr('src', '/assets/img/map_arrow_close.png');
+        } else {
+          img.attr('src', '/assets/img/map_arrow_open.png');
         }
       })
     </script>
     <div id="list" class="list open">
-      <div class="map_loader">読込中・・・</div>
       <p>検索結果一覧　全<span class="number"><?= $total_jobs ?></span>件</p>
       <?php $job_ids = []; ?>
       <?php foreach ($jobs as $job): ?>

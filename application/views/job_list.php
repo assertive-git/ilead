@@ -1,6 +1,6 @@
-<?php include ('header.php'); ?>
+﻿<?php include ('header.php'); ?>
 
-<main>
+<main id="job_list">
 
   <!--<div class="registration"><a href="" target="_blank">まずは簡単登録</a></div>-->
 
@@ -66,7 +66,7 @@
                     <?php endforeach; ?>
                   </div>
                 <?php endif; ?>
-                <p><?= ellipsize($job['title'], 43) ?></p>
+                <p class="result_title"><?= ellipsize($job['title'], 43) ?></p>
                 <div class="table_area">
                   <table>
                     <tr>
@@ -94,7 +94,7 @@
                   </table>
                   <small><?= str_replace(',', ' / ', $job['traits']) ?></small>
                 </div>
-                <img src="/uploads/top_picture/<?= $job['top_picture'] ?>" width="260" height="180">
+                <div class="list_img"><img src="/uploads/top_picture/<?= $job['top_picture'] ?>"></div>
                 <ul class="button_area">
                   <li>
                     <button class="favorite_btn<?= in_array($job['id'], $favorites) ? ' favorite_btn--remove' : '' ?>"

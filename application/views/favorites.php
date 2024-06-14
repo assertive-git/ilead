@@ -1,8 +1,8 @@
-<?php include ('header.php'); ?>
+﻿<?php include ('header.php'); ?>
 <main id="mypage">
   <!-- <div class="registration pc"><a href="form" target="_blank">まずは簡単登録</a></div> -->
   <section class="search_result">
-    <p>★検討中リスト一覧　全<span class="number"><?= count($jobs) ?></span>件</p>
+    <p>★検討中リスト　全<span class="number"><?= count($jobs) ?></span>件</p>
   </section>
   <section class="job_result">
     <div class="job_result_inner">
@@ -36,7 +36,7 @@
                   <?php endforeach; ?>
                 </div>
               <?php endif; ?>
-              <p>店舗責任者候補を募集！薬剤師として成長したい方歓迎！</p>
+              <p class="result_title">店舗責任者候補を募集！薬剤師として成長したい方歓迎！</p>
               <div class="table_area">
                 <table>
                   <tr>
@@ -64,7 +64,7 @@
                 </table>
                 <small><?= str_replace(',', ' / ', $job['traits']) ?></small>
               </div>
-              <img src="/uploads/top_picture/<?= $job['top_picture'] ?>" width="260" height="180">
+              <div class="list_img"><img src="/uploads/top_picture/<?= $job['top_picture'] ?>"></div>
               <ul class="button_area">
                 <li>
                   <button class="favorite_btn favorite_btn--remove" job-id="<?= $job['id'] ?>">★ 検討中リストから削除する</button>

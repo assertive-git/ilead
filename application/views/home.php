@@ -1,4 +1,4 @@
-<?php include ('header.php'); ?>
+﻿<?php include ('header.php'); ?>
 
 <main>
   <section class="main_img">
@@ -171,7 +171,7 @@
             生まれる本質的なフィッティングの実現を目的とし、<br>
             双方を深く理解した上でご提案を行っています。</p>
         </div>
-        <img src="assets/img/aboutus_figure.png" alt="事業構成チャート" width="527" height="518">
+        <div class="aboutus_img"><img src="assets/img/aboutus_figure.png" alt="事業構成チャート"></div>
         <div><a href="">就業までの流れ</a></div>
       </div>
     </div>

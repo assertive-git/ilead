@@ -1,9 +1,8 @@
-@charset "utf-8";
+﻿@charset "utf-8";
 
 /*{
     outline: red 1px solid;
 }*/
-
 html {
   font-size: 62.5%;
   letter-spacing: 0.1em;
@@ -41,7 +40,7 @@ h2 span {
 
 h3 {
   font-size: 2.5rem;
-  font-weight: 700;
+  font-weight: 500;
   text-align: center;
   color: #555;
   margin: 2rem 0 3.5rem;
@@ -157,7 +156,7 @@ main .search .main7 li {
   box-shadow: 0px 2px #cfcfcf;
   border-radius: 5px;
   font-size: 2rem;
-  font-weight: 500;
+  font-weight: 400;
   letter-spacing: 0.1em;
 }
 
@@ -197,7 +196,7 @@ main .search .form {
 main .search .form h4,
 main .search .freeword h4 {
   font-size: 1.6rem;
-  font-weight: 500;
+  font-weight: 400;
   letter-spacing: 0.1em;
   margin-bottom: 0.5rem;
 }
@@ -222,14 +221,12 @@ main .search .freeword input::placeholder {
   font-weight: 400;
 }
 
-
-
 main .search .button_area {
   margin-top: 3rem;
   display: flex;
   flex-wrap: wrap;
   justify-content: right;
-  font-weight: 500;
+  font-weight: 400;
   letter-spacing: 0.06em;
 }
 
@@ -256,12 +253,6 @@ main .search .button_area button.reset {
   margin-right: 9rem;
 }
 
-
-
-
-
-
-
 main .modal_container .button_area {
   margin-top: 0;
   display: flex;
@@ -278,12 +269,6 @@ main .modal_container .button_area button.submit {
 main .search .button_area button.reset {
   margin-right: 0;
 }
-
-
-
-
-
-
 
 .plus {
   position: absolute;
@@ -317,8 +302,8 @@ main .search .tab li a {
   background: #cfcfcf;
   padding: 10px 20px;
   font-size: 2rem;
-  font-weight: 600;
-  letter-spacing: 0.04em;
+  font-weight: 500;
+  letter-spacing: 0.1em;
   text-align: center;
   border-radius: 10px 10px 0 0;
   align-items: center
@@ -355,8 +340,6 @@ main .search .area.is-active {
   animation-fill-mode: forwards;
 }
 
-
-
 /*---▼モーダル▼---*/
 .modal {
   display: none;
@@ -383,7 +366,6 @@ main .search .area.is-active {
 .modal .button_area button.reset {
   margin-right: 0 !important;
 }*/
-
 .modal-content {
   background: #FFF;
   overflow-y: auto;
@@ -512,8 +494,6 @@ main .search .area.is-active {
 .modal_container .scroll_inner {
   cursor: pointer;
 }
-
-
 
 .modal_container .choice label {
   position: relative;
@@ -657,7 +637,7 @@ main .search .area.is-active {
 
 .big {
   font-size: 2.5rem;
-  font-weight: 600;
+  font-weight: 500;
   color: #004191;
 }
 
@@ -683,9 +663,6 @@ main .search .area.is-active {
 }
 
 /*▲---モーダル---▲*/
-
-
-
 main .recruitment {
   width: min(86%, 1200px);
   margin: 0 auto;
@@ -721,8 +698,8 @@ main .recruitment_slider_wrap {
 .slide_item dt {
   display: inline-block;
   font-size: min(18 / 1200* 100vw, 1.8rem);
-  font-weight: 600;
-  line-height: 1.4;
+  font-weight: 500;
+  line-height: 1.6;
   text-align: justify;
 }
 
@@ -879,6 +856,7 @@ main .aboutus .aboutus_back .aboutus_inner .text {
 
 main .aboutus .aboutus_back .aboutus_inner .text .lead {
   font-size: min(25 / 1200* 100vw, 2.5rem);
+  font-weight: 400;
   text-align: center;
   display: inline-block;
   line-height: 1.4;
@@ -890,6 +868,7 @@ main .aboutus .aboutus_back .aboutus_inner .text p {
   line-height: 2.5;
   letter-spacing: 0.1em;
   margin-bottom: 3.6rem;
+  font-weight: 400;
 }
 
 main .aboutus .aboutus_back .aboutus_inner .text p.lead span {
@@ -897,11 +876,15 @@ main .aboutus .aboutus_back .aboutus_inner .text p.lead span {
   font-weight: 300;
 }
 
-main .aboutus .aboutus_back .aboutus_inner img {
+main .aboutus .aboutus_back .aboutus_inner .aboutus_img {
   width: min(50%, 527px);
-  height: fit-content;
   margin-left: 3vw;
   margin-top: 2rem;
+}
+
+main .aboutus .aboutus_back .aboutus_inner img {
+  width: 100%;
+  height: auto;
 }
 
 main .aboutus .aboutus_back .aboutus_inner a {
@@ -1109,7 +1092,7 @@ footer .footer_area {
 footer .footer_area p {
   font-size: min(10 / 1200* 100vw, 1rem);
   margin-top: 3.5rem;
-  font-weight: 500;
+  font-weight: 400;
 }
 
 footer .footer_area p .company_name {
@@ -1117,6 +1100,7 @@ footer .footer_area p .company_name {
 }
 
 /*----job_list---*/
+
 main .search_area {
   width: 100%;
   background-color: #65b9e7;
@@ -1174,7 +1158,6 @@ main .search_area .search_inner ul li.freeword input[type="submit"] {
 /*main .search_area .search_inner ul li.freeword input[type="text"] {
   width: 14vw;
 }*/
-
 main .search_area .button_area button.reset {
   background-color: #fff;
   width: min(15vw, 140px);
@@ -1212,7 +1195,7 @@ main .search_result p {
 main .search_result p .number {
   text-align: center;
   font-size: 2.5rem;
-  font-weight: 600;
+  font-weight: 500;
   color: #004191;
 }
 
@@ -1231,7 +1214,7 @@ main .job_result {
 
 .pagination .page .pagination-item {
   margin: 0 0.6em;
-  color: #999;
+  color: #bbb;
 }
 
 .pagination .page .pagination-item:last-child {
@@ -1372,11 +1355,31 @@ main .job_result .job_result_inner .job_result_wrap {
 }
 
 main .job_result .job_result_inner .job_result_wrap .inner {
-  padding: 2rem 7rem 3rem;
+  padding: 5rem 7rem;
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
   gap: 0 1rem;
+}
+
+main .job_result .job_result_inner .job_result_wrap .inner .result_img1 {
+  width: 40%;
+}
+
+main .job_result .job_result_inner .job_result_wrap .inner .result_img1 img {
+  width: 100%;
+}
+
+main .job_result .job_result_inner .job_result_wrap .inner .job_detail {
+  margin-top: 5rem;
+  font-size: 1.4rem;
+  text-align: justify;
+}
+
+main .job_result .job_result_inner .job_result_wrap .inner .result_title {
+  font-size: 2.5rem;
+  line-height: 1.6;
+  margin-bottom: 1.8rem;
 }
 
 main .job_result .job_result_inner .job_result_wrap .inner p.title {
@@ -1389,7 +1392,6 @@ main .job_result .job_result_inner .job_result_wrap .inner p.title {
 main .job_result .job_result_inner .job_result_wrap .inner p {
   font-size: 1.4rem;
   font-weight: 400;
-  margin-bottom: 1rem;
   text-align: justify;
 }
 
@@ -1397,7 +1399,7 @@ main .job_result .job_result_inner .job_result_wrap .inner .button_area {
   display: flex;
   justify-content: center;
   gap: 4%;
-  margin: 2rem auto 0;
+  margin: 5rem auto 0;
 }
 
 main .job_result .job_result_inner .job_result_wrap .inner .button_area .favorite_btn {
@@ -1427,20 +1429,23 @@ main .job_result .job_result_inner .job_result_wrap .inner .button_area a {
 
 main .job_result .job_result_inner .job_result_wrap .inner .category {
   width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: min(2vw, 1rem);
+  margin-bottom: 1.8rem;
 }
 
 main .job_result .job_result_inner .job_result_wrap .inner .category span {
   display: inline-block;
   font-size: min(14 / 1200* 100vw, 1.4rem);
-  font-weight: 500;
+  font-weight: 400;
   color: #65b9e7;
   padding: 0.1em 1.4em;
-  margin: 0 1rem 1rem 0;
   border: 1px solid #65b9e7;
 }
 
 main .job_result .job_result_inner .job_result_wrap .inner .table_area {
-  width: 66%;
+  width: 56%;
   font-size: 1.4rem;
 }
 
@@ -1464,6 +1469,7 @@ main .job_result .job_result_inner .job_result_wrap .inner table th {
   border-right: 2px solid #fff;
   white-space: nowrap;
   vertical-align: middle;
+  width: 22%;
 }
 
 main .job_result .job_result_inner .job_result_wrap .inner table td {
@@ -1551,7 +1557,7 @@ main .job_result .area.is-active {
 }
 
 #job_single table.company_detail {
-  margin: 10rem 0 8rem;
+  margin-top: 6rem;
   font-size: 1.4rem;
 }
 
@@ -1603,11 +1609,22 @@ main .job_result .area.is-active {
   justify-content: flex-end;
   text-align: center;
   background-color: #ccc;
-  font-weight: 600;
+  font-weight: 400;
   letter-spacing: 0.1em;
   border-radius: 8px;
   padding: 1.4rem 2rem;
-  margin-bottom: 6rem;
+}
+
+#mypage .table_area {
+  width: 64%;
+}
+
+.list_img {
+  width: 40%;
+}
+
+.list_img img {
+  width: 100%;
 }
 
 /*-------news_list---------*/
@@ -1675,13 +1692,13 @@ main .job_result .area.is-active {
 }
 
 /*---stepナビ---*/
-.progressbar {
+#form .progressbar {
   display: flex;
   margin: 4rem auto;
   width: 744px;
 }
 
-.progressbar .item {
+#form .progressbar .item {
   position: relative;
   width: 33%;
   text-align: center;
@@ -1693,8 +1710,8 @@ main .job_result .area.is-active {
   font-size: 2.2rem;
 }
 
-.progressbar .item:not(:last-child)::before,
-.progressbar .item:not(:last-child)::after {
+#form .progressbar .item:not(:last-child)::before,
+#form .progressbar .item:not(:last-child)::after {
   position: absolute;
   z-index: 2;
   top: 0;
@@ -1706,23 +1723,23 @@ main .job_result .area.is-active {
   margin: auto;
 }
 
-.progressbar .item:not(:last-child)::before {
+#form .progressbar .item:not(:last-child)::before {
   margin-left: 1px;
   border-left-color: #FFF;
 }
 
 /* active */
-.progressbar .item.active {
+#form .progressbar .item.active {
   z-index: 1;
   background: #0070BD;
   color: #FFF;
 }
 
-.progressbar .item.active:not(:last-child)::after {
+#form .progressbar .item.active:not(:last-child)::after {
   border-left-color: #0070bd;
 }
 
-.progressbar .item.active:not(:last-child)::before {
+#form .progressbar .item.active:not(:last-child)::before {
   border-left: none;
 }
 
@@ -1732,8 +1749,34 @@ main .job_result .area.is-active {
   border-left: 1px solid #ccc;
 }
 
+#form form .name input,
+#form form .kana input {
+  width: 30%;
+}
+
 #form form dl div.address {
-  display: block;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  width: 76%;
+  padding: 3rem 4rem;
+}
+
+#form form dl div.address dd {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0;
+}
+
+#form form dl div.address dd.zip {
+  display: flex;
+  flex-wrap: nowrap;
+  width: 100%;
+  gap: 1rem;
+}
+
+#form form dl div.address dd.zip input {
+  width: 16%;
 }
 
 #form form dl:not(:last-child) {
@@ -1788,6 +1831,14 @@ main .job_result .area.is-active {
   color: #ccc;
 }
 
+#form form .birthday input {
+  width: 10%;
+}
+
+#form form .mail_add input {
+  width: 60%;
+}
+
 #form p.privacy {
   text-align: center;
   margin: 6rem 0 0;
@@ -1812,54 +1863,45 @@ main .job_result .area.is-active {
 }
 
 #form .form_btn input.btn_submit_back {
-
   color: #fff;
   background-color: #999;
 }
 
-.confirm {
-
+#form.confirm {
   width: min(86%, 1200px);
   margin: 4rem auto 0;
 }
 
-.confirm .contact_h {
+#form.confirm .contact_h {
   font-size: 3.3rem;
   font-weight: 600;
   color: #333;
   text-align: left;
 }
 
-.complete {
-
+#form.complete {
   width: min(86%, 1200px);
   margin: 4rem auto 0;
 }
 
-.complete .contact_h {
+#form.complete .contact_h {
   font-size: 3.3rem;
   font-weight: 600;
   color: #333;
   text-align: left;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+#form.complete p.top_buttona a {
+  display: block;
+  text-align: center;
+  margin: 2rem auto;
+  font-size: 1.8rem;
+  border: 1px solid #555;
+  border-radius: 2px;
+  padding: 2rem 4rem;
+}
 
 /*-------map---------*/
-
 #map {
   overflow: hidden;
 }
@@ -2086,18 +2128,6 @@ main .job_result .area.is-active {
     margin: 2rem auto;
   }
 
-
-
-
-
-
-
-
-
-
-
-
-
   #map {
     position: relative;
   }
@@ -2118,6 +2148,7 @@ main .job_result .area.is-active {
 
   #map .menu-trigger img {
     width: 100%;
+    transform: rotate(90deg);
   }
 
   #map .menu-trigger.active {
@@ -2184,7 +2215,6 @@ main .job_result .area.is-active {
 
 
 
-}
 
 
 
@@ -2216,764 +2246,806 @@ main .job_result .area.is-active {
 
 
 
-@media (max-width: 768px) {
-  .pc {
-    display: none;
-  }
-
-  .sp {
-    display: inline-block;
-  }
-
-  header .header_inner {
-    height: 8vh;
-    width: 86%;
-  }
-
-  header .header_inner .logo img {
-    width: 110px;
-  }
-
-  header .header_inner .pc_nav {
-    display: none;
-  }
-
-  main .main_img {
-    position: relative;
-    width: 100%;
-    height: 60vh;
-    background-image: url(../img/main_img.jpg);
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: 61% center;
-    border-radius: 0;
-  }
-
-  main .main_img p.main_copy {
-    font-size: 7vw;
-    margin-left: 7%;
-    margin-top: 8%;
-  }
-
-  main .main_img span.sub_copy {
-    font-size: 3vw;
-  }
-
-  main .search {
-    width: 95%;
-    margin: -34vw auto 0;
-  }
-
-  main .search .freeword h4 {
-    line-height: 1.4;
-    margin-bottom: 1rem;
-  }
-
-  main .search .tab li {
-    width: 49%;
-    background: none;
-    padding: 0;
-    margin-bottom: 0;
-  }
-
-  main .search .tab li.active a {
-    font-size: 3.4vw;
-  }
-
-  main .search .tab li a {
-    padding: 10px;
-    font-size: 3.4vw;
-    border-radius: 6px 6px 0 0;
-  }
-
-  main .search .tab li a i {
-    font-size: 4vw;
-  }
-
-  main .search .main7 li {
-    width: 100%;
-    padding: 1rem 2.4rem;
-  }
-
-  main .registration {
-    display: flex;
-    justify-content: center;
-  }
-
-  main .registration a {
-    position: relative;
-    width: 95%;
-    top: -40vw;
-    height: 75px;
-    font-size: 2.5rem;
-    writing-mode: horizontal-tb;
-    border-radius: 6px;
-    box-shadow: 0 2px #ff6868;
-    z-index: 999;
-  }
-
-  main .search li {
-    width: 100%;
-    padding: 0;
-    background-color: none;
-    box-shadow: none;
-    border-radius: 2px;
-    font-size: 1.6rem;
-    font-weight: 500;
-    letter-spacing: 0.1em;
-    margin-bottom: 0;
-  }
-
-  main .search .area {
-    padding: 2rem;
-    border-radius: 0 0 5px 5px;
-    box-shadow: 0px 2px #d3d3d3;
-  }
-
-  main .search .area2 {
-    padding: 2rem;
-    border-radius: 0 0 5px 5px;
-    box-shadow: 0px 2px #d3d3d3;
-  }
-
-  main .search .main7 li.freeword {
-    width: 100%;
-  }
-
-  main .search li.number_text {
-    margin-top: 0;
-  }
-
-  main .search .form {
-    width: 100%;
-    margin-bottom: 1rem;
-    padding: 1rem 1.6rem;
-    box-shadow: 0px 1px #cfcfcf;
-    font-size: 1.6rem;
-  }
-
-  .plus {
-    right: 5%;
-  }
-
-  main .search .button_area {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-
-  main .search .button_area button.submit {
-    margin-right: 0;
-    padding: 0.6vh 0;
-    width: 100%;
-    font-size: 2vh;
-  }
-
-  main .search .button_area button.reset {
-    margin-top: 1.2rem;
-    width: 100%;
-    padding: 0.6vh 0;
-    font-size: 2vh;
-  }
-
-  main .search .number_text {
-    order: 3;
-  }
-
-  main .search_area {
-    background-color: #e3f7f6;
-    padding: 2rem 0;
-  }
-
-  main .search_area ul {
-    width: 90%;
-    justify-content: space-between;
-    gap: 8px 7px;
-    margin: 0 auto;
-  }
-
-  main .search_area .search_inner {
-    width: 100%;
-  }
-
-  main .search_area .search_inner .plus {
-    font-size: 6vw;
-  }
-
-  main .search_area .search_inner ul {
-    width: 92%;
-  }
-
-  main .search_area .search_inner ul li {
-    width: 44vw;
-    font-size: 3vw;
-    padding: 1.4vw 5vw 1.4vw 4vw;
-    border-radius: 3px;
-  }
-
-  main .search_area .search_inner ul li.freeword {
-    width: 90vw;
-  }
-
-  main .search_area .search_inner ul li.freeword input[type="submit"] {
-    width: 10vw;
-    border-radius: 0 3px 3px 0;
-  }
-
-  main .search_area .search_inner .button_area {
-    width: 100vw;
-    border-top: 1px solid #fff;
-    margin: 4vw auto 0;
-    padding-top: 4vw;
-    text-align: center;
-  }
-
-  main .search_area .button_area button.reset {
-    width: 34vw;
-    height: 10vw;
-    border-radius: 5vw;
-    font-size: 3.2vw;
-  }
-
-  a.consider_list {
-    font-size: 3.2vw;
-    width: 34vw;
-    height: 10vw;
-    border-radius: 5vw;
-  }
-
-  .modal-top {
-    right: 20px;
-    top: 1.3vh;
-  }
-
-  main .modal-content {
-    width: 100%;
-    height: 100%;
-  }
-
-  .modal_container .search_inner {
-    padding: 5vw;
-    height: 53vh;
-    overflow: auto;
-  }
-
-  .modal_container .search_inner2 {
-    padding: 5vw;
-  }
-
-  .modal_container .button_area {
-    padding: 1vh 4vh 4vh;
-    position: absolute;
-    bottom: 0;
-    background-color: #fff;
-  }
-
-  .modal_container .button_area .number {
-    text-align: center;
-    letter-spacing: 0;
-  }
-
-  .modal_container .choice {
-    width: 100%;
-    max-height: 63vh;
-    margin: 0 auto 4rem;
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 1.6vw 1rem;
-  }
-
-  .modal_container .choice label {
-    width: 100%;
-    font-size: 1.2rem;
-    padding: 0.6rem 1rem;
-  }
-
-  .modal_container .region label,
-  .modal_container .prefectures label {
-    font-size: 1.2rem;
-    padding: 1rem 1.6rem;
-  }
-
-  .modal_container h4 {
-    font-size: 1.6rem;
-    margin: 2.2vh auto;
-  }
-
-  .modal_container .choice2 {
-    height: 58vh;
-    padding: 5vw;
-    gap: 4vw;
-  }
-
-  .modal_container .choice2 .route {
-    width: 50%;
-  }
-
-  .modal_container .choice2 .choice_inner {
-    height: 44vh;
-  }
-
-  .modal_container .choice2 .choice_inner li {
-    padding: 0.4rem 1rem;
-    font-size: 1.2rem;
-  }
-
-  .modal_container .choice2 .station .scroll_inner li:not(:first-child) {
-    padding-left: 1rem;
-  }
-
-  .modal_container .salary li {
-    font-size: 1.2rem;
-  }
-
-  main .search .freeword span {
-    font-size: 1.2rem;
-    margin-left: 0;
-  }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  h2 span {
-    font-size: 3vw;
-    color: #555555;
-    display: block;
-  }
-
-  h2 {
-    font-size: 10vw;
-  }
+  @media (max-width: 768px) {
+    .pc {
+      display: none;
+    }
 
-  h3 {
-    font-size: 5vw;
-    margin: 2rem 0 0;
-  }
-
-  .slide_item {
-    width: min(100%, 320px);
-    padding: 35px;
-    margin-right: 20px;
-    background-color: #fff;
-  }
-
-  .slide_item .category span {
-    font-size: 3.4vw;
-  }
-
-  .slide_item dt {
-    font-size: 4.6vw;
-  }
-
-  .slide_item dd {
-    font-size: 3.4vw;
-    margin-top: 0.6rem;
-  }
-
-  .slide_item {
-    padding: 15px;
-    margin-right: none;
-    background-color: #fff;
-  }
-
-  main .recruitment {
-    padding: min(13vw, 75px) 0;
-  }
-
-  main .picup .tab li a {
-    padding: 6px;
-    font-size: 4.4vw;
-    border-radius: 6px 6px 0 0;
-  }
-
-  main .aboutus .aboutus_back {
-    width: 92%;
-    border-radius: 20px;
-    height: auto;
-    display: block;
-    background-size: 230px, 240px;
-  }
-
-  main .aboutus .aboutus_back .aboutus_inner .text {
-    width: 100%;
-    font-size: 3.2vw;
-    text-align: justify;
-  }
-
-  main .aboutus .aboutus_back .aboutus_inner .text .lead {
-    font-size: 1.9rem;
-    margin: 20px 0 16px;
-  }
-
-  main .aboutus .aboutus_back .aboutus_inner img {
-    width: 100%;
-    margin: 3rem auto 0;
-  }
-
-  main .aboutus .aboutus_back .aboutus_inner {
-    display: block;
-    width: 84%;
-    margin: 0 auto;
-    padding: 4rem 0;
-  }
-
-  main .aboutus .aboutus_back .aboutus_inner .text p.lead span {
-    font-size: 8vw;
-    line-height: 1.2;
-  }
-
-  main .aboutus .aboutus_back .aboutus_inner a {
-    width: 60vw;
-    margin: 0 auto;
-    height: 50px;
-    border-radius: 25px;
-    margin-top: 40px;
-  }
-
-  main .instagram {
-    background-color: #E3F7F7;
-    display: flex;
-    align-items: center;
-    padding: min(13vw, 90px) 0;
-  }
-
-  main .instagram .instagram_inner a.pc {
-    display: none;
-  }
-
-  main .instagram .instagram_inner a.sp {
-    width: 60vw;
-    height: 50px;
-    border-radius: 25px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 40px auto 0;
-  }
-
-  main .instagram .instagram_inner img {
-    width: 100%;
-    margin: 2.2rem 0 0;
-  }
-
-  main .news {
-    padding: min(13vw, 90px) 0;
-  }
-
-  main .news .news_inner {
-    width: 86%;
-  }
-
-  main .news .news_inner .text {
-    display: flex;
-    justify-content: space-between;
-    width: min(92%, 1200px);
-    margin-bottom: 2rem;
-  }
-
-  main .news .news_inner .news_area {
-    width: 100%;
-    font-size: 1.3rem;
-  }
-
-  main .news .news_inner .news_area span.day {
-    width: 100%;
-  }
-
-  main .news .news_inner .news_area span.title {
-    width: 100%;
-  }
-
-  footer .button_area a {
-    font-size: 3vw;
-    height: min(37vw, 400px);
-  }
-
-  footer .button_area a.company {
-    width: 100%;
-  }
-
-  footer .button_area a.contact {
-    width: 100%;
-  }
-
-  footer .button_area a p span.big {
-    font-size: 10vw;
-  }
-
-  footer .footer_area {
-    padding: min(13vw, 60px) 0;
-  }
-
-  footer .footer_area p {
-    font-size: 0.8rem;
-    margin-top: 1.5rem;
-  }
-
-  footer .footer_area p .company_name {
-    font-size: 1.4rem;
-  }
-
-  footer .footer_area .logo a img {
-    width: 30vw;
-  }
-
-  #news_single .news .news_inner span.title {
-    font-size: 5vw;
-    padding-bottom: 2rem;
-  }
-
-  #news_single a.return_button {
-    margin: 0 auto;
-  }
-
-  #news_single .news .news_inner dd {
-    font-size: 1.2rem;
-    padding: 5rem 0;
-    margin-bottom: 6rem;
-  }
+    .sp {
+      display: inline-block;
+    }
 
-  /*---job_list---*/
-  main .job_result {
-    padding: 30px 0 60px;
-  }
-
-  main .job_result .job_result_inner {
-    width: 90%;
-  }
-
-  main .job_result .job_result_inner .job_result_wrap .inner {
-    padding: 2rem 5vw 3rem;
-  }
-
-  main .job_result .job_result_inner .job_result_wrap img {
-    width: 30%;
-    height: fit-content;
-    order: 1;
-  }
-
-  main .job_result .job_result_inner .job_result_wrap .inner .category {
-    width: 65%;
-    order: 2;
-  }
-
-  main .job_result .job_result_inner .job_result_wrap .inner .table_area {
-    width: 100%;
-    order: 3;
-  }
-
-  main .job_result .job_result_inner .job_result_wrap .inner .button_area {
-    order: 4;
-    flex-wrap: wrap;
-    gap: 1rem;
-  }
-
-  main .job_result .job_result_inner .job_result_wrap .inner .button_area button {
-    width: 70vw;
-  }
-
-  main .job_result .job_result_inner .job_result_wrap .inner .button_area a {
-    width: 70vw;
-  }
-
-  main .job_result .job_result_inner .job_result_wrap .inner p.title {
-    font-size: 4vw;
-  }
-
-  main .job_result .job_result_inner .job_result_wrap .inner p {
-    font-size: 3.4vw;
-  }
-
-  main .job_result .job_result_inner .job_result_wrap .inner .category span {
-    font-size: 2.6vw;
-  }
-
-  main .job_result .job_result_inner .job_result_wrap .inner .button_area .favorite_btn {
-    width: 70vw;
-  }
-
-  main .job_result .tab {
-    margin: 1rem auto 0;
-    justify-content: center;
-  }
-
-  main .job_result .tab li {
-    width: 30%;
-  }
-
-  main .job_result .tab li a {
-    padding: 8px;
-    font-size: 1.4rem;
-  }
-
-  main .job_result .job_result_inner p.number {
-    text-align: center;
-  }
-
-  main .job_result .job_result_inner .job_result_wrap .inner table th {
-    padding: 0.6rem 1.2rem;
-    width: 30%;
-  }
+    header .header_inner {
+      height: 8vh;
+      width: 86%;
+    }
 
-  main .job_result .job_result_inner .job_result_wrap .inner table td {
-    padding: 0.6rem 1.2rem;
-  }
-
-  #mypage .registration a {
-    display: none;
-  }
-
-  #mypage button.reset {
-    margin: 0 auto 3rem;
-  }
-
-  main .job_result .job_result_inner p.number2 {
-    text-align: center;
-    margin: -2rem auto 2rem;
-  }
-
-  #job_single .job_result .job_result_inner .job_result_wrap .inner .category {
-    order: 1;
-  }
-
-  #job_single .job_result .job_result_inner .job_result_wrap .inner p {
-    order: 2;
-  }
-
-  #job_single .job_result .job_result_inner .job_result_wrap img {
-    order: 3;
-    width: 100%;
-    margin-bottom: 2rem;
-  }
-
-  #job_single dl.job_detail {
-    order: 4;
-    font-size: 1.2rem;
-  }
-
-  #job_single .job_result .job_result_inner .job_result_wrap img.detail_img {
-    order: 5;
-  }
-
-  #job_single table.company_detail {
-    order: 6;
-    margin-top: 4rem;
-    margin-bottom: 1rem;
-  }
-
-  #job_single .job_result .job_result_inner .job_result_wrap .inner .button_area {
-    order: 7;
-  }
-
-  #job_single table.company_detail th,
-  #job_single table.company_detail td {
-    width: 100%;
-    display: block;
-    font-size: 1.2rem;
-  }
-
-  #job_single table.company_detail th {
-    padding-bottom: 0;
-    padding-top: 1rem;
-  }
-
-  #job_single table.company_detail td {
-    padding-top: 0;
-    padding-bottom: 1rem;
-  }
+    header .header_inner .logo img {
+      width: 110px;
+    }
 
-  #form .progressbar {
-    width: 100%;
-  }
+    header .header_inner .pc_nav {
+      display: none;
+    }
 
-  #form .progressbar .item {
-    font-size: 11px;
-    line-height: 1.4;
-    padding: 10px 0;
-  }
+    main .main_img {
+      position: relative;
+      width: 100%;
+      height: 60vh;
+      background-image: url(../img/main_img.jpg);
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: 61% center;
+      border-radius: 0;
+    }
 
-  #form .progressbar .item:not(:last-child)::before,
-  .progressbar .item:not(:last-child)::after {
-    border-width: 18px;
-    border-left-width: 7px;
-  }
+    main .main_img p.main_copy {
+      font-size: 7vw;
+      margin-left: 7%;
+      margin-top: 8%;
+    }
 
-  #form form dl {
-    display: block;
-  }
+    main .main_img span.sub_copy {
+      font-size: 3vw;
+    }
 
-  #form form dt,
-  #form form dd {
-    display: block;
-    width: 100%;
-    padding: 1.4rem 2rem;
-  }
+    main .search {
+      width: 95%;
+      margin: -34vw auto 0;
+    }
 
-  #form form dd input {
-    font-size: 1.4rem;
-    padding: 0.4em;
-  }
+    main .search .freeword h4 {
+      line-height: 1.4;
+      margin-bottom: 1rem;
+    }
 
-  #form form dd select {
-    font-size: 1.4rem;
-    padding: 0.4em;
-  }
+    main .search .tab li {
+      width: 49%;
+      background: none;
+      padding: 0;
+      margin-bottom: 0;
+    }
 
-  #form form dt span {
-    margin-left: 1rem;
-  }
+    main .search .tab li.active a {
+      font-size: 3.2vw;
+    }
 
-  #form p.privacy {
-    text-align: justify;
-    margin: 3rem 0 0;
-    font-size: 1.4rem;
-  }
+    main .search .tab li a {
+      padding: 10px;
+      font-size: 3.2vw;
+      border-radius: 6px 6px 0 0;
+    }
 
-  #form .form_btn input {
-    font-size: 2rem;
-    width: min(86%, 400px);
-    margin: 3rem auto 5rem;
+    main .search .tab li a i {
+      font-size: 4vw;
+    }
+
+    main .search .main7 li {
+      font-size: 1.6rem;
+      width: 100%;
+      padding: 1rem 2.4rem;
+    }
+
+    main .registration {
+      display: flex;
+      justify-content: center;
+    }
+
+    main .registration a {
+      position: relative;
+      width: 95%;
+      top: -40vw;
+      height: 75px;
+      font-size: 2.5rem;
+      writing-mode: horizontal-tb;
+      border-radius: 6px;
+      box-shadow: 0 2px #ff6868;
+      z-index: 999;
+    }
+
+    main .search li {
+      width: 100%;
+      padding: 0;
+      background-color: none;
+      box-shadow: none;
+      border-radius: 2px;
+      font-size: 1.6rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      margin-bottom: 0;
+    }
+
+    main .search .area {
+      padding: 2rem;
+      border-radius: 0 0 5px 5px;
+      box-shadow: 0px 2px #d3d3d3;
+    }
+
+    main .search .area2 {
+      padding: 2rem;
+      border-radius: 0 0 5px 5px;
+      box-shadow: 0px 2px #d3d3d3;
+    }
+
+    main .search .main7 li.freeword {
+      width: 100%;
+    }
+
+    main .search li.number_text {
+      margin-top: 0;
+    }
+
+    main .search .form {
+      width: 100%;
+      margin-bottom: 1rem;
+      padding: 1rem 1.6rem;
+      box-shadow: 0px 1px #cfcfcf;
+      font-size: 1.6rem;
+    }
+
+    .plus {
+      font-size: 2.4rem;
+      right: 5%;
+    }
+
+    main .search .button_area {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    main .search .button_area button.submit {
+      margin-right: 0;
+      padding: 0.6vh 0;
+      width: 100%;
+      font-size: 2vh;
+    }
+
+    main .search .button_area button.reset {
+      margin-top: 1.2rem;
+      width: 100%;
+      padding: 0.6vh 0;
+      font-size: 2vh;
+    }
+
+    main .search .number_text {
+      order: 3;
+    }
+
+    main .search_area {
+      background-color: #e3f7f6;
+      padding: 2rem 0;
+    }
+
+    main .search_area ul {
+      width: 90%;
+      justify-content: space-between;
+      gap: 8px 7px;
+      margin: 0 auto;
+    }
+
+    main .search_area .search_inner {
+      width: 100%;
+    }
+
+    main .search_area .search_inner .plus {
+      font-size: 6vw;
+    }
+
+    main .search_area .search_inner ul {
+      width: 92%;
+    }
+
+    main .search_area .search_inner ul li {
+      width: 44vw;
+      font-size: 3vw;
+      padding: 1.4vw 5vw 1.4vw 4vw;
+      border-radius: 3px;
+    }
+
+    main .search_area .search_inner ul li.freeword {
+      width: 90vw;
+    }
+
+    main .search_area .search_inner ul li.freeword input[type="submit"] {
+      width: 10vw;
+      border-radius: 0 3px 3px 0;
+    }
+
+    main .search_area .search_inner .button_area {
+      width: 100vw;
+      border-top: 1px solid #fff;
+      margin: 4vw auto 0;
+      padding-top: 4vw;
+      text-align: center;
+    }
+
+    main .search_area .button_area button.reset {
+      width: 34vw;
+      height: 10vw;
+      border-radius: 5vw;
+      font-size: 3.2vw;
+    }
+
+    a.consider_list {
+      font-size: 3.2vw;
+      width: 34vw;
+      height: 10vw;
+      border-radius: 5vw;
+    }
+
+    .modal-top {
+      right: 20px;
+      top: 1.3vh;
+    }
+
+    main .modal-content {
+      width: 100%;
+      height: 100%;
+    }
+
+    .modal_container .search_inner {
+      padding: 5vw;
+      height: 53vh;
+      overflow: auto;
+    }
+
+    .modal_container .search_inner2 {
+      padding: 5vw;
+    }
+
+    .modal_container .button_area {
+      padding: 1vh 4vh 4vh;
+      position: absolute;
+      bottom: 0;
+      background-color: #fff;
+    }
+
+    .modal_container .button_area .number {
+      text-align: center;
+      letter-spacing: 0;
+    }
+
+    .modal_container .choice {
+      width: 100%;
+      max-height: 63vh;
+      margin: 0 auto 4rem;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 1.6vw 1rem;
+    }
+
+    .modal_container .choice label {
+      width: 100%;
+      font-size: 1.2rem;
+      padding: 0.6rem 1rem;
+    }
+
+    .modal_container .region label,
+    .modal_container .prefectures label {
+      font-size: 1.2rem;
+      padding: 1rem 1.6rem;
+    }
+
+    .modal_container h4 {
+      font-size: 1.6rem;
+      margin: 2.2vh auto;
+    }
+
+    .modal_container .choice2 {
+      height: 58vh;
+      padding: 5vw;
+      gap: 4vw;
+    }
+
+    .modal_container .choice2 .route {
+      width: 50%;
+    }
+
+    .modal_container .choice2 .choice_inner {
+      height: 44vh;
+    }
+
+    .modal_container .choice2 .choice_inner li {
+      padding: 0.4rem 1rem;
+      font-size: 1.2rem;
+    }
+
+    .modal_container .choice2 .station .scroll_inner li:not(:first-child) {
+      padding-left: 1rem;
+    }
+
+    .modal_container .salary li {
+      font-size: 1.2rem;
+    }
+
+    main .search .freeword span {
+      font-size: 1.2rem;
+      margin-left: 0;
+    }
+
+    h2 span {
+      font-size: 3vw;
+      color: #555555;
+      display: block;
+    }
+
+    h2 {
+      font-size: 10vw;
+    }
+
+    h3 {
+      font-size: 5vw;
+      margin: 2rem 0 0;
+    }
+
+    .slide_item {
+      width: min(100%, 320px);
+      padding: 35px;
+      margin-right: 20px;
+      background-color: #fff;
+    }
+
+    .slide_item .category span {
+      font-size: 3.4vw;
+    }
+
+    .slide_item dt {
+      font-size: 4.6vw;
+    }
+
+    .slide_item dd {
+      font-size: 3.4vw;
+      margin-top: 0.6rem;
+    }
+
+    .slide_item {
+      padding: 15px;
+      margin-right: none;
+      background-color: #fff;
+    }
+
+    main .recruitment {
+      padding: min(13vw, 75px) 0;
+    }
+
+    main .picup .tab li a {
+      padding: 6px;
+      font-size: 4.4vw;
+      border-radius: 6px 6px 0 0;
+    }
+
+    main .aboutus .aboutus_back {
+      width: 92%;
+      border-radius: 20px;
+      height: auto;
+      display: block;
+      background-size: 230px, 240px;
+    }
+
+    main .aboutus .aboutus_back .aboutus_inner .text {
+      width: 100%;
+      font-size: 3.2vw;
+      text-align: justify;
+    }
+
+    main .aboutus .aboutus_back .aboutus_inner .text .lead {
+      font-size: 1.9rem;
+      margin: 20px 0 16px;
+    }
+
+    main .aboutus .aboutus_back .aboutus_inner .aboutus_img {
+      width: 100%;
+      margin: 3rem auto;
+    }
+
+    main .aboutus .aboutus_back .aboutus_inner img {
+      width: 100%;
+    }
+
+    main .aboutus .aboutus_back .aboutus_inner {
+      display: block;
+      width: 84%;
+      margin: 0 auto;
+      padding: 4rem 0;
+    }
+
+    main .aboutus .aboutus_back .aboutus_inner .text p.lead span {
+      font-size: 8vw;
+      line-height: 1.2;
+    }
+
+    main .aboutus .aboutus_back .aboutus_inner a {
+      width: 60vw;
+      margin: 0 auto;
+      height: 50px;
+      border-radius: 25px;
+      margin-top: 40px;
+    }
+
+    main .instagram {
+      background-color: #E3F7F7;
+      display: flex;
+      align-items: center;
+      padding: min(13vw, 90px) 0;
+    }
+
+    main .instagram .instagram_inner a.pc {
+      display: none;
+    }
+
+    main .instagram .instagram_inner a.sp {
+      width: 60vw;
+      height: 50px;
+      border-radius: 25px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 40px auto 0;
+    }
+
+    main .instagram .instagram_inner img {
+      width: 100%;
+      margin: 2.2rem 0 0;
+    }
+
+    main .news {
+      padding: min(13vw, 90px) 0;
+    }
+
+    main .news .news_inner {
+      width: 86%;
+    }
+
+    main .news .news_inner .text {
+      display: flex;
+      justify-content: space-between;
+      width: min(92%, 1200px);
+      margin-bottom: 2rem;
+    }
+
+    main .news .news_inner .news_area {
+      width: 100%;
+      font-size: 1.3rem;
+    }
+
+    main .news .news_inner .news_area span.day {
+      width: 100%;
+    }
+
+    main .news .news_inner .news_area span.title {
+      width: 100%;
+    }
+
+    footer .button_area a {
+      font-size: 3vw;
+      height: min(37vw, 400px);
+    }
+
+    footer .button_area a.company {
+      width: 100%;
+    }
+
+    footer .button_area a.contact {
+      width: 100%;
+    }
+
+    footer .button_area a p span.big {
+      font-size: 10vw;
+    }
+
+    footer .footer_area {
+      padding: min(13vw, 60px) 0;
+    }
+
+    footer .footer_area p {
+      font-size: 0.8rem;
+      margin-top: 1.5rem;
+    }
+
+    footer .footer_area p .company_name {
+      font-size: 1.4rem;
+    }
+
+    footer .footer_area .logo a img {
+      width: 30vw;
+    }
+
+    #news_single .news .news_inner span.title {
+      font-size: 5vw;
+      padding-bottom: 2rem;
+    }
+
+    #news_single a.return_button {
+      margin: 0 auto;
+    }
+
+    #news_single .news .news_inner dd {
+      font-size: 1.2rem;
+      padding: 5rem 0;
+      margin-bottom: 6rem;
+    }
+
+
+
+    /*---job_list---*/
+
+    main .job_result {
+      padding: 30px 0 60px;
+    }
+
+    main .job_result .job_result_inner {
+      width: 90%;
+    }
+
+    main .job_result .job_result_inner .job_result_wrap .inner {
+      padding: 2rem 5vw 3rem;
+    }
+
+    .list_img {
+      width: 30%;
+      order: 1;
+    }
+
+    main .job_result .job_result_inner .job_result_wrap .inner .category {
+      width: 65%;
+      order: 2;
+    }
+
+    main .job_result .job_result_inner .job_result_wrap .inner .table_area {
+      width: 100%;
+      order: 3;
+      font-size: 1.2rem;
+    }
+
+    main .job_result .job_result_inner .job_result_wrap .inner .button_area {
+      order: 4;
+      flex-wrap: wrap;
+      gap: 5vw;
+    }
+
+    main .job_result .job_result_inner .job_result_wrap .inner .button_area button {
+      width: 70vw;
+    }
+
+    main .job_result .job_result_inner .job_result_wrap .inner .button_area a {
+      width: 70vw;
+    }
+
+    main .job_result .job_result_inner .job_result_wrap .inner p.title {
+      font-size: 4vw;
+    }
+
+    main .job_result .job_result_inner .job_result_wrap .inner p {
+      font-size: 3.4vw;
+    }
+
+    main .job_result .job_result_inner .job_result_wrap .inner .category span {
+      font-size: 2.6vw;
+    }
+
+    main .job_result .job_result_inner .job_result_wrap .inner .button_area .favorite_btn {
+      width: 70vw;
+    }
+
+    main .job_result .tab {
+      margin: 1rem auto 0;
+      justify-content: center;
+    }
+
+    main .job_result .tab li {
+      width: 30%;
+    }
+
+    main .job_result .tab li a {
+      padding: 8px;
+      font-size: 1.4rem;
+    }
+
+    main .job_result .job_result_inner p.number {
+      text-align: center;
+    }
+
+    main .job_result .job_result_inner .job_result_wrap .inner table th {
+      padding: 0.6rem 1.2rem;
+      width: 26%;
+    }
+
+    main .job_result .job_result_inner .job_result_wrap .inner table td {
+      padding: 0.6rem 1.2rem;
+    }
+
+    #mypage .registration a {
+      display: none;
+    }
+
+    #mypage button.reset {
+      margin: 0 auto 3rem;
+    }
+
+    main .job_result .job_result_inner p.number2 {
+      text-align: center;
+      margin: -2rem auto 2rem;
+    }
+
+    #job_single .job_result .job_result_inner .job_result_wrap .inner .category {
+      order: 1;
+      width: 100%;
+    }
+
+    #job_single .job_result .job_result_inner .job_result_wrap .inner p {
+      order: 2;
+    }
+
+    main .job_result .job_result_inner .job_result_wrap .inner .result_title {
+      font-size: 1.6rem;
+      margin-bottom: 1.2rem;
+    }
+
+    #job_single .job_result .job_result_inner .job_result_wrap .inner .result_img1 {
+      order: 3;
+      width: 100%;
+      margin-bottom: 2rem;
+    }
+
+    #job_single .job_result .job_result_inner .job_result_wrap .inner .table_area {
+      order: 4;
+    }
+
+    #job_single .job_result .job_result_inner .job_result_wrap .inner .job_detail {
+      order: 5;
+      font-size: 1.4rem;
+      margin-top: 3rem;
+    }
+
+    #job_single .job_result .job_result_inner .job_result_wrap img.detail_img {
+      order: 7;
+    }
+
+    #job_single table.company_detail {
+      order: 8;
+      margin-top: 3rem;
+      margin-bottom: 1rem;
+    }
+
+    #job_single .job_result .job_result_inner .job_result_wrap .inner .button_area {
+      order: 9;
+    }
+
+    #job_single table.company_detail th,
+    #job_single table.company_detail td {
+      width: 100%;
+      display: block;
+      font-size: 1.2rem;
+    }
+
+    #job_single table.company_detail th {
+      padding-bottom: 0;
+      padding-top: 1rem;
+    }
+
+    #job_single table.company_detail td {
+      padding-top: 0;
+      padding-bottom: 1rem;
+    }
+
+    #form h2 {
+      font-size: 2rem;
+    }
+
+    #form .progressbar {
+      width: 100%;
+      margin: 1.6rem auto;
+    }
+
+    #form .progressbar .item {
+      font-size: 11px;
+      line-height: 1.4;
+      padding: 10px 0;
+    }
+
+    #form .progressbar .item:not(:last-child)::before,
+    #form .progressbar .item:not(:last-child)::after {
+      border-width: 18px;
+      border-left-width: 7px;
+    }
+
+    #form form dl {
+      display: block;
+    }
+
+    #form form dt {
+      display: block;
+      width: 100%;
+      padding: 0.6rem 1.5rem;
+      font-size: 1.4rem;
+    }
+
+    #form form dd {
+      display: block;
+      width: 100%;
+      padding: 1.5rem;
+      font-size: 1.4rem;
+    }
+
+    #form form dd input {
+      font-size: 1.4rem;
+      padding: 0.2em 0.7em;
+    }
+
+    #form form dd select {
+      font-size: 1.4rem;
+      padding: 0.4em;
+    }
+
+    #form form dt span {
+      margin-left: 1rem;
+      font-size: 1rem;
+      padding: 0.1rem 0.4rem;
+    }
+
+    #form form .name input,
+    #form form .kana input {
+      width: 34%;
+    }
+
+    #form form .birthday input {
+      width: 22%;
+    }
+
+    #form form .mail_add input {
+      width: 100%;
+    }
+
+    #form form dl div.address {
+      width: 100%;
+      padding: 2rem 1.5rem;
+    }
+
+    #form form dl div.address dd.zip input {
+      width: 30%;
+    }
+
+    #form p.privacy {
+      text-align: justify;
+      margin: 3rem 0 0;
+      font-size: 1.4rem;
+    }
+
+    #form .form_btn input {
+      font-size: 2rem;
+      width: 86%;
+      margin: 3rem auto 5rem;
+    }
+
+    #form.confirm .form_btn input {
+      width: 44%;
+    }
+
+    #form.confirm .contact_h {
+      font-size: 2rem;
+    }
+
+    #form.confirm p {
+      font-size: 1.4rem;
+    }
+
+    #form.complete .contact_h {
+      font-size: 2rem;
+    }
+
+    #form.complete p {
+      font-size: 1.4rem;
+    }
+
+    #form.complete p.top_buttona a {
+      display: block;
+      text-align: center;
+      margin: 10vw auto;
+      font-size: 1.8rem;
+      border: 1px solid #555;
+      border-radius: 2px;
+      padding: 5vw;
+    }
   }
-}
-
-.map_loader {
-  display: none;
-  position: sticky;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  justify-content: center;
-  align-items: center;
-  color: white;
-  background-color: rgba(0, 0, 0, 0.5);
-}
-
-.map_loader.show {
-  display: flex;
-}
