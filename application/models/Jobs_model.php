@@ -165,6 +165,8 @@ class Jobs_model extends CI_Model
 
         $data = $data->where('status', '公開')->order_by('id', 'DESC')->group_by('jobs.id')->limit($limit, $offset)->select('jobs.id as id, lat, lng, business_content, title, category, concat("【", salary_type, "】", "¥", format_number(min_salary), IF(max_salary <> 0, concat("～", format_number(max_salary)), "")) as salary, has_requirement, top_picture, employment_type, a_pref as pref, city, address, map_address, traits, lat, lng, group_concat(concat(line, station, " ", "徒歩", walking_distance, "分") SEPARATOR "<br>") as jobs_stations')->get($this->table)->result_array();
 
+        $query = $this->db->last_query();
+
         return $data;
     }
 
