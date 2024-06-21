@@ -17,6 +17,7 @@ $route['jobs/(:num)/confirm']['POST'] = 'home/jobs_confirm/$1';
 $route['jobs/(:num)/complete']['GET'] = 'home/jobs_complete/$1';
 $route['jobs/(:num)/complete']['POST'] = 'home/jobs_complete/$1';
 $route['get_lines_and_stations']['POST'] = 'home/get_lines_and_stations';
+$route['get_prefs_lines_and_stations']['POST'] = 'home/get_prefs_lines_stations';
 $route['get_jobs_by_ids']['POST'] = 'home/get_jobs_by_id';
 $route['favorites']['GET'] = 'home/favorites';
 $route['favorites/(:num)']['GET'] = 'home/favorites/$1';

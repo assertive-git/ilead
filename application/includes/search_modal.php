@@ -114,7 +114,7 @@
                 </div>
 
                 <?php foreach ($japan_lines_stations as $prefecture => $japan_line_station): ?>
-                    <div class="choice2" style="<?= $prefecture == $prefectures_lines_stations ? 'display: block' : '' ?>">
+                    <div class="choice2" style="<?= $prefecture == $prefectures_lines_stations ? 'display: flex' : '' ?>">
                         <div class="route">
                             <h5>路線を選択</h5>
                             <div class="choice_inner">
@@ -123,7 +123,7 @@
                                     <?php foreach ($japan_line_station as $line_name => $line_station): ?>
                                         <li>
                                             <label>
-                                                <input style="display: none" type="radio" name="line_name"
+                                                <input style="display: none" type="radio" name="ln" <?= $ln == $line_name ? 'checked' : '' ?>
                                                     value="<?= $line_name ?>">
                                                 <div class="line_name"><?= $line_name ?></div>
                                             </label>
@@ -148,7 +148,6 @@
                                                 </div>
                                             </label>
                                         </li>
-                                        <?php $k = 1; ?>
                                         <?php foreach ($line_station as $station): ?>
                                             <li>
 
@@ -156,7 +155,7 @@
 
                                                     <div class="station_name">
                                                         <input type="checkbox" name="stations[]"
-                                                            value="<?= $line_name ?><?= $station ?>" <?= in_array($station, $stations) ? 'checked' : '' ?>>
+                                                            value="<?= $line_name ?><?= $station ?>" <?= in_array($line_name . $station, $stations) ? 'checked' : '' ?>>
                                                         <i class="fa-solid fa-circle-check"></i><?= $station ?>
                                                     </div>
                                                 </label>
@@ -168,6 +167,16 @@
                         <?php endforeach; ?>
                     </div>
                 <?php endforeach; ?>
+                <!-- <script>
+                    $.ajax({
+                        type: "POST",
+                        url: '/get_prefs_lines_and_stations',
+                        dataType: 'json',
+                        success: function (data) {
+                            
+                        }
+                    });
+                </script> -->
                 <ul class="button_area">
                     <li>該当件数<span class="big total_jobs"><?= $total_jobs ?></span>件</li>
                     <li>
