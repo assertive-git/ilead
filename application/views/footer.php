@@ -40,14 +40,12 @@
     btn.onclick = function () {
       var modal = btn.closest('.modal');
       modal.style.display = "none";
-      reset_one_plus(current_modal);
     };
   });
 
   window.onclick = function (event) {
     if (event.target.className === "modal") {
       event.target.style.display = "none";
-      reset_one_plus(current_modal);
     }
   }
 </script>
@@ -74,6 +72,7 @@
 
 <!-- ILEAD SEARCH SYSTEM -->
 <script src="/assets/js/search_system.js?v=<?= date('YmdHis') ?>"></script>
+<script src="/assets/js/search_system_memory.js?v=<?= date('YmdHis') ?>"></script>
 </body>
 
 </html>

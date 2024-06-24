@@ -20,4 +20,11 @@ class Stations_model extends CI_Model
     {
         return $this->db->where('station_cd', $id)->order_by('line_cd')->get($this->table)->row_array();
     }
+
+    public function get_all_prefs_lines_stations()
+    {
+
+        $sql = "SELECT prefecture, line_name, station_name FROM `stations` LEFT JOIN `lines` ON `lines`.line_cd = stations.line_cd LEFT JOIN prefectures ON prefectures.pref_cd = stations.pref_cd ORDER BY stations.pref_cd";
+        return $this->db->query($sql)->result_array();
+    }
 }

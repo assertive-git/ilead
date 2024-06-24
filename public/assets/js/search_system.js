@@ -1,249 +1,64 @@
-/* LINES AND STATIONS */
+// /* LINES AND STATIONS */
 (function () {
-    /* AREAS */
 
-    var fetched_areas = [];
-    var fetched_lines_stations_view = [];
-    var fetched_stations = [];
+    $('.region_area').change(function () {
 
-    $('#modal1 .region input[name="region_area"]').change(function () {
+        $('#modal1 .prefectures_group').hide();
+        $('.search_inner2').hide();
+        $('.search_inner2').eq(0).show();
+        var index = $(this).index('.region_area');
 
-        var region_id = $(this).attr('region_id');
+        // select prefecture with same index
+        $('#modal1 .prefectures_group').eq(index).css({ display: 'flex' });
 
-        $('.prefectures_group').hide();
-        $('.prefectures_group[region_id="' + region_id + '"]').show();
-
-        if ($('#modal1 .search_inner2').length > 1) {
-            $('#modal1 .search_inner2').hide();
-
-            var prev_pref_index = $('.prefectures_group[region_id="' + region_id + '"] input:checked').parent().attr('pref_id');
-
-            if (prev_pref_index) {
-                load_area(prev_pref_index);
-            } else {
-                $('#modal1 .search_inner2').eq(0).show();
-            }
-        }
+        $('.prefectures_area').prop('checked', false);
     });
 
-    $('#modal1 .prefectures .prefectures_area').change(function () {
-        var pref = $(this).next().text();
-        var pref_index = $(this).parent().attr('pref_id');
+    $('.prefectures_area').change(function () {
 
-        $('#modal1 .search_inner2').hide();
+        $('.search_inner2').hide();
+        var index = $(this).index('.prefectures_area') + 1;
 
-        if (fetched_areas.indexOf(pref_index) === -1) {
-            fetch_areas(pref, pref_index);
-        } else {
-            load_area(pref_index);
-        }
+        // select area with same index
+        $('.search_inner2').eq(index).show();
     });
 
-    function fetch_areas(pref, pref_index) {
+    $('.region_lines_stations').change(function () {
 
-        $('#modal1 .search_inner2').last().after('<div id="search_inner2_pref_' + pref_index + '" class="search_inner2"><div class="choice"></div></div>');
+        $('#modal2 .prefectures_group').hide();
+        $('.choice2').hide();
+        $('.choice2').eq(0).show();
+        var index = $(this).index('.region_lines_stations');
 
-        var choice = $('#modal1 .search_inner2').last().children('.choice');
+        // select prefecture with same index
+        $('#modal2 .prefectures_group').eq(index).css({ display: 'flex' });
 
-        $.ajax({
-            dataType: 'jsonp',
-            url: 'https://geoapi.heartrails.com/api/json?method=getCities&prefecture=' + pref,
-            success: function (results) {
+        $('.prefectures_lines_stations').prop('checked', false);
+    });
 
-                var html = '<input type="checkbox" class="municipalities_all" id="municipalities_all_pref_' + pref_index + '" name="areas[]" value="すべて"><label for="municipalities_all_pref_' + pref_index + '">すべて</label>';
+    $('.prefectures_lines_stations').change(function () {
 
-                $(results.response.location).each(function (i, el) {
-                    var city = results.response.location[i].city;
-                    html += '<input type="checkbox" id="municipalities_' + (i + 1) + '_pref_' + pref_index + '" name="areas[]" value="' + pref + city + '"><label for="municipalities_' + (i + 1) + '_pref_' + pref_index + '">' + city + '</label>';
-                });
+        $('.choice2').hide();
+        var index = $(this).index('.prefectures_lines_stations') + 1;
 
-                choice.append(html);
-                fetched_areas.push(pref_index);
-            },
-            error: function (err) {
-                console.log(err);
-            }
-        });
-    }
+        // select area with same index
+        $('.choice2').eq(index).css({display: 'flex'});
+    });
 
-    function load_area(pref_index) {
-        $('#modal1 #search_inner2_pref_' + pref_index).show();
-    }
+    $('.route li').click(function () {
 
-    $('body').on('change', '.municipalities_all', function () {
+        var index = $(this).index('.route li')  + 1;
+        $('.station').hide();
+        $('.station').eq(index).show();
+    });
+
+
+    $('body').on('change', '.areas_all', function () {
         $(this).siblings('input[name="areas[]"]').prop('checked', $(this).is(':checked'));
     });
 
-    var lines = [];
-    var stations = [];
-    var lines_and_stations = [];
-
-    $.ajax({
-        type: "POST",
-        url: '/get_lines_and_stations',
-        dataType: 'json',
-        success: function (data) {
-            lines = data.lines;
-            stations = data.stations;
-
-            $(stations).each(function (i, x) {
-
-                var pref_cd = parseInt(x.pref_cd) - 1;
-
-                var line = lines.filter(e => e.line_cd === x.line_cd)[0];
-
-                if (lines_and_stations[pref_cd] === undefined) {
-                    lines_and_stations[pref_cd] = {
-                        lines: [{ line_name: line.line_name, stations: [x.station_name] }]
-                    };
-                } else {
-                    var line_found = false;
-
-                    $(lines_and_stations[pref_cd].lines).each(function (i, el) {
-                        if (el.line_name == line.line_name) {
-                            lines_and_stations[pref_cd].lines[i].stations.push(x.station_name);
-                            line_found = true;
-                            return false;
-                        }
-                    });
-
-                    if (!line_found) {
-                        lines_and_stations[pref_cd].lines.push({
-                            line_name: line.line_name,
-                            stations: [x.station_name]
-                        })
-                    }
-                }
-            });
-        },
-    });
-
-    $('#modal2 .region_route').change(function () {
-
-        var region_id = $(this).attr('region_id');
-
-        $('#modal2 .prefectures_group').hide();
-        $('#modal2 .prefectures_group[region_id="' + region_id + '"]').show();
-
-        var prev_pref_index;
-
-        if ($('#modal2 .choice2').length > 1) {
-            $('#modal2 .choice2').hide();
-
-            prev_pref_index = parseInt($('#modal2 .prefectures_group[region_id="' + region_id + '"] input:checked').parent().attr('pref_id')) - 1;
-
-            if (prev_pref_index) {
-                load_lines_stations_view(prev_pref_index);
-            } else {
-                $('#modal2 .choice2').eq(0).show();
-            }
-        }
-
-        if ($('#modal2  #choice2_pref_' + prev_pref_index + ' .line:checked').length) {
-            var choice2 = $('#modal2 #choice2_pref_' + prev_pref_index + ' .line:checked').closest('.choice2');
-            var line_id = $('#modal2 #choice2_pref_' + prev_pref_index + ' .line:checked').attr('line_id');
-            choice2.find('.station_line_' + line_id).show();
-        } else if (prev_pref_index) {
-            $('#modal2 #choice2_pref_' + prev_pref_index + ' .station').show();
-        } else {
-            $('#modal2 .choice2:eq(0) .station').show();
-        }
-    });
-
-    $('#modal2 .prefectures .prefectures_route').change(function () {
-
-        $('#modal2 .choice2').hide();
-
-        var pref = $(this).next().text();
-        var pref_cd = parseInt($(this).parent().attr('pref_id')) - 1;
-
-        if (fetched_lines_stations_view.indexOf(pref_cd) === -1) {
-            fetch_lines_stations_view(pref, pref_cd);
-        } else {
-            load_lines_stations_view(pref_cd);
-        }
-
-        if ($('#modal2  #choice2_pref_' + pref_cd + ' .line:checked').length) {
-            var choice2 = $('#modal2 #choice2_pref_' + pref_cd + ' .line:checked').closest('.choice2');
-            var line_id = $('#modal2 #choice2_pref_' + pref_cd + ' .line:checked').attr('line_id');
-            choice2.find('.station_line_' + line_id).show();
-        } else {
-            $('#modal2 #choice2_pref_' + pref_cd + ' .station:eq(0)').show();
-        }
-
-    });
-
-    function fetch_lines_stations_view(pref, pref_index) {
-        $('#modal2 .choice2').last().after('<div id="choice2_pref_' + pref_index + '" class="choice2"><div class="route"><h5>路線を選択</h5><div class="choice_inner"><p class="choice_ttl"><span class="choice_ttl_pref"></span></p><ul class="scroll_inner"></ul></div></div><div class="station"><h5>駅を選択</h5><div class="choice_inner"><p class="choice_ttl"><span class="choice_ttl_line"></span></p><ul class="scroll_inner"></ul></div></div></div>');
-
-        var scroll_inner = $('#modal2 #choice2_pref_' + pref_index + ' .route .scroll_inner');
-
-        $('#modal2 #choice2_pref_' + pref_index + ' .choice_ttl_pref').text(pref);
-
-        var html = '';
-
-        lines = lines_and_stations[pref_index].lines;
-
-        for (i = 0; i < lines.length; i++) {
-            html += '<li><input line_id="' + (i + 1) + '" id="line000' + (i + 1) + '_pref_' + pref_index + '" type="radio" style="display: none" class="line" name="line_pref_' + pref_index + '" pref_id="' + pref_index + '"><label for="line000' + (i + 1) + '_pref_' + pref_index + '">' + lines[i].line_name + '<label></li>';
-        }
-
-        scroll_inner.append(html);
-        fetched_lines_stations_view.push(pref_index);
-    }
-
-    function load_lines_stations_view(pref_index) {
-        $('#modal2 #choice2_pref_' + pref_index).show();
-    }
-
-    $('body').on('change', '#modal2 .line', function () {
-
-        var pref_index = $(this).attr('pref_id');
-        $('#choice2_pref_' + pref_index + ' .route .scroll_inner li').removeAttr('style');
-        $(this).parent().css({ backgroundColor: '#65b9e7', color: '#fff' });
-
-        $('.station').hide();
-
-        var line = $(this).parent().text();
-        var line_index = $(this).attr('line_id');
-
-        if (fetched_stations.indexOf(pref_index + "_" + line_index) === -1) {
-            fetch_stations(line, line_index, pref_index);
-        } else {
-            load_stations(pref_index, line_index);
-        }
-    });
-
-    function fetch_stations(line, line_index, pref_index) {
-
-        lines = lines_and_stations[pref_index].lines;
-        $('#choice2_pref_' + pref_index + ' .station').last().after('<div class="station station_line_' + line_index + '" style="visibility: visible"><h5>駅を選択</h5><div class="choice_inner"><p class="choice_ttl"><span class="choice_ttl_line"></span></p><ul class="scroll_inner"></ul></div>');
-        $('#choice2_pref_' + pref_index + ' .station_line_' + line_index + ' .choice_ttl_line').text(line);
-        var scroll_inner2 = $('#choice2_pref_' + pref_index + ' .station_line_' + line_index + ' .scroll_inner');
-        scroll_inner2.append('<li><input class="stations_all" type="checkbox" id="station0001_pref_' + pref_index + '_line_' + line_index + '"><label for="station0001_pref_' + pref_index + '_line_' + line_index + '"><i class="fa-solid fa-circle-check"></i>' + line + '駅のすべて' + '</label></li>');
-        var stations = null;
-
-        $(lines).each(function (i, el) {
-            if (lines[i].line_name == line) {
-                stations = lines[i].stations;
-                return false;
-            }
-        });
-
-
-        $(stations).each(function (i, el) {
-            scroll_inner2.append('<li><input type="checkbox" id="station000' + (i + 2) + '_pref_' + pref_index + '_line_' + line_index + '" name="stations[]" value="' + line + stations[i] + '"><label for="station000' + (i + 2) + '_pref_' + pref_index + '_line_' + line_index + '"><i class="fa-solid fa-circle-check"></i>' + stations[i] + '</label></li>');
-        });
-
-        fetched_stations.push(pref_index + "_" + line_index);
-    }
-
-    function load_stations(pref_index, line_index) {
-        $('#modal2 #choice2_pref_' + pref_index + ' .station_line_' + line_index).show();
-    }
-
     $('body').on('change', '.stations_all', function () {
-        $(this).parent().siblings('li').find('input[name="stations[]"]').prop('checked', $(this).is(':checked'));
+        $(this).closest('li').siblings('li').find('input[name="stations[]"]').prop('checked', $(this).is(':checked'));
         $('input[name="stations[]"]').eq(0).change();
     });
 }());
@@ -252,17 +67,18 @@
 (function () {
     $('.reflect').click(function () {
         $('.modal').hide();
-        set_pluses();
     });
 
     $('.reset').click(function () {
-        reset_all_pluses();
+        var modal_id = $(this).closest('.modal').attr('id');
+        reset_one_plus(modal_id);
     });
 }());
 
 /* 検索の該当件数更新 */
 (function () {
     $('body').on('change', '.modal input[name="areas[]"], .modal input[name="stations[]"], .modal input[name="job_types[]"], .modal input[name="employment_types[]"], .modal input[name="categories[]"], .modal select[name="salary[yearly]"], .modal select[name="salary[hourly]"], .modal input[name="traits[]"]', function () {
+        set_pluses();
         total_jobs_update();
     });
 }());
@@ -330,8 +146,11 @@ function reset_one_plus(modal) {
     $('.prefectures_group').hide();
     $('#modal1 .search_inner2').hide();
     $('#modal1 .search_inner2').eq(0).show();
-    $('#modal2 .search_inner2').hide();
-    $('#modal2 .search_inner2').eq(0).show();
+    $('#modal2 .choice2').hide();
+    $('#modal2 .choice2').eq(0).show();
+    $('#modal2 .station').hide();
+    $('#modal2 .station').eq(0).show();
+    $('.scroll_inner li').removeAttr('style');
 
     set_pluses();
     total_jobs_update();
@@ -397,7 +216,7 @@ function total_jobs_update() {
             freeword: freeword
         },
         success: function (data) {
-            $('.big').text(data.total_jobs);
+            $('.total_jobs').text(data.total_jobs);
         }
     });
 }

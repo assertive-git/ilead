@@ -50,7 +50,7 @@ class Jobs_model extends CI_Model
 
     public function get($id)
     {
-        return $this->db->where('id', $id)->where('status', '公開')->get($this->table)->row_array();
+        return $this->db->where('id', $id)->where('status', '公開')->select('jobs.id, body, company_or_store_name, employment_type, job_type, a_pref, city, concat("【", salary_type, "】", "¥", format_number(min_salary), IF(max_salary <> 0, concat("～", format_number(max_salary)), "")) as salary, address, has_requirement, category, traits, business_content, title, top_picture, lat, lng')->get($this->table)->row_array();
     }
 
     public function get_keys()
@@ -163,7 +163,9 @@ class Jobs_model extends CI_Model
                 ");
         }
 
-        $data = $data->where('status', '公開')->order_by('id', 'DESC')->group_by('jobs.id')->limit($limit, $offset)->select('jobs.id as id, lat, lng, business_content, title, category, min_salary, max_salary, has_requirement, top_picture, employment_type, a_pref as pref, city, address, map_address, traits, salary_type, lat, lng, group_concat(concat(line, station, " ", "徒歩", walking_distance, "分") SEPARATOR "<br>") as jobs_stations')->get($this->table)->result_array();
+        $data = $data->where('status', '公開')->order_by('id', 'DESC')->group_by('jobs.id')->limit($limit, $offset)->select('jobs.id as id, lat, lng, business_content, title, category, concat("【", salary_type, "】", "¥", format_number(min_salary), IF(max_salary <> 0, concat("～", format_number(max_salary)), "")) as salary, has_requirement, top_picture, employment_type, a_pref as pref, city, address, map_address, traits, lat, lng, group_concat(concat(line, station, " ", "徒歩", walking_distance, "分") SEPARATOR "<br>") as jobs_stations')->get($this->table)->result_array();
+
+        $query = $this->db->last_query();
 
         return $data;
     }
@@ -270,54 +272,9 @@ class Jobs_model extends CI_Model
         return $data;
     }
 
-    // public function get_by_area($areas)
-    // {
-    //     return $this->db->where('status', '公開')->where_in('CONCAT(a_pref, city)', $areas)->get($this->table)->result_array();
-    // }
-
-    // public function get_by_line_and_stations($line, $stations)
-    // {
-    //     $data = $this->db->join('jobs_stations', 'jobs_stations.job_id = jobs.id')
-    //         ->where('line', $line)->where_in('station', $stations)->where('status', '公開')
-    //         ->select('jobs.id as id, lat, lng, title, category, min_salary, max_salary, top_picture, employment_type, pref, city, map_address')->get($this->table)->result_array();
-
-    //     return !empty($data) ? $data : [];
-    // }
-
-
-    // public function get_by_job_type($job_type)
-    // {
-    //     return $this->db->where('status', '公開')->where_in('job_type', $job_type)->get($this->table)->result_array();
-    // }
-
-    // public function get_by_employment_type($employment_type)
-    // {
-    //     return $this->db->where('status', '公開')->where_in('employment_type', $employment_type)->get($this->table)->result_array();
-    // }
-
-    // public function get_by_category($category)
-    // {
-    //     return $this->db->where('status', '公開')->where_in('category', $category)->get($this->table)->result_array();
-    // }
-
-    // public function get_by_traits($traits)
-    // {
-
-    //     foreach ($traits as $trait) {
-    //         $this->db->or_like('traits', $trait);
-    //     }
-
-    //     return $this->db->where('status', '公開')->get($this->table)->result_array();
-    // }
-
-    // public function get_by_freeword($fw)
-    // {
-
-    // }
-
     public function get_new_jobs()
     {
-        return $this->db->where('status', '公開')->order_by('id', 'desc')->limit(10)->get($this->table)->result_array();
+        return $this->db->where('status', '公開')->order_by('id', 'desc')->limit(10)->select('jobs.id, body, company_or_store_name, employment_type, job_type, a_pref, city, concat("【", salary_type, "】", "¥", format_number(min_salary), IF(max_salary <> 0, concat("～", format_number(max_salary)), "")) as salary, address, has_requirement, category, traits, business_content, title, top_picture, lat, lng')->get($this->table)->result_array();
     }
 
     public function get_csv_export()
@@ -327,18 +284,19 @@ class Jobs_model extends CI_Model
 
     public function get_by_ids($ids)
     {
-        return $this->db->join('jobs_stations', 'jobs_stations.job_id = jobs.id', 'left')->where_in('jobs.id', $ids)->select('jobs.id, a_pref, city, min_salary, max_salary, address, has_requirement, group_concat(concat(line, station, " ", "徒歩", walking_distance, "分") SEPARATOR "<br>") as jobs_stations, category, traits, business_content, title, top_picture, lat, lng')->group_by('jobs.id')->get($this->table)->result_array();
+        return $this->db->join('jobs_stations', 'jobs_stations.job_id = jobs.id', 'left')->where_in('jobs.id', $ids)->select('jobs.id, a_pref, city, concat("【", salary_type, "】", "¥", format_number(min_salary), IF(max_salary <> 0, concat("～", format_number(max_salary)), "")) as salary, address, has_requirement, group_concat(concat(line, station, " ", "徒歩", walking_distance, "分") SEPARATOR "<br>") as jobs_stations, category, traits, business_content, title, top_picture, lat, lng')->group_by('jobs.id')->get($this->table)->result_array();
 
 
     }
 
     public function get_deployment()
     {
-        return $this->db->where('employment_type', '派遣・在籍出向')->limit(6)->get($this->table)->result_array();
+        return $this->db->where('employment_type', '派遣・在籍出向')->limit(6)->select('jobs.id, body, company_or_store_name, employment_type, job_type, a_pref, city, concat("【", salary_type, "】", "¥", format_number(min_salary), IF(max_salary <> 0, concat("～", format_number(max_salary)), "")) as salary, address, has_requirement, category, traits, business_content, title, top_picture, lat, lng')->get($this->table)->result_array();
     }
 
     public function get_direct()
     {
-        return $this->db->where('employment_type <>', '派遣・在籍出向')->limit(6)->get($this->table)->result_array();
+        return $this->db->where('employment_type <>', '派遣・在籍出向')->limit(6)->select('jobs.id, body, company_or_store_name, employment_type, job_type, a_pref, city, concat("【", salary_type, "】", "¥", format_number(min_salary), IF(max_salary <> 0, concat("～", format_number(max_salary)), "")) as salary, address, has_requirement, category, traits, business_content, title, top_picture, lat, lng')->get($this->table)->result_array();
+
     }
 }
