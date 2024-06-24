@@ -230,5 +230,15 @@
       </ul>
     </div>
   </section>
+  <script>
+    $(window).on('load', function () {
+      $('input, select').each(function () {
+        $(this).prop('checked', false);
+        if ($(this).is('select')) {
+          $(this)[0].selectedIndex = 0;
+        }
+      });
+    });
+  </script>
 </main>
 <?php include ('footer.php'); ?>
