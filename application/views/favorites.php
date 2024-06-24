@@ -77,6 +77,11 @@
         <script src="/assets/js/favorite_btn.js"></script>
       <?php endif; ?>
 
+
+      <p class="number2">検討中求人：<span class="big"><?= count($jobs) ?></span>件
+        <?php if (count($jobs) > 10): ?>
+          （<?= $current_index_start ?>～<?= $current_index_end ?>件）
+        <?php endif; ?>
       <div class="pagination">
         <div class="page">
           <?= $this->pagination->create_links(); ?>

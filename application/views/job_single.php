@@ -123,9 +123,9 @@
             </tr>
             <tr>
               <?php foreach ($job['custom_fields'] as $custom_field): ?>
-                <th class="attribute"><?= $custom_field['title'] ?></th>
-                <td><?= nl2br($custom_field['detail']) ?></td>
-              </tr>
+              <th class="attribute"><?= $custom_field['title'] ?></th>
+              <td><?= nl2br($custom_field['detail']) ?></td>
+            </tr>
             <?php endforeach; ?>
           </table>
           <ul class="button_area">
@@ -137,7 +137,7 @@
             </li>
             <li><a href="/jobs/<?= $job['id'] ?>/entry">応募する</a></li>
           </ul>
-          <script src="/assets/js/favorite_btn.js"></script>
+          <script src="/assets/js/favorite_btn.js"></script> 
         </div>
       </div>
     </div>
@@ -196,6 +196,6 @@
         </div>
       </div>
     </div>
-  </section> -->
+  </section> --> 
 </main>
 <?php include ('footer.php'); ?>

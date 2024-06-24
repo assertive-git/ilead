@@ -9,7 +9,7 @@
 
   <section class="search_area">
     <form id="list" class="area is-active" action="/map" method="POST">
-      <div class="search_inner">
+      <div class="search_inner map_in">
         <ul>
           <li class="areas"><button type="button" data-modal="modal1" class="modal-toggle">エリアを選ぶ<span
                 class="plus">+</span></button>

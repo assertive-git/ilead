@@ -1,6 +1,9 @@
 ﻿<?php include ('header.php'); ?>
 
 <main id="job_list">
+    
+  <input id="block-01" type="checkbox" class="toggle">
+  <label class="menu_accordion sp" for="block-01">検索条件を変更する</label>
 
   <!--<div class="registration"><a href="" target="_blank">まずは簡単登録</a></div>-->
 
