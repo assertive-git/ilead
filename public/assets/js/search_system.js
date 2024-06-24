@@ -27,7 +27,7 @@
 
         $('#modal2 .prefectures_group').hide();
         $('.choice2').hide();
-        $('.choice2').eq(0).show();
+        $('.choice2').eq(0).css({display: 'flex'});
         var index = $(this).index('.region_lines_stations');
 
         // select prefecture with same index

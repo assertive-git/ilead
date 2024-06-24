@@ -565,7 +565,6 @@ main .search .area.is-active {
 
 .modal_container .choice2 .station {
   display: none;
-  visibility: hidden;
   max-width: 60%;
   flex: 1;
 }
@@ -614,7 +613,7 @@ main .search .area.is-active {
   display: block;
 }
 
-.modal_container .choice2 .choice_inner li input:checked+label i {
+.modal_container .choice2 .choice_inner li label input:checked+ i {
   color: #65b9e7;
 }
 
