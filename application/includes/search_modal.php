@@ -133,7 +133,7 @@
                             </div>
                         </div>
 
-                        <?php foreach ($japan_line_station as $line_name => $line_station): ?>
+                        <!-- <?php foreach ($japan_line_station as $line_name => $line_station): ?>
                             <div class="station" style="<?= $ln == $line_name ? 'display: block' : '' ?>">
                                 <h5>駅を選択</h5>
                                 <div class="choice_inner">
@@ -148,7 +148,7 @@
                                                 </div>
                                             </label>
                                         </li>
-                                        <!-- <?php foreach ($line_station as $station): ?>
+                                        <?php foreach ($line_station as $station): ?>
                                             <li>
 
                                                 <label>
@@ -160,11 +160,11 @@
                                                     </div>
                                                 </label>
                                             </li>
-                                        <?php endforeach; ?> -->
+                                        <?php endforeach; ?>
                                     </ul>
                                 </div>
                             </div>
-                        <?php endforeach; ?>
+                        <?php endforeach; ?> -->
                     </div>
                 <?php endforeach; ?>
                 <!-- <script>
