@@ -148,7 +148,7 @@
                                                 </div>
                                             </label>
                                         </li>
-                                        <?php foreach ($line_station as $station): ?>
+                                        <!-- <?php foreach ($line_station as $station): ?>
                                             <li>
 
                                                 <label>
@@ -160,7 +160,7 @@
                                                     </div>
                                                 </label>
                                             </li>
-                                        <?php endforeach; ?>
+                                        <?php endforeach; ?> -->
                                     </ul>
                                 </div>
                             </div>
