@@ -113,7 +113,7 @@
                     </div>
                 </div>
 
-                <?php foreach ($japan_lines_stations as $prefecture => $japan_line_station): ?>
+                <!-- <?php foreach ($japan_lines_stations as $prefecture => $japan_line_station): ?>
                     <div class="choice2" style="<?= $prefecture == $prefectures_lines_stations ? 'display: flex' : '' ?>">
                         <div class="route">
                             <h5>路線を選択</h5>
@@ -133,7 +133,7 @@
                             </div>
                         </div>
 
-                        <!-- <?php foreach ($japan_line_station as $line_name => $line_station): ?>
+                        <?php foreach ($japan_line_station as $line_name => $line_station): ?>
                             <div class="station" style="<?= $ln == $line_name ? 'display: block' : '' ?>">
                                 <h5>駅を選択</h5>
                                 <div class="choice_inner">
@@ -164,9 +164,9 @@
                                     </ul>
                                 </div>
                             </div>
-                        <?php endforeach; ?> -->
+                        <?php endforeach; ?>
                     </div>
-                <?php endforeach; ?>
+                <?php endforeach; ?> -->
                 <!-- <script>
                     $.ajax({
                         type: "POST",
