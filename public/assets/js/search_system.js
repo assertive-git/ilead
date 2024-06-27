@@ -1,6 +1,8 @@
 // /* LINES AND STATIONS */
 (function () {
 
+    var loading = false;
+
     $('.region_area').change(function () {
 
         $('#modal1 .prefectures_group').hide();
@@ -36,7 +38,13 @@
         $('.prefectures_lines_stations').prop('checked', false);
     });
 
-    $('.prefectures_lines_stations').change(function () {
+    $('.prefectures_lines_stations').click(function (e) {
+        if (loading) {
+            e.preventDefault();
+        }
+    });
+
+    $('.prefectures_lines_stations').change(function (e) {
 
         var pref = $(this).next().text();
         $('.choice2').hide();
@@ -47,6 +55,9 @@
                 type: "POST",
                 url: '/get_lines',
                 dataType: 'json',
+                beforeSend: function () {
+                    loading = true;
+                },
                 data: {
                     pref: pref
                 },
@@ -68,6 +79,8 @@
 
                         $('.choice2').last().after($(clone));
                     }
+
+                    loading = false;
                 }
             });
 
@@ -77,7 +90,15 @@
         }
     });
 
+    $('body').on('click', '#modal2 .route', function (e) {
+        if (loading) {
+            e.preventDefault();
+        }
+    });
+
     $('body').on('change', '#modal2 .route input', function () {
+
+        if (loading) return;
 
         var choice2 = $(this).closest('.choice2');
         var line_cd = $(this).attr('id');
@@ -91,6 +112,9 @@
                 type: "POST",
                 url: '/get_stations',
                 dataType: 'json',
+                beforeSend: function () {
+                    loading = true;
+                },
                 data: {
                     line_cd: line_cd
                 },
@@ -110,6 +134,7 @@
 
                         choice2.children('.station').last().after($(clone));
                     }
+                    loading = false;
                 }
             });
         } else {
