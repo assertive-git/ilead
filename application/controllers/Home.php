@@ -21,14 +21,14 @@ class Home extends CI_Controller
 
 		$pls_data = [];
 
-		$japan_lines_stations = $this->stations_model->get_all_prefs_lines_stations();
+		// $japan_lines_stations = $this->stations_model->get_all_prefs_lines_stations();
 
 
-		foreach ($japan_lines_stations as $pref_line_station) {
-			$pls_data[$pref_line_station['prefecture']][$pref_line_station['line_name']][] = $pref_line_station['station_name'];
-		}
+		// foreach ($japan_lines_stations as $pref_line_station) {
+		// 	$pls_data[$pref_line_station['prefecture']][$pref_line_station['line_name']][] = $pref_line_station['station_name'];
+		// }
 
-		$data['japan_lines_stations'] = $pls_data;
+		// $data['japan_lines_stations'] = $pls_data;
 
 		$data['region_area'] = '';
 		$data['prefectures_area'] = '';
@@ -43,14 +43,6 @@ class Home extends CI_Controller
 
 
 		$this->load->view('home', $data);
-	}
-
-	public function get_lines_and_stations()
-	{
-		$lines = $this->lines_model->get_all();
-		$stations = $this->stations_model->get_all();
-
-		echo json_encode(['lines' => $lines, 'stations' => $stations]);
 	}
 
 	public function news()
@@ -99,13 +91,13 @@ class Home extends CI_Controller
 		$data['ln'] = '';
 		$data['stations_all'] = [];
 
-		$japan_lines_stations = $this->stations_model->get_all_prefs_lines_stations();
+		// $japan_lines_stations = $this->stations_model->get_all_prefs_lines_stations();
 
-		foreach ($japan_lines_stations as $pref_line_station) {
-			$pls_data[$pref_line_station['prefecture']][$pref_line_station['line_name']][] = $pref_line_station['station_name'];
-		}
+		// foreach ($japan_lines_stations as $pref_line_station) {
+		// 	$pls_data[$pref_line_station['prefecture']][$pref_line_station['line_name']][] = $pref_line_station['station_name'];
+		// }
 
-		$data['japan_lines_stations'] = $pls_data;
+		// $data['japan_lines_stations'] = $pls_data;
 
 		$this->load->view('map', $data);
 	}
@@ -138,13 +130,13 @@ class Home extends CI_Controller
 		$data['ln'] = isset($_POST['ln']) ? $_POST['ln'] : '';
 		$data['stations_all'] = isset($_POST['stations_all']) ? $_POST['stations_all'] : [];
 
-		$japan_lines_stations = $this->stations_model->get_all_prefs_lines_stations();
+		// $japan_lines_stations = $this->stations_model->get_all_prefs_lines_stations();
 
-		foreach ($japan_lines_stations as $pref_line_station) {
-			$pls_data[$pref_line_station['prefecture']][$pref_line_station['line_name']][] = $pref_line_station['station_name'];
-		}
+		// foreach ($japan_lines_stations as $pref_line_station) {
+		// 	$pls_data[$pref_line_station['prefecture']][$pref_line_station['line_name']][] = $pref_line_station['station_name'];
+		// }
 
-		$data['japan_lines_stations'] = $pls_data;
+		// $data['japan_lines_stations'] = $pls_data;
 
 		$this->load->view('map', $data);
 	}
@@ -234,13 +226,13 @@ class Home extends CI_Controller
 		$data['ln'] = $ln;
 		$data['stations_all'] = $stations_all;
 
-		$japan_lines_stations = $this->stations_model->get_all_prefs_lines_stations();
+		// $japan_lines_stations = $this->stations_model->get_all_prefs_lines_stations();
 
-		foreach ($japan_lines_stations as $pref_line_station) {
-			$pls_data[$pref_line_station['prefecture']][$pref_line_station['line_name']][] = $pref_line_station['station_name'];
-		}
+		// foreach ($japan_lines_stations as $pref_line_station) {
+		// 	$pls_data[$pref_line_station['prefecture']][$pref_line_station['line_name']][] = $pref_line_station['station_name'];
+		// }
 
-		$data['japan_lines_stations'] = $pls_data;
+		// $data['japan_lines_stations'] = $pls_data;
 
 		$this->load->view('job_list', $data);
 
@@ -310,13 +302,13 @@ class Home extends CI_Controller
 		$data['ln'] = $ln;
 		$data['stations_all'] = $stations_all;
 
-		$japan_lines_stations = $this->stations_model->get_all_prefs_lines_stations();
+		// $japan_lines_stations = $this->stations_model->get_all_prefs_lines_stations();
 
-		foreach ($japan_lines_stations as $pref_line_station) {
-			$pls_data[$pref_line_station['prefecture']][$pref_line_station['line_name']][] = $pref_line_station['station_name'];
-		}
+		// foreach ($japan_lines_stations as $pref_line_station) {
+		// 	$pls_data[$pref_line_station['prefecture']][$pref_line_station['line_name']][] = $pref_line_station['station_name'];
+		// }
 
-		$data['japan_lines_stations'] = $pls_data;
+		// $data['japan_lines_stations'] = $pls_data;
 
 		$this->load->view('job_list', $data);
 	}
@@ -426,6 +418,32 @@ class Home extends CI_Controller
 	public function favorites_clear()
 	{
 		$_SESSION['favorites'] = [];
+	}
+
+	public function get_lines()
+	{
+		$data = [];
+
+		if (!empty($_POST['pref'])) {
+			$pref = $_POST['pref'];
+			$data = $this->lines_model->get_by_pref($pref);
+		}
+
+		echo json_encode($data);
+	}
+
+	public function get_stations()
+	{
+		$data = [];
+
+		if (!empty($_POST['line_cd'])) {
+
+			$line_cd = $_POST['line_cd'];
+
+			$data = $this->stations_model->get_by_line_cd($line_cd);
+		}
+
+		echo json_encode($data);
 	}
 
 	private function sendmail($id)

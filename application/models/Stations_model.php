@@ -27,4 +27,9 @@ class Stations_model extends CI_Model
         $sql = "SELECT prefecture, line_name, station_name FROM `stations` LEFT JOIN `lines` ON `lines`.line_cd = stations.line_cd LEFT JOIN prefectures ON prefectures.pref_cd = stations.pref_cd ORDER BY stations.pref_cd";
         return $this->db->query($sql)->result_array();
     }
+
+    public function get_by_line_cd($line_cd)
+    {
+        return $this->db->where('line_cd', $line_cd)->get('stations')->result_array();
+    }
 }

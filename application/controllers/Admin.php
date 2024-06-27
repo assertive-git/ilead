@@ -309,6 +309,14 @@ class Admin extends CI_Controller
         }
     }
 
+    public function get_lines_stations()
+	{
+		$lines = $this->lines_model->get_all();
+		$stations = $this->stations_model->get_all();
+
+		echo json_encode(['lines' => $lines, 'stations' => $stations]);
+	}
+
     private function handle_custom_fields($custom_fields)
     {
 

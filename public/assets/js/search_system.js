@@ -4,8 +4,8 @@
     $('.region_area').change(function () {
 
         $('#modal1 .prefectures_group').hide();
-        $('.search_inner2').hide();
-        $('.search_inner2').eq(0).show();
+        $('.area-box').hide();
+        $('.area-box').eq(0).show();
         var index = $(this).index('.region_area');
 
         // select prefecture with same index
@@ -16,18 +16,18 @@
 
     $('.prefectures_area').change(function () {
 
-        $('.search_inner2').hide();
+        $('.area-box').hide();
         var index = $(this).index('.prefectures_area') + 1;
 
         // select area with same index
-        $('.search_inner2').eq(index).show();
+        $('.area-box').eq(index).show();
     });
 
     $('.region_lines_stations').change(function () {
 
         $('#modal2 .prefectures_group').hide();
         $('.choice2').hide();
-        $('.choice2').eq(0).css({display: 'flex'});
+        $('.choice2').eq(0).css({ display: 'flex' });
         var index = $(this).index('.region_lines_stations');
 
         // select prefecture with same index
@@ -38,19 +38,87 @@
 
     $('.prefectures_lines_stations').change(function () {
 
-        $('.choice2').hide();
-        var index = $(this).index('.prefectures_lines_stations') + 1;
+        var pref = $(this).next().text();
 
-        // select area with same index
-        $('.choice2').eq(index).css({display: 'flex'});
+        if ($('.choice2[id="' + pref + '"]').length == 0) {
+            $.ajax({
+                type: "POST",
+                url: '/get_lines',
+                dataType: 'json',
+                data: {
+                    pref: pref
+                },
+                success: function (data) {
+                    $('.choice2').hide();
+
+                    var clone = $('.choice2').eq(0).clone();
+                    clone.children('.route').removeClass('first');
+                    clone.children('.station').removeClass('first');
+                    clone.find('.choice_ttl_pref').text(pref);
+                    clone.attr('id', pref);
+                    clone.css({ display: 'flex' });
+
+                    for (var i = 0; i < data.length; i++) {
+                        clone.find('.route .scroll_inner').append('<li><label><input id="' + data[i].line_cd + '" line_name="' + data[i].line_name + '" style="display: none" type="radio" name="ln" value="' + data[i].line_name + '" /><div class="line_name">' + data[i].line_name + '</div></label></li>');
+                    }
+
+                    $('.choice2').last().after($(clone));
+
+                }
+            });
+
+        } else {
+            $('.choice2').hide();
+            $('.choice2[id="' + pref + '"]').css({ display: 'flex' });
+        }
     });
 
-    $('.route li').click(function () {
+    $('body').on('change', '#modal2 .route input', function () {
 
-        var index = $(this).index('.route li')  + 1;
-        $('.station').hide();
-        $('.station').eq(index).show();
+        var choice2 = $(this).closest('.choice2');
+        var line_cd = $(this).attr('id');
+        var line_name = $(this).attr('line_name');
+
+        if ($('.station[line_id="' + line_cd + '"]').length == 0) {
+            $.ajax({
+                type: "POST",
+                url: '/get_stations',
+                dataType: 'json',
+                data: {
+                    line_cd: line_cd
+                },
+                success: function (data) {
+
+                    $('.station').hide();
+
+                    var clone = choice2.children('.station').eq(0).clone();
+                    clone.find('.choice_ttl_line').text(line_name);
+                    clone.attr('line_id', line_cd);
+                    clone.css({ display: 'block' });
+                    clone.find('.scroll_inner').append('<li><label><div class="station_name"><input class="stations_all" type="checkbox" name="stations_all[]" value="' + line_name + '"><i class="fa-solid fa-circle-check"></i>' + line_name + 'のすべて</div></label></li>');
+
+
+
+                    for (var i = 0; i < data.length; i++) {
+                        clone.find('.scroll_inner').append('<li><label><div class="station_name"><input type="checkbox" name="stations[]" value="' + line_name + data[i].station_name + '"><i class="fa-solid fa-circle-check"></i>' + data[i].station_name + '</div></label></li>');
+                    }
+                    console.log(clone.html());
+
+                    choice2.children('.station').last().after($(clone));
+
+                }
+            });
+        } else {
+            $('.station').hide();
+            $('.station[line_id="' + line_cd + '"]').show();
+        }
     });
+
+    // $('.route li').click(function () {
+    //     var index = $(this).index('.route li') + 1;
+    //     $('.station').hide();
+    //     $('.station').eq(index).show();
+    // });
 
 
     $('body').on('change', '.areas_all', function () {

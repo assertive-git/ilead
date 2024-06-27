@@ -405,7 +405,7 @@ $traits = !empty($traits) ? explode(',', $traits) : [];
 
                                     $.ajax({
                                         type: "POST",
-                                        url: '/get_lines_and_stations',
+                                        url: '/admin/get_lines_stations',
                                         dataType: 'json',
                                         success: function (data) {
                                             lines = data.lines;

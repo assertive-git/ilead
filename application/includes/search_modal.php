@@ -31,15 +31,15 @@
                         </div>
                     <?php endforeach; ?>
                 </div>
-                <div class="search_inner2 hide" style="<?= empty($prefectures_area) ? 'display:block' : '' ?>">
+                <div class="search_inner2 area-box hide" style="<?= empty($prefectures_area) ? 'display:block' : '' ?>">
                     <div class="choice"></div>
                 </div>
                 <?php $i = 1; ?>
                 <?php foreach ($japan_areas as $japan_area): ?>
                     <?php foreach ($japan_area as $pref_key => $japan_pref): ?>
-                        <div class="search_inner2 hide" style="<?= $prefectures_area == $pref_key ? 'display:block' : '' ?>">
+                        <div class="search_inner2 area-box hide" style="<?= $prefectures_area == $pref_key ? 'display:block' : '' ?>">
                             <div class="choice">
-                                <input type="checkbox" class="areas_all" id="areas_all_<?= $i ?>" name="areas[]" value="すべて">
+                                <input type="checkbox" class="areas_all" id="areas_all_<?= $i ?>" name="areas[]" value="すべて" <?= in_array('すべて', $areas) ? 'checked' : ''; ?>>
                                 <label for="areas_all_<?= $i ?>">すべて</label>
                                 <?php $j = 1; ?>
                                 <?php foreach ($japan_pref as $japan_city): ?>

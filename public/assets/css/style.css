@@ -442,7 +442,7 @@ main .search .area.is-active {
   overflow: auto;
 }
 
-.modal_container .search_inner2.hide {
+.modal_container .search_inner2.area-box.hide {
   display: none;
 }
 

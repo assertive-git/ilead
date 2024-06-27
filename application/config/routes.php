@@ -16,7 +16,8 @@ $route['jobs/(:num)/entry']['GET'] = 'home/jobs_entry/$1';
 $route['jobs/(:num)/confirm']['POST'] = 'home/jobs_confirm/$1';
 $route['jobs/(:num)/complete']['GET'] = 'home/jobs_complete/$1';
 $route['jobs/(:num)/complete']['POST'] = 'home/jobs_complete/$1';
-$route['get_lines_and_stations']['POST'] = 'home/get_lines_and_stations';
+$route['get_lines']['POST'] = 'home/get_lines';
+$route['get_stations']['POST'] = 'home/get_stations';
 $route['get_prefs_lines_and_stations']['POST'] = 'home/get_prefs_lines_stations';
 $route['get_jobs_by_ids']['POST'] = 'home/get_jobs_by_id';
 $route['favorites']['GET'] = 'home/favorites';
@@ -26,6 +27,7 @@ $route['favorites/delete']['POST'] = 'home/favorites_delete';
 $route['favorites/clear']['POST'] = 'home/favorites_clear';
 // $route['favorites/delete']['GET'] = 'home/delete';
 // $route['favorites/delete_all']['GET'] = 'home/delete_all';
+$route['get_lines_and_stations'] = 'home/get_lines_and_stations';
 
 $route['admin'] = 'admin';
 $route['admin/login']['GET'] = 'admin/login_get';
@@ -55,6 +57,7 @@ $route['admin/jobs/status/update_multiple']['POST'] = 'admin/jobs_single_col_mul
 $route['admin/jobs/csv_export']['GET'] = 'admin/jobs_csv_export';
 $route['admin/jobs/csv_import']['POST'] = 'admin/jobs_csv_import';
 $route['admin/jobs/base64_to_png']['POST'] = 'admin/base64_to_png';
+$route['admin/get_lines_and_stations']['POST'] = 'admin/get_lines_and_stations';
 
 
 /* news */
