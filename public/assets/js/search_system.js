@@ -101,13 +101,14 @@
         if (loading) return;
 
         var choice2 = $(this).closest('.choice2');
+        var pref = choice2.attr('id');
         var line_cd = $(this).attr('id');
         var line_name = $(this).attr('line_name');
 
         $('.station').hide();
         $('.station').eq(0).show();
 
-        if ($('.station[line_id="' + line_cd + '"]').length == 0) {
+        if ($('.station[line_id="' + line_cd + '|' + pref + '"]').length == 0) {
             $.ajax({
                 type: "POST",
                 url: '/get_stations',
@@ -126,7 +127,7 @@
                         clone.find('.choice_ttl_line').text(line_name);
                         clone.css({ display: 'block' });
                         clone.find('.scroll_inner').append('<li><label><div class="station_name"><input class="stations_all" type="checkbox" name="stations_all[]" value="' + line_name + '"><i class="fa-solid fa-circle-check"></i>' + line_name + 'のすべて</div></label></li>');
-                        clone.attr('line_id', line_cd);
+                        clone.attr('line_id', line_cd + '|' + pref);
 
                         for (var i = 0; i < data.length; i++) {
                             clone.find('.scroll_inner').append('<li><label><div class="station_name"><input type="checkbox" name="stations[]" value="' + line_name + data[i].station_name + '"><i class="fa-solid fa-circle-check"></i>' + data[i].station_name + '</div></label></li>');
@@ -139,7 +140,7 @@
             });
         } else {
             $('.station').hide();
-            $('.station[line_id="' + line_cd + '"]').show();
+            $('.station[line_id="' + line_cd + '|' + pref + '"]').show();
         }
     });
 
