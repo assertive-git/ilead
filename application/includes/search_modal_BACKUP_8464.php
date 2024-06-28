@@ -1,4 +1,8 @@
-<?php include (APPPATH . 'includes/japan_regions.php'); ?>
+<<<<<<< HEAD
+﻿<?php include (APPPATH . 'includes/japan_regions.php'); ?>
+=======
+﻿﻿<?php include (APPPATH . 'includes/japan_regions.php'); ?>
+>>>>>>> 8beb4d85e0139cb5b8c17b1bef3ebc1839e5b1f0
 <?php include (APPPATH . 'includes/japan_areas.php'); ?>
 <div class="modals">
 
@@ -360,5 +364,10 @@
         </ul>
       </div>
     </div>
+<<<<<<< HEAD
   </div>
 </div>
+=======
+
+</div>
+>>>>>>> 8beb4d85e0139cb5b8c17b1bef3ebc1839e5b1f0
