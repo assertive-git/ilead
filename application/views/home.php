@@ -176,8 +176,13 @@
                 </a> </div>
             <?php endforeach; ?>
           </div>
+          
+          <div class="arrows_area">
+            <div class="arrows"></div>
+          </div>
+            
+            
         </div>
-        <!--/area-->
       </div>
     </div>
   </section>

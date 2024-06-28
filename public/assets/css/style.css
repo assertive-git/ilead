@@ -647,7 +647,8 @@ main .search .area.is-active {
 
 .modal_container .salary {
   display: flex;
-  gap: 5%;
+  flex-wrap: wrap;
+  gap: 1.2rem 5%;
 }
 
 .modal_container .salary li select {
@@ -709,7 +710,7 @@ main .recruitment_slider_wrap {
 .slide_item {
   width: min(100%, 320px);
   padding: 35px;
-  margin-right: 20px;
+  /*margin-right: 20px;*/
   background-color: #fff;
 }
 
@@ -721,7 +722,7 @@ main .recruitment_slider_wrap {
 
 .slide_item .category span {
   font-size: min(14 / 1200* 100vw, 1.4rem);
-  font-weight: 500;
+  font-weight: 400;
   color: #13b3e7;
   padding: 0 1em;
   border: 1px solid;
@@ -773,9 +774,7 @@ main .picup .temporary_slider_wrap {
 }
 
 main .picup .temporary_slider_wrap .temporary_slider .slide_item {
-  width: min(100%, 250px);
-  margin-right: 35px;
-  padding: 0;
+  padding: 0 18px;
 }
 
 /*-----タブメニュー-----*/
@@ -822,7 +821,7 @@ main .picup .area2 {
   opacity: 0;
   /*透過0*/
   background: #fff;
-  padding: 30px 40px;
+  padding: 30px 20px;
 }
 
 /*areaにis-activeというクラスがついた時の形状*/
@@ -1002,6 +1001,8 @@ main .news .news_inner .news_area span.day {
   display: inline-block;
   color: #777;
   letter-spacing: 0;
+    font-weight: 400;
+    font-size: 1.4rem;
 }
 
 main .news .news_inner .news_area span.title {
@@ -1700,6 +1701,7 @@ main .job_result .area.is-active {
   width: 100%;
   border-bottom: 1px solid #004191;
   padding-bottom: 2rem;
+    line-height: 1.7;
 }
 
 #news_single .news .news_inner dd {
@@ -1707,7 +1709,7 @@ main .job_result .area.is-active {
   font-weight: 400;
   letter-spacing: 0.1em;
   border-bottom: 1px solid #cfcfcf;
-  padding: 7rem 0;
+  padding: 5rem 0 7rem;
   margin-bottom: 9rem;
 }
 
@@ -2043,6 +2045,7 @@ main#map .search_area .map_in {
   font-size: 1.6rem;
   font-weight: 500;
   margin-bottom: 0.4rem;
+    line-height: 1.6;
 }
 
 #map .list_item .info_inner {
@@ -2293,64 +2296,54 @@ main#map .search_area .map_in {
   .pc {
     display: none;
   }
-
   .sp {
     display: inline-block;
   }
-
   .pagination {
     font-size: 1.2rem;
   }
-
   .modal-close {
     font-size: 2.2rem;
   }
-
+  .hamburger-menu {
+    z-index: 1;
+  }
   button.arrow_before:before {
     right: 1vw;
     width: 26px;
     height: 26px;
   }
-
   button.arrow_before:after {
     right: 3vw;
     width: 8px;
     height: 8px;
   }
-
   button.arrow_next:before {
     left: 10px;
     width: 26px;
     height: 26px;
   }
-
   button.arrow_next:after {
     left: 18px;
     width: 8px;
     height: 8px;
   }
-
   #job_single .search_result {
     padding-left: 16vw;
   }
-
   #job_single .search_result button {
     font-size: 1.4rem;
   }
-
   header .header_inner {
     height: 6vh;
     width: 86%;
   }
-
   header .header_inner .logo img {
     width: 13vh;
   }
-
   header .header_inner .pc_nav {
     display: none;
   }
-
   main .main_img {
     position: relative;
     width: 100%;
@@ -2361,59 +2354,48 @@ main#map .search_area .map_in {
     background-position: 61% center;
     border-radius: 0;
   }
-
   main .main_img p.main_copy {
     font-size: 7vw;
     margin-left: 7%;
     margin-top: 8%;
   }
-
   main .main_img span.sub_copy {
     font-size: 3vw;
   }
-
   main .search {
     width: 95%;
     margin: -34vw auto 0;
   }
-
   main .search .freeword h4 {
     line-height: 1.4;
     margin-bottom: 1rem;
   }
-
   main .search .tab li {
     width: 49%;
     background: none;
     padding: 0;
     margin-bottom: 0;
   }
-
   main .search .tab li.active a {
     font-size: 3.2vw;
   }
-
   main .search .tab li a {
     padding: 10px;
     font-size: 3.2vw;
     border-radius: 6px 6px 0 0;
   }
-
   main .search .tab li a i {
     font-size: 4vw;
   }
-
   main .search .main7 li {
     font-size: 1.6rem;
     width: 100%;
     padding: 1rem 2.4rem;
   }
-
   main .registration {
     display: flex;
     justify-content: center;
   }
-
   main .registration a {
     position: relative;
     width: 95%;
@@ -2425,7 +2407,6 @@ main#map .search_area .map_in {
     box-shadow: 0 2px #ff6868;
     z-index: 999;
   }
-
   main .search li {
     width: 100%;
     padding: 0;
@@ -2433,31 +2414,26 @@ main#map .search_area .map_in {
     box-shadow: none;
     border-radius: 2px;
     font-size: 1.6rem;
-    font-weight: 500;
+    font-weight: 400;
     letter-spacing: 0.1em;
     margin-bottom: 0;
   }
-
   main .search .area {
     padding: 2rem;
     border-radius: 0 0 5px 5px;
     box-shadow: 0px 2px #d3d3d3;
   }
-
   main .search .area2 {
     padding: 2rem;
     border-radius: 0 0 5px 5px;
     box-shadow: 0px 2px #d3d3d3;
   }
-
   main .search .main7 li.freeword {
     width: 100%;
   }
-
   main .search li.number_text {
     margin-top: 0;
   }
-
   main .search .form {
     width: 100%;
     margin-bottom: 1rem;
@@ -2465,90 +2441,77 @@ main#map .search_area .map_in {
     box-shadow: 0px 1px #cfcfcf;
     font-size: 1.6rem;
   }
-
   .plus {
     font-size: 2.4rem;
     right: 5%;
   }
-
   main .search .button_area {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
+    align-content: space-between;
   }
-
+  main .search .button_area li.search_number {
+    font-size: 1.4rem;
+  }
   main .search .button_area button.submit {
     margin-right: 0;
     padding: 0.6vh 0;
     width: 100%;
     font-size: 1.8vh;
   }
-
   main .search .button_area button.reset {
     width: 100%;
     padding: 0.6vh 0;
     font-size: 1.8vh;
   }
-
   main .search .number_text {
     order: 3;
   }
-
   main .search_area {
     background-color: #e3f7f6;
     padding: 0;
   }
-
   main .search_area ul {
     justify-content: space-between;
     gap: 8px 7px;
     margin: 0 auto;
   }
-
   main .search_area .search_inner {
     width: 100%;
   }
-
   main .search_area .search_inner .plus {
     font-size: 6vw;
   }
-
   main .search_area .search_inner ul {
     width: 92%;
   }
-
   main#map .search_area .search_inner ul {
     justify-content: space-between;
   }
-
   main#map .search_area .search_inner ul.salary {
     width: 100%;
     flex-wrap: nowrap;
   }
-
   main#map .search_area .search_inner ul.salary li {
     padding: 0;
     background-color: transparent;
     box-shadow: none;
   }
-
   main .search_area .search_inner ul li {
     width: 44vw;
     font-size: 3vw;
     padding: 1.4vw 5vw 1.4vw 4vw;
     border-radius: 3px;
   }
-
   main .search_area .search_inner ul li.freeword {
     width: 90vw;
   }
-
   main .search_area .search_inner ul li.freeword input[type="submit"] {
     width: 10vw;
     border-radius: 0 3px 3px 0;
   }
-
   main .search_area .search_inner .button_area {
     width: 100vw;
     border-top: 1px solid #fff;
@@ -2556,7 +2519,6 @@ main#map .search_area .map_in {
     padding-top: 4vw;
     text-align: center;
   }
-
   main .search_area .button_area button.reset {
     width: 88vw;
     padding: 0.6vh 0;
@@ -2564,48 +2526,48 @@ main#map .search_area .map_in {
     height: auto;
     margin: 0 auto;
   }
-
   a.consider_list {
     font-size: 3.2vw;
     width: 34vw;
     height: 4vh;
     border-radius: 2vh;
   }
-
   .modal-top {
     right: 20px;
     top: 1.5vh;
   }
-
   main .modal-content {
     width: 100%;
     height: 100%;
   }
-
   .modal_container .search_inner {
     padding: 5vw;
     height: 69vh;
     overflow: auto;
   }
-
   .modal_container .search_inner2 {
     padding: 5vw;
     height: 58vh;
     overflow: auto;
   }
-
+  #modal3 .modal_container .search_inner2 {
+    height: 69vh;
+  }
+  #modal4 .modal_container .search_inner2 {
+    height: 69vh;
+  }
+  #modal5 .modal_container .search_inner2 {
+    height: 69vh;
+  }
   #map .modal_container .search_inner {
     height: 58vh;
   }
-
   #map .modal_container .search_inner2 {
     height: 47vh;
   }
-
   #map .google_map {
     height: 89vh
   }
-
   .modal_container .button_area {
     width: 100%;
     padding: 6vw;
@@ -2614,12 +2576,10 @@ main#map .search_area .map_in {
     background-color: #fff;
     height: 24vh;
   }
-
   .modal_container .button_area button.submit {
     width: 88vw;
     padding: 0.6vh 0;
   }
-
   .modal_container .button_area .applicable {
     order: 3;
     font-size: 1.2rem;
@@ -2627,16 +2587,13 @@ main#map .search_area .map_in {
     letter-spacing: 0.04em;
     margin: 0 auto;
   }
-
   .modal_container .button_area .applicable .big {
     font-size: 1.4rem;
   }
-
   .modal_container .button_area .number {
     text-align: center;
     letter-spacing: 0;
   }
-
   .modal_container .choice {
     width: 100%;
     /*height: 45vh;*/
@@ -2648,24 +2605,19 @@ main#map .search_area .map_in {
     overflow: auto;
     /*height: fit-content;*/
   }
-
   .modal_container .choice.shape {
     margin-bottom: 2rem;
   }
-
   #map .modal_container .choice {
     height: 41vh;
   }
-
   #map .modal_container .choice.shape {
     height: 30vh;
     margin-bottom: 2rem;
   }
-
   #map .modal_container .choice.high {
     height: 53vh;
   }
-
   .modal_container .choice label {
     width: 100%;
     font-size: 1.3rem;
@@ -2673,14 +2625,11 @@ main#map .search_area .map_in {
     margin-bottom: 1.2vh;
     /*height: fit-content;*/
   }
-
-  .modal_container .region label,
-  .modal_container .prefectures label {
+  .modal_container .region label, .modal_container .prefectures label {
     font-size: 1.2rem;
     padding: 1rem 1.6rem;
     height: 6vh;
   }
-
   .modal_container h4 {
     display: flex;
     justify-content: center;
@@ -2689,106 +2638,89 @@ main#map .search_area .map_in {
     margin: 0;
     height: 7vh
   }
-
   .modal_container .choice2 {
     height: 58vh;
     padding: 5vw;
     gap: 4vw;
   }
-
   #map .modal_container .choice2 {
     height: 47vh;
   }
-
   .modal_container .choice2 h5 {
     font-size: 1.4rem;
   }
-
   .modal_container .choice2 .choice_inner .choice_ttl {
     font-size: 1.2rem;
   }
-
   .modal_container .choice2 .route {
     width: 50%;
   }
-
   .modal_container .choice2 .choice_inner {
     height: 44vh;
   }
-
   #map .modal_container .choice2 .choice_inner {
     height: 37vh;
   }
-
   .modal_container .choice2 .choice_inner li {
     padding: 0.4rem 1rem;
     font-size: 1.2rem;
   }
-
   .modal_container .choice2 .station .scroll_inner li:not(:first-child) {
     padding-left: 1rem;
   }
-
-  .modal_container .salary li {
-    font-size: 1.2rem;
+    
+  .modal_container .salary_ttl {
+    margin-top: 3rem;
+      margin-bottom: 1rem;
   }
-
+    
+  .modal_container .salary li {
+    font-size: 1.4rem;
+  }
   main .search .freeword span {
     font-size: 1.2rem;
     margin-left: 0;
   }
-
   h2 span {
     font-size: 3vw;
     color: #555555;
     display: block;
   }
-
   h2 {
     font-size: 10vw;
   }
-
   h3 {
     font-size: 5vw;
     margin: 2rem 0 0;
   }
-
   .slide_item {
     width: min(100%, 320px);
     padding: 35px;
-    margin-right: 20px;
     background-color: #fff;
   }
-
   .slide_item .category span {
-    font-size: 3.4vw;
+    font-size: 3.2vw;
   }
-
   .slide_item dt {
-    font-size: 4.6vw;
+    font-size: 4.2vw;
   }
-
   .slide_item dd {
     font-size: 3.4vw;
     margin-top: 0.6rem;
   }
-
   .slide_item {
     padding: 15px;
     margin-right: none;
     background-color: #fff;
   }
-
   main .recruitment {
     padding: min(13vw, 75px) 0;
   }
-
   main .picup .tab li a {
     padding: 6px;
     font-size: 4.4vw;
     border-radius: 6px 6px 0 0;
   }
-
   main .aboutus .aboutus_back {
     width: 92%;
     border-radius: 20px;
@@ -2796,39 +2728,32 @@ main#map .search_area .map_in {
     display: block;
     background-size: 230px, 240px;
   }
-
   main .aboutus .aboutus_back .aboutus_inner .text {
     width: 100%;
     font-size: 3.2vw;
     text-align: justify;
   }
-
   main .aboutus .aboutus_back .aboutus_inner .text .lead {
     font-size: 1.9rem;
     margin: 20px 0 16px;
   }
-
   main .aboutus .aboutus_back .aboutus_inner .aboutus_img {
     width: 100%;
     margin: 3rem auto;
   }
-
   main .aboutus .aboutus_back .aboutus_inner img {
     width: 100%;
   }
-
   main .aboutus .aboutus_back .aboutus_inner {
     display: block;
     width: 84%;
     margin: 0 auto;
     padding: 4rem 0;
   }
-
   main .aboutus .aboutus_back .aboutus_inner .text p.lead span {
     font-size: 8vw;
     line-height: 1.2;
   }
-
   main .aboutus .aboutus_back .aboutus_inner a {
     width: 60vw;
     margin: 0 auto;
@@ -2836,18 +2761,15 @@ main#map .search_area .map_in {
     border-radius: 25px;
     margin-top: 40px;
   }
-
   main .instagram {
     background-color: #E3F7F7;
     display: flex;
     align-items: center;
     padding: min(13vw, 90px) 0;
   }
-
   main .instagram .instagram_inner a.pc {
     display: none;
   }
-
   main .instagram .instagram_inner a.sp {
     width: 60vw;
     height: 50px;
@@ -2857,380 +2779,298 @@ main#map .search_area .map_in {
     align-items: center;
     margin: 40px auto 0;
   }
-
   main .instagram .instagram_inner img {
     width: 100%;
     margin: 2.2rem 0 0;
   }
-
   main .news {
     padding: min(13vw, 90px) 0;
   }
-
   main .news .news_inner {
     width: 86%;
   }
-
   main .news .news_inner .text {
     display: flex;
     justify-content: space-between;
     width: min(92%, 1200px);
     margin-bottom: 2rem;
   }
-
   main .news .news_inner .news_area {
     width: 100%;
     font-size: 1.3rem;
   }
-
   main .news .news_inner .news_area span.day {
     width: 100%;
   }
-
   main .news .news_inner .news_area span.title {
     width: 100%;
   }
-
   footer .button_area a {
     font-size: 3vw;
     height: min(37vw, 400px);
   }
-
   footer .button_area a.company {
     width: 100%;
   }
-
   footer .button_area a.contact {
     width: 100%;
   }
-
   footer .button_area a p span.big {
     font-size: 10vw;
   }
-
   footer .footer_area {
     padding: min(13vw, 60px) 0;
   }
-
   footer .footer_area p {
     font-size: 0.8rem;
     margin-top: 1.5rem;
   }
-
   footer .footer_area p .company_name {
     font-size: 1.4rem;
   }
-
   footer .footer_area .logo a img {
     width: 30vw;
   }
-
   #news_single .news .news_inner span.title {
     font-size: 5vw;
     padding-bottom: 2rem;
   }
-
   #news_single a.return_button {
     margin: 0 auto;
   }
-
   #news_single .news .news_inner dd {
     font-size: 1.2rem;
     padding: 5rem 0;
     margin-bottom: 6rem;
   }
-
   /*---favorites---*/
   main .search_result {
     padding: 0.4rem 0;
     height: auto;
   }
-
   main .search_result p {
     font-size: 1.4rem;
   }
-
   main .search_result p .number {
     font-size: 1.4rem;
   }
-
   /*---job_list---*/
   main .job_result {
     padding: 30px 0 60px;
   }
-
   main .job_result .job_result_inner {
     width: 90%;
   }
-
   main .job_result .job_result_inner .job_result_wrap .inner {
     padding: 2rem 5vw 3rem;
   }
-
   .list_img {
     width: 30%;
     order: 1;
     margin-bottom: 1rem;
   }
-
   main .job_result .job_result_inner .job_result_wrap .inner .category {
     width: 65%;
     order: 2;
   }
-
   main .job_result .job_result_inner .job_result_wrap .inner .table_area {
     width: 100%;
     order: 3;
     font-size: 1.2rem;
   }
-
   main .job_result .job_result_inner .job_result_wrap .inner .button_area {
     order: 4;
     flex-wrap: wrap;
     gap: 3vw;
     margin: 3rem auto 0;
   }
-
   main .job_result .job_result_inner .job_result_wrap .inner .button_area button {
     width: 70vw;
   }
-
   main .job_result .job_result_inner .job_result_wrap .inner .button_area a {
     width: 70vw;
   }
-
   main .job_result .job_result_inner .job_result_wrap .inner p.title {
     font-size: 4vw;
   }
-
   main .job_result .job_result_inner .job_result_wrap .inner p {
     font-size: 3.4vw;
   }
-
   main .job_result .job_result_inner .job_result_wrap .inner .category span {
     font-size: 2.6vw;
   }
-
   main .job_result .job_result_inner .job_result_wrap .inner .button_area .favorite_btn {
     width: 70vw;
   }
-
   main .job_result .tab {
     margin: 1rem auto 0;
     justify-content: center;
   }
-
   main .job_result .tab li {
     width: 30%;
   }
-
   main .job_result .tab li a {
     padding: 8px;
     font-size: 1.4rem;
   }
-
   main .job_result .job_result_inner p.number {
     text-align: center;
   }
-
   main .job_result .job_result_inner .job_result_wrap .inner table th {
     padding: 0.6rem 1.2rem;
     width: 26%;
   }
-
   main .job_result .job_result_inner .job_result_wrap .inner table td {
     padding: 0.6rem 1.2rem;
   }
-
   #mypage .table_area {
     width: 100%;
   }
-
   #mypage .registration a {
     display: none;
   }
-
   #mypage button.reset {
     margin: 0 auto 3rem;
     font-size: 1.4rem;
   }
-
   main .job_result .job_result_inner p.number2 {
     text-align: center;
     margin: -2rem auto 2rem;
   }
-
   #job_single .job_result .job_result_inner .job_result_wrap .inner .category {
     order: 1;
     width: 100%;
   }
-
   #job_single .job_result .job_result_inner .job_result_wrap .inner p {
     order: 2;
   }
-
   main .job_result .job_result_inner .job_result_wrap .inner .result_title {
     font-size: 1.5rem;
     margin-bottom: 1.2rem;
     order: 3;
   }
-
   #job_single .job_result .job_result_inner .job_result_wrap .inner .result_img1 {
     order: 3;
     width: 100%;
     margin-bottom: 2rem;
   }
-
   #job_single .job_result .job_result_inner .job_result_wrap .inner .table_area {
     order: 4;
   }
-
   #job_single .job_result .job_result_inner .job_result_wrap .inner .job_detail {
     order: 5;
     font-size: 1.4rem;
     margin-top: 3rem;
   }
-
   #job_single .job_result .job_result_inner .job_result_wrap img.detail_img {
     order: 7;
   }
-
   #job_single table.company_detail {
     order: 8;
     margin-top: 3rem;
     margin-bottom: 1rem;
   }
-
   #job_single .job_result .job_result_inner .job_result_wrap .inner .button_area {
     order: 9;
   }
-
-  #job_single table.company_detail th,
-  #job_single table.company_detail td {
+  #job_single table.company_detail th, #job_single table.company_detail td {
     width: 100%;
     display: block;
     font-size: 1.2rem;
   }
-
   #job_single table.company_detail th {
     padding-bottom: 0;
     padding-top: 1rem;
   }
-
   #job_single table.company_detail td {
     padding-top: 0;
     padding-bottom: 1rem;
   }
-
   #form h2 {
     font-size: 2rem;
   }
-
   #form .progressbar {
     width: 100%;
     margin: 1.6rem auto;
   }
-
   #form .progressbar .item {
     font-size: 11px;
     line-height: 1.4;
     padding: 10px 0;
   }
-
-  #form .progressbar .item:not(:last-child)::before,
-  #form .progressbar .item:not(:last-child)::after {
+  #form .progressbar .item:not(:last-child)::before, #form .progressbar .item:not(:last-child)::after {
     border-width: 18px;
     border-left-width: 7px;
   }
-
   #form form dl {
     display: block;
   }
-
   #form form dt {
     display: block;
     width: 100%;
     padding: 0.6rem 1.5rem;
     font-size: 1.4rem;
   }
-
   #form form dd {
     display: block;
     width: 100%;
     padding: 1.5rem;
     font-size: 1.4rem;
   }
-
   #form form dd input {
     font-size: 1.4rem;
     padding: 0.2em 0.7em;
   }
-
   #form form dd select {
     font-size: 1.4rem;
     padding: 0.4em;
   }
-
   #form form dt span {
     margin-left: 1rem;
     font-size: 1rem;
     padding: 0.1rem 0.4rem;
   }
-
-  #form form .name input,
-  #form form .kana input {
+  #form form .name input, #form form .kana input {
     width: 34%;
   }
-
   #form form .birthday input {
     width: 22%;
   }
-
   #form form .mail_add input {
     width: 100%;
   }
-
   #form form dl div.address {
     width: 100%;
     padding: 2rem 1.5rem;
   }
-
   #form form dl div.address dd.zip input {
     width: 30%;
   }
-
   #form p.privacy {
     text-align: justify;
     margin: 3rem 0 0;
     font-size: 1.4rem;
   }
-
   #form .form_btn input {
     font-size: 2rem;
     width: 86%;
     margin: 3rem auto 5rem;
   }
-
   #form.confirm .form_btn input {
     width: 44%;
   }
-
   #form.confirm .contact_h {
     font-size: 2rem;
   }
-
   #form.confirm p {
     font-size: 1.4rem;
   }
-
   #form.complete .contact_h {
     font-size: 2rem;
   }
-
   #form.complete p {
     font-size: 1.4rem;
   }
-
   #form.complete p.top_buttona a {
     display: block;
     text-align: center;
@@ -3243,14 +3083,9 @@ main#map .search_area .map_in {
 }
 
 
-
-
-
-
-
 /*-----ハンバーガーメニュー-----*/
 .menu-btn {
-  position: fixed;
+  position: absolute;
   top: 0;
   right: 0;
   display: flex;
@@ -3261,10 +3096,7 @@ main#map .search_area .map_in {
   z-index: 90;
   background-color: transparent;
 }
-
-.menu-btn span,
-.menu-btn span:before,
-.menu-btn span:after {
+.menu-btn span, .menu-btn span:before, .menu-btn span:after {
   content: '';
   display: block;
   height: 1px;
@@ -3273,34 +3105,27 @@ main#map .search_area .map_in {
   background-color: #555;
   position: absolute;
 }
-
 .menu-btn span:before {
   bottom: 6px;
 }
-
 .menu-btn span:after {
   top: 6px;
 }
-
-#menu-btn-check:checked~.menu-btn span {
+#menu-btn-check:checked ~ .menu-btn span {
   background-color: rgba(255, 255, 255, 0);
   /*メニューオープン時は真ん中の線を透明にする*/
 }
-
-#menu-btn-check:checked~.menu-btn span::before {
+#menu-btn-check:checked ~ .menu-btn span::before {
   bottom: 0;
   transform: rotate(45deg);
 }
-
-#menu-btn-check:checked~.menu-btn span::after {
+#menu-btn-check:checked ~ .menu-btn span::after {
   top: 0;
   transform: rotate(-45deg);
 }
-
 #menu-btn-check {
   display: none;
 }
-
 .menu-content {
   width: 100%;
   height: auto;
@@ -3313,16 +3138,13 @@ main#map .search_area .map_in {
   transition: all 0.5s;
   /*アニメーション設定*/
 }
-
 .menu-content ul {
   padding: 14% 10% 10%;
 }
-
 .menu-content ul li {
   border-bottom: solid 1px #ffffff;
   list-style: none;
 }
-
 .menu-content ul li a {
   display: block;
   width: 100%;
@@ -3333,7 +3155,6 @@ main#map .search_area .map_in {
   padding: 9px 15px 10px 0;
   position: relative;
 }
-
 .menu-content ul li a::before {
   content: "";
   width: 7px;
@@ -3345,10 +3166,8 @@ main#map .search_area .map_in {
   right: 4%;
   top: 42%;
 }
-
-#menu-btn-check:checked~.menu-content {
+#menu-btn-check:checked ~ .menu-content {
   left: 0;
   /*メニューを画面内へ*/
 }
-
 /*-----ハンバーガーメニュー-----*/

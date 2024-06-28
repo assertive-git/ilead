@@ -1,4 +1,4 @@
-﻿<?php include (APPPATH . 'includes/japan_regions.php'); ?>
+﻿﻿<?php include (APPPATH . 'includes/japan_regions.php'); ?>
 <?php include (APPPATH . 'includes/japan_areas.php'); ?>
 <div class="modals">
 
