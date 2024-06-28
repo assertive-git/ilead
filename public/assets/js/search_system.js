@@ -138,8 +138,8 @@
 
                             var checked = '';
 
-                            if ($('input[type="checkbox"][value="' + data[i].station_name + '"]').length != 0) {
-                                $('input[type="checkbox"][value="' + data[i].station_name + '"]').remove();
+                            if ($('input[type="checkbox"][value="' + line_name + data[i].station_name + '"]').length != 0) {
+                                $('input[type="checkbox"][value="' + line_name + data[i].station_name + '"]').remove();
                                 checked = 'checked';
                             }
 
