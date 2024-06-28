@@ -37,9 +37,11 @@
                 <?php $i = 1; ?>
                 <?php foreach ($japan_areas as $japan_area): ?>
                     <?php foreach ($japan_area as $pref_key => $japan_pref): ?>
-                        <div class="search_inner2 area-box hide" style="<?= $prefectures_area == $pref_key ? 'display:block' : '' ?>">
+                        <div class="search_inner2 area-box hide"
+                            style="<?= $prefectures_area == $pref_key ? 'display:block' : '' ?>">
                             <div class="choice">
-                                <input type="checkbox" class="areas_all" id="areas_all_<?= $i ?>" name="areas[]" value="すべて" <?= in_array('すべて', $areas) ? 'checked' : ''; ?>>
+                                <input type="checkbox" class="areas_all" id="areas_all_<?= $i ?>" name="areas[]"
+                                    value="all_<?= $i ?>" <?= in_array('all_' . $i, $areas) ? 'checked' : ''; ?>>
                                 <label for="areas_all_<?= $i ?>">すべて</label>
                                 <?php $j = 1; ?>
                                 <?php foreach ($japan_pref as $japan_city): ?>
@@ -113,70 +115,33 @@
                     </div>
                 </div>
 
-                <!-- <?php foreach ($japan_lines_stations as $prefecture => $japan_line_station): ?>
-                    <div class="choice2" style="<?= $prefecture == $prefectures_lines_stations ? 'display: flex' : '' ?>">
+                <!--  saved line here -->
+                <?php if (!empty($ln)): ?>
+                    <input style="display: none" type="radio" name="ln" value="<?= $ln ?>">
+                    <div class="choice2 saved_line" id="<?= $prefectures_lines_stations ?>" style="display: flex">
                         <div class="route">
                             <h5>路線を選択</h5>
                             <div class="choice_inner">
-                                <p class="choice_ttl"><span class="choice_ttl_pref"><?= $prefecture ?></span></p>
-                                <ul class="scroll_inner">
-                                    <?php foreach ($japan_line_station as $line_name => $line_station): ?>
-                                        <li>
-                                            <label>
-                                                <input style="display: none" type="radio" name="ln" <?= $ln == $line_name ? 'checked' : '' ?>
-                                                    value="<?= $line_name ?>">
-                                                <div class="line_name"><?= $line_name ?></div>
-                                            </label>
-                                        </li>
-                                    <?php endforeach; ?>
-                                </ul>
+                                <p class="choice_ttl"><span class="choice_ttl_pref"><?= $prefectures_lines_stations ?></span></p>
+                                <ul class="scroll_inner"></ul>
                             </div>
                         </div>
 
-                        <?php foreach ($japan_line_station as $line_name => $line_station): ?>
-                            <div class="station" style="<?= $ln == $line_name ? 'display: block' : '' ?>">
-                                <h5>駅を選択</h5>
-                                <div class="choice_inner">
-                                    <p class="choice_ttl"><span class="choice_ttl_line"><?= $line_name ?></span></p>
-                                    <ul class="scroll_inner">
-                                        <li>
-                                            <label>
-                                                <div class="station_name">
-                                                    <input class="stations_all" type="checkbox" name="stations_all[]"
-                                                        value="<?= $line_name ?>" <?= in_array($line_name, $stations_all) ? 'checked' : '' ?>>
-                                                    <i class="fa-solid fa-circle-check"></i><?= $line_name ?>のすべて
-                                                </div>
-                                            </label>
-                                        </li>
-                                        <?php foreach ($line_station as $station): ?>
-                                            <li>
-
-                                                <label>
-
-                                                    <div class="station_name">
-                                                        <input type="checkbox" name="stations[]"
-                                                            value="<?= $line_name ?><?= $station ?>" <?= in_array($line_name . $station, $stations) ? 'checked' : '' ?>>
-                                                        <i class="fa-solid fa-circle-check"></i><?= $station ?>
-                                                    </div>
-                                                </label>
-                                            </li>
-                                        <?php endforeach; ?>
-                                    </ul>
-                                </div>
+                        <div class="station" style="display: block">
+                            <h5>駅を選択</h5>
+                            <div class="choice_inner">
+                                <p class="choice_ttl"><span class="choice_ttl_line"><?= $ln ?></span></p>
+                                <ul class="scroll_inner"></ul>
                             </div>
-                        <?php endforeach; ?>
+                        </div>
                     </div>
-                <?php endforeach; ?> -->
-                <!-- <script>
-                    $.ajax({
-                        type: "POST",
-                        url: '/get_prefs_lines_and_stations',
-                        dataType: 'json',
-                        success: function (data) {
-                            
-                        }
-                    });
-                </script> -->
+                <?php endif; ?>
+
+                <!--  saved stations here -->
+                <?php foreach ($stations as $station): ?>
+                    <input type="checkbox" style="display: none" checked name="stations[]" value="<?= $station ?>">
+                <?php endforeach; ?>
+
                 <ul class="button_area">
                     <li>該当件数<span class="big total_jobs"><?= $total_jobs ?></span>件</li>
                     <li>

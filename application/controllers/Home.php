@@ -7,6 +7,10 @@ class Home extends CI_Controller
 	public function __construct()
 	{
 		parent::__construct();
+
+		if(isset($_SESSION['search_sess'])) {
+			unset($_SESSION['search_sess']);
+		}
 	}
 
 	public function index()
@@ -19,7 +23,7 @@ class Home extends CI_Controller
 		$data['deployment'] = $this->jobs_model->get_deployment();
 		$data['news'] = $this->news_model->get_new_news();
 
-		$pls_data = [];
+		// $pls_data = [];
 
 		// $japan_lines_stations = $this->stations_model->get_all_prefs_lines_stations();
 
@@ -250,7 +254,7 @@ class Home extends CI_Controller
 		$freeword = isset($_POST['freeword']) ? $_POST['freeword'] : '';
 
 		$region_area = isset($_POST['region_area']) ? $_POST['region_area'] : '';
-		$prefectures_area = isset($_POST['prefecturs_area']) ? $_POST['prefectures_area'] : '';
+		$prefectures_area = isset($_POST['prefectures_area']) ? $_POST['prefectures_area'] : '';
 		$region_lines_stations = isset($_POST['region_lines_stations']) ? $_POST['region_lines_stations'] : '';
 		$prefectures_lines_stations = isset($_POST['prefectures_lines_stations']) ? $_POST['prefectures_lines_stations'] : '';
 		$ln = isset($_POST['ln']) ? $_POST['ln'] : '';
@@ -268,7 +272,6 @@ class Home extends CI_Controller
 		$_SESSION['search_sess']['region_area'] = $region_area;
 		$_SESSION['search_sess']['prefectures_area'] = $prefectures_area;
 
-		$_SESSION['search_sess']['region_lines_stations'] = $region_lines_stations;
 		$_SESSION['search_sess']['region_lines_stations'] = $region_lines_stations;
 		$_SESSION['search_sess']['prefectures_lines_stations'] = $prefectures_lines_stations;
 		$_SESSION['search_sess']['ln'] = $ln;
@@ -436,11 +439,12 @@ class Home extends CI_Controller
 	{
 		$data = [];
 
-		if (!empty($_POST['line_cd'])) {
+		if (!empty($_POST['line_cd']) && !empty($_POST['pref'])) {
 
 			$line_cd = $_POST['line_cd'];
+			$pref = $_POST['pref'];
 
-			$data = $this->stations_model->get_by_line_cd($line_cd);
+			$data = $this->stations_model->get_by_line_cd_pref($line_cd, $pref);
 		}
 
 		echo json_encode($data);

@@ -81,6 +81,9 @@
                     }
 
                     loading = false;
+                },
+                error: function () {
+                    loading = false;
                 }
             });
 
@@ -117,7 +120,8 @@
                     loading = true;
                 },
                 data: {
-                    line_cd: line_cd
+                    line_cd: line_cd,
+                    pref: pref
                 },
                 success: function (data) {
                     if (data.length > 0) {
@@ -129,12 +133,24 @@
                         clone.find('.scroll_inner').append('<li><label><div class="station_name"><input class="stations_all" type="checkbox" name="stations_all[]" value="' + line_name + '"><i class="fa-solid fa-circle-check"></i>' + line_name + 'のすべて</div></label></li>');
                         clone.attr('line_id', line_cd + '|' + pref);
 
+
                         for (var i = 0; i < data.length; i++) {
-                            clone.find('.scroll_inner').append('<li><label><div class="station_name"><input type="checkbox" name="stations[]" value="' + line_name + data[i].station_name + '"><i class="fa-solid fa-circle-check"></i>' + data[i].station_name + '</div></label></li>');
+
+                            var checked = '';
+
+                            if ($('input[type="checkbox"][value="' + data[i].station_name + '"]').length != 0) {
+                                $('input[type="checkbox"][value="' + data[i].station_name + '"]').remove();
+                                checked = 'checked';
+                            }
+
+                            clone.find('.scroll_inner').append('<li><label><div class="station_name"><input type="checkbox" name="stations[]" ' + checked + '  value="' + line_name + data[i].station_name + '"><i class="fa-solid fa-circle-check"></i>' + data[i].station_name + '</div></label></li>');
                         }
 
                         choice2.children('.station').last().after($(clone));
                     }
+                    loading = false;
+                },
+                error: function () {
                     loading = false;
                 }
             });
@@ -144,13 +160,6 @@
         }
     });
 
-    // $('.route li').click(function () {
-    //     var index = $(this).index('.route li') + 1;
-    //     $('.station').hide();
-    //     $('.station').eq(index).show();
-    // });
-
-
     $('body').on('change', '.areas_all', function () {
         $(this).siblings('input[name="areas[]"]').prop('checked', $(this).is(':checked'));
     });
@@ -159,6 +168,40 @@
         $(this).closest('li').siblings('li').find('input[name="stations[]"]').prop('checked', $(this).is(':checked'));
         $('input[name="stations[]"]').eq(0).change();
     });
+
+    if ($('.saved_line').length != 0) {
+
+        var self = $('.saved_line');
+
+        var pref = self.attr('id');
+
+        $.ajax({
+            type: "POST",
+            url: '/get_lines',
+            dataType: 'json',
+            beforeSend: function () {
+                loading = true;
+            },
+            data: {
+                pref: pref
+            },
+            success: function (data) {
+
+                var ln = $('input[name="ln"]');
+                var checked = '';
+
+                for (var i = 0; i < data.length; i++) {
+                    checked = ln.val() == data[i].line_name ? 'checked' : '';
+                    self.find('.route .scroll_inner').append('<li><label><input id="' + data[i].line_cd + '" line_name="' + data[i].line_name + '" style="display: none" type="radio" name="ln" value="' + data[i].line_name + '" ' + checked + ' /><div class="line_name">' + data[i].line_name + '</div></label></li>');
+                }
+
+                loading = false;
+            },
+            error: function () {
+                loading = false;
+            }
+        });
+    }
 }());
 
 /* 検索絞り反映 */
