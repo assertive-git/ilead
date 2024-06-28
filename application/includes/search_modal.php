@@ -5,9 +5,7 @@
   <!-- modal1 -->
   <div id="modal1" class="modal">
     <div class="modal-content">
-      <div class="modal-top">
-        <span class="modal-close"><i class="fa-solid fa-xmark"></i></span>
-      </div>
+      <div class="modal-top"> <span class="modal-close"><i class="fa-solid fa-xmark"></i></span> </div>
       <div class="modal_container">
         <h4>エリアを選ぶ</h4>
         <div class="region">
@@ -15,11 +13,10 @@
             <?php foreach ($japan_regions as $key => $japan_region): ?>
               <input type="radio" id="region_area_<?= $key ?>" class="region_area" name="region_area"
                 value="<?= $japan_region['name'] ?>" <?= $region_area == $japan_region['name'] ? 'checked' : '' ?>>
-              <label for="region_area_<?= $key ?>">
-                <?= $japan_region['name'] ?>
-              </label>
+              <label for="region_area_<?= $key ?>"><?= $japan_region['name'] ?></label>
             <?php endforeach; ?>
           </div>
+
         </div>
         <div class="prefectures">
           <div class="wrap">
@@ -33,43 +30,40 @@
               </div>
             <?php endforeach; ?>
           </div>
-          <div class="search_inner2 area-box hide" style="<?= empty($prefectures_area) ? 'display:block' : '' ?>">
-            <div class="choice"></div>
-          </div>
-          <?php $i = 1; ?>
-          <?php foreach ($japan_areas as $japan_area): ?>
-            <?php foreach ($japan_area as $pref_key => $japan_pref): ?>
-              <div class="search_inner2 area-box hide" style="<?= $prefectures_area == $pref_key ? 'display:block' : '' ?>">
-                <div class="choice">
-                  <input type="checkbox" class="areas_all" id="areas_all_<?= $i ?>" name="areas[]" value="all_<?= $i ?>"
-                    <?= in_array('all_' . $i, $areas) ? 'checked' : ''; ?>>
-                  <label for="areas_all_<?= $i ?>">すべて</label>
-                  <?php $j = 1; ?>
-                  <?php foreach ($japan_pref as $japan_city): ?>
-                    <input type="checkbox" id="areas_<?= $i ?>_<?= $j ?>" name="areas[]"
-                      value="<?= $pref_key ?><?= $japan_city ?>" <?= in_array($pref_key . $japan_city, $areas) ? 'checked' : ''; ?>>
-                    <label for="areas_<?= $i ?>_<?= $j ?>">
-                      <?= $japan_city ?>
-                    </label>
-                    <?php $j++; ?>
-                  <?php endforeach; ?>
-                </div>
-              </div>
-            <?php endforeach; ?>
-            <?php $i++; ?>
-          <?php endforeach; ?>
-          <ul class="button_area">
-            <li class="applicable">該当件数<span class="big total_jobs">
-                <?= $total_jobs ?>
-              </span>件</li>
-            <li>
-              <button type="button" class="submit reflect">選択した内容を反映する</button>
-            </li>
-            <li>
-              <button type="button" class="reset">すべてクリア</button>
-            </li>
-          </ul>
+
         </div>
+        <div class="search_inner2 area-box hide" style="<?= empty($prefectures_area) ? 'display:block' : '' ?>">
+          <div class="choice"></div>
+        </div>
+        <?php $i = 1; ?>
+        <?php foreach ($japan_areas as $japan_area): ?>
+          <?php foreach ($japan_area as $pref_key => $japan_pref): ?>
+            <div class="search_inner2 area-box hide" style="<?= $prefectures_area == $pref_key ? 'display:block' : '' ?>">
+              <div class="choice">
+                <input type="checkbox" class="areas_all" id="areas_all_<?= $i ?>" name="areas[]" value="all_<?= $i ?>"
+                  <?= in_array('all_' . $i, $areas) ? 'checked' : ''; ?>>
+                <label for="areas_all_<?= $i ?>">すべて</label>
+                <?php $j = 1; ?>
+                <?php foreach ($japan_pref as $japan_city): ?>
+                  <input type="checkbox" id="areas_<?= $i ?>_<?= $j ?>" name="areas[]"
+                    value="<?= $pref_key ?><?= $japan_city ?>" <?= in_array($pref_key . $japan_city, $areas) ? 'checked' : ''; ?>>
+                  <label for="areas_<?= $i ?>_<?= $j ?>"><?= $japan_city ?></label>
+                  <?php $j++; ?>
+                <?php endforeach; ?>
+              </div>
+            </div>
+          <?php endforeach; ?>
+          <?php $i++; ?>
+        <?php endforeach; ?>
+        <ul class="button_area">
+          <li>該当件数<span class="big total_jobs"><?= $total_jobs ?></span>件</li>
+          <li>
+            <button type="button" class="submit reflect">選択した内容を反映する</button>
+          </li>
+          <li>
+            <button type="button" class="reset">すべてクリア</button>
+          </li>
+        </ul>
       </div>
     </div>
   </div>
@@ -77,9 +71,7 @@
   <!-- modal2 -->
   <div id="modal2" class="modal">
     <div class="modal-content">
-      <div class="modal-top">
-        <span class="modal-close"><i class="fa-solid fa-xmark"></i></span>
-      </div>
+      <div class="modal-top"> <span class="modal-close"><i class="fa-solid fa-xmark"></i></span> </div>
       <div class="modal_container">
         <h4>沿線・駅を選ぶ</h4>
         <div class="region">
@@ -88,9 +80,7 @@
               <input type="radio" id="region_lines_stations_<?= $key ?>" class="region_lines_stations"
                 name="region_lines_stations" value="<?= $japan_region['name'] ?>"
                 <?= $region_lines_stations == $japan_region['name'] ? 'checked' : '' ?>>
-              <label for="region_lines_stations_<?= $key ?>">
-                <?= $japan_region['name'] ?>
-              </label>
+              <label for="region_lines_stations_<?= $key ?>"><?= $japan_region['name'] ?></label>
             <?php endforeach; ?>
           </div>
         </div>
@@ -106,65 +96,64 @@
                   <label for="prefectures_lines_stations_<?= $key ?>_<?= $key2 ?>"><?= $pref ?></label>
                 <?php endforeach; ?>
               </div>
-            <?php endforeach; ?>
+          <?php endforeach; ?>
           </div>
-          <div class="choice2" style="<?= !empty($stations) ? '' : 'display: flex' ?>">
-            <div class="route first">
+          
+        </div>
+        <div class="choice2" style="<?= !empty($stations) ? '' : 'display: flex' ?>">
+          <div class="route first">
+            <h5>路線を選択</h5>
+            <div class="choice_inner">
+              <p class="choice_ttl"><span class="choice_ttl_pref"></span></p>
+              <ul class="scroll_inner"></ul>
+            </div>
+          </div>
+
+          <div class="station first">
+            <h5>駅を選択</h5>
+            <div class="choice_inner">
+              <p class="choice_ttl"><span class="choice_ttl_line"></span></p>
+              <ul class="scroll_inner"></ul>
+            </div>
+          </div>
+        </div>
+
+        <!--  saved line here -->
+        <?php if (!empty($ln)): ?>
+          <input style="display: none" type="radio" name="ln" value="<?= $ln ?>">
+          <div class="choice2 saved_line" id="<?= $prefectures_lines_stations ?>" style="display: flex">
+            <div class="route">
               <h5>路線を選択</h5>
               <div class="choice_inner">
-                <p class="choice_ttl"><span class="choice_ttl_pref"></span></p>
+                <p class="choice_ttl"><span class="choice_ttl_pref"><?= $prefectures_lines_stations ?></span></p>
                 <ul class="scroll_inner"></ul>
               </div>
             </div>
 
-            <div class="station first">
+            <div class="station" style="display: block">
               <h5>駅を選択</h5>
               <div class="choice_inner">
-                <p class="choice_ttl"><span class="choice_ttl_line"></span></p>
+                <p class="choice_ttl"><span class="choice_ttl_line"><?= $ln ?></span></p>
                 <ul class="scroll_inner"></ul>
               </div>
             </div>
           </div>
+        <?php endif; ?>
 
-          <!--  saved line here -->
-          <?php if (!empty($ln)): ?>
-            <input style="display: none" type="radio" name="ln" value="<?= $ln ?>">
-            <div class="choice2 saved_line" id="<?= $prefectures_lines_stations ?>" style="display: flex">
-              <div class="route">
-                <h5>路線を選択</h5>
-                <div class="choice_inner">
-                  <p class="choice_ttl"><span class="choice_ttl_pref"><?= $prefectures_lines_stations ?></span></p>
-                  <ul class="scroll_inner"></ul>
-                </div>
-              </div>
+        <!--  saved stations here -->
+        <?php foreach ($stations as $station): ?>
+          <input type="checkbox" style="display: none" checked name="stations[]" value="<?= $station ?>">
+        <?php endforeach; ?>
 
-              <div class="station" style="display: block">
-                <h5>駅を選択</h5>
-                <div class="choice_inner">
-                  <p class="choice_ttl"><span class="choice_ttl_line"><?= $ln ?></span></p>
-                  <ul class="scroll_inner"></ul>
-                </div>
-              </div>
-            </div>
-          <?php endif; ?>
-
-          <!--  saved stations here -->
-          <?php foreach ($stations as $station): ?>
-            <input type="checkbox" style="display: none" checked name="stations[]" value="<?= $station ?>">
-          <?php endforeach; ?>
-
-          <ul class="button_area">
-            <li class="applicable">該当件数<span class="big total_jobs">
-                <?= $total_jobs ?>
-              </span>件</li>
-            <li>
-              <button type="button" class="submit reflect">選択した内容を反映する</button>
-            </li>
-            <li>
-              <button type="button" class="reset">すべてクリア</button>
-            </li>
-          </ul>
-        </div>
+        <ul class="button_area">
+          <li>該当件数<span class="big total_jobs"><?= $total_jobs ?></span>件</li>
+          <li>
+            <button type="button" class="submit reflect">選択した内容を反映する</button>
+          </li>
+          <li>
+            <button type="button" class="reset">すべてクリア</button>
+          </li>
+        </ul>
       </div>
     </div>
   </div>
@@ -172,9 +161,7 @@
   <!-- modal3 -->
   <div id="modal3" class="modal">
     <div class="modal-content">
-      <div class="modal-top">
-        <span class="modal-close"><i class="fa-solid fa-xmark"></i></span>
-      </div>
+      <div class="modal-top"> <span class="modal-close">×</span> </div>
       <div class="modal_container">
         <h4>職種を選ぶ</h4>
         <div class="search_inner2">
@@ -188,17 +175,13 @@
             <input type="checkbox" id="occupation4" name="job_types[]" value="事務（病院、薬局）">
             <label for="occupation4">事務（病院、薬局）</label>
             <input type="checkbox" id="occupation5" name="job_types[]" value="作業療法士・理学療法士・言語聴覚士">
-            <label for="occupation5">作業療法士・<br>
-              理学療法士・<br>
-              言語聴覚士</label>
+            <label for="occupation5">作業療法士・<br>理学療法士・<br>言語聴覚士</label>
             <input type="checkbox" id="occupation6" name="job_types[]" value="その他">
             <label for="occupation6">その他</label>
           </div>
         </div>
         <ul class="button_area">
-          <li class="applicable">該当件数<span class="big total_jobs">
-              <?= $total_jobs ?>
-            </span>件</li>
+          <li>該当件数<span class="big total_jobs"><?= $total_jobs ?></span>件</li>
           <li>
             <button type="button" class="submit reflect">選択した内容を反映する</button>
           </li>
@@ -213,9 +196,7 @@
   <!-- modal4 -->
   <div id="modal4" class="modal">
     <div class="modal-content">
-      <div class="modal-top">
-        <span class="modal-close"><i class="fa-solid fa-xmark"></i></span>
-      </div>
+      <div class="modal-top"> <span class="modal-close">×</span> </div>
       <div class="modal_container">
         <h4>施設・種別を選ぶ</h4>
         <div class="search_inner2">
@@ -242,10 +223,9 @@
             <label for="facility10">その他</label>
           </div>
         </div>
+
         <ul class="button_area">
-          <li class="applicable">該当件数<span class="big total_jobs">
-              <?= $total_jobs ?>
-            </span>件</li>
+          <li>該当件数<span class="big total_jobs"><?= $total_jobs ?></span>件</li>
           <li>
             <button type="button" class="submit reflect">選択した内容を反映する</button>
           </li>
@@ -260,9 +240,7 @@
   <!-- modal5 -->
   <div id="modal5" class="modal">
     <div class="modal-content">
-      <div class="modal-top">
-        <span class="modal-close"><i class="fa-solid fa-xmark"></i></span>
-      </div>
+      <div class="modal-top"> <span class="modal-close"><i class="fa-solid fa-xmark"></i></span> </div>
       <div class="modal_container">
         <h4>雇用形態 / 給与を選ぶ</h4>
         <div class="search_inner2">
@@ -277,7 +255,7 @@
             <input type="checkbox" id="status4" name="employment_types[]" value="派遣・在籍出向">
             <label for="status4">派遣・在籍出向</label>
           </div>
-          <h5 class="salary_ttl">給与</h5>
+          <h5>給与</h5>
           <ul class="salary">
             <li>年収
               <select name="salary[yearly]">
@@ -309,9 +287,7 @@
           </ul>
         </div>
         <ul class="button_area">
-          <li class="applicable">該当件数<span class="big total_jobs">
-              <?= $total_jobs ?>
-            </span>件</li>
+          <li>該当件数<span class="big total_jobs"><?= $total_jobs ?></span>件</li>
           <li>
             <button type="button" class="submit reflect">選択した内容を反映する</button>
           </li>
@@ -326,9 +302,7 @@
   <!-- modal6 -->
   <div id="modal6" class="modal">
     <div class="modal-content">
-      <div class="modal-top">
-        <span class="modal-close"><i class="fa-solid fa-xmark"></i></span>
-      </div>
+      <div class="modal-top"> <span class="modal-close">×</span> </div>
       <div class="modal_container">
         <h4>こだわりを選ぶ</h4>
         <div class="search_inner2">
@@ -348,9 +322,7 @@
           </div>
         </div>
         <ul class="button_area">
-          <li class="applicable">該当件数<span class="big total_jobs">
-              <?= $total_jobs ?>
-            </span>件</li>
+          <li>該当件数<span class="big total_jobs"><?= $total_jobs ?></span>件</li>
           <li>
             <button type="button" class="submit reflect">選択した内容を反映する</button>
           </li>
@@ -361,4 +333,5 @@
       </div>
     </div>
   </div>
+
 </div>
