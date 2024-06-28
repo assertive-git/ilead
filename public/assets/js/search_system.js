@@ -104,6 +104,7 @@
         if (loading) return;
 
         var choice2 = $(this).closest('.choice2');
+        debugger;
         var pref = choice2.attr('id');
         var line_cd = $(this).attr('id');
         var line_name = $(this).attr('line_name');
@@ -127,19 +128,27 @@
                     if (data.length > 0) {
                         $('.station').hide();
 
-                        var clone = choice2.children('.station').eq(0).clone();
+                        var checked = '';
+
+                        if ($('input[name="stations_all[]"][type="checkbox"][value="' + line_name + '"]').length != 0) {
+                            $('input[name="stations_all[]"][type="checkbox"][value="' + line_name + '"]').remove();
+                            checked = 'checked';
+                        }
+
+                        var clone = $('.choice2').eq(0).children('.station').clone().removeClass('first');
                         clone.find('.choice_ttl_line').text(line_name);
                         clone.css({ display: 'block' });
-                        clone.find('.scroll_inner').append('<li><label><div class="station_name"><input class="stations_all" type="checkbox" name="stations_all[]" value="' + line_name + '"><i class="fa-solid fa-circle-check"></i>' + line_name + 'のすべて</div></label></li>');
+                        clone.find('.scroll_inner').append('<li><label><div class="station_name"><input class="stations_all" type="checkbox" name="stations_all[]" value="' + line_name + '" ' + checked + '><i class="fa-solid fa-circle-check"></i>' + line_name + 'のすべて</div></label></li>');
                         clone.attr('line_id', line_cd + '|' + pref);
+
 
 
                         for (var i = 0; i < data.length; i++) {
 
                             var checked = '';
 
-                            if ($('input[type="checkbox"][value="' + line_name + data[i].station_name + '"]').length != 0) {
-                                $('input[type="checkbox"][value="' + line_name + data[i].station_name + '"]').remove();
+                            if ($('input[name="stations[]"][type="checkbox"][value="' + line_name + data[i].station_name + '"]').length != 0) {
+                                $('input[name="stations[]"][type="checkbox"][value="' + line_name + data[i].station_name + '"]').remove();
                                 checked = 'checked';
                             }
 
@@ -172,7 +181,6 @@
     if ($('.saved_line').length != 0) {
 
         var self = $('.saved_line');
-
         var pref = self.attr('id');
 
         $.ajax({
@@ -188,14 +196,60 @@
             success: function (data) {
 
                 var ln = $('input[name="ln"]');
+                var line_name = ln.val();
                 var checked = '';
 
+                var line_cd = '';
+
                 for (var i = 0; i < data.length; i++) {
-                    checked = ln.val() == data[i].line_name ? 'checked' : '';
+                    checked = line_name == data[i].line_name ? 'checked' : '';
+
+                    if (checked) {
+                        line_cd = data[i].line_cd;
+                        $('.saved_line').find('.station').attr('line_id', line_cd + '|' + pref);
+                    }
+
                     self.find('.route .scroll_inner').append('<li><label><input id="' + data[i].line_cd + '" line_name="' + data[i].line_name + '" style="display: none" type="radio" name="ln" value="' + data[i].line_name + '" ' + checked + ' /><div class="line_name">' + data[i].line_name + '</div></label></li>');
                 }
 
-                loading = false;
+                if (line_cd) {
+                    $.ajax({
+                        type: "POST",
+                        url: '/get_stations',
+                        dataType: 'json',
+                        data: {
+                            line_cd: line_cd,
+                            pref: pref
+                        },
+                        success: function (data) {
+
+                            if (data.length > 0) {
+
+                                if ($('input[name="stations_all[]"][type="checkbox"][value="' + line_name + '"]').length != 0) {
+                                    $('input[name="stations_all[]"][type="checkbox"][value="' + line_name + '"]').remove();
+                                    checked = 'checked';
+                                }
+
+                                self.find('.station .scroll_inner').append('<li><label><div class="station_name"><input class="stations_all" type="checkbox" name="stations_all[]" value="' + line_name + '" ' + checked + '><i class="fa-solid fa-circle-check"></i>' + line_name + 'のすべて</div></label></li>');
+
+                                for (var i = 0; i < data.length; i++) {
+                                    if ($('input[name="stations[]"][type="checkbox"][value="' + line_name + data[i].station_name + '"]').length != 0) {
+                                        $('input[name="stations[]"][type="checkbox"][value="' + line_name + data[i].station_name + '"]').remove();
+                                        checked = 'checked';
+                                    }
+                                    self.find('.station .scroll_inner').append('<li><label><div class="station_name"><input type="checkbox" name="stations[]" ' + checked + '  value="' + line_name + data[i].station_name + '"><i class="fa-solid fa-circle-check"></i>' + data[i].station_name + '</div></label></li>');
+
+                                }
+                            }
+                            loading = false;
+                        },
+                        error: function () {
+                            loading = false;
+                        }
+                    });
+                } else {
+                    loading = false;
+                }
             },
             error: function () {
                 loading = false;

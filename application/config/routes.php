@@ -27,7 +27,6 @@ $route['favorites/delete']['POST'] = 'home/favorites_delete';
 $route['favorites/clear']['POST'] = 'home/favorites_clear';
 // $route['favorites/delete']['GET'] = 'home/delete';
 // $route['favorites/delete_all']['GET'] = 'home/delete_all';
-$route['get_lines_and_stations'] = 'home/get_lines_and_stations';
 
 $route['admin'] = 'admin';
 $route['admin/login']['GET'] = 'admin/login_get';
@@ -57,7 +56,7 @@ $route['admin/jobs/status/update_multiple']['POST'] = 'admin/jobs_single_col_mul
 $route['admin/jobs/csv_export']['GET'] = 'admin/jobs_csv_export';
 $route['admin/jobs/csv_import']['POST'] = 'admin/jobs_csv_import';
 $route['admin/jobs/base64_to_png']['POST'] = 'admin/base64_to_png';
-$route['admin/get_lines_and_stations']['POST'] = 'admin/get_lines_and_stations';
+$route['admin/get_lines_stations']['POST'] = 'admin/get_lines_stations';
 
 
 /* news */

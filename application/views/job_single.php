@@ -24,7 +24,11 @@
     </div>
   </section> -->
   <section class="search_result">
-    <button id="return" class="arrow_before"><a href="/job_list">一覧へ戻る</a></button>
+    <?php if (!empty($_GET['favorites'])): ?>
+      <button id="return" class="arrow_before favorites"><a href="/favorites">検討中リストへ戻る</a></button>
+    <?php else: ?>
+      <button id="return" class="arrow_before"><a href="/job_list">一覧へ戻る</a></button>
+    <?php endif; ?>
   </section>
   <section class="job_result">
     <div class="job_result_inner">
@@ -123,9 +127,9 @@
             </tr>
             <tr>
               <?php foreach ($job['custom_fields'] as $custom_field): ?>
-              <th class="attribute"><?= $custom_field['title'] ?></th>
-              <td><?= nl2br($custom_field['detail']) ?></td>
-            </tr>
+                <th class="attribute"><?= $custom_field['title'] ?></th>
+                <td><?= nl2br($custom_field['detail']) ?></td>
+              </tr>
             <?php endforeach; ?>
           </table>
           <ul class="button_area">
@@ -137,7 +141,7 @@
             </li>
             <li><a href="/jobs/<?= $job['id'] ?>/entry">応募する</a></li>
           </ul>
-          <script src="/assets/js/favorite_btn.js"></script> 
+          <script src="/assets/js/favorite_btn.js"></script>
         </div>
       </div>
     </div>
@@ -196,6 +200,6 @@
         </div>
       </div>
     </div>
-  </section> --> 
+  </section> -->
 </main>
 <?php include ('footer.php'); ?>

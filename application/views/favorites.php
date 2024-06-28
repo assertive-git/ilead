@@ -69,7 +69,7 @@
                 <li>
                   <button class="favorite_btn favorite_btn--remove" job-id="<?= $job['id'] ?>">★ 検討中リストから削除する</button>
                 </li>
-                <li><a href="/jobs/<?= $job['id'] ?>">詳細を見る</a></li>
+                <li><a href="/jobs/<?= $job['id'] ?>?favorites=1">詳細を見る</a></li>
               </ul>
             </div>
           </div>

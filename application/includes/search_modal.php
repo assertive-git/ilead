@@ -56,7 +56,9 @@
           <?php $i++; ?>
         <?php endforeach; ?>
         <ul class="button_area">
-          <li>該当件数<span class="big total_jobs"><?= $total_jobs ?></span>件</li>
+          <li class="applicable">該当件数<span class="big total_jobs">
+            <?= $total_jobs ?>
+            </span>件</li>
           <li>
             <button type="button" class="submit reflect">選択した内容を反映する</button>
           </li>
@@ -120,8 +122,8 @@
 
         <!--  saved line here -->
         <?php if (!empty($ln)): ?>
-          <input style="display: none" type="radio" name="ln" value="<?= $ln ?>">
           <div class="choice2 saved_line" id="<?= $prefectures_lines_stations ?>" style="display: flex">
+            <input style="display: none" type="radio" name="ln" value="<?= $ln ?>">
             <div class="route">
               <h5>路線を選択</h5>
               <div class="choice_inner">
@@ -140,13 +142,20 @@
           </div>
         <?php endif; ?>
 
+        <!--  saved stations_all here -->
+        <?php foreach ($stations_all as $station_all): ?>
+          <input type="checkbox" style="display: none" checked name="stations_all[]" value="<?= $station_all ?>">
+        <?php endforeach; ?>
+
         <!--  saved stations here -->
         <?php foreach ($stations as $station): ?>
           <input type="checkbox" style="display: none" checked name="stations[]" value="<?= $station ?>">
         <?php endforeach; ?>
 
         <ul class="button_area">
-          <li>該当件数<span class="big total_jobs"><?= $total_jobs ?></span>件</li>
+          <li class="applicable">該当件数<span class="big total_jobs">
+            <?= $total_jobs ?>
+            </span>件</li>
           <li>
             <button type="button" class="submit reflect">選択した内容を反映する</button>
           </li>
@@ -181,7 +190,9 @@
           </div>
         </div>
         <ul class="button_area">
-          <li>該当件数<span class="big total_jobs"><?= $total_jobs ?></span>件</li>
+          <li class="applicable">該当件数<span class="big total_jobs">
+            <?= $total_jobs ?>
+            </span>件</li>
           <li>
             <button type="button" class="submit reflect">選択した内容を反映する</button>
           </li>
@@ -225,7 +236,9 @@
         </div>
 
         <ul class="button_area">
-          <li>該当件数<span class="big total_jobs"><?= $total_jobs ?></span>件</li>
+          <li class="applicable">該当件数<span class="big total_jobs">
+            <?= $total_jobs ?>
+            </span>件</li>
           <li>
             <button type="button" class="submit reflect">選択した内容を反映する</button>
           </li>
@@ -287,7 +300,9 @@
           </ul>
         </div>
         <ul class="button_area">
-          <li>該当件数<span class="big total_jobs"><?= $total_jobs ?></span>件</li>
+          <li class="applicable">該当件数<span class="big total_jobs">
+            <?= $total_jobs ?>
+            </span>件</li>
           <li>
             <button type="button" class="submit reflect">選択した内容を反映する</button>
           </li>
@@ -322,7 +337,9 @@
           </div>
         </div>
         <ul class="button_area">
-          <li>該当件数<span class="big total_jobs"><?= $total_jobs ?></span>件</li>
+          <li class="applicable">該当件数<span class="big total_jobs">
+            <?= $total_jobs ?>
+            </span>件</li>
           <li>
             <button type="button" class="submit reflect">選択した内容を反映する</button>
           </li>
