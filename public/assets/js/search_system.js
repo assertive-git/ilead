@@ -213,6 +213,7 @@
                 }
 
                 if (line_cd) {
+                    debugger;
                     $.ajax({
                         type: "POST",
                         url: '/get_stations',
@@ -236,7 +237,10 @@
                                     if ($('input[name="stations[]"][type="checkbox"][value="' + line_name + data[i].station_name + '"]').length != 0) {
                                         $('input[name="stations[]"][type="checkbox"][value="' + line_name + data[i].station_name + '"]').remove();
                                         checked = 'checked';
+                                    } else {
+                                        checked = '';
                                     }
+
                                     self.find('.station .scroll_inner').append('<li><label><div class="station_name"><input type="checkbox" name="stations[]" ' + checked + '  value="' + line_name + data[i].station_name + '"><i class="fa-solid fa-circle-check"></i>' + data[i].station_name + '</div></label></li>');
 
                                 }
