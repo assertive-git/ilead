@@ -1,4 +1,4 @@
-﻿<?php include ('header.php'); ?>
+<?php include ('header.php'); ?>
 <main>
   <section class="main_img">
     <p class="main_copy">薬剤師による、<br>
