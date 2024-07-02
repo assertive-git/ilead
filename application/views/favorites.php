@@ -2,7 +2,7 @@
 <main id="mypage">
   <!-- <div class="registration pc"><a href="form" target="_blank">まずは簡単登録</a></div> -->
   <section class="search_result">
-    <p>★検討中リスト　全<span class="number"><?= count($jobs) ?></span>件</p>
+    <p>★検討中リスト　全<span class="number"><?= $total_jobs ?></span>件</p>
   </section>
   <section class="job_result">
     <div class="job_result_inner">
@@ -78,8 +78,8 @@
       <?php endif; ?>
 
 
-      <p class="number2">検討中求人：<span class="big"><?= count($jobs) ?></span>件
-        <?php if (count($jobs) > 10): ?>
+      <p class="number2">検討中求人：<span class="big"><?= $total_jobs ?></span>件
+        <?php if ($total_jobs > 10): ?>
           （<?= $current_index_start ?>～<?= $current_index_end ?>件）
         <?php endif; ?>
       <div class="pagination">

@@ -213,7 +213,6 @@
                 }
 
                 if (line_cd) {
-                    debugger;
                     $.ajax({
                         type: "POST",
                         url: '/get_stations',

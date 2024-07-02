@@ -55,9 +55,14 @@ class News_model extends CI_Model
         return $data;
     }
 
-    public function get_all()
+    public function get_all($offset, $limit)
     {
-        return $this->db->where('status', '公開')->order_by('id', 'desc')->get($this->table)->result_array();
+        return $this->db->where('status', '公開')->order_by('id', 'desc')->limit($limit, $offset)->get($this->table)->result_array();
+    }
+
+    public function get_all_cnt()
+    {
+        return count($this->db->where('status', '公開')->order_by('id', 'desc')->get($this->table)->result_array());
     }
 
     public function get_admin($id)
@@ -67,7 +72,7 @@ class News_model extends CI_Model
 
     public function get($id)
     {
-        return $this->db->where('status', '公開')->where('id', $id)->get($this->table)->row_array();
+        return $this->db->where('status', '公開')->where('id', $id)->select('id, title, body, created_at, (select max(id) FROM news where id < tmpNews.id) as prev_id, (select min(id) FROM news where id > tmpNews.id) as next_id')->get('news as tmpNews')->row_array();
     }
 
     public function update($id, $data)

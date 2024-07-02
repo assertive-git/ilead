@@ -4,6 +4,8 @@ defined('BASEPATH') or exit('No direct script access allowed');
 $route['default_controller'] = 'home';
 
 $route['news']['GET'] = 'home/news';
+$route['news/p']['GET'] = 'home/news';
+$route['news/p/(:num)']['GET'] = 'home/news/$1';
 $route['news/(:num)']['GET'] = 'home/news_single/$1';
 $route['map']['GET'] = 'home/map_get';
 $route['map']['POST'] = 'home/map_post';
@@ -55,8 +57,9 @@ $route['admin/jobs/memo/update']['POST'] = 'admin/jobs_single_col_update';
 $route['admin/jobs/status/update_multiple']['POST'] = 'admin/jobs_single_col_multiple_update';
 $route['admin/jobs/csv_export']['GET'] = 'admin/jobs_csv_export';
 $route['admin/jobs/csv_import']['POST'] = 'admin/jobs_csv_import';
-$route['admin/jobs/base64_to_png']['POST'] = 'admin/base64_to_png';
+
 $route['admin/get_lines_stations']['POST'] = 'admin/get_lines_stations';
+$route['admin/base64_to_png']['POST'] = 'admin/base64_to_png';
 
 
 /* news */

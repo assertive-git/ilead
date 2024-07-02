@@ -175,17 +175,17 @@
         <h4>職種を選ぶ</h4>
         <div class="search_inner2">
           <div class="choice">
-            <input type="checkbox" id="occupation1" name="job_types[]" value="薬剤師">
+            <input type="checkbox" id="occupation1" name="job_types[]" <?= in_array('薬剤師', $job_types) ? 'checked' : '' ?> value="薬剤師">
             <label for="occupation1">薬剤師</label>
-            <input type="checkbox" id="occupation2" name="job_types[]" value="看護師">
+            <input type="checkbox" id="occupation2" name="job_types[]" <?= in_array('看護師', $job_types) ? 'checked' : '' ?> value="看護師">
             <label for="occupation2">看護師</label>
-            <input type="checkbox" id="occupation3" name="job_types[]" value="獣医師">
+            <input type="checkbox" id="occupation3" name="job_types[]" <?= in_array('獣医師', $job_types) ? 'checked' : '' ?> value="獣医師">
             <label for="occupation3">獣医師</label>
-            <input type="checkbox" id="occupation4" name="job_types[]" value="事務（病院、薬局）">
+            <input type="checkbox" id="occupation4" name="job_types[]" <?= in_array('事務（病院、薬局）', $job_types) ? 'checked' : '' ?> value="事務（病院、薬局）">
             <label for="occupation4">事務（病院、薬局）</label>
-            <input type="checkbox" id="occupation5" name="job_types[]" value="作業療法士・理学療法士・言語聴覚士">
+            <input type="checkbox" id="occupation5" name="job_types[]" <?= in_array('作業療法士・理学療法士・言語聴覚士', $job_types) ? 'checked' : '' ?> value="作業療法士・理学療法士・言語聴覚士">
             <label for="occupation5">作業療法士・<br>理学療法士・<br>言語聴覚士</label>
-            <input type="checkbox" id="occupation6" name="job_types[]" value="その他">
+            <input type="checkbox" id="occupation6" name="job_types[]" <?= in_array('その他', $job_types) ? 'checked' : '' ?> value="その他">
             <label for="occupation6">その他</label>
           </div>
         </div>
@@ -212,25 +212,25 @@
         <h4>施設・種別を選ぶ</h4>
         <div class="search_inner2">
           <div class="choice">
-            <input type="checkbox" id="facility1" name="categories[]" value="調剤薬局">
+            <input type="checkbox" id="facility1" name="categories[]" <?= in_array('調剤薬局', $categories) ? 'checked' : '' ?> value="調剤薬局">
             <label for="facility1">調剤薬局</label>
-            <input type="checkbox" id="facility2" name="categories[]" value="病院">
+            <input type="checkbox" id="facility2" name="categories[]" <?= in_array('病院', $categories) ? 'checked' : '' ?> value="病院">
             <label for="facility2">病院</label>
-            <input type="checkbox" id="facility3" name="categories[]" value="クリニック">
+            <input type="checkbox" id="facility3" name="categories[]" <?= in_array('クリニック', $categories) ? 'checked' : '' ?> value="クリニック">
             <label for="facility3">クリニック</label>
-            <input type="checkbox" id="facility4" name="categories[]" value="企業">
+            <input type="checkbox" id="facility4" name="categories[]" <?= in_array('企業', $categories) ? 'checked' : '' ?> value="企業">
             <label for="facility4">企業</label>
-            <input type="checkbox" id="facility5" name="categories[]" value="ドラッグストア（調剤併設）">
+            <input type="checkbox" id="facility5" name="categories[]" <?= in_array('ドラッグストア（調剤併設）', $categories) ? 'checked' : '' ?> value="ドラッグストア（調剤併設）">
             <label for="facility5">ドラッグストア（調剤併設）</label>
-            <input type="checkbox" id="facility6" name="categories[]" value="福祉施設">
+            <input type="checkbox" id="facility6" name="categories[]" <?= in_array('福祉施設', $categories) ? 'checked' : '' ?> value="福祉施設">
             <label for="facility6">福祉施設</label>
-            <input type="checkbox" id="facility7" name="categories[]" value="訪問看護ステーション">
+            <input type="checkbox" id="facility7" name="categories[]" <?= in_array('訪問看護ステーション', $categories) ? 'checked' : '' ?> value="訪問看護ステーション">
             <label for="facility7">訪問看護ステーション</label>
-            <input type="checkbox" id="facility8" name="categories[]" value="美容クリニック">
+            <input type="checkbox" id="facility8" name="categories[]" <?= in_array('美容クリニック', $categories) ? 'checked' : '' ?> value="美容クリニック">
             <label for="facility8">美容クリニック</label>
-            <input type="checkbox" id="facility9" name="categories[]" value="動物病院">
+            <input type="checkbox" id="facility9" name="categories[]" <?= in_array('動物病院', $categories) ? 'checked' : '' ?> value="動物病院">
             <label for="facility9">動物病院</label>
-            <input type="checkbox" id="facility10" name="categories[]" value="その他">
+            <input type="checkbox" id="facility10" name="categories[]" <?= in_array('その他', $categories) ? 'checked' : '' ?> value="その他">
             <label for="facility10">その他</label>
           </div>
         </div>
@@ -259,13 +259,13 @@
         <div class="search_inner2">
           <h5>雇用形態</h5>
           <div class="choice">
-            <input type="checkbox" id="status1" name="employment_types[]" value="正社員">
+            <input type="checkbox" id="status1" name="employment_types[]" <?= in_array('正社員', $employment_types) ? 'checked' : '' ?> value="正社員">
             <label for="status1">正社員</label>
-            <input type="checkbox" id="status2" name="employment_types[]" value="契約社員">
+            <input type="checkbox" id="status2" name="employment_types[]" <?= in_array('契約社員', $employment_types) ? 'checked' : '' ?> value="契約社員">
             <label for="status2">契約社員</label>
-            <input type="checkbox" id="status3" name="employment_types[]" value="パート">
+            <input type="checkbox" id="status3" name="employment_types[]" <?= in_array('パート', $employment_types) ? 'checked' : '' ?> value="パート">
             <label for="status3">パート</label>
-            <input type="checkbox" id="status4" name="employment_types[]" value="派遣・在籍出向">
+            <input type="checkbox" id="status4" name="employment_types[]" <?= in_array('派遣・在籍出向', $employment_types) ? 'checked' : '' ?> value="派遣・在籍出向">
             <label for="status4">派遣・在籍出向</label>
           </div>
           <h5>給与</h5>
@@ -322,17 +322,17 @@
         <h4>こだわりを選ぶ</h4>
         <div class="search_inner2">
           <div class="choice">
-            <input type="checkbox" id="commitment1" name="traits[]" value="高収入">
+            <input type="checkbox" id="commitment1" name="traits[]" <?= !is_array($traits) && strpos($traits, '高収入') !== FALSE ? 'checked' : '' ?> value="高収入">
             <label for="commitment1">高収入</label>
-            <input type="checkbox" id="commitment2" name="traits[]" value="土日のみ">
+            <input type="checkbox" id="commitment2" name="traits[]" <?= !is_array($traits) && strpos($traits, '土日のみ') !== FALSE ? 'checked' : '' ?> value="土日のみ">
             <label for="commitment2">土日のみ</label>
-            <input type="checkbox" id="commitment3" name="traits[]" value="～18時の職場">
+            <input type="checkbox" id="commitment3" name="traits[]" <?= !is_array($traits) && strpos($traits, '～18時の職場') !== FALSE ? 'checked' : '' ?> value="～18時の職場">
             <label for="commitment3">～18時の職場</label>
-            <input type="checkbox" id="commitment4" name="traits[]" value="～19時の職場">
+            <input type="checkbox" id="commitment4" name="traits[]" <?= !is_array($traits) && strpos($traits, '～19時の職場') !== FALSE ? 'checked' : '' ?> value="～19時の職場">
             <label for="commitment4">～19時の職場</label>
-            <input type="checkbox" id="commitment5" name="traits[]" value="駅チカ">
+            <input type="checkbox" id="commitment5" name="traits[]" <?= !is_array($traits) && strpos($traits, '駅チカ') !== FALSE ? 'checked' : '' ?> value="駅チカ">
             <label for="commitment5">駅チカ</label>
-            <input type="checkbox" id="commitment6" name="traits[]" value="住居付き">
+            <input type="checkbox" id="commitment6" name="traits[]" <?= !is_array($traits) && strpos($traits, '住居付き') !== FALSE ? 'checked' : '' ?> value="住居付き">
             <label for="commitment6">住居付き</label>
           </div>
         </div>
