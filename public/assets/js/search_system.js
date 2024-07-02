@@ -104,7 +104,6 @@
         if (loading) return;
 
         var choice2 = $(this).closest('.choice2');
-        debugger;
         var pref = choice2.attr('id');
         var line_cd = $(this).attr('id');
         var line_name = $(this).attr('line_name');
