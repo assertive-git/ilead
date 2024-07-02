@@ -1,4 +1,4 @@
-<?php include (APPPATH . 'includes/japan_regions.php'); ?>
+﻿<?php include (APPPATH . 'includes/japan_regions.php'); ?>
 <?php include (APPPATH . 'includes/japan_areas.php'); ?>
 <div class="modals">
 
@@ -73,7 +73,7 @@
   <!-- modal2 -->
   <div id="modal2" class="modal">
     <div class="modal-content">
-      <div class="modal-top"> <span class="modal-close"><i class="fa-solid fa-xmark"></i></span> </div>
+      <div class="modal-top"><span class="modal-close"><i class="fa-solid fa-xmark"></i></span></div>
       <div class="modal_container">
         <h4>沿線・駅を選ぶ</h4>
         <div class="region">
@@ -170,7 +170,7 @@
   <!-- modal3 -->
   <div id="modal3" class="modal">
     <div class="modal-content">
-      <div class="modal-top"> <span class="modal-close">×</span> </div>
+      <div class="modal-top"><span class="modal-close"><i class="fa-solid fa-xmark"></i></span></div>
       <div class="modal_container">
         <h4>職種を選ぶ</h4>
         <div class="search_inner2">
@@ -207,7 +207,7 @@
   <!-- modal4 -->
   <div id="modal4" class="modal">
     <div class="modal-content">
-      <div class="modal-top"> <span class="modal-close">×</span> </div>
+      <div class="modal-top"><span class="modal-close"><i class="fa-solid fa-xmark"></i></span></div>
       <div class="modal_container">
         <h4>施設・種別を選ぶ</h4>
         <div class="search_inner2">
@@ -253,7 +253,7 @@
   <!-- modal5 -->
   <div id="modal5" class="modal">
     <div class="modal-content">
-      <div class="modal-top"> <span class="modal-close"><i class="fa-solid fa-xmark"></i></span> </div>
+      <div class="modal-top"><span class="modal-close"><i class="fa-solid fa-xmark"></i></span></div>
       <div class="modal_container">
         <h4>雇用形態 / 給与を選ぶ</h4>
         <div class="search_inner2">
@@ -268,7 +268,7 @@
             <input type="checkbox" id="status4" name="employment_types[]" <?= in_array('派遣・在籍出向', $employment_types) ? 'checked' : '' ?> value="派遣・在籍出向">
             <label for="status4">派遣・在籍出向</label>
           </div>
-          <h5>給与</h5>
+          <h5 class="salary_ttl">給与</h5>
           <ul class="salary">
             <li>年収
               <select name="salary[yearly]">
@@ -317,7 +317,7 @@
   <!-- modal6 -->
   <div id="modal6" class="modal">
     <div class="modal-content">
-      <div class="modal-top"> <span class="modal-close">×</span> </div>
+      <div class="modal-top"><span class="modal-close"><i class="fa-solid fa-xmark"></i></span></div>
       <div class="modal_container">
         <h4>こだわりを選ぶ</h4>
         <div class="search_inner2">
