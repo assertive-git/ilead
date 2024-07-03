@@ -115,7 +115,8 @@ function GethashID(hashIDName) {
         $(".area2").removeClass("is-active"); //もともとついているis-activeクラスを取り除き
         setTimeout(function () {
           $(hashIDName).addClass("is-active"); //表示させたいエリアのタブリンク名をクリックしたら、表示エリアにis-activeクラスを追加 ).addClass("is-active"); //表示させたいエリアのタブリンク名をクリックしたら、表示エリアにis-activeクラスを追加 
-          $(hashIDName).find('.temporary_slider2').slick('setPosition')
+          $(hashIDName).find('.temporary_slider').slick('setPosition');
+          $(hashIDName).find('.temporary_slider2').slick('setPosition');
         }, 1);
       }
     });
