@@ -19,7 +19,7 @@ $('.recruitment_slider').slick({
       nextArrow: '<div class="slide-arrow next-arrow"></div>',
       dots: false,
     },
-  },],
+  }, ],
 });
 
 $('.temporary_slider').slick({
@@ -41,10 +41,8 @@ $('.temporary_slider').slick({
       dots: false,
       slidesToShow: 1,
     },
-  },],
+  }, ],
 });
-
-var loaded = 0;
 
 $('.temporary_slider2').slick({
   dots: true,
@@ -65,12 +63,7 @@ $('.temporary_slider2').slick({
       dots: false,
       slidesToShow: 1,
     },
-  },],
-}).on('setPosition', function() {
-  loaded++;
-  if(loaded == 2) {
-    $(this).closest('#temporary').addClass('hide');
-  }
+  }, ],
 });
 
 
@@ -119,9 +112,10 @@ function GethashID(hashIDName) {
         $('.picup .tab li').removeClass("active"); //タブ内のliについているactiveクラスを取り除き
         $(parentElm).addClass("active"); //リンク元の指定されたURLのハッシュタグとタブ内のリンク名が同じであれば、liにactiveクラスを追加
         //表示させるエリア設定
-        $(".area2").addClass("hide"); //もともとついているis-activeクラスを取り除き
+        $(".area2").removeClass("is-active"); //もともとついているis-activeクラスを取り除き
         setTimeout(function () {
-          $(hashIDName).removeClass("hide"); //表示させたいエリアのタブリンク名をクリックしたら、表示エリアにis-activeクラスを追加 ).addClass("is-active"); //表示させたいエリアのタブリンク名をクリックしたら、表示エリアにis-activeクラスを追加 
+          $(hashIDName).addClass("is-active"); //表示させたいエリアのタブリンク名をクリックしたら、表示エリアにis-activeクラスを追加 ).addClass("is-active"); //表示させたいエリアのタブリンク名をクリックしたら、表示エリアにis-activeクラスを追加 
+          $(hashIDName).find('.temporary_slider2').slick('setPosition')
         }, 1);
       }
     });

@@ -113,7 +113,7 @@
         <li class="active"><a href="#directly">直接雇用</a></li>
         <li><a href="#temporary">出向・派遣</a></li>
       </ul>
-      <div id="directly" class="area2">
+      <div id="directly" class="area2 is-active">
         <div class="temporary_slider_wrap">
           <div class="temporary_slider">
             <?php foreach ($direct as $job): ?>
