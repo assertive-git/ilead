@@ -179,7 +179,49 @@
           map.setCenter({ lat: lat, lng: lng });
         });
 
+        var areas = [];
+        var _areas = $('input[name="areas[]"]:checked');
+        $(_areas).each(function (i, el) {
+          areas.push($(_areas[i]).val());
+        });
+
+        var stations = [];
+        var _stations = $('input[name="stations[]"]:checked');
+        $(_stations).each(function (i, el) {
+          stations.push($(_stations[i]).val());
+        });
+
+        var categories = [];
+        var _categories = $('input[name="categories[]"]:checked');
+        $(_categories).each(function (i, el) {
+          categories.push($(_categories[i]).val());
+        });
+
+        var job_types = [];
+        var _job_types = $('input[name="job_types[]"]:checked');
+        $(_job_types).each(function (i, el) {
+          job_types.push($(_job_types[i]).val());
+        });
+
+        var employment_types = [];
+        var _employment_types = $('input[name="employment_types[]"]:checked');
+        $(_employment_types).each(function (i, el) {
+          employment_types.push($(_employment_types[i]).val());
+        });
+
+        var yearly = $('select[name="salary[yearly]"]').val();
+        var hourly = $('select[name="salary[hourly]"]').val();
+
+        var traits = [];
+        var _traits = $('input[name="traits[]"]:checked');
+        $(_traits).each(function (i, el) {
+          traits.push($(_traits[i]).val());
+        });
+
+        var freeword = $('input[name="freeword"]').val();
+
         var offset = 0;
+
 
         $('div[id="list"]').on('scroll', function (e) {
 
@@ -193,6 +235,17 @@
               type: "POST",
               url: '/map',
               data: {
+                areas: areas,
+                stations: stations,
+                salary: {
+                  yearly: yearly,
+                  hourly: hourly,
+                },
+                categories: categories,
+                job_types: job_types,
+                employment_types: employment_types,
+                traits: traits,
+                freeword: freeword,
                 offset: offset,
                 ajax: 1,
               },
