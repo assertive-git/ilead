@@ -136,7 +136,7 @@ main .search {
   position: relative;
   width: 1000px;
   margin: -18rem auto 0;
-  z-index: 2;
+  /*z-index: 2;*/
 }
 
 main .search .main7 {
@@ -225,7 +225,7 @@ main .search .button_area {
   margin-top: 3rem;
   display: flex;
   flex-wrap: wrap;
-  justify-content: right;
+  justify-content: center;
   font-weight: 400;
   letter-spacing: 0.06em;
 }
@@ -239,7 +239,6 @@ main .search .button_area button.submit {
   text-align: center;
   color: #fff;
   letter-spacing: 0.1em;
-  margin-right: 11rem;
 }
 
 main .search .button_area button.reset {
@@ -774,6 +773,10 @@ main .picup .temporary_slider_wrap {
 }
 
 main .picup .temporary_slider_wrap .temporary_slider .slide_item {
+  padding: 0 18px;
+}
+
+main .picup .temporary_slider_wrap .temporary_slider2 .slide_item {
   padding: 0 18px;
 }
 
@@ -2100,13 +2103,14 @@ main#map .search_area .map_in {
 
 #map .list_item .category {
   display: flex;
+  flex-wrap: wrap;
   gap: 0.6rem;
   margin-bottom: 0.6rem;
 }
 
 #map .list_item .category span {
-  font-size: min(14 / 1200* 100vw, 1.4rem);
-  font-weight: 500;
+  font-size: min(12 / 1200* 100vw, 1.2rem);
+  font-weight: 400;
   color: #13b3e7;
   padding: 0 1em;
   border: 1px solid;
@@ -2537,6 +2541,7 @@ main#map .search_area .map_in {
     justify-content: center;
     align-items: center;
     align-content: space-between;
+      margin-top: 1rem;
   }
 
   main .search .button_area li.search_number {
@@ -2547,7 +2552,7 @@ main#map .search_area .map_in {
     margin-right: 0;
     padding: 0.6vh 0;
     width: 100%;
-    font-size: 1.8vh;
+    font-size: 1.8rem;
   }
 
   main .search .button_area button.reset {
