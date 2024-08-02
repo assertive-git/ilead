@@ -14,9 +14,13 @@
     </div>
 
     <div class="pagination">
-      <button id="return" class="arrow_before">前の記事へ</button>
+      <?php if (!empty($news['prev_id'])): ?>
+        <a href="/news/<?= $news['prev_id'] ?>"><button id="return" class="arrow_before">前の記事へ</button></a>
+      <?php endif; ?>
 
-      <button id="next" class="arrow_next">次の記事へ</button>
+      <?php if (!empty($news['next_id'])): ?>
+        <a href="/news/<?= $news['next_id'] ?>"><button id="next" class="arrow_next">次の記事へ</button></a>
+      <?php endif; ?>
     </div>
     <a href="/news" class="return_button">一覧へ戻る</a>
   </section>

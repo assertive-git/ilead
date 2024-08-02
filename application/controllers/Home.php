@@ -8,7 +8,11 @@ class Home extends CI_Controller
 	{
 		parent::__construct();
 
-		if(isset($_SESSION['search_sess'])) {
+		if (empty($_SESSION['session_id'])) {
+			$_SESSION['session_id'] = session_create_id();
+		}
+
+		if (isset($_SESSION['search_sess'])) {
 			unset($_SESSION['search_sess']);
 		}
 	}
@@ -38,6 +42,10 @@ class Home extends CI_Controller
 		$data['prefectures_area'] = '';
 		$data['areas'] = [];
 		$data['stations'] = [];
+		$data['job_types'] = [];
+		$data['categories'] = [];
+		$data['employment_types'] = [];
+		$data['traits'] = [];
 
 		$data['region_lines_stations'] = '';
 		$data['prefectures_lines_stations'] = '';
@@ -49,10 +57,16 @@ class Home extends CI_Controller
 		$this->load->view('home', $data);
 	}
 
-	public function news()
+	public function news($page = 1)
 	{
 
-		$data['news'] = $this->news_model->get_all();
+		$limit = 10;
+		$offset = ($page * $limit) - $limit;
+
+		$data['news'] = $this->news_model->get_all($offset, $limit);
+		$data['total_news'] = $this->news_model->get_all_cnt();
+
+		$this->init_pagination($data['total_news'], 'news/p', $limit);
 
 		$this->load->view('news_list', $data);
 	}
@@ -81,14 +95,22 @@ class Home extends CI_Controller
 		$freeword = '';
 
 		$offset = 0;
-		$limit = 20;
+		$limit = 50;
 
 		$data['jobs'] = $this->jobs_model->get_all($offset, $limit, $areas, $stations, $employment_types, $salary, $job_types, $categories, $traits, $freeword);
 		$data['total_jobs'] = $this->jobs_model->get_all_cnt($areas, $stations, $employment_types, $salary, $job_types, $categories, $traits, $freeword);
 
+		$data['areas'] = $areas;
+		$data['stations'] = $stations;
+		$data['salary'] = $salary;
+		$data['employment_types'] = $employment_types;
+		$data['job_types'] = $job_types;
+		$data['categories'] = $categories;
+		$data['traits'] = $traits;
+		$data['freeword'] = $freeword;
+
 		$data['region_area'] = '';
 		$data['prefectures_area'] = '';
-		$data['areas'] = [];
 
 		$data['region_lines_stations'] = '';
 		$data['prefectures_lines_stations'] = '';
@@ -117,20 +139,27 @@ class Home extends CI_Controller
 		$traits = isset($_POST['traits']) ? implode('|', $_POST['traits']) : [];
 		$freeword = isset($_POST['freeword']) ? $_POST['freeword'] : '';
 
-		$offset = 0;
-		$limit = 99999;
+		$offset = isset($_POST['offset']) ? $_POST['offset'] : 0;
+		$limit = 50;
 
 		$data['jobs'] = $this->jobs_model->get_all($offset, $limit, $areas, $stations, $employment_types, $salary, $job_types, $categories, $traits, $freeword);
 
 		$data['total_jobs'] = $this->jobs_model->get_all_cnt($areas, $stations, $employment_types, $salary, $job_types, $categories, $traits, $freeword);
 
+		$data['areas'] = $areas;
+		$data['stations'] = $stations;
+		$data['salary'] = $salary;
+		$data['employment_types'] = $employment_types;
+		$data['job_types'] = $job_types;
+		$data['categories'] = $categories;
+		$data['traits'] = $traits;
+		$data['freeword'] = $freeword;
+
 		$data['region_area'] = isset($_POST['region_area']) ? $_POST['region_area'] : '';
 		$data['prefectures_area'] = isset($_POST['prefectures_area']) ? $_POST['prefectures_area'] : '';
-		$data['areas'] = isset($_POST['areas']) ? $_POST['areas'] : [];
 
 		$data['region_lines_stations'] = isset($_POST['region_lines_stations']) ? $_POST['region_lines_stations'] : '';
 		$data['prefectures_lines_stations'] = isset($_POST['prefectures_lines_stations']) ? $_POST['prefectures_lines_stations'] : '';
-		$data['stations'] = $stations;
 		$data['ln'] = isset($_POST['ln']) ? $_POST['ln'] : '';
 		$data['stations_all'] = isset($_POST['stations_all']) ? $_POST['stations_all'] : [];
 
@@ -142,7 +171,11 @@ class Home extends CI_Controller
 
 		// $data['japan_lines_stations'] = $pls_data;
 
-		$this->load->view('map', $data);
+		if (isset($_POST['ajax'])) {
+			echo json_encode($data);
+		} else {
+			$this->load->view('map', $data);
+		}
 	}
 
 	public function total_jobs()
@@ -168,9 +201,15 @@ class Home extends CI_Controller
 		$data['job']['jobs_stations'] = $this->jobs_stations_model->get_all($id);
 		$data['job']['custom_fields'] = $this->custom_fields_model->get_all($id);
 
-
 		if (empty($data['job'])) {
 			redirect('/job_list');
+		}
+
+		$data['favorites'] = [];
+
+		if (!empty($_SESSION['session_id'])) {
+			$session_id = $_SESSION['session_id'];
+			$data['favorites'] = $this->favorites_model->get_all_job_ids($session_id);
 		}
 
 		$this->load->view('job_single', $data);
@@ -229,6 +268,13 @@ class Home extends CI_Controller
 		$data['prefectures_lines_stations'] = $prefectures_lines_stations;
 		$data['ln'] = $ln;
 		$data['stations_all'] = $stations_all;
+
+		$data['favorites'] = [];
+
+		if (!empty($_SESSION['session_id'])) {
+			$session_id = $_SESSION['session_id'];
+			$data['favorites'] = $this->favorites_model->get_all_job_ids($session_id);
+		}
 
 		// $japan_lines_stations = $this->stations_model->get_all_prefs_lines_stations();
 
@@ -305,6 +351,13 @@ class Home extends CI_Controller
 		$data['ln'] = $ln;
 		$data['stations_all'] = $stations_all;
 
+		$data['favorites'] = [];
+
+		if (!empty($_SESSION['session_id'])) {
+			$session_id = $_SESSION['session_id'];
+			$data['favorites'] = $this->favorites_model->get_all_job_ids($session_id);
+		}
+
 		// $japan_lines_stations = $this->stations_model->get_all_prefs_lines_stations();
 
 		// foreach ($japan_lines_stations as $pref_line_station) {
@@ -351,22 +404,27 @@ class Home extends CI_Controller
 	public function favorites($page = 1)
 	{
 		$data['jobs'] = [];
-
-		if (!empty($_SESSION['favorites'])) {
-			$ids = $_SESSION['favorites'];
-			$data['jobs'] = $this->jobs_model->get_by_ids($ids);
-		}
+		$data['total_jobs'] = 0;
 
 		$limit = 10;
+		$offset = ($page * $limit) - $limit;
+
+		if (!empty($_SESSION['session_id'])) {
+
+			$session_id = $_SESSION['session_id'];
+
+			$data['jobs'] = $this->favorites_model->get_all($session_id, $offset, $limit);
+			$data['total_jobs'] = $this->favorites_model->get_all_cnt($session_id);
+		}
 
 		$data['current_index_start'] = ($limit * ($page - 1)) + 1;
 		$data['current_index_end'] = ($limit * ($page - 1)) + $limit;
 
-		if ($data['current_index_end'] > count($data['jobs'])) {
-			$data['current_index_end'] = count($data['jobs']);
+		if ($data['current_index_end'] > $data['total_jobs']) {
+			$data['current_index_end'] = $data['total_jobs'];
 		}
 
-		$this->init_pagination(count($data['jobs']), 'favorites', $limit);
+		$this->init_pagination($data['total_jobs'], 'favorites', $limit);
 
 		$this->load->view('favorites', $data);
 	}
@@ -398,29 +456,40 @@ class Home extends CI_Controller
 
 	public function favorites_add()
 	{
-		$id = $_POST['id'];
+		if (!empty($_SESSION['session_id']) && !empty($_POST['id'])) {
 
-		if (!in_array($id, $_SESSION['favorites'])) {
-			$_SESSION['favorites'][] = $id;
+			$session_id = $_SESSION['session_id'];
+			$job_id = $_POST['id'];
+
+			$data = [
+				'session_id' => $session_id,
+				'job_id' => $job_id
+			];
+
+			$this->favorites_model->insert($data);
 		}
 	}
 
 	public function favorites_delete()
 	{
 
-		$id = $_POST['id'];
+		if (!empty($_SESSION['session_id']) && !empty($_POST['id'])) {
 
-		foreach ($_SESSION['favorites'] as $key => $value) {
-			if ($value == $id) {
-				unset($_SESSION['favorites'][$key]);
-				break;
-			}
+			$session_id = $_SESSION['session_id'];
+			$job_id = $_POST['id'];
+
+			$this->favorites_model->delete($session_id, $job_id);
 		}
 	}
 
 	public function favorites_clear()
 	{
-		$_SESSION['favorites'] = [];
+		if (!empty($_SESSION['session_id'])) {
+
+			$session_id = $_SESSION['session_id'];
+
+			$this->favorites_model->clear($session_id);
+		}
 	}
 
 	public function get_lines()

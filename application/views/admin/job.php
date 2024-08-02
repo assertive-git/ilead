@@ -270,7 +270,7 @@ $traits = !empty($traits) ? explode(',', $traits) : [];
                                             <?= $prefecture ?>
                                         </option>
                                     <?php elseif (empty($a_region)): ?>
-                                        <option value="<?= $prefecture ?>" <?= $prefecture == '大阪' ? 'selected' : '' ?>>
+                                        <option value="<?= $prefecture ?>" <?= $prefecture == '大阪府' ? 'selected' : '' ?>>
                                             <?= $prefecture ?>
                                         </option>
                                     <?php endif; ?>
@@ -1071,7 +1071,7 @@ $traits = !empty($traits) ? explode(',', $traits) : [];
 
                 $.ajax({
                     type: "POST",
-                    url: '/admin/jobs/base64_to_png',
+                    url: '/admin/base64_to_png',
                     data: {
                         body: body
                     },

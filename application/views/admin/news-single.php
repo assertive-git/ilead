@@ -129,49 +129,72 @@ $updated_at = !empty($updated_at) ? $updated_at : '';
 
             $('#update').click(function () {
 
-                var id = $('#id').val();
-                var title = $('#title').val();
                 var body = $('.ql-editor').html();
-                var status = $('#status').val();
 
                 $.ajax({
                     type: "POST",
-                    url: '/admin/news/update',
+                    url: '/admin/base64_to_png',
+                    dataType: 'json',
                     data: {
-                        id: id,
-                        title: title,
-                        body: body,
-                        status: status,
+                        body: body
                     },
                     success: function (data) {
-                        if (data.id) {
-                            var id = data.id;
-                            var updated_at = data.updated_at;
 
-                            window.history.pushState({}, null, '/admin/news/' + id);
-                            $('#id').val(id);
+                        $('.ql-editor img').each(function (i, el) {
+                            var img = $(this);
+                            var src = $(this).attr('src');
 
-                            $('#job_id').text('<?= base_url() ?>news/' + id).attr('href', '/news/' + id);
-                            $('.job-id').removeClass('hidden').addClass('flex');
+                            if (src.indexOf('data:image') !== -1 && src.indexOf('base64') !== -1) {
+                                img.attr('src', data[i]);
+                                img.removeAttr('alt');
+                            }
+                        });
 
-                            $('#updated_at').text(updated_at);
-                            $('.updated-at').removeClass('hidden').addClass('flex');
+                        var id = $('#id').val();
+                        var title = $('#title').val();
+                        var body = $('.ql-editor').html();
+                        var status = $('#status').val();
 
-                            $('#preview').attr('href', '<?= base_url() ?>news/' + id)
-                            $('.preview').removeClass('hidden').addClass('flex');
+                        $.ajax({
+                            type: "POST",
+                            url: '/admin/news/update',
+                            data: {
+                                id: id,
+                                title: title,
+                                body: body,
+                                status: status,
+                            },
+                            success: function (data) {
+                                if (data.id) {
+                                    var id = data.id;
+                                    var updated_at = data.updated_at;
 
-                            $('.delete').removeClass('justify-end').addClass('justify-between');
-                            $('.delete-btn').removeClass('hidden');
-                            $('.delete-btn a').attr('href', '/admin/news/' + id + '/delete');
+                                    window.history.pushState({}, null, '/admin/news/' + id);
+                                    $('#id').val(id);
 
-                            $('#updated-successfully').fadeIn(function () {
-                                setTimeout(function () {
-                                    $('#updated-successfully').fadeOut();
-                                }, 3000);
-                            });
-                        }
-                    },
-                    dataType: 'json'
+                                    $('#job_id').text('<?= base_url() ?>news/' + id).attr('href', '/news/' + id);
+                                    $('.job-id').removeClass('hidden').addClass('flex');
+
+                                    $('#updated_at').text(updated_at);
+                                    $('.updated-at').removeClass('hidden').addClass('flex');
+
+                                    $('#preview').attr('href', '<?= base_url() ?>news/' + id)
+                                    $('.preview').removeClass('hidden').addClass('flex');
+
+                                    $('.delete').removeClass('justify-end').addClass('justify-between');
+                                    $('.delete-btn').removeClass('hidden');
+                                    $('.delete-btn a').attr('href', '/admin/news/' + id + '/delete');
+
+                                    $('#updated-successfully').fadeIn(function () {
+                                        setTimeout(function () {
+                                            $('#updated-successfully').fadeOut();
+                                        }, 3000);
+                                    });
+                                }
+                            },
+                            dataType: 'json'
+                        });
+                    }
                 });
             });
         </script>
