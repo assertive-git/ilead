@@ -324,8 +324,8 @@
           <div class="choice">
             <input type="checkbox" id="commitment1" name="traits[]" <?= !is_array($traits) && strpos($traits, '高収入') !== FALSE ? 'checked' : '' ?> value="高収入">
             <label for="commitment1">高収入</label>
-            <input type="checkbox" id="commitment2" name="traits[]" <?= !is_array($traits) && strpos($traits, '土日のみ') !== FALSE ? 'checked' : '' ?> value="土日のみ">
-            <label for="commitment2">土日のみ</label>
+            <input type="checkbox" id="commitment2" name="traits[]" <?= !is_array($traits) && strpos($traits, '土日休み') !== FALSE ? 'checked' : '' ?> value="土日休み">
+            <label for="commitment2">土日休み</label>
             <input type="checkbox" id="commitment3" name="traits[]" <?= !is_array($traits) && strpos($traits, '～18時の職場') !== FALSE ? 'checked' : '' ?> value="～18時の職場">
             <label for="commitment3">～18時の職場</label>
             <input type="checkbox" id="commitment4" name="traits[]" <?= !is_array($traits) && strpos($traits, '～19時の職場') !== FALSE ? 'checked' : '' ?> value="～19時の職場">

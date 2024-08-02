@@ -1037,8 +1037,8 @@ $traits = !empty($traits) ? explode(',', $traits) : [];
                                 <span>高収入</span>
                             </label>
                             <label class="flex space-x-1 items-center">
-                                <input class="traits" value="土日のみ" type="checkbox" <?= in_array('土日のみ', $traits) ? 'checked' : '' ?>>
-                                <span>土日のみ</span>
+                                <input class="traits" value="土日休み" type="checkbox" <?= in_array('土日休み', $traits) ? 'checked' : '' ?>>
+                                <span>土日休み</span>
                             </label>
                             <label class="flex space-x-1 items-center">
                                 <input class="traits" value="～１８時の職場" type="checkbox" <?= in_array('～１８時の職場', $traits) ? 'checked' : '' ?>>
