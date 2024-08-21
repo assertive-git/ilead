@@ -200,7 +200,7 @@
 
           var title = $(this).find('.map_address').val();
 
-          map.setCenter({ lat: lat, lng: lng });
+          map.setCenter({ lat: lat - 5, lng: lng });
         });
 
         var areas = [];
