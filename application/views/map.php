@@ -165,6 +165,12 @@
 
         $('body').on('click', '.list_item', function () {
 
+          if($(window).width() < 768 && $('.menu-trigger').hasClass('active')) {
+            $('.menu-trigger').removeClass('active');
+            $('.menu-trigger img').attr('src', 'assets/img/map_arrow_open.png');
+            $('.list').removeClass('open');
+          }
+
           if(last_job_id) {
               for (var i = 0; i < markers.length; i++) {
                 if(last_job_id == markers[i].job_id) {
@@ -200,7 +206,11 @@
 
           var title = $(this).find('.map_address').val();
 
-          map.setCenter({ lat: lat - 5, lng: lng });
+          if($(window).width()  < 768) {
+            map.setCenter({ lat: lat - 5, lng: lng });
+          } else {
+            map.setCenter({ lat: lat, lng: lng });
+          }
         });
 
         var areas = [];
