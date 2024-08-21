@@ -50,7 +50,7 @@ class Jobs_model extends CI_Model
 
     public function get($id)
     {
-        return $this->db->where('id', $id)->where('status', '公開')->select('jobs.id, body, company_or_store_name, employment_type, job_type, a_pref, city, concat("【", salary_type, "】", "¥", format_number(min_salary), IF(max_salary <> 0, concat("～", format_number(max_salary)), "")) as salary, address, has_requirement, category, traits, business_content, title, top_picture, lat, lng')->get($this->table)->row_array();
+        return $this->db->where('id', $id)->where('status', '公開')->select('jobs.id, body, company_or_store_name, map_address, map_url, employment_type, job_type, a_pref, city, concat("【", salary_type, "】", "¥", format_number(min_salary), IF(max_salary <> 0, concat("～", format_number(max_salary)), "")) as salary, address, has_requirement, category, traits, business_content, title, top_picture, lat, lng')->get($this->table)->row_array();
     }
 
     public function get_keys()
