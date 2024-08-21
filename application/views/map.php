@@ -101,7 +101,7 @@
 
       function initMap() {
 
-        var map = new google.maps.Map(document.getElementById("_map"));
+        var map = new google.maps.Map(document.getElementById("_map"), { gestureHandling: "greedy"});
 
         var markers = [];
 
