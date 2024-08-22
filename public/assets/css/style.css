@@ -2403,7 +2403,7 @@ main#map .search_area .map_in {
 
 @media(max-width: 768px) {
   #map .google_map {
-    height: 100%;
+    height: 99%;
   }
 }
 
