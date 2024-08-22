@@ -2391,7 +2391,7 @@ main#map .search_area .map_in {
 
 @media(max-width: 768px) {
   #map {
-    height: 94vh;
+    height: 92vh;
   }
 }
 
@@ -2403,7 +2403,7 @@ main#map .search_area .map_in {
 
 @media(max-width: 768px) {
   #map .google_map {
-    height: 99%;
+    height: 100%;
   }
 }
 
