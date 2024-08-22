@@ -105,6 +105,8 @@
 
         var markers = [];
 
+        var bounds;
+
         $.ajax({
           type: "POST",
           url: '/get_jobs_by_ids',
@@ -114,7 +116,7 @@
           dataType: 'json',
           success: function (data) {
 
-            var bounds = new google.maps.LatLngBounds();
+            bounds = new google.maps.LatLngBounds();
 
             for (i = 0; i < data.jobs.length; i++) {
 
@@ -205,12 +207,11 @@
           var lng = parseFloat($(this).find('.lng').val());
 
           var title = $(this).find('.map_address').val();
+          
+          map.setCenter({ lat: lat, lng: lng });
 
-          if($(window).width()  < 768) {
-            map.setCenter({ lat: lat - 5, lng: lng });
-          } else {
-            map.setCenter({ lat: lat, lng: lng });
-          }
+          map.fitBounds(bounds);
+
         });
 
         var areas = [];
@@ -340,6 +341,7 @@
                     });
 
                     marker.setMap(map);
+                    bounds.extend(marker.getPosition());
 
                     markers.push(marker);
                   }
