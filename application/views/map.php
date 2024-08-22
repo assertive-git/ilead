@@ -171,6 +171,10 @@
             $('.menu-trigger').removeClass('active');
             $('.menu-trigger img').attr('src', 'assets/img/map_arrow_open.png');
             $('.list').removeClass('open');
+
+            if($(window).width() < 768) {
+              $('.map').css({height: '49vh'});
+            }
           }
 
           if(last_job_id) {
