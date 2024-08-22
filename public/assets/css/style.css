@@ -2391,7 +2391,7 @@ main#map .search_area .map_in {
 
 @media(max-width: 768px) {
   #map {
-    height: 50vh;
+    height: 100vh;
   }
 }
 
