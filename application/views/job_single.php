@@ -138,53 +138,6 @@
                 <td><?= nl2br($custom_field['detail']) ?></td>
               </tr>
             <?php endforeach; ?>
-            <tr>
-              <th>GoogleマップURL</th>
-              <td>
-                <a href="<?= $job['map_url'] ?>" target="_blank"
-                  style="text-decoration: underline"><?= $job['map_url'] ?></a>
-              </td>
-            </tr>
-            <?php if (!empty($job['map_address']) && !empty($job['lat']) && !empty($job['lng'])): ?>
-              <tr>
-                <th>Googleマップ</th>
-                <td>
-                  <div id="map" style="max-width: 550px; height: 450px"></div>
-                  <input id="lat" type="hidden" value="<?= $job['lat'] ?>">
-                  <input id="lng" type="hidden" value="<?= $job['lng'] ?>">
-                  <input id="map_address" type="hidden" value="<?= $job['map_address'] ?>">
-                  <script>
-                        function initMap() {
-                            var lat = parseFloat($('#lat').val());
-                            var lng = parseFloat($('#lng').val());
-
-                            var pos = { lat, lng };
-
-                            var map = new google.maps.Map(document.getElementById("map"), {
-                                center: pos,
-                                zoom: 17,
-                            });
-
-                            var marker = new google.maps.Marker({
-                                position: pos,
-                                title: $('#map_address').val(),
-                                draggable: true
-                            });
-
-                            marker.setMap(map);
-
-                            var geocoder = new google.maps.Geocoder();
-                            var address = $('#map_address').val();
-                            marker.setTitle($('#map_address').val());
-                        }
-                    </script>
-
-                    <script
-                        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAmVMSJ-FB7idtnAQajLhCIo2SV7VZd7uw&callback=initMap"></script>
-                </div>
-                </td>
-              </tr>
-            <?php endif; ?>
           </table>
           <ul class="button_area">
             <li>

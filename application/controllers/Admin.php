@@ -208,6 +208,11 @@ class Admin extends CI_Controller
             unset($_POST['remove_custom_fields']);
         }
 
+        // extract SRC from Google Map URL
+        if (!empty($_POST['map_url'])) {
+            $this->map_url_extract_src();
+        }
+
         if (empty($_POST['id'])) {
             $id = $this->jobs_model->insert($_POST);
         } else {
@@ -310,12 +315,12 @@ class Admin extends CI_Controller
     }
 
     public function get_lines_stations()
-	{
-		$lines = $this->lines_model->get_all();
-		$stations = $this->stations_model->get_all();
+    {
+        $lines = $this->lines_model->get_all();
+        $stations = $this->stations_model->get_all();
 
-		echo json_encode(['lines' => $lines, 'stations' => $stations]);
-	}
+        echo json_encode(['lines' => $lines, 'stations' => $stations]);
+    }
 
     private function handle_custom_fields($custom_fields)
     {
@@ -875,5 +880,17 @@ class Admin extends CI_Controller
         $config['last_link'] = FALSE;
         $config['use_page_numbers'] = TRUE;
         $this->pagination->initialize($config);
+    }
+
+    private function map_url_extract_src()
+    {
+        $html = $_POST['map_url'];
+
+        preg_match('/<iframe.*?src=["\'](.*?)["\'].*?>/i', $html, $matches);
+
+        if (isset($matches[1])) {
+            $src = $matches[1];
+            $_POST['map_url'] = $src;
+        }
     }
 }

@@ -700,7 +700,9 @@ $traits = !empty($traits) ? explode(',', $traits) : [];
                     <span class="font-bold">マップ情報</span>
                     <span class="font-bold">GoogleマップURL</span>
                     <input id="map_url" type="text" class="p-2 border border-slate-200" value="<?= $map_url ?>">
-
+                    <?php if(!empty($map_url)): ?>
+                    <iframe src="<?= $map_url ?>" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    <?php endif; ?>
                     <span class="font-bold">住所、駅名、施設名、ランドマーク *</span>
                     <input id="map_address" type="text" class="p-2 border border-slate-200" value="<?= $map_address ?>">
                     <div class="flex">
@@ -766,7 +768,6 @@ $traits = !empty($traits) ? explode(',', $traits) : [];
                                 // イベントの引数evの、プロパティ.latLngが緯度経度。
                                 $('#lat').val(ev.latLng.lat());
                                 $('#lng').val(ev.latLng.lng());
-
                             });
                         }
                     </script>
