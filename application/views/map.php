@@ -164,14 +164,14 @@
         });
 
         var last_job_id = 0;
-        
+
         $('body').on('click', '.list_item', function () {
 
-          // if($(window).width() < 768 && $('.menu-trigger').hasClass('active')) {
-          //   $('.menu-trigger').removeClass('active');
-          //   $('.menu-trigger img').attr('src', 'assets/img/map_arrow_open.png');
-          //   $('.list').removeClass('open');
-          // }
+          if($(window).width() < 768 && $('.menu-trigger').hasClass('active')) {
+            $('.menu-trigger').removeClass('active');
+            $('.menu-trigger img').attr('src', 'assets/img/map_arrow_open.png');
+            $('.list').removeClass('open');
+          }
 
           if(last_job_id) {
               for (var i = 0; i < markers.length; i++) {
@@ -206,11 +206,8 @@
           var lat = parseFloat($(this).find('.lat').val());
           var lng = parseFloat($(this).find('.lng').val());
 
-          var title = $(this).find('.map_address').val();
-          
-          map.setCenter({ lat: lat, lng: lng });
 
-          // map.fitBounds(bounds);
+          map.setCenter({ lat: lat, lng: lng });
 
         });
 
@@ -341,7 +338,6 @@
                     });
 
                     marker.setMap(map);
-                    bounds.extend(marker.getPosition());
 
                     markers.push(marker);
                   }
