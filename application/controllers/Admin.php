@@ -208,11 +208,6 @@ class Admin extends CI_Controller
             unset($_POST['remove_custom_fields']);
         }
 
-        // extract SRC from Google Map URL
-        if (!empty($_POST['map_url'])) {
-            $this->map_url_extract_coordinates();
-        }
-
         if (empty($_POST['id'])) {
             $id = $this->jobs_model->insert($_POST);
         } else {
@@ -880,31 +875,5 @@ class Admin extends CI_Controller
         $config['last_link'] = FALSE;
         $config['use_page_numbers'] = TRUE;
         $this->pagination->initialize($config);
-    }
-
-    private function map_url_extract_coordinates()
-    {
-
-        $url = $_POST['map_url'];
-
-        // Parse the query parameters from the URL
-        parse_str(parse_url($url, PHP_URL_QUERY), $queryParams);
-
-        // Extract the coordinates (longitude and latitude)
-        $lng = null;
-        $lat = null;
-
-        if (preg_match('/2d([\d.]+)/', $url, $matches)) {
-            $lng = $matches[1];
-        }
-
-        if (preg_match('/3d([\d.]+)/', $url, $matches)) {
-            $lat = $matches[1];
-        }
-
-        if(!empty($lng) && !empty($lat)) {
-            $_POST['lng'] = $lng;
-            $_POST['lat'] = $lat;
-        }
-    }
+    }    
 }

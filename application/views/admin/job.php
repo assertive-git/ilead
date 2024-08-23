@@ -699,20 +699,18 @@ $traits = !empty($traits) ? explode(',', $traits) : [];
                 <div class="flex flex-col space-y-4">
                     <span class="font-bold">マップ情報</span>
                     <span class="font-bold">GoogleマップURL</span>
-                    <input id="map_url" type="text" class="p-2 border border-slate-200" value="<?= htmlspecialchars($map_url) ?>">
-                    <?php if(!empty($map_url)): ?>
-                    <?= $map_url ?>
-                    <?php endif; ?>
+                    <div class="map_url space-y-4">
+                        <input id="map_url" type="text" class="p-2 border border-slate-200 w-full" value="<?= htmlspecialchars($map_url) ?>">
+                        <button id="geocoding" class="bg-white border p-2">この住所のマップを表示する（ジオコーディング）</button>
+                    </div>
 
-                    <?php if(empty($map_url)): ?>
                     <span class="font-bold">住所、駅名、施設名、ランドマーク *</span>
                     <input id="map_address" type="text" class="p-2 border border-slate-200" value="<?= $map_address ?>">
                     <div class="flex">
-                        <button id="geocoding" class="bg-white border p-2">この住所のマップを表示する（ジオコーディング）</button>
+                        <button id="geocoding_2" class="bg-white border p-2">この住所のマップを表示する（ジオコーディング）</button>
                     </div>
                     <p>マップの拡大・縮小を使い、正確な位置にマーカーをマウスでドラッグして移動する</p>
                     <div id="map" class="max-w-[550px] h-[450px]"></div>
-                    <?php endif; ?>
                     <!-- <p>調整したマーカーの緯度・経度を下記ボタンで保存する</p> -->
                     <div class="flex flex-col space-y-2">
                         <span>緯度 *</span>
@@ -748,7 +746,33 @@ $traits = !empty($traits) ? explode(',', $traits) : [];
 
                             marker.setMap(map);
 
-                            $('#geocoding').click(function () {
+                            $('#geocoding').click(function() {
+
+                                function extract_coordinates() {
+                                    var url = $('#map_url').val();
+                                    var longitudeMatch = url.match(/2d([\d.]+)/);
+                                    var latitudeMatch = url.match(/3d([\d.]+)/);
+
+                                    longitude = longitudeMatch ? parseFloat(longitudeMatch[1]) : null;
+                                    latitude = latitudeMatch ? parseFloat(latitudeMatch[1]) : null;
+                                }
+
+                                var longitude, longitude;
+                                extract_coordinates();
+
+                                if(longitude && latitude) {
+                                    console.log(longitude);
+                                    console.log(latitude);
+                                    map.setCenter({lat: latitude, lng: longitude});
+                                    marker.setPosition(new google.maps.LatLng(latitude, longitude));
+                                    marker.setTitle($('#map_address').val());
+                                    $('#lat').val(latitude);
+                                    $('#lng').val(longitude);
+                                }
+
+                            });
+
+                            $('#geocoding_2').click(function () {
                                 var geocoder = new google.maps.Geocoder();
                                 var address = $('#map_address').val();
                                 geocoder.geocode({ 'address': address }, function (results, status) {
