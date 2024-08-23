@@ -210,7 +210,7 @@ class Admin extends CI_Controller
 
         // extract SRC from Google Map URL
         if (!empty($_POST['map_url'])) {
-            $this->map_url_extract_src();
+            $this->map_url_extract_coordinates();
         }
 
         if (empty($_POST['id'])) {
@@ -882,15 +882,29 @@ class Admin extends CI_Controller
         $this->pagination->initialize($config);
     }
 
-    private function map_url_extract_src()
+    private function map_url_extract_coordinates()
     {
-        $html = $_POST['map_url'];
 
-        preg_match('/<iframe.*?src=["\'](.*?)["\'].*?>/i', $html, $matches);
+        $url = $_POST['map_url'];
 
-        if (isset($matches[1])) {
-            $src = $matches[1];
-            $_POST['map_url'] = $src;
+        // Parse the query parameters from the URL
+        parse_str(parse_url($url, PHP_URL_QUERY), $queryParams);
+
+        // Extract the coordinates (longitude and latitude)
+        $lng = null;
+        $lat = null;
+
+        if (preg_match('/2d([\d.]+)/', $url, $matches)) {
+            $lng = $matches[1];
+        }
+
+        if (preg_match('/3d([\d.]+)/', $url, $matches)) {
+            $lat = $matches[1];
+        }
+
+        if(!empty($lng) && !empty($lat)) {
+            $_POST['lng'] = $lng;
+            $_POST['lat'] = $lat;
         }
     }
 }

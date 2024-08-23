@@ -19,7 +19,7 @@ $city = !empty($city) ? $city : '';
 $address = !empty($address) ? $address : '';
 $has_requirement = !empty($has_requirement) ? $has_requirement : '';
 $map_url = !empty($map_url) ? $map_url : '';
-$map_address = !empty($map_address) ? $map_address : 'アイリード';
+$map_address = !empty($map_address) ? $map_address : '';
 $lat = !empty($lat) ? $lat : 34.6733084;
 $lng = !empty($lng) ? $lng : 135.4969132;
 $gfj = !empty($gfj) ? $gfj : '';
@@ -699,10 +699,12 @@ $traits = !empty($traits) ? explode(',', $traits) : [];
                 <div class="flex flex-col space-y-4">
                     <span class="font-bold">マップ情報</span>
                     <span class="font-bold">GoogleマップURL</span>
-                    <input id="map_url" type="text" class="p-2 border border-slate-200" value="<?= $map_url ?>">
+                    <input id="map_url" type="text" class="p-2 border border-slate-200" value="<?= htmlspecialchars($map_url) ?>">
                     <?php if(!empty($map_url)): ?>
-                    <iframe src="<?= $map_url ?>" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    <?= $map_url ?>
                     <?php endif; ?>
+
+                    <?php if(empty($map_url)): ?>
                     <span class="font-bold">住所、駅名、施設名、ランドマーク *</span>
                     <input id="map_address" type="text" class="p-2 border border-slate-200" value="<?= $map_address ?>">
                     <div class="flex">
@@ -710,6 +712,7 @@ $traits = !empty($traits) ? explode(',', $traits) : [];
                     </div>
                     <p>マップの拡大・縮小を使い、正確な位置にマーカーをマウスでドラッグして移動する</p>
                     <div id="map" class="max-w-[550px] h-[450px]"></div>
+                    <?php endif; ?>
                     <!-- <p>調整したマーカーの緯度・経度を下記ボタンで保存する</p> -->
                     <div class="flex flex-col space-y-2">
                         <span>緯度 *</span>
