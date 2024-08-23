@@ -125,7 +125,10 @@
               var marker = new google.maps.Marker({
                 position: { lat: parseFloat(data.jobs[i].lat), lng: parseFloat(data.jobs[i].lng) },
                 title: data.jobs[i].title,
-                job_id: data.jobs[i].id
+                job_id: data.jobs[i].id,
+                icon: {
+                  url: '/assets/img/map/marker-red.png'
+                }
               });
 
               google.maps.event.addListener(marker, "click", function (event) {
@@ -142,7 +145,7 @@
                   });
                 }
 
-                map.setCenter();
+                map.setCenter({lat: parseFloat(data.jobs[i].lat), lng: parseFloat(data.jobs[i].lng)});
               });
 
               marker.setMap(map);
@@ -181,6 +184,7 @@
               for (var i = 0; i < markers.length; i++) {
                 if(last_job_id == markers[i].job_id) {
                   markers[i].setAnimation(null);
+                  markers[i].setIcon({url: '/assets/img/map/marker-red.png'});
                   break;
                 }
             }
@@ -191,6 +195,7 @@
           for (var i = 0; i < markers.length; i++) {
             if(job_id == markers[i].job_id) {
               markers[i].setAnimation(google.maps.Animation.BOUNCE);
+              markers[i].setIcon({url: '/assets/img/map/marker-yellow.png'});
               last_job_id = job_id;
               break;
             }
@@ -320,7 +325,10 @@
                     var marker = new google.maps.Marker({
                       position: { lat: parseFloat(data.jobs[i].lat), lng: parseFloat(data.jobs[i].lng) },
                       title: data.jobs[i].title,
-                      job_id: data.jobs[i].id
+                      job_id: data.jobs[i].id,
+                      icon: {
+                        url: '/assets/img/map/marker-red.png'
+                      }
                     });
 
 
@@ -339,6 +347,7 @@
 
                       }
 
+                      map.setCenter({lat: parseFloat(data.jobs[i].lat), lng: parseFloat(data.jobs[i].lng)});
                     });
 
                     marker.setMap(map);
