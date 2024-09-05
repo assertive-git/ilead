@@ -62,7 +62,7 @@
       $('.overlay').removeClass('open');
       img.attr('src', 'assets/img/map_arrow_open.png');
       if($(window).width() < 768) {
-        $('.map').css({height: '52.1%'});
+        $('.map').css({height: 'calc(50% - 42px)'});
       }
     } else {
       $(this).addClass('active');
@@ -70,7 +70,7 @@
       $('.overlay').addClass('open');
       img.attr('src', 'assets/img/map_arrow_close.png');
       if($(window).width() < 768) {
-        $('.map').css({height: 'calc(100% - 41px)'});
+        $('.map').css({height: 'calc(100% - 42px)'});
       }
     }
   });
