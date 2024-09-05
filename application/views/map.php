@@ -27,6 +27,9 @@
             <input name="freeword" type="text" placeholder="フリーワード">
             <input type="submit" value="&#xf002">
           </li>
+          <li class="search-submit">
+            <input type="submit" value="検索する &#xf002">
+          </li>
         </ul>
         <div class="button_area">
           <!-- <button type="reset" class="reset">すべてクリア</button> -->

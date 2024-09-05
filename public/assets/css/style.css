@@ -45,6 +45,10 @@ h3 {
   ;
 }
 
+header {
+  height: 51px;
+}
+
 header .header_inner {
   width: min(92%, 1100px);
   display: flex;
@@ -2820,7 +2824,7 @@ main#map .search_area .map_in {
 
 @media(max-width: 768px) {
   .map {
-    height: 89vh;
+    height: calc(100% - 42px);
   }
 }
 
@@ -3053,7 +3057,7 @@ main#map .search_area .map_in {
   }
 
   header .header_inner {
-    height: 6vh;
+    height: 100%;
     width: 86%;
   }
 
@@ -4047,6 +4051,10 @@ main#map .search_area .map_in {
     color: #fff;
     text-align: center;
     line-height: 1;
+  }
+
+  .menu_accordion.sp {
+    height: 42px;
   }
 
   .menu_accordion::after {
