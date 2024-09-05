@@ -46,7 +46,7 @@ h3 {
 }
 
 header {
-  height: 51px;
+  height: 50px;
 }
 
 header .header_inner {
@@ -2824,7 +2824,7 @@ main#map .search_area .map_in {
 
 @media(max-width: 768px) {
   .map {
-    flex: 1;
+    height: calc(100% - 92px);
   }
 }
 
@@ -4109,8 +4109,6 @@ main#map .search_area .map_in {
   }
 
   #map {
-    display: flex;
-    flex-direction: column;
     position: relative;
   }
 
