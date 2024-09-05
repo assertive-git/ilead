@@ -3,6 +3,7 @@
 html {
   font-size: 62.5%;
   letter-spacing: 0.1em;
+  height: 100%;
 }
 
 body {
@@ -2801,12 +2802,13 @@ main#map .search_area .map_in {
 }
 
 #map {
+  height: calc(100% - 50px);
   overflow: hidden;
 }
 
 @media(max-width: 768px) {
   #map {
-    height: 94vh;
+    /* height: 94vh; */
   }
 }
 
@@ -2824,7 +2826,7 @@ main#map .search_area .map_in {
 
 @media(max-width: 768px) {
   .map {
-    height: calc(100% - 92px);
+    height: calc(100% - 42px);
   }
 }
 
