@@ -27,6 +27,9 @@
             <input type="text" placeholder="フリーワード" name="freeword" value="<?= $freeword ?>">
             <input type="submit" value="&#xf002">
           </li>
+          <li class="search-submit">
+            <input type="submit" value="検索する &#xf002">
+          </li>
         </ul>
 
       </div>

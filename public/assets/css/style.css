@@ -1892,7 +1892,7 @@ main .search_area .search_inner {
 }
 
 main .search_area .search_inner ul {
-  width: 84%;
+  /* width: 84%; */
   display: flex;
   justify-content: flex-start;
   flex-wrap: wrap;
@@ -1935,6 +1935,45 @@ main .search_area .search_inner ul li.freeword input[type="submit"] {
   top: 0;
   text-align: center;
   border-radius: 0 5px 5px 0;
+}
+
+main .search_area .search_inner ul li.search-submit {
+  margin-left: 20px;
+  background-color: transparent;
+  box-shadow: none;
+}
+
+@media(max-width: 768px) {
+  main .search_area .search_inner ul li.search-submit {
+    position: relative;
+    padding-top: 20px;
+    margin-top: 20px;
+    width: 100%;
+    text-align: center;
+  }
+
+  main .search_area .search_inner ul li.search-submit::before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    content: '';
+    background-color: #ddd;
+  }
+}
+
+main .search_area .search_inner ul li.search-submit input[type="submit"] {
+  cursor: pointer;
+  height: 100%;
+  width: 250px;
+  height: 54.61px;
+  border: 1px solid rgb(250, 250, 250, 0.4);
+  font-family: FontAwesome;
+  background: #00b8bf;
+  color: #fff;
+  text-align: center;
+  border-radius: 30px;
 }
 
 /*main .search_area .search_inner ul li.freeword input[type="text"] {
