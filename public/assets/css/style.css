@@ -2824,7 +2824,7 @@ main#map .search_area .map_in {
 
 @media(max-width: 768px) {
   .map {
-    height: calc(100% - 42px);
+    flex: 1;
   }
 }
 
@@ -4109,6 +4109,8 @@ main#map .search_area .map_in {
   }
 
   #map {
+    display: flex;
+    flex-direction: column;
     position: relative;
   }
 
