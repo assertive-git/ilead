@@ -37,17 +37,9 @@
   </section>
 
   <section class="side_list">
-    <div class="menu-trigger active"> <span><img src="/assets/img/map_arrow_open.png"></span></div>
+    <div class="menu-trigger active"> <span><img src="/assets/img/map_arrow_close.png"></span></div>
     <script>
-      $('.menu-trigger').click(function () {
-        var img = $(this).children('span').children('img');
-
-        if ($(this).hasClass('active')) {
-          img.attr('src', '/assets/img/map_arrow_close.png');
-        } else {
-          img.attr('src', '/assets/img/map_arrow_open.png');
-        }
-      })
+      
     </script>
     <div id="list" class="list open">
       <p>検索結果一覧　全<span class="number"><?= $total_jobs ?></span>件</p>
@@ -60,30 +52,33 @@
             <div id="<?= $job['id'] ?>" class="list_item id" job-link="/jobs/<?= $job['id'] ?>">
               <div class="info">
                 <h5 class="title"><?= $job['title'] ?></h5>
-                <img class="top-picture" src="/uploads/top_picture/<?= $job['top_picture'] ?>" width="100" height="81">
-                <div class="info_inner">
-                  <?php if (!empty($job['category'])): ?>
-                    <?php $i = 0 ?>
-                    <div class="category">
-                      <?php foreach (explode(',', $job['category']) as $category): ?>
-                        <span><?= $category ?></span>
-                        <?php $i++; ?>
-                        <?php if ($i == 2)
-                          break ?>
-                      <?php endforeach ?>
-                    </div>
-                  <?php endif; ?>
-                  <ul>
-                    <li><span class="attribute">勤務地</span><span class="city"><?= $job['city'] ?></span></li>
-                    <li>
-                      <span class="attribute">給料</span>
-                      <span class="salary"><?= $job['salary'] ?></span>
-                    </li>
-                    <li><input class="map_address" type="hidden" value="<?= $job['map_address'] ?>"></li>
-                    <li><input class="lat" type="hidden" value="<?= $job['lat'] ?>"></li>
-                    <li><input class="lng" type="hidden" value="<?= $job['lng'] ?>"></li>
-                  </ul>
+                <div class="info-tbl">
+                  <img class="top-picture" src="/uploads/top_picture/<?= $job['top_picture'] ?>" width="100" height="81">
+                  <div class="info_inner">
+                    <?php if (!empty($job['category'])): ?>
+                      <?php $i = 0 ?>
+                      <div class="category">
+                        <?php foreach (explode(',', $job['category']) as $category): ?>
+                          <span><?= $category ?></span>
+                          <?php $i++; ?>
+                          <?php if ($i == 2)
+                            break ?>
+                        <?php endforeach ?>
+                      </div>
+                    <?php endif; ?>
+                    <ul>
+                      <li><span class="attribute">勤務地</span><span class="city"><?= $job['city'] ?></span></li>
+                      <li>
+                        <span class="attribute">給与</span>
+                        <span class="salary"><?= $job['salary'] ?></span>
+                      </li>
+                      <li><input class="map_address" type="hidden" value="<?= $job['map_address'] ?>"></li>
+                      <li><input class="lat" type="hidden" value="<?= $job['lat'] ?>"></li>
+                      <li><input class="lng" type="hidden" value="<?= $job['lng'] ?>"></li>
+                    </ul>
+                  </div>
                 </div>
+                
               </div>
               <div class="arrow"><i class="fa-solid fa-angle-right"></i></div>
             </div>

@@ -13,7 +13,7 @@ class Custom_fields_model extends CI_Model
 
     public function get_all($job_id)
     {
-        return $this->db->join('jobs', 'custom_fields.job_id = jobs.id')->where('jobs.id', $job_id)->select('custom_fields.id as id, custom_fields.title, custom_fields.detail, custom_fields.created_at as created_at')->get($this->table)->result_array();
+        return $this->db->join('jobs', 'custom_fields.job_id = jobs.id')->where('jobs.id', $job_id)->select('custom_fields.id as id, custom_fields.title, custom_fields.detail, custom_fields.created_at as created_at')->order_by('sort_order')->get($this->table)->result_array();
     }
 
     public function insert($data)

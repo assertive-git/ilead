@@ -537,15 +537,22 @@ $traits = !empty($traits) ? explode(',', $traits) : [];
                                     <?php foreach ($jobs_stations as $job_station): ?>
                                         <li class="flex">
                                             <span class="bg-white p-2 flex-1">
-                                                <?= $job_station['line'] ?>         <?= $job_station['station'] ?>
+                                                <?= $job_station['line'] ?> <?= $job_station['station'] ?>
                                             </span>
                                             <button class="bg-white border border-b-0 border-r-0 border-t-0 p-2 station-delete"
                                                 jobs_stations_id="<?= $job_station['id'] ?>">&times;</button>
+                                                <input class="station-region" type="hidden" value="<?= $job_station['region'] ?>">
+                                                <input class="station-pref" type="hidden" value="<?= $job_station['pref'] ?>">
+                                                <input class="station-line" type="hidden" value="<?= $job_station['line'] ?>">
+                                                <input class="station-station" type="hidden" value="<?= $job_station['station'] ?>">
+                                                <input class="station-walking_distance" type="hidden" value="<?= $job_station['walking_distance'] ?>">
                                         </li>
                                     <?php endforeach; ?>
                                 <?php endif; ?>
                             </ul>
                             <script>
+                                remove_stations = [];
+
                                 $('#add-station').click(function () {
 
                                     var stations = $('#stations li');
@@ -561,47 +568,29 @@ $traits = !empty($traits) ? explode(',', $traits) : [];
                                     var walking_distance = $('#walking_distance').val();
 
                                     if (region && pref && line && line != "路線を選択する" && station && station != "駅を選択する" && walking_distance) {
-                                        $.ajax({
-                                            type: "POST",
-                                            url: '/admin/jobs/stations',
-                                            data: {
-                                                job_id: job_id,
-                                                region: region,
-                                                pref: pref,
-                                                line: line,
-                                                station: station,
-                                                walking_distance: walking_distance
-                                            },
-                                            success: function (data) {
-                                                if (data.id) {
-                                                    $('#stations').append('<li class="flex"><span class="bg-white p-2 flex-1">' + line + station + '</span><button class="bg-white border border-b-0 border-r-0 border-t-0 p-2 station-delete" jobs_stations_id="' + data.id + '">&times;</button></li>')
-                                                }
-                                            },
-                                            dataType: 'json'
-                                        });
+                                        $('#stations').append('\
+                                        <li class="flex">\
+                                            <span class="bg-white p-2 flex-1">' + line + station + '</span><button class="bg-white border border-b-0 border-r-0 border-t-0 p-2 station-delete">&times;</button>\
+                                            <input class="station-region" type="hidden" value="'+ region +'">\
+                                            <input class="station-pref" type="hidden" value="'+ pref +'">\
+                                            <input class="station-line" type="hidden" value="'+ line +'">\
+                                            <input class="station-station" type="hidden" value="'+ station +'">\
+                                            <input class="station-walking_distance" type="hidden" value="'+ walking_distance +'">\
+                                        </li>');
                                     }
                                 });
 
                                 $('body').on('click', '.station-delete', function () {
-
                                     if (confirm('削除しますか？')) {
 
                                         var parent = $(this).parent();
                                         var id = $(this).attr('jobs_stations_id');
 
-                                        if (id) {
-                                            $.ajax({
-                                                type: "POST",
-                                                url: '/admin/jobs/stations/delete',
-                                                data: {
-                                                    id: id
-                                                },
-                                                success: function (data) {
-                                                    parent.remove();
-                                                },
-                                            });
-
+                                        if(id) {
+                                            remove_stations.push(id);
                                         }
+                                        
+                                        parent.remove();
                                     }
                                 });
                             </script>
@@ -631,7 +620,7 @@ $traits = !empty($traits) ? explode(',', $traits) : [];
 
                         <div id="render-custom-field" class="hidden">
                             <div
-                                class="pt-2 flex xl:flex-row flex-col xl:space-x-8 xl:space-y-0 space-y-4 items-center">
+                                class="pt-2 flex xl:flex-row flex-col xl:space-x-8 xl:space-y-0 space-y-4 items-center cursor-move">
                                 <div class="flex flex-1 flex-col space-y-2 self-start xl:max-w-xs w-full">
                                     <span class="text-center bg-white p-2">項目</span>
                                     <input type="text" class="border border-slate-200 p-2 custom-field-title">
@@ -648,27 +637,32 @@ $traits = !empty($traits) ? explode(',', $traits) : [];
                             </div>
                         </div>
 
-                        <?php if (!empty($custom_fields)): ?>
-                            <?php foreach ($custom_fields as $custom_field): ?>
-                                <div class="pt-2 flex xl:flex-row flex-col xl:space-x-8 xl:space-y-0 space-y-4 items-center custom-field"
-                                    custom-field-id="<?= $custom_field['id'] ?>">
-                                    <div class="flex flex-1 flex-col space-y-2 self-start xl:max-w-xs w-full">
-                                        <span class="text-center bg-white p-2">項目</span>
-                                        <input type="text" class="border border-slate-200 p-2 custom-field-title"
-                                            value="<?= $custom_field['title'] ?>">
-                                    </div>
+                        <div id="sortable">
+                            <?php if (!empty($custom_fields)): ?>
+                                <?php foreach ($custom_fields as $custom_field): ?>
+                                    <div class="pt-2 flex xl:flex-row flex-col xl:space-x-8 xl:space-y-0 space-y-4 items-center cursor-move custom-field"
+                                        custom-field-id="<?= $custom_field['id'] ?>">
+                                        <div class="flex flex-1 flex-col space-y-2 self-start xl:max-w-xs w-full">
+                                            <span class="text-center bg-white p-2">項目</span>
+                                            <input type="text" class="border border-slate-200 p-2 custom-field-title"
+                                                value="<?= $custom_field['title'] ?>">
+                                        </div>
 
-                                    <div class="flex flex-1 flex-col space-y-2 w-full">
-                                        <span class="text-center bg-white p-2">内容</span>
-                                        <textarea
-                                            class="border border-slate-200 p-2 resize-none h-[75px] custom-field-detail"><?= $custom_field['detail'] ?></textarea>
-                                    </div>
+                                        <div class="flex flex-1 flex-col space-y-2 w-full">
+                                            <span class="text-center bg-white p-2">内容</span>
+                                            <textarea
+                                                class="border border-slate-200 p-2 resize-none h-[75px] custom-field-detail"><?= $custom_field['detail'] ?></textarea>
+                                        </div>
 
-                                    <button
-                                        class="bg-red-500 text-white p-3 rounded border border-slate-200 xl:w-auto w-full remove-column">削除</button>
-                                </div>
-                            <?php endforeach; ?>
-                        <?php endif; ?>
+                                        <button
+                                            class="bg-red-500 text-white p-3 rounded border border-slate-200 xl:w-auto w-full remove-column">削除</button>
+                                    </div>
+                                <?php endforeach; ?>
+                            <?php endif; ?>
+                        </div>
+                        <script>
+                            $('#sortable').sortable();
+                        </script>
                     </div>
 
                     <button id="add-columns" class="bg-white p-4 text-center border border-slate-200">+ 項目を追加</button>
@@ -677,8 +671,8 @@ $traits = !empty($traits) ? explode(',', $traits) : [];
                         var remove_custom_fields = [];
 
                         $('#add-columns').click(function () {
-                            $('#custom-fields').append($('#render-custom-field').html());
-                            $('#custom-fields').children().last().addClass('custom-field');
+                            $('#custom-fields #sortable').append($('#render-custom-field').html());
+                            $('#custom-fields #sortable').children().last().addClass('custom-field');
                         });
 
                         $('body').on('click', '.remove-column', function () {
@@ -828,7 +822,7 @@ $traits = !empty($traits) ? explode(',', $traits) : [];
                         <div class="flex flex-col space-y-2">
                             <span class="font-bold">労働時間 *</span>
                             <input id="gfj_working_hours" class="p-2 border border-slate-200" type="text"
-                                value="<?= $gfj_working_hours ?>" name="gfj_working_hours">
+                                value="<?= $gfj_working_hours ?>" name="gfj_working_hours" placeholder="例）10:00~19:00">
                         </div>
                         <div class="flex flex-col space-y-2">
                             <span class="font-bold">掲載日 *</span>
@@ -1096,151 +1090,169 @@ $traits = !empty($traits) ? explode(',', $traits) : [];
             $('#update').click(function () {
 
                 var body = $('.ql-editor').html();
+                var id = $('#id').val();
+                var business_content = $('#business_content').val();
+                var title = $('#title').val();
+                var body = $('.ql-editor').html();
+                var tantosha = $('#tantosha').val();
+                var company_or_store_name = $('#company_or_store_name').val();
+                var employment_type = $('.employment_type:checked').val();
+                var salary_type = $('#salary_type').children('option:selected').val();
+                var min_salary = $('#min_salary').val();
+                var max_salary = $('#max_salary').val();
+                var job_type = $('#job_type').val();
+                var category = get_checked_values($('.category:checked'));
+                var a_region = $.trim($('#a_region').children('option:selected').text());
+                var a_pref = $.trim($('#a_pref').children('option:selected').text());
+                var city = $('#city').val();
+                var address = $('#address').val();
+                var has_requirement = $('.has_requirement:checked').val();
+                var map_url = $('#map_url').val();
+                var map_address = $('#map_address').val();
+                var lat = $('#lat').val();
+                var lng = $('#lng').val();
+                var gfj = $('#gfj').is(':checked') ? 1 : 0;
+                var gfj_employment_type = $('#gfj_employment_type').val();
+                var gfj_working_hours = $('#gfj_working_hours').val();
+                var gfj_listing_start_date = $('#gfj_listing_start_date').val();
+                var gfj_listing_end_date = $('#gfj_listing_end_date').val();
+                var status = $('#status').val();
+                var top_picture = $('#top_picture').attr('src').replace('/uploads/top_picture/', '');
+                var traits = get_checked_values($('.traits:checked'));
+
+                var custom_fields = [];
+
+                $('.custom-field').each(function (i, el) {
+                    custom_fields.push({
+                        id: $(this).attr('custom-field-id'),
+                        title: $(this).find('.custom-field-title').val(),
+                        detail: $(this).find('.custom-field-detail').val(),
+                        action: !$(this).attr('custom-field-id') ? 'new' : 'update',
+                        sort_order: i
+                    });
+                });
+
+                var stations = [];
+
+                $('#stations li').each(function (i, el) {
+
+                    if(!$(this).find('.station-delete').attr('jobs_stations_id')) {
+                        stations.push({
+                            region: $(this).find('.station-region').val(),
+                            pref: $(this).find('.station-pref').val(),
+                            line: $(this).find('.station-line').val(),
+                            station: $(this).find('.station-station').val(),
+                            walking_distance: $(this).find('.station-walking_distance').val()
+                        });
+                    }
+                });
 
                 $.ajax({
                     type: "POST",
-                    url: '/admin/base64_to_png',
+                    url: '/admin/jobs/update',
                     data: {
-                        body: body
+                        id: id,
+                        business_content: business_content,
+                        title: title,
+                        body: body,
+                        tantosha: tantosha,
+                        company_or_store_name: company_or_store_name,
+                        employment_type: employment_type,
+                        salary_type: salary_type,
+                        min_salary: min_salary,
+                        max_salary: max_salary,
+                        job_type: job_type,
+                        category: category,
+                        a_region: a_region,
+                        a_pref: a_pref,
+                        city: city,
+                        address: address,
+                        has_requirement: has_requirement,
+                        map_url: map_url,
+                        map_address: map_address,
+                        lat: lat,
+                        lng: lng,
+                        gfj: gfj,
+                        gfj_employment_type: gfj_employment_type,
+                        gfj_working_hours: gfj_working_hours,
+                        gfj_listing_start_date: gfj_listing_start_date,
+                        gfj_listing_end_date: gfj_listing_end_date,
+                        status: status,
+                        top_picture: top_picture,
+                        traits: traits,
+                        custom_fields: JSON.stringify(custom_fields),
+                        remove_custom_fields: JSON.stringify(remove_custom_fields),
+                        stations: JSON.stringify(stations),
+                        remove_stations: JSON.stringify(remove_stations)
                     },
                     success: function (data) {
+                        if (data.id) {
+                            var id = data.id;
+                            var updated_at = data.updated_at;
+                            var custom_fields_ids = data.custom_fields_ids;
+                            var station_ids = data.station_ids;
+                            var imgs = data.imgs;
 
+                            if(imgs.length != 0) {
 
-                        $('.ql-editor img').each(function (i, el) {
-                            var img = $(this);
-                            var src = $(this).attr('src');
+                                var ii = 0;
 
-                            if (src.indexOf('data:image') !== -1 && src.indexOf('base64') !== -1) {
-                                img.attr('src', data[i]);
-                                img.removeAttr('alt');
+                                $('.ql-editor img').each(function (i, el) {
+                                    var img = $(this);
+                                    var src = $(this).attr('src');
+                                    if (src.indexOf('data:image') !== -1 && src.indexOf('base64') !== -1) {
+                                        img.attr('src', imgs[ii]);
+                                        img.removeAttr('alt');
+                                        ii++;
+                                    }
+                                });
                             }
 
-                        });
+                            window.history.pushState({}, null, '/admin/jobs/' + id);
+                            $('#id').val(id);
 
-                        var id = $('#id').val();
-                        var business_content = $('#business_content').val();
-                        var title = $('#title').val();
-                        var body = $('.ql-editor').html();
-                        var tantosha = $('#tantosha').val();
-                        var company_or_store_name = $('#company_or_store_name').val();
-                        var employment_type = $('.employment_type:checked').val();
-                        var salary_type = $('#salary_type').children('option:selected').val();
-                        var min_salary = $('#min_salary').val();
-                        var max_salary = $('#max_salary').val();
-                        var job_type = $('#job_type').val();
-                        var category = get_checked_values($('.category:checked'));
-                        var a_region = $.trim($('#a_region').children('option:selected').text());
-                        var a_pref = $.trim($('#a_pref').children('option:selected').text());
-                        var city = $('#city').val();
-                        var address = $('#address').val();
-                        var has_requirement = $('.has_requirement:checked').val();
-                        var map_url = $('#map_url').val();
-                        var map_address = $('#map_address').val();
-                        var lat = $('#lat').val();
-                        var lng = $('#lng').val();
-                        var gfj = $('#gfj').is(':checked') ? 1 : 0;
-                        var gfj_employment_type = $('#gfj_employment_type').val();
-                        var gfj_working_hours = $('#gfj_working_hours').val();
-                        var gfj_listing_start_date = $('#gfj_listing_start_date').val();
-                        var gfj_listing_end_date = $('#gfj_listing_end_date').val();
-                        var status = $('#status').val();
-                        var top_picture = $('#top_picture').attr('src').replace('/uploads/top_picture/', '');
-                        var traits = get_checked_values($('.traits:checked'));
+                            $('#job_id').text('<?= base_url() ?>jobs/' + id).attr('href', '/jobs/' + id);
+                            $('.job-id').removeClass('hidden').addClass('flex');
 
-                        var custom_fields = [];
+                            $('#updated_at').text(updated_at);
+                            $('.updated-at').removeClass('hidden').addClass('flex');
 
-                        $('.custom-field').each(function () {
-                            custom_fields.push({
-                                job_id: id,
-                                id: $(this).attr('custom-field-id'),
-                                title: $(this).find('.custom-field-title').val(),
-                                detail: $(this).find('.custom-field-detail').val(),
-                                action: !$(this).attr('custom-field-id') ? 'new' : 'update'
-                            });
-                        });
+                            $('#preview').attr('href', '<?= base_url() ?>jobs/' + id);
+                            $('.preview').removeClass('hidden').addClass('flex');
 
-                        $.ajax({
-                            type: "POST",
-                            url: '/admin/jobs/update',
-                            data: {
-                                id: id,
-                                business_content: business_content,
-                                title: title,
-                                body: body,
-                                tantosha: tantosha,
-                                company_or_store_name: company_or_store_name,
-                                employment_type: employment_type,
-                                salary_type: salary_type,
-                                min_salary: min_salary,
-                                max_salary: max_salary,
-                                job_type: job_type,
-                                category: category,
-                                a_region: a_region,
-                                a_pref: a_pref,
-                                city: city,
-                                address: address,
-                                has_requirement: has_requirement,
-                                map_url: map_url,
-                                map_address: map_address,
-                                lat: lat,
-                                lng: lng,
-                                gfj: gfj,
-                                gfj_employment_type: gfj_employment_type,
-                                gfj_working_hours: gfj_working_hours,
-                                gfj_listing_start_date: gfj_listing_start_date,
-                                gfj_listing_end_date: gfj_listing_end_date,
-                                status: status,
-                                top_picture: top_picture,
-                                traits: traits,
-                                custom_fields: JSON.stringify(custom_fields),
-                                remove_custom_fields: JSON.stringify(remove_custom_fields)
-                            },
-                            success: function (data) {
-                                if (data.id) {
-                                    var id = data.id;
-                                    var updated_at = data.updated_at;
-                                    var custom_fields_ids = data.custom_fields_ids;
+                            $('.delete').removeClass('justify-end').addClass('justify-between');
+                            $('.delete-btn').removeClass('hidden');
+                            $('.delete-btn a').attr('href', '/admin/jobs/' + id + '/delete');
 
-                                    window.history.pushState({}, null, '/admin/jobs/' + id);
-                                    $('#id').val(id);
-
-                                    $('#job_id').text('<?= base_url() ?>jobs/' + id).attr('href', '/jobs/' + id);
-                                    $('.job-id').removeClass('hidden').addClass('flex');
-
-                                    $('#updated_at').text(updated_at);
-                                    $('.updated-at').removeClass('hidden').addClass('flex');
-
-                                    $('#preview').attr('href', '<?= base_url() ?>jobs/' + id)
-                                    $('.preview').removeClass('hidden').addClass('flex');
-
-                                    $('.delete').removeClass('justify-end').addClass('justify-between');
-                                    $('.delete-btn').removeClass('hidden');
-                                    $('.delete-btn a').attr('href', '/admin/jobs/' + id + '/delete');
-
-                                    var c = 0;
-                                    if (custom_fields_ids.length != 0) {
-                                        $('.custom-field').each(function () {
-                                            if (!$(this).attr('custom-field-id')) {
-                                                $(this).attr('custom-field-id', custom_fields_ids[c]);
-                                                c++;
-                                            }
-                                        });
+                            var c = 0;
+                            if (custom_fields_ids.length != 0) {
+                                $('.custom-field').each(function () {
+                                    if (!$(this).attr('custom-field-id')) {
+                                        $(this).attr('custom-field-id', custom_fields_ids[c]);
+                                        c++;
                                     }
+                                });
+                            }
 
-                                    $('#updated-successfully').fadeIn(function () {
-                                        setTimeout(function () {
-                                            $('#updated-successfully').fadeOut();
-                                        }, 3000);
-                                    });
-                                }
-                            },
-                            dataType: 'json'
-                        });
+                            var s = 0;
+                            if (station_ids.length != 0) {
+                                $('#stations li').each(function () {
+                                    if (!$(this).find('.station-delete').attr('jobs_stations_id')) {
+                                        $(this).find('.station-delete').attr('jobs_stations_id', station_ids[s]);
+                                        s++;
+                                    }
+                                });
+                            }
+
+                            $('#updated-successfully').fadeIn(function () {
+                                setTimeout(function () {
+                                    $('#updated-successfully').fadeOut();
+                                }, 3000);
+                            });
+                        }
                     },
                     dataType: 'json'
                 });
-
-
             });
 
             function get_checked_values(key) {

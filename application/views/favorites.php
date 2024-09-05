@@ -1,6 +1,6 @@
 ﻿<?php include ('header.php'); ?>
 <main id="mypage">
-  <!-- <div class="registration pc"><a href="form" target="_blank">まずは簡単登録</a></div> -->
+  <div class="registration pc"><a href="/job_list">まずは簡単登録</a></div>
   <section class="search_result">
     <p>★検討中リスト　全<span class="number"><?= $total_jobs ?></span>件</p>
   </section>
@@ -37,34 +37,38 @@
                 </div>
               <?php endif; ?>
               <p class="result_title">店舗責任者候補を募集！薬剤師として成長したい方歓迎！</p>
-              <div class="table_area">
-                <table>
-                  <tr>
-                    <th class="attribute">給料</th>
-                    <td><?= $job['salary'] ?></td>
-                  </tr>
-                  <tr>
-                    <th class="attribute">勤務地</th>
-                    <td><?= $job['a_pref'] ?><?= $job['city'] ?><?= $job['address'] ?></td>
-                  </tr>
-                  <tr>
-                    <th class="attribute">最寄り駅</th>
-                    <td>
-                      <?= $job['jobs_stations'] ?>
-                    </td>
-                  </tr>
-                  <tr>
-                    <th class="attribute">業務内容</th>
-                    <td><?= $job['business_content'] ?></td>
-                  </tr>
-                  <tr>
-                    <th class="attribute">必要資格</th>
-                    <td><?= $job['has_requirement'] ?></td>
-                  </tr>
-                </table>
-                <small><?= str_replace(',', ' / ', $job['traits']) ?></small>
+
+              <div class="result_tbl">
+                <div class="table_area">
+                  <table>
+                    <tr>
+                      <th class="attribute">給与</th>
+                      <td><?= $job['salary'] ?></td>
+                    </tr>
+                    <tr>
+                      <th class="attribute">勤務地</th>
+                      <td><?= $job['a_pref'] ?><?= $job['city'] ?><?= $job['address'] ?></td>
+                    </tr>
+                    <tr>
+                      <th class="attribute">最寄り駅</th>
+                      <td>
+                        <?= $job['jobs_stations'] ?>
+                      </td>
+                    </tr>
+                    <tr>
+                      <th class="attribute">業務内容</th>
+                      <td><?= $job['business_content'] ?></td>
+                    </tr>
+                    <tr>
+                      <th class="attribute">必要資格</th>
+                      <td><?= $job['has_requirement'] ?></td>
+                    </tr>
+                  </table>
+                  <small><?= str_replace(',', ' / ', $job['traits']) ?></small>
+                </div>
+                <div class="list_img"><img src="/uploads/top_picture/<?= $job['top_picture'] ?>"></div>
               </div>
-              <div class="list_img"><img src="/uploads/top_picture/<?= $job['top_picture'] ?>"></div>
+              
               <ul class="button_area">
                 <li>
                   <button class="favorite_btn favorite_btn--remove" job-id="<?= $job['id'] ?>">★ 検討中リストから削除する</button>

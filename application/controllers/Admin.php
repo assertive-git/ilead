@@ -155,32 +155,15 @@ class Admin extends CI_Controller
         $this->load->view('admin/footer');
     }
 
-    public function jobs_stations()
+    private function jobs_stations($data)
     {
+        $ids = [];
 
-        if (
-            !empty($_POST['job_id']) &&
-            !empty($_POST['region']) &&
-            !empty($_POST['pref']) &&
-            !empty($_POST['line']) &&
-            !empty($_POST['station']) &&
-            !empty($_POST['walking_distance']) &&
-            count($this->jobs_stations_model->get_all($_POST['job_id'])) < 3
-        ) {
-            $data = [
-                'job_id' => $_POST['job_id'],
-                'region' => $_POST['region'],
-                'pref' => $_POST['pref'],
-                'line' => $_POST['line'],
-                'station' => $_POST['station'],
-                'walking_distance' => $_POST['walking_distance'],
-            ];
-
-            $id = $this->jobs_stations_model->insert($data);
-
-            echo json_encode(['id' => $id]);
+        foreach($data as $row) {
+            $ids[] = $this->jobs_stations_model->insert($row);
         }
-
+            
+        return $ids;
     }
 
     public function jobs_stations_delete()
@@ -198,6 +181,9 @@ class Admin extends CI_Controller
         $custom_fields = [];
         $remove_custom_fields = [];
 
+        // Check for any base64 images in the body to store on the server as PNG.
+        $imgs = $this->base64_to_png();
+
         if (!empty($_POST['custom_fields'])) {
             $custom_fields = json_decode($_POST['custom_fields']);
             unset($_POST['custom_fields']);
@@ -206,6 +192,16 @@ class Admin extends CI_Controller
         if (!empty($_POST['remove_custom_fields'])) {
             $remove_custom_fields = json_decode($_POST['remove_custom_fields']);
             unset($_POST['remove_custom_fields']);
+        }
+
+        if (!empty($_POST['stations'])) {
+            $stations = json_decode($_POST['stations']);
+            unset($_POST['stations']);
+        }
+
+        if (!empty($_POST['remove_stations'])) {
+            $remove_stations = json_decode($_POST['remove_stations']);
+            unset($_POST['remove_stations']);
         }
 
         if (empty($_POST['id'])) {
@@ -219,16 +215,27 @@ class Admin extends CI_Controller
         $custom_fields_ids = [];
 
         if (!empty($custom_fields)) {
-            $custom_fields_ids = $this->handle_custom_fields($custom_fields);
+            $custom_fields_ids = $this->handle_custom_fields($custom_fields, $id);
         }
 
         if (!empty($remove_custom_fields)) {
             $this->handle_remove_custom_fields($remove_custom_fields);
         }
 
+        // Deal with stations
+        $station_ids = [];
+
+        if (!empty($stations)) {
+            $station_ids = $this->handle_stations($stations, $id);
+        }
+
+        if (!empty($remove_stations)) {
+            $this->handle_remove_stations($remove_stations);
+        }
+
         $updated_at = $this->jobs_model->get_admin($id)['updated_at'];
 
-        echo json_encode(['id' => $id, 'updated_at' => $updated_at, 'custom_fields_ids' => $custom_fields_ids]);
+        echo json_encode(['id' => $id, 'updated_at' => $updated_at, 'custom_fields_ids' => $custom_fields_ids, 'station_ids' => $station_ids, 'imgs' => $imgs]);
     }
 
     public function jobs_upload()
@@ -284,6 +291,26 @@ class Admin extends CI_Controller
         }
     }
 
+    public function jobs_copy($id)
+    {
+        if (!empty($id)) {
+
+            $job_ids = [$id];
+
+            $jobs = $this->jobs_model->get_multiple($job_ids);
+
+            foreach ($jobs as $job) {
+                unset($job['id']);
+                unset($job['created_at']);
+                unset($job['updated_at']);
+
+                $this->jobs_model->insert($job);
+            }
+        }
+
+        redirect('/admin/jobs');
+    }
+
     public function jobs_delete($id)
     {
         if (!empty($id)) {
@@ -317,7 +344,7 @@ class Admin extends CI_Controller
         echo json_encode(['lines' => $lines, 'stations' => $stations]);
     }
 
-    private function handle_custom_fields($custom_fields)
+    private function handle_custom_fields($custom_fields, $job_id)
     {
 
         $custom_fields_ids = [];
@@ -325,18 +352,18 @@ class Admin extends CI_Controller
         foreach ($custom_fields as $custom_field) {
             switch ($custom_field->action) {
                 case 'new':
-
                     $data = [
-                        'job_id' => $custom_field->job_id,
+                        'job_id' => $job_id,
                         'title' => $custom_field->title,
                         'detail' => $custom_field->detail,
+                        'sort_order' => $custom_field->sort_order
                     ];
 
                     $custom_fields_ids[] = $this->custom_fields_model->insert($data);
                     break;
                 default:
                     $id = $custom_field->id;
-                    $data = ['title' => $custom_field->title, 'detail' => $custom_field->detail];
+                    $data = ['title' => $custom_field->title, 'detail' => $custom_field->detail, 'sort_order' => $custom_field->sort_order];
                     $this->custom_fields_model->update($id, $data);
             }
         }
@@ -349,6 +376,26 @@ class Admin extends CI_Controller
         foreach ($custom_fields as $custom_field) {
             $id = $custom_field->id;
             $this->custom_fields_model->delete($id);
+        }
+    }
+
+    private function handle_stations($stations, $job_id)
+    {
+
+        $stations_ids = [];
+
+        foreach ($stations as $station) {
+            $station->job_id = $job_id;
+            $stations_ids[] = $this->jobs_stations_model->insert($station);
+        }
+
+        return $stations_ids;
+    }
+
+    private function handle_remove_stations($station_ids)
+    {
+        foreach ($station_ids as $id) {
+            $this->jobs_stations_model->delete($id);
         }
     }
 
@@ -832,7 +879,7 @@ class Admin extends CI_Controller
         $this->db->trans_complete();
     }
 
-    public function base64_to_png()
+    private function base64_to_png()
     {
         $body = $_POST['body'];
 
@@ -840,12 +887,13 @@ class Admin extends CI_Controller
         $doc->loadHTML($body);
 
         $path = './uploads/' . date('Y') . '/' . date('m');
+
         if (!file_exists($path)) {
             mkdir($path, 0777, true);
         }
 
-        $imgs = [];
         $pattern = '#^data:image/\w+;base64,#i';
+        $imgs = [];
 
         foreach ($doc->getElementsByTagName('img') as $img) {
 
@@ -856,11 +904,17 @@ class Admin extends CI_Controller
 
                 $file = $path . '/' . uniqid() . '.png';
                 file_put_contents($file, $data);
-                $imgs[] = str_replace('./', '/', $file);
+
+                $img = str_replace('./', '/', $file);
+
+                $_POST['body'] = str_replace($src, $img, $_POST['body']);
+
+                $imgs[] = $img;
+
             }
         }
 
-        echo json_encode($imgs);
+        return $imgs;
     }
 
     private function init_pagination($total_rows, $page, $limit)
@@ -875,5 +929,5 @@ class Admin extends CI_Controller
         $config['last_link'] = FALSE;
         $config['use_page_numbers'] = TRUE;
         $this->pagination->initialize($config);
-    }    
+    }
 }

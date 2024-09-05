@@ -26,6 +26,7 @@ class Home extends CI_Controller
 		$data['direct'] = $this->jobs_model->get_direct();
 		$data['deployment'] = $this->jobs_model->get_deployment();
 		$data['news'] = $this->news_model->get_new_news();
+		$data['instagram_feed'] = $this->instagram_feed();
 
 		// $pls_data = [];
 
@@ -537,5 +538,24 @@ class Home extends CI_Controller
 		$config['last_link'] = FALSE;
 		$config['use_page_numbers'] = TRUE;
 		$this->pagination->initialize($config);
+	}
+
+	private function instagram_feed()
+	{
+
+		$instagram_feed = [];
+
+		$html = file_get_contents('https://www.instagram.com/marvel?__a=1');
+
+		$doc = new DOMDocument();
+		@$doc->loadHTML($html);
+
+		$tags = $doc->getElementsByTagName('img');
+
+		foreach ($tags as $tag) {
+			echo $tag->getAttribute('src') . '<br>';
+		}
+
+		return $instagram_feed;
 	}
 }

@@ -96,9 +96,12 @@
                                 <div class="flex flex-col space-y-1">
                                     <span><?= ellipsize($job['title'], 43) ?></span>
                                     <ul class="flex space-x-2">
-                                        <li><a class="underline" href="/admin/jobs/<?= $job['id'] ?>">編集</a></li>
+                                        <li><a href="/admin/jobs/<?= $job['id'] ?>"><i class="fa-regular fa-pen-to-square"></i> 編集</a></li>
+                                        <li><a class="copy" class="underline"
+                                                href="/admin/jobs/<?= $job['id'] ?>/copy"><i class="fa-regular fa-copy"></i> 複製</a>
+                                        </li>
                                         <li><a class="delete" class="underline"
-                                                href="/admin/jobs/<?= $job['id'] ?>/delete">削除</a>
+                                                href="/admin/jobs/<?= $job['id'] ?>/delete"><i class="fa-regular fa-trash-can"></i> 削除</a>
                                         </li>
                                     </ul>
                                 </div>
@@ -129,6 +132,18 @@
                 </tfoot>
             </table>
             <script>
+
+                // Copy Job
+
+                $('.copy').click(function (e) {
+                    e.preventDefault();
+
+                    if (confirm('複製してもいいですか？')) {
+                        var href = $(this).attr('href');
+                        window.location.href = href;
+                    }
+
+                });
 
                 // Delete Job
 

@@ -9,7 +9,7 @@
     </p>
   </section>
 
-  <!-- <div class="registration"><a href="" target="_blank">まずは簡単登録</a></div> -->
+  <div class="registration"><a href="/job_list">まずは簡単登録</a></div>
 
   <section class="search">
     <ul class="tab">
@@ -95,7 +95,7 @@
                   <?= ellipsize($new_job['title'], 43) ?>
                 </a></dt>
               <dd><span class="attribute">勤務地</span><?= $new_job['a_pref'] ?><?= $new_job['city'] ?></dd>
-              <dd><span class="attribute">給料</span><?= $new_job['salary'] ?></dd>
+              <dd><span class="attribute">給与</span><?= $new_job['salary'] ?></dd>
             </dl>
           </div>
         <?php endforeach; ?>
@@ -137,7 +137,7 @@
                       <?= ellipsize($job['title'], 25) ?>
                     </dt>
                     <dd><span class="attribute">勤務地</span><?= $job['a_pref'] . $job['city'] ?></dd>
-                    <dd><span class="attribute">給料</span><?= $job['salary'] ?></dd>
+                    <dd><span class="attribute">給与</span><?= $job['salary'] ?></dd>
                   </dl>
                 </a> </div>
             <?php endforeach; ?>
@@ -173,7 +173,7 @@
                       <?= ellipsize($job['title'], 25) ?>
                     </dt>
                     <dd><span class="attribute">勤務地</span><?= $job['a_pref'] . $job['city'] ?></dd>
-                    <dd><span class="attribute">給料</span><?= $job['salary'] ?></dd>
+                    <dd><span class="attribute">給与</span><?= $job['salary'] ?></dd>
                   </dl>
                 </a> </div>
             <?php endforeach; ?>
@@ -235,15 +235,5 @@
       </ul>
     </div>
   </section>
-  <script>
-    $(window).on('load', function () {
-      $('input, select').each(function () {
-        $(this).prop('checked', false);
-        if ($(this).is('select')) {
-          $(this)[0].selectedIndex = 0;
-        }
-      });
-    });
-  </script>
 </main>
 <?php include ('footer.php'); ?>

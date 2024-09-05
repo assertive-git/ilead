@@ -60,7 +60,7 @@
       $(this).removeClass('active');
       $('.list').removeClass('open');
       $('.overlay').removeClass('open');
-      img.attr('src', 'assets/img/map_arrow_close.png');
+      img.attr('src', 'assets/img/map_arrow_open.png');
       if($(window).width() < 768) {
         $('.map').css({height: '49vh'});
       }
@@ -68,7 +68,7 @@
       $(this).addClass('active');
       $('.list').addClass('open');
       $('.overlay').addClass('open');
-      img.attr('src', 'assets/img/map_arrow_open.png');
+      img.attr('src', 'assets/img/map_arrow_close.png');
       if($(window).width() < 768) {
         $('.map').css({height: '89vh'});
       }

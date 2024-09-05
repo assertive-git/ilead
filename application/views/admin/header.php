@@ -28,6 +28,9 @@
 
     <!-- Jquery -->
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+    <!-- JQuery UI -->
+    <script src="https://code.jquery.com/ui/1.14.0/jquery-ui.min.js"></script>
 </head>
 
 <body>

@@ -1,7 +1,7 @@
-﻿<?php include ('header.php'); ?>
+﻿<?php include('header.php'); ?>
 
 <main id="job_list">
-      
+
   <input id="block-01" type="checkbox" class="toggle">
   <label class="menu_accordion sp" for="block-01">検索条件を変更する</label>
 
@@ -28,9 +28,7 @@
             <input type="submit" value="&#xf002">
           </li>
         </ul>
-        <div class="button_area">
-          <!-- <button type="reset" class="reset">すべてクリア</button> -->
-        </div>
+
       </div>
       <?php include APPPATH . 'includes/search_modal.php' ?>
     </form>
@@ -70,34 +68,37 @@
                   </div>
                 <?php endif; ?>
                 <p class="result_title"><?= ellipsize($job['title'], 43) ?></p>
-                <div class="table_area">
-                  <table>
-                    <tr>
-                      <th class="attribute">給料</th>
-                      <td><?= $job['salary'] ?></td>
-                    </tr>
-                    <tr>
-                      <th class="attribute">勤務地</th>
-                      <td><?= $job['pref'] ?><?= $job['city'] ?><?= $job['address'] ?></td>
-                    </tr>
-                    <tr>
-                      <th class="attribute">最寄り駅</th>
-                      <td>
-                        <?= $job['jobs_stations'] ?>
-                      </td>
-                    </tr>
-                    <tr>
-                      <th class="attribute">業務内容</th>
-                      <td><?= $job['business_content'] ?></td>
-                    </tr>
-                    <tr>
-                      <th class="attribute">必要資格</th>
-                      <td><?= $job['has_requirement'] ?></td>
-                    </tr>
-                  </table>
-                  <small><?= str_replace(',', ' / ', $job['traits']) ?></small>
+                <div class="result_tbl">
+                  <div class="table_area">
+                    <table>
+                      <tr>
+                        <th class="attribute">給与</th>
+                        <td><?= $job['salary'] ?></td>
+                      </tr>
+                      <tr>
+                        <th class="attribute">勤務地</th>
+                        <td><?= $job['pref'] ?><?= $job['city'] ?><?= $job['address'] ?></td>
+                      </tr>
+                      <tr>
+                        <th class="attribute">最寄り駅</th>
+                        <td>
+                          <?= $job['jobs_stations'] ?>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th class="attribute">業務内容</th>
+                        <td><?= $job['business_content'] ?></td>
+                      </tr>
+                      <tr>
+                        <th class="attribute">必要資格</th>
+                        <td><?= $job['has_requirement'] ?></td>
+                      </tr>
+                    </table>
+                    <small><?= str_replace(',', ' / ', $job['traits']) ?></small>
+                  </div>
+                  <div class="list_img"><img src="/uploads/top_picture/<?= $job['top_picture'] ?>"></div>
                 </div>
-                <div class="list_img"><img src="/uploads/top_picture/<?= $job['top_picture'] ?>"></div>
+
                 <ul class="button_area">
                   <li>
                     <button class="favorite_btn<?= in_array($job['id'], $favorites) ? ' favorite_btn--remove' : '' ?>"
@@ -125,4 +126,4 @@
     </div>
   </section>
 </main>
-<?php include ('footer.php'); ?>
+<?php include('footer.php'); ?>
