@@ -3184,7 +3184,7 @@ main#map .search_area .map_in {
     writing-mode: horizontal-tb;
     border-radius: 6px;
     box-shadow: 0 2px #ff6868;
-    z-index: 999;
+    z-index: 0;
   }
 
   main .search li {
@@ -3362,7 +3362,7 @@ main#map .search_area .map_in {
 
   .modal_container .search_inner2 {
     padding: 5vw;
-    height: 45vh;
+    height: 58vh;
     overflow: auto;
   }
 
@@ -3400,7 +3400,7 @@ main#map .search_area .map_in {
     position: absolute;
     bottom: 0;
     background-color: #fff;
-    height: 24vh;
+    height: 27vh;
   }
 
   .modal_container .button_area button.submit {
