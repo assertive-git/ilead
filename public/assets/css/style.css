@@ -2378,11 +2378,11 @@ main .job_result .area.is-active {
 
 /*-------job_list---------*/
 #job_list {
-  height: 100%;
+  /* height: 100%; */
 }
 
 #job_list .modal_container .button_area {
-  bottom: 80px;
+  /* bottom: 80px; */
 }
 
 #job_list .toggle {
@@ -3416,7 +3416,7 @@ main#map .search_area .map_in {
   }
 
   #map .modal_container .button_area {
-    bottom: 30px;
+    /* bottom: 30px; */
   }
 
   .modal_container .button_area button.submit {
@@ -4106,6 +4106,7 @@ main#map .search_area .map_in {
 
   .menu_accordion.sp {
     height: 42px;
+    position: relative;
   }
 
   .menu_accordion::after {
@@ -4122,10 +4123,11 @@ main#map .search_area .map_in {
   }
 
   .menu_accordion,
-  .search_area {
-    -webkit-backface-visibility: hidden;
-    backface-visibility: hidden;
-    transform: translateZ(0);
+  .search_area,
+  .search {
+    /* -webkit-backface-visibility: hidden; */
+    /* backface-visibility: hidden; */
+    /* transform: translateZ(0); */
     transition: all 0.3s;
   }
 
@@ -4137,7 +4139,7 @@ main#map .search_area .map_in {
 
   .toggle:checked+.menu_accordion+.search_area {
     /*開閉時*/
-    height: 100%;
+    height: 100vh;
     transition: all .3s;
     padding: 2rem 0;
   }
