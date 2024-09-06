@@ -375,7 +375,7 @@ main .search .area.is-active {
   display: inline-block;
   position: absolute;
   right: 20px;
-  top: 20px;
+  top: 10px;
 }
 
 .modal-close {
@@ -863,7 +863,7 @@ main .picup .area2 {
   color: #65b9e7;
 }
 
-#map .toggle {
+.toggle {
   display: none;
 }
 
@@ -3402,9 +3402,13 @@ main#map .search_area .map_in {
     width: 100%;
     padding: 6vw;
     position: absolute;
-    bottom: 0;
+    bottom: 0px;
     background-color: #fff;
     height: 25vh;
+  }
+
+  #map .modal_container .button_area {
+    bottom: 20px;
   }
 
   .modal_container .button_area button.submit {
