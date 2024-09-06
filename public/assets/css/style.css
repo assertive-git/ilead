@@ -416,6 +416,10 @@ main .search .area.is-active {
   overflow: auto;
 }
 
+.modal_container .wrap::-webkit-scrollbar {
+  display: none;
+}
+
 .modal_container .search_inner {
   background-color: #f3f7f7;
   width: 100%;
@@ -3400,7 +3404,7 @@ main#map .search_area .map_in {
     position: absolute;
     bottom: 0;
     background-color: #fff;
-    height: 26vh;
+    height: 25vh;
   }
 
   .modal_container .button_area button.submit {
