@@ -2830,7 +2830,7 @@ main#map .search_area .map_in {
 .map {
   height: calc(100% - 138.7px);
   position: relative;
-  z-index: 1;
+  z-index: 0;
 }
 
 @media(max-width: 768px) {

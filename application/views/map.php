@@ -185,6 +185,8 @@
           $('.menu-trigger').addClass('active');
           $('.menu-trigger img').attr('src', 'assets/img/map_arrow_close.png');
 
+          $('.list').addClass('open');
+
           if(last_job_id) {
               for (var i = 0; i < markers.length; i++) {
                 if(last_job_id == markers[i].job_id) {
