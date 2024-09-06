@@ -182,6 +182,9 @@
             // }
           }
 
+          $('.menu-trigger').addClass('active');
+          $('.menu-trigger img').attr('src', 'assets/img/map_arrow_close.png');
+
           if(last_job_id) {
               for (var i = 0; i < markers.length; i++) {
                 if(last_job_id == markers[i].job_id) {
