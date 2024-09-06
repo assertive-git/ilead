@@ -2377,6 +2377,14 @@ main .job_result .area.is-active {
 }
 
 /*-------job_list---------*/
+#job_list {
+  height: 100%;
+}
+
+#job_list .modal_container .button_area {
+  bottom: 80px;
+}
+
 #job_list .toggle {
   display: none;
 }

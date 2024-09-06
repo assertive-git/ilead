@@ -16,6 +16,8 @@
           </li>
           <li class="stations"><button type="button" data-modal="modal2" class="modal-toggle">沿線・駅を選ぶ<span
                 class="plus <?= !empty($stations) ? 'active' : '' ?>">+</span></button></li>
+          <li class="job_types"><button type="button" data-modal="modal3" class="modal-toggle">職種を選ぶ<span
+                class="plus <?= !empty($job_types) ? 'active' : '' ?>">+</span></button></li>
           <li class="categories"><button type="button" data-modal="modal4" class="modal-toggle">施設・種別を選ぶ<span
                 class="plus <?= !empty($categories) ? 'active' : '' ?>">+</span></button></li>
           <li class="employment_types"><button type="button" data-modal="modal5" class="modal-toggle">雇用形態/給与を選ぶ<span
