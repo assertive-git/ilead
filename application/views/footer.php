@@ -61,24 +61,22 @@
       $('.list').removeClass('open');
       $('.overlay').removeClass('open');
       img.attr('src', 'assets/img/map_arrow_open.png');
-      if($(window).width() < 768) {
-        $('.map').css({height: 'calc(50% - 42px)'});
+      if($(window).width() < 768 && $('.map #_map').css('height') == '100%') {
+        $('.map #_map').css({height: '50%'});
+      } else {
+        $('.map #_map').css({height: '100%'});
       }
     } else {
       $(this).addClass('active');
       $('.list').addClass('open');
       $('.overlay').addClass('open');
       img.attr('src', 'assets/img/map_arrow_close.png');
-      if($(window).width() < 768) {
-        $('.map').css({height: 'calc(100% - 42px)'});
+      if($(window).width() < 768 && $('.map #_map').css('height') == '50%') {
+        $('.map #_map').css({height: '100%'});
+      } else {
+        $('.map #_map').css({height: '50%'});
       }
     }
-  });
-
-  $(window).resize(function() {
-      if($(window).width() > 768) {
-        $('.map').removeAttr('style');
-      }
   });
 </script>
 

@@ -5,8 +5,6 @@
   <input id="block-01" type="checkbox" class="toggle">
   <label class="menu_accordion sp" for="block-01">検索条件を変更する</label>
 
-  <!--<div class="registration"><a href="" target="_blank">まずは簡単登録</a></div>-->
-
   <section class="search_area">
     <form id="list" class="area is-active" action="/map" method="POST">
       <div class="search_inner map_in">
@@ -39,62 +37,59 @@
     </form>
   </section>
 
-  <section class="side_list">
-    <div class="menu-trigger active"> <span><img src="/assets/img/map_arrow_close.png"></span></div>
-    <script>
-      
-    </script>
-    <div id="list" class="list open">
-      <p>検索結果一覧　全<span class="number"><?= $total_jobs ?></span>件</p>
-      <?php $job_ids = []; ?>
-      <?php foreach ($jobs as $job): ?>
-        <?php $job_ids[] = $job['id']; ?>
-        <ul class="list_inner">
-          <li>
-            <!-- <a href=""> -->
-            <div id="<?= $job['id'] ?>" class="list_item id" job-link="/jobs/<?= $job['id'] ?>">
-              <div class="info">
-                <h5 class="title"><?= $job['title'] ?></h5>
-                <div class="info-tbl">
-                  <img class="top-picture" src="/uploads/top_picture/<?= $job['top_picture'] ?>" width="100" height="81">
-                  <div class="info_inner">
-                    <?php if (!empty($job['category'])): ?>
-                      <?php $i = 0 ?>
-                      <div class="category">
-                        <?php foreach (explode(',', $job['category']) as $category): ?>
-                          <span><?= $category ?></span>
-                          <?php $i++; ?>
-                          <?php if ($i == 2)
-                            break ?>
-                        <?php endforeach ?>
-                      </div>
-                    <?php endif; ?>
-                    <ul>
-                      <li><span class="attribute">勤務地</span><span class="city"><?= $job['city'] ?></span></li>
-                      <li>
-                        <span class="attribute">給与</span>
-                        <span class="salary"><?= $job['salary'] ?></span>
-                      </li>
-                      <li><input class="map_address" type="hidden" value="<?= $job['map_address'] ?>"></li>
-                      <li><input class="lat" type="hidden" value="<?= $job['lat'] ?>"></li>
-                      <li><input class="lng" type="hidden" value="<?= $job['lng'] ?>"></li>
-                    </ul>
-                  </div>
-                </div>
-                
-              </div>
-              <div class="arrow"><i class="fa-solid fa-angle-right"></i></div>
-            </div>
-            <!-- </a> -->
-          </li>
-        </ul>
-      <?php endforeach; ?>
-    </div>
-  </section>
-
 
   <section class="map">
     <div id="_map" class="google_map"></div>
+    <div class="menu-trigger active"> <span><img src="/assets/img/map_arrow_close.png"></span></div>
+    <section class="side_list">
+      <div id="list_" class="list open">
+        <p>検索結果一覧　全<span class="number"><?= $total_jobs ?></span>件</p>
+        <?php $job_ids = []; ?>
+        <?php foreach ($jobs as $job): ?>
+          <?php $job_ids[] = $job['id']; ?>
+          <ul class="list_inner">
+            <li>
+              <!-- <a href=""> -->
+              <div id="<?= $job['id'] ?>" class="list_item id" job-link="/jobs/<?= $job['id'] ?>">
+                <div class="info">
+                  <h5 class="title"><?= $job['title'] ?></h5>
+                  <div class="info-tbl">
+                    <img class="top-picture" src="/uploads/top_picture/<?= $job['top_picture'] ?>" width="100" height="81">
+                    <div class="info_inner">
+                      <?php if (!empty($job['category'])): ?>
+                        <?php $i = 0 ?>
+                        <div class="category">
+                          <?php foreach (explode(',', $job['category']) as $category): ?>
+                            <span><?= $category ?></span>
+                            <?php $i++; ?>
+                            <?php if ($i == 2)
+                              break ?>
+                          <?php endforeach ?>
+                        </div>
+                      <?php endif; ?>
+                      <ul>
+                        <li><span class="attribute">勤務地</span><span class="city"><?= $job['city'] ?></span></li>
+                        <li>
+                          <span class="attribute">給与</span>
+                          <span class="salary"><?= $job['salary'] ?></span>
+                        </li>
+                        <li><input class="map_address" type="hidden" value="<?= $job['map_address'] ?>"></li>
+                        <li><input class="lat" type="hidden" value="<?= $job['lat'] ?>"></li>
+                        <li><input class="lng" type="hidden" value="<?= $job['lng'] ?>"></li>
+                      </ul>
+                    </div>
+                  </div>
+                  
+                </div>
+                <div class="arrow"><i class="fa-solid fa-angle-right"></i></div>
+              </div>
+              <!-- </a> -->
+            </li>
+          </ul>
+        <?php endforeach; ?>
+      </div>
+  </section>
+
     <script>
 
       function initMap() {
@@ -133,17 +128,27 @@
                 var job_id = this.job_id;
 
                 if (!$('#' + job_id).hasClass('active')) {
+
                   $('#' + job_id).click();
+                  
+                  var $parentDiv = $('#list_');
+                  var $targetDiv = $('#' + job_id);
 
+                  // Parent's height and current scroll position
+                  var parentHeight = $parentDiv.height();
+                  var parentScrollTop = $parentDiv.scrollTop();
 
-                  $('#' + job_id)[0].scrollIntoView({
-                    behavior: 'auto',
-                    block: 'center',
-                    inline: 'center'
-                  });
+                  // Target element's position within the parent
+                  var targetOffset = $targetDiv.position().top;
+                  var targetHeight = $targetDiv.outerHeight();
+
+                  // Calculate the scroll position to center the target div, considering current scrollTop
+                  var scrollPosition = parentScrollTop + targetOffset - (parentHeight / 2) + (targetHeight / 2);
+
+                  $parentDiv.animate({
+                      scrollTop: scrollPosition
+                  }, 600);
                 }
-
-                map.setCenter({lat: parseFloat(data.jobs[i].lat), lng: parseFloat(data.jobs[i].lng)});
               });
 
               marker.setMap(map);
@@ -167,15 +172,14 @@
         var last_job_id = 0;
 
         $('body').on('click', '.list_item', function () {
+          
+          if($(window).width() < 768) {
+            $('#_map').css({height: '50%'});
 
-          if($(window).width() < 768 && $('.menu-trigger').hasClass('active')) {
-            $('.menu-trigger').removeClass('active');
-            $('.menu-trigger img').attr('src', 'assets/img/map_arrow_open.png');
-            $('.list').removeClass('open');
-
-            if($(window).width() < 768) {
-              $('.map').css({height: '49vh'});
-            }
+            // if($('.menu-trigger').hasClass('active')) {
+            //   $('.menu-trigger img').attr('src', 'assets/img/map_arrow_open.png');
+            //   $('.list').removeClass('open');
+            // }
           }
 
           if(last_job_id) {
@@ -262,7 +266,7 @@
         var offset = 0;
 
 
-        $('div[id="list"]').on('scroll', function (e) {
+        $('div[id="list_"]').on('scroll', function (e) {
 
           var list = $(this);
 
@@ -331,21 +335,30 @@
 
 
                     google.maps.event.addListener(marker, "click", function (event) {
+
                       var job_id = this.job_id;
 
                       if (!$('#' + job_id).hasClass('active')) {
                         $('#' + job_id).click();
 
+                        var $parentDiv = $('#list_');
+                        var $targetDiv = $('#' + job_id);
 
-                        $('#' + job_id)[0].scrollIntoView({
-                          behavior: 'auto',
-                          block: 'center',
-                          inline: 'center'
-                        });
+                        // Parent's height and current scroll position
+                        var parentHeight = $parentDiv.height();
+                        var parentScrollTop = $parentDiv.scrollTop();
 
+                        // Target element's position within the parent
+                        var targetOffset = $targetDiv.position().top;
+                        var targetHeight = $targetDiv.outerHeight();
+
+                        // Calculate the scroll position to center the target div, considering current scrollTop
+                        var scrollPosition = parentScrollTop + targetOffset - (parentHeight / 2) + (targetHeight / 2);
+
+                        $parentDiv.animate({
+                            scrollTop: scrollPosition
+                        }, 600);
                       }
-
-                      map.setCenter({lat: parseFloat(data.jobs[i].lat), lng: parseFloat(data.jobs[i].lng)});
                     });
 
                     marker.setMap(map);
@@ -357,6 +370,9 @@
             });
           }
         });
+
+        $('.menu-trigger').appendTo('#_map');
+
       }
 
     </script>

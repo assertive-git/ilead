@@ -2798,8 +2798,8 @@ main#map .search_area .map_in {
 }
 
 #map {
-  height: calc(100% - 100px);
   overflow: hidden;
+  height: calc(100% - 100px);
 }
 
 @media(max-width: 768px) {
@@ -2812,37 +2812,70 @@ main#map .search_area .map_in {
   position: relative;
   width: 100%;
   height: 100%;
+  transition: height .5s;
+}
+
+@media(min-width: 768px) {
+  #map .google_map {
+    height: 100% !important;
+  }
 }
 
 @media(max-width: 768px) {
   #map .google_map {
-    height: 100%;
+    height: 50%;
   }
 }
 
 .map {
-  height: calc(100% - 138.61px);
+  height: calc(100% - 138.7px);
+  position: relative;
+  z-index: 1;
 }
 
 @media(max-width: 768px) {
   .map {
+    /* display: flex;
+    flex-direction: column; */
+    /* padding-top: 42px; */
     height: calc(100% - 42px);
   }
 }
 
 #map .side_list {
-  position: relative;
+  position: absolute;
+  right: 0;
+  top: 0;
+  height: 100%;
+}
+
+@media(max-width: 768px) {
+  #map .side_list {
+    position: relative;
+    height: 50%;
+  }
 }
 
 #map .menu-trigger {
   width: 64px;
   height: 64px;
   position: absolute;
-  top: 0;
   right: 0;
   z-index: 100;
   transform: translateX(0);
   transition: transform .5s;
+}
+
+@media(min-width: 768px) {
+  #map .menu-trigger {
+    top: 0;
+  }
+}
+
+@media(max-width: 768px) {
+  #map .menu-trigger {
+    bottom: 0;
+  }
 }
 
 #map .menu-trigger.active {
@@ -2855,8 +2888,8 @@ main#map .search_area .map_in {
 
 #map .list {
   width: 400px;
-  height: 738px;
-  overflow: auto;
+  height: 100%;
+  overflow-y: scroll;
   background-color: #f3f7f7;
   position: absolute;
   top: 0;
@@ -2871,7 +2904,7 @@ main#map .search_area .map_in {
 }
 
 #map .list.open {
-  transform: translateZ(0);
+  transform: translate(0, 0);
 }
 
 #map .list .list_inner {
@@ -3359,10 +3392,6 @@ main#map .search_area .map_in {
 
   #map #modal1 .modal_container .search_inner2 {
     height: 47vh;
-  }
-
-  #map .google_map {
-    /* height: 89vh */
   }
 
   .modal_container .button_area {
@@ -4092,17 +4121,13 @@ main#map .search_area .map_in {
 
   .toggle:checked+.menu_accordion+.search_area {
     /*開閉時*/
-    height: 90vh;
+    height: 100%;
     transition: all .3s;
     padding: 2rem 0;
   }
 
   .toggle:checked+.menu_accordion::after {
     transform: rotate(180deg);
-  }
-
-  main#map .search_area {
-    padding: 0;
   }
 
   main#map .search_area .search_inner {
@@ -4118,16 +4143,13 @@ main#map .search_area .map_in {
     position: relative;
   }
 
-  #map .side_list {
-    position: static;
-  }
-
   #map .menu-trigger {
-    width: 6vh;
-    height: 6vh;
+    /* width: 6vh;
+    height: 6vh; */
+    width: 50px;
+    height: 50px;
     position: absolute;
-    top: 48vh;
-    right: 0;
+    left: 0;
     z-index: 100;
     transition: transform .5s;
   }
@@ -4138,7 +4160,7 @@ main#map .search_area .map_in {
   }
 
   #map .menu-trigger.active {
-    transform: translateY(40vh);
+    transform: translateY(0);
   }
 
   #map .menu-trigger.active span {
@@ -4147,15 +4169,14 @@ main#map .search_area .map_in {
 
   #map .list {
     width: 100%;
-    height: 40vh;
+    height: 100%;
     overflow: auto;
     background-color: #f3f7f7;
     position: absolute;
-    top: 94vh;
     right: 0;
-    bottom: 0;
+    top: 0;
     z-index: 10;
-    transform: translateY(-40vh);
+    transform: translateY(0);
     transition: all .5s;
   }
 
