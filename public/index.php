@@ -1,6 +1,10 @@
 <?php
 
-define('_ENVIRONMENT', strpos($_SERVER['HTTP_HOST'], 'x0.com') !== FALSE ? 'production' : 'development');
+if(!isset($_SERVER['HTTP_HOST'])) {
+    $_SERVER['HTTP_HOST'] = '';
+}
+
+define('_ENVIRONMENT', strpos($_SERVER['HTTP_HOST'], 'dv') !== FALSE ? 'development' : 'production');
 
 /**
  * CodeIgniter

@@ -1685,14 +1685,20 @@ main .instagram {
 
 main .instagram .instagram_inner {
   display: flex;
-  flex-wrap: wrap;
+  gap: 32px;
   width: min(86%, 1200px);
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   margin: 0 auto;
 }
 
-main .instagram .instagram_inner a {
+@media(max-width: 768px) {
+  main .instagram .instagram_inner {
+    flex-wrap: wrap;
+  }
+}
+
+main .instagram .instagram_inner .view-more {
   width: 280px;
   height: 60px;
   border-radius: 30px;
@@ -1709,9 +1715,21 @@ main .instagram .instagram_inner a.sp {
 }
 
 main .instagram .instagram_inner img {
-  width: min(100%, 638px);
-  height: auto;
-  margin-left: 3vw;
+  /* width: min(100%, 638px); */
+}
+
+main .instagram .instagram_inner .insta_list {
+  display: grid;
+  gap: 16px;
+  grid-template-rows: repeat(2, 1fr);
+  grid-template-columns: repeat(3, 1fr);
+}
+
+@media(max-width: 768px) {
+  main .instagram .instagram_inner .insta_list {
+    grid-template-rows: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 main .news {
