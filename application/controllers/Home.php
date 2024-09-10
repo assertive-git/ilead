@@ -557,6 +557,11 @@ class Home extends CI_Controller
 		return [];
 	}
 
+	public function issue_instagram_token() {
+		$json = file_get_contents('https://api.instagram.com/oauth/authorize?client_id=1171450660637835&redirect_uri=https://ilead.trend-search.info&response_type=code');
+		var_dump($json);
+	}
+
 	public function refresh_instagram_token() {
 		if(is_cli()) {
 
