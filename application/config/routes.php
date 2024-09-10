@@ -29,6 +29,7 @@ $route['favorites/delete']['POST'] = 'home/favorites_delete';
 $route['favorites/clear']['POST'] = 'home/favorites_clear';
 // $route['favorites/delete']['GET'] = 'home/delete';
 // $route['favorites/delete_all']['GET'] = 'home/delete_all';
+$route['issue_instagram_token']['GET'] = 'home/issue_instagram_token';
 $route['refresh_instagram_token']['GET'] = 'home/refresh_instagram_token';
 
 $route['admin'] = 'admin';
