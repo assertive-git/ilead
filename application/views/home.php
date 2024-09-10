@@ -1,4 +1,4 @@
-<?php include ('header.php'); ?>
+<?php include('header.php'); ?>
 <main>
   <section class="main_img">
     <p class="main_copy">薬剤師による、<br>
@@ -100,12 +100,12 @@
           </div>
         <?php endforeach; ?>
       </div>
-        
-        <div class="arrows3"></div>
-        
+
+      <div class="arrows3"></div>
+
     </div>
   </section>
-    
+
   <section class="picup">
     <div class="picup_wrap">
       <h3>PICK UP 求人特集</h3>
@@ -143,7 +143,9 @@
             <?php endforeach; ?>
           </div>
 
-            <div class="arrows"><div class="dots"></div></div>
+          <div class="arrows">
+            <div class="dots"></div>
+          </div>
 
         </div>
       </div>
@@ -178,10 +180,12 @@
                 </a> </div>
             <?php endforeach; ?>
           </div>
-          
-            <div class="arrows2"><div class="dots2"></div></div>
-            
-            
+
+          <div class="arrows2">
+            <div class="dots2"></div>
+          </div>
+
+
         </div>
       </div>
     </div>
@@ -210,10 +214,18 @@
     <div class="instagram_inner">
       <div class="text">
         <h2><span>アイリードを見る</span> Instagram</h2>
-        <a href="https://www.instagram.com/ilead.company/" class="pc">VIEW MORE</a>
+        <a class="view-more" href="https://www.instagram.com/ilead.company/" class="pc" target="_blank">VIEW MORE</a>
       </div>
-      <div class="insta_list"><img src="assets/img/insta_img.png" alt="インスタ画像" width="638" height="418"></div>
-      <a href="https://www.instagram.com/ilead.company/" class="sp">VIEW MORE</a>
+      <div class="insta_list">
+        <!-- <img src="assets/img/insta_img.png" alt="インスタ画像" width="638" height="418"> -->
+        <?php foreach ($instagram_feed as $feed): ?>
+          <?php if (!empty($feed->permalink) && !empty($feed->media_url)): ?>
+            <a href="<?= $feed->permalink ?>" target="_blank"><img src="<?= $feed->media_url ?>"
+                alt="<?= $feed->caption ?>"></a>
+          <?php endif; ?>
+        <?php endforeach; ?>
+      </div>
+      <a class="view-more sp" href="https://www.instagram.com/ilead.company/" target="_blank">VIEW MORE</a>
     </div>
   </section>
   <section class="news">
@@ -236,4 +248,4 @@
     </div>
   </section>
 </main>
-<?php include ('footer.php'); ?>
+<?php include('footer.php'); ?>

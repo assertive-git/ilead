@@ -543,19 +543,37 @@ class Home extends CI_Controller
 	private function instagram_feed()
 	{
 
-		$instagram_feed = [];
+		$fp = fopen('instagram_access_token.txt', 'r');
 
-		$html = file_get_contents('https://www.instagram.com/marvel?__a=1');
+		$access_token = fread($fp, filesize('instagram_access_token.txt'));
 
-		$doc = new DOMDocument();
-		@$doc->loadHTML($html);
+		$feed = json_decode(file_get_contents('https://graph.instagram.com/v20.0/me/media?access_token='. $access_token .'&fields=id%2Ccaption%2Cmedia_type%2Cmedia_url%2Cpermalink&limit=6'));
 
-		$tags = $doc->getElementsByTagName('img');
-
-		foreach ($tags as $tag) {
-			echo $tag->getAttribute('src') . '<br>';
+		if(isset($feed->data)) {
+			return $feed->data;
 		}
 
-		return $instagram_feed;
+
+		return [];
+	}
+
+	public function refresh_instagram_token() {
+		if(is_cli()) {
+
+			$fp = fopen('instagram_access_token.txt', 'r');
+			$access_token = fread($fp, filesize('instagram_access_token.txt'));
+
+			$json = file_get_contents('https://graph.instagram.com/refresh_access_token?grant_type=ig_refresh_token&access_token=' . $access_token);
+
+			if(!empty($json->access_token)) {
+				$fp = fopen('instagram_access_token.txt', 'w');
+				fwrite($fp, $json->access_token);
+			}
+
+			fclose($fp);
+		} else {
+			echo 'Unauthorized Access!';
+			http_response_code(404);
+		}
 	}
 }
