@@ -1,7 +1,7 @@
 <?php
 
 if(!isset($_SERVER['HTTP_HOST'])) {
-    $_SERVER['HTTP_HOST'] = '';
+    $_SERVER['HTTP_HOST'] = 'ilead.dv';
 }
 
 define('_ENVIRONMENT', strpos($_SERVER['HTTP_HOST'], 'dv') !== FALSE ? 'development' : 'production');
