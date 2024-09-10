@@ -543,13 +543,11 @@ class Home extends CI_Controller
 	private function instagram_feed()
 	{
 
-		$fp = fopen('instagram_access_token.txt', 'r');
+		$access_token = $this->db->get('instagram_access_token')->row_array()['access_token'];
 
-		$access_token = fread($fp, filesize('instagram_access_token.txt'));
+		$feed = json_decode(file_get_contents('https://graph.instagram.com/v20.0/me/media?access_token=' . $access_token . '&fields=id%2Ccaption%2Cmedia_type%2Cmedia_url%2Cpermalink&limit=6'));
 
-		$feed = json_decode(file_get_contents('https://graph.instagram.com/v20.0/me/media?access_token='. $access_token .'&fields=id%2Ccaption%2Cmedia_type%2Cmedia_url%2Cpermalink&limit=6'));
-
-		if(isset($feed->data)) {
+		if (isset($feed->data)) {
 			return $feed->data;
 		}
 
@@ -557,25 +555,18 @@ class Home extends CI_Controller
 		return [];
 	}
 
-	public function issue_instagram_token() {
-		$json = file_get_contents('https://api.instagram.com/oauth/authorize?client_id=1171450660637835&redirect_uri=https://ilead.trend-search.info&response_type=code');
-		var_dump($json);
-	}
+	public function refresh_instagram_token()
+	{
+		if (is_cli()) {
 
-	public function refresh_instagram_token() {
-		if(is_cli()) {
+			$access_token = $this->db->get('instagram_access_token')->row_array()['access_token'];
 
-			$fp = fopen('instagram_access_token.txt', 'r');
-			$access_token = fread($fp, filesize('instagram_access_token.txt'));
+			$json = json_decode(file_get_contents('https://graph.instagram.com/refresh_access_token?grant_type=ig_refresh_token&access_token=' . $access_token));
 
-			$json = file_get_contents('https://graph.instagram.com/refresh_access_token?grant_type=ig_refresh_token&access_token=' . $access_token);
-
-			if(!empty($json->access_token)) {
-				$fp = fopen('instagram_access_token.txt', 'w');
-				fwrite($fp, $json->access_token);
+			if (!empty($json->access_token)) {
+				$this->db->update('instagram_access_token', ['access_token' => $json->access_token]);
 			}
 
-			fclose($fp);
 		} else {
 			echo 'Unauthorized Access!';
 			http_response_code(404);
