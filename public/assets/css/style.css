@@ -525,12 +525,17 @@ main .search .area.is-active {
 }
 
 .modal_container .choice label::after {
+  display: none;
   font-family: "Font Awesome 5 Free";
   font-weight: 900;
   content: "\f058";
   position: absolute;
   right: 1rem;
   font-size: 2.2rem;
+}
+
+.modal_container .choice input:checked+label::after {
+  display: block;
 }
 
 .modal_container .choice2 {
