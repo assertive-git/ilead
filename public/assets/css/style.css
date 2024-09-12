@@ -2827,7 +2827,7 @@ main .job_result .area.is-active {
   text-align: left;
 }
 
-#form.complete p.top_buttona a {
+#form.complete p.top_button a {
   display: block;
   text-align: center;
   margin: 2rem auto;
