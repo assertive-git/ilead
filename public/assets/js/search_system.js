@@ -3,18 +3,24 @@
 (function() {
 
     $(window).on('load', function () {
-        $('input, select').each(function () {
-          $(this).prop('checked', false);
-          if ($(this).is('select')) {
-            $(this)[0].selectedIndex = 0;
-          }
-        });
 
-        $('#region_area_1').click();
-        $('#prefectures_area_1_13').click();
+        var origin = window.origin + '/';
+        var location = window.location;
 
-        $('#region_lines_stations_1').click();
-        $('#prefectures_lines_stations_1_13').click();
+        if(origin == location) {
+            $('input, select').each(function () {
+                $(this).prop('checked', false);
+                if ($(this).is('select')) {
+                  $(this)[0].selectedIndex = 0;
+                }
+              });
+      
+              $('#region_area_1').click();
+              $('#prefectures_area_1_13').click();
+      
+              $('#region_lines_stations_1').click();
+              $('#prefectures_lines_stations_1_13').click();
+        }
       });
 
 }());

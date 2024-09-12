@@ -619,40 +619,34 @@ $traits = !empty($traits) ? explode(',', $traits) : [];
                     <div id="custom-fields">
 
                         <div id="render-custom-field" class="hidden">
-                            <div
-                                class="pt-2 flex xl:flex-row flex-col xl:space-x-8 xl:space-y-0 space-y-4 items-center cursor-move">
-                                <div class="flex flex-1 flex-col space-y-2 self-start xl:max-w-xs w-full">
-                                    <span class="text-center bg-white p-2">項目</span>
-                                    <input type="text" class="border border-slate-200 p-2 custom-field-title">
-                                </div>
+                            <div class="pt-4 flex xl:flex-row flex-col xl:space-x-4 space-y-4 items-center cursor-move">
+                                    <input type="text" class="flex-1 w-full border border-slate-200 p-2 custom-field-title" value="">
 
-                                <div class="flex flex-1 flex-col space-y-2 w-full">
-                                    <span class="text-center bg-white p-2">内容</span>
                                     <textarea
-                                        class="border border-slate-200 p-2 resize-none h-[75px] custom-field-detail"></textarea>
-                                </div>
+                                        class="border border-slate-200 p-2 resize-none h-[75px] flex-1 w-full custom-field-detail"></textarea>
 
                                 <button
                                     class="bg-red-500 text-white p-3 rounded border border-slate-200 xl:w-auto w-full remove-column">削除</button>
                             </div>
                         </div>
 
+                        <div class="pt-2 flex space-x-4 items-center">
+                            <span class="text-center flex-1 w-full bg-white p-2">項目</span>
+                            <span class="text-center flex-1 w-full bg-white p-2">内容</span>
+                            <button class="bg-red-500 text-white p-3 rounded border invisible xl:block hidden">削除</button>
+                        </div>
+
+
                         <div id="sortable">
                             <?php if (!empty($custom_fields)): ?>
-                                <?php foreach ($custom_fields as $custom_field): ?>
-                                    <div class="pt-2 flex xl:flex-row flex-col xl:space-x-8 xl:space-y-0 space-y-4 items-center cursor-move custom-field"
+                                <?php foreach ($custom_fields as $key => $custom_field): ?>
+                                    <div class="pt-4 flex xl:flex-row flex-col xl:space-x-4 space-y-4 items-center cursor-move custom-field"
                                         custom-field-id="<?= $custom_field['id'] ?>">
-                                        <div class="flex flex-1 flex-col space-y-2 self-start xl:max-w-xs w-full">
-                                            <span class="text-center bg-white p-2">項目</span>
-                                            <input type="text" class="border border-slate-200 p-2 custom-field-title"
+                                            <input type="text" class="flex-1 w-full border border-slate-200 p-2 custom-field-title"
                                                 value="<?= $custom_field['title'] ?>">
-                                        </div>
 
-                                        <div class="flex flex-1 flex-col space-y-2 w-full">
-                                            <span class="text-center bg-white p-2">内容</span>
                                             <textarea
-                                                class="border border-slate-200 p-2 resize-none h-[75px] custom-field-detail"><?= $custom_field['detail'] ?></textarea>
-                                        </div>
+                                                class="border border-slate-200 p-2 resize-none h-[75px] flex-1 w-full custom-field-detail"><?= $custom_field['detail'] ?></textarea>
 
                                         <button
                                             class="bg-red-500 text-white p-3 rounded border border-slate-200 xl:w-auto w-full remove-column">削除</button>

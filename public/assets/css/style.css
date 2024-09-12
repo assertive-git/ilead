@@ -130,6 +130,10 @@ main .registration a {
   z-index: 999;
 }
 
+main .tel a {
+  display: none;
+}
+
 /*----サーチボックス---*/
 main .search {
   position: relative;
@@ -525,12 +529,17 @@ main .search .area.is-active {
 }
 
 .modal_container .choice label::after {
+  display: none;
   font-family: "Font Awesome 5 Free";
   font-weight: 900;
   content: "\f058";
   position: absolute;
   right: 1rem;
   font-size: 2.2rem;
+}
+
+.modal_container .choice input:checked+label::after {
+  display: block;
 }
 
 .modal_container .choice2 {
@@ -3205,7 +3214,7 @@ main#map .search_area .map_in {
     justify-content: center;
   }
 
-  main .registration a {
+  /* main .registration a {
     position: relative;
     width: 95%;
     top: -40vw;
@@ -3215,7 +3224,43 @@ main#map .search_area .map_in {
     border-radius: 6px;
     box-shadow: 0 2px #ff6868;
     z-index: 0;
-  }
+  } */
+
+  main .registration a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    right: 0;
+    top: 160px;
+    width: 55px;
+    height: 138px;
+    background-color: #f24c3d;
+    color: #fff;
+    font-size: 1.5rem;
+    font-weight: 500;
+    writing-mode: vertical-rl;
+    border-radius: 10px 0 0 10px;
+    z-index: 999;
+}
+
+main .tel a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  right: 0;
+  top: 318px;
+  width: 55px;
+  height: 138px;
+  background-color: #a3a3a3;
+  color: #fff;
+  font-size: 1.5rem;
+  font-weight: 500;
+  writing-mode: vertical-rl;
+  border-radius: 10px 0 0 10px;
+  z-index: 999;
+}
 
   main .search li {
     width: 100%;

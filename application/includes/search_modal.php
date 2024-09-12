@@ -212,25 +212,25 @@
         <h4>施設・種別を選ぶ</h4>
         <div class="search_inner2">
           <div class="choice">
-            <input type="checkbox" id="facility1" name="categories[]" <?= in_array('調剤薬局', $categories) ? 'checked' : '' ?> value="調剤薬局">
+            <input type="checkbox" id="facility1" name="categories[]" <?= !is_array($categories) && strpos($categories, '調剤薬局') !== FALSE ? 'checked' : '' ?> value="調剤薬局">
             <label for="facility1">調剤薬局</label>
-            <input type="checkbox" id="facility2" name="categories[]" <?= in_array('病院', $categories) ? 'checked' : '' ?> value="病院">
+            <input type="checkbox" id="facility2" name="categories[]" <?= !is_array($categories) && strpos($categories, '病院') !== FALSE ? 'checked' : '' ?> value="病院">
             <label for="facility2">病院</label>
-            <input type="checkbox" id="facility3" name="categories[]" <?= in_array('クリニック', $categories) ? 'checked' : '' ?> value="クリニック">
+            <input type="checkbox" id="facility3" name="categories[]" <?= !is_array($categories) && strpos($categories, 'クリニック') !== FALSE ? 'checked' : '' ?> value="クリニック">
             <label for="facility3">クリニック</label>
-            <input type="checkbox" id="facility4" name="categories[]" <?= in_array('企業', $categories) ? 'checked' : '' ?> value="企業">
+            <input type="checkbox" id="facility4" name="categories[]" <?= !is_array($categories) && strpos($categories, '企業') !== FALSE ? 'checked' : '' ?> value="企業">
             <label for="facility4">企業</label>
-            <input type="checkbox" id="facility5" name="categories[]" <?= in_array('ドラッグストア（調剤併設）', $categories) ? 'checked' : '' ?> value="ドラッグストア（調剤併設）">
+            <input type="checkbox" id="facility5" name="categories[]" <?= !is_array($categories) && strpos($categories, 'ドラッグストア（調剤併設）') !== FALSE ? 'checked' : '' ?> value="ドラッグストア（調剤併設）">
             <label for="facility5">ドラッグストア（調剤併設）</label>
-            <input type="checkbox" id="facility6" name="categories[]" <?= in_array('福祉施設', $categories) ? 'checked' : '' ?> value="福祉施設">
+            <input type="checkbox" id="facility6" name="categories[]" <?= !is_array($categories) && strpos($categories, '福祉施設') !== FALSE ? 'checked' : '' ?> value="福祉施設">
             <label for="facility6">福祉施設</label>
-            <input type="checkbox" id="facility7" name="categories[]" <?= in_array('訪問看護ステーション', $categories) ? 'checked' : '' ?> value="訪問看護ステーション">
+            <input type="checkbox" id="facility7" name="categories[]" <?= !is_array($categories) && strpos($categories, '訪問看護ステーション') !== FALSE ? 'checked' : '' ?> value="訪問看護ステーション">
             <label for="facility7">訪問看護ステーション</label>
-            <input type="checkbox" id="facility8" name="categories[]" <?= in_array('美容クリニック', $categories) ? 'checked' : '' ?> value="美容クリニック">
+            <input type="checkbox" id="facility8" name="categories[]" <?= !is_array($categories) && strpos($categories, '美容クリニック') !== FALSE ? 'checked' : '' ?> value="美容クリニック">
             <label for="facility8">美容クリニック</label>
-            <input type="checkbox" id="facility9" name="categories[]" <?= in_array('動物病院', $categories) ? 'checked' : '' ?> value="動物病院">
+            <input type="checkbox" id="facility9" name="categories[]" <?= !is_array($categories) && strpos($categories, '動物病院') !== FALSE ? 'checked' : '' ?> value="動物病院">
             <label for="facility9">動物病院</label>
-            <input type="checkbox" id="facility10" name="categories[]" <?= in_array('その他', $categories) ? 'checked' : '' ?> value="その他">
+            <input type="checkbox" id="facility10" name="categories[]" <?= !is_array($categories) && strpos($categories, 'その他') !== FALSE ? 'checked' : '' ?> value="その他">
             <label for="facility10">その他</label>
           </div>
         </div>
