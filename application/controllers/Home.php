@@ -564,12 +564,32 @@ class Home extends CI_Controller
 			$json = json_decode(file_get_contents('https://graph.instagram.com/refresh_access_token?grant_type=ig_refresh_token&access_token=' . $access_token));
 
 			if (!empty($json->access_token)) {
-				$this->db->update('instagram_access_token', ['access_token' => $json->access_token]);
+				$this->update_instagram_access_token($json->access_token);
 			}
+
+
 
 		} else {
 			echo 'Unauthorized Access!';
 			http_response_code(404);
 		}
+	}
+
+	private function update_instagram_access_token($access_token)
+	{
+		$this->db->update('instagram_access_token', ['access_token' => $access_token]);
+		$db = $this->db->database;
+
+		switch ($db) {
+			case 'ilead_dev':
+				$this->db->db_select('ilead');
+				break;
+			default:
+				$this->db->db_select('ilead_dev');
+				break;
+		}
+
+		$this->db->update('instagram_access_token', ['access_token' => $access_token]);
+		$this->db->db_select($db);
 	}
 }
