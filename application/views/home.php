@@ -9,7 +9,7 @@
     </p>
   </section>
 
-  <div class="registration"><a href="/job_list">まずは簡単登録</a></div>
+  <div class="registration"><a href="/jobs/entry">まずは簡単登録</a></div>
   <div class="tel"><a href="tel:06-6210-4371">お電話はこちら</a></div>
 
 
