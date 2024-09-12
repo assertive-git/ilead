@@ -1,6 +1,6 @@
 ﻿<?php include ('header.php'); ?>
 <main id="mypage">
-  <div class="registration pc"><a href="/job_list">まずは簡単登録</a></div>
+  <!-- <div class="registration pc"><a href="/job_list">まずは簡単登録</a></div> -->
   <section class="search_result">
     <p>★検討中リスト　全<span class="number"><?= $total_jobs ?></span>件</p>
   </section>
