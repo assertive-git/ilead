@@ -71,7 +71,7 @@
                       <?php endif; ?>
                       <ul>
                         <!-- <li><span class="attribute">勤務地</span><span class="city"><?= $job['city'] ?></span></li> -->
-                        <li><span class="attribute">雇用形態</span><span class="city"><?= $job['job_type'] ?></span></li>
+                        <li><span class="attribute">雇用形態</span><span class="city"><?= $job['employment_type'] ?></span></li>
                         <li>
                           <span class="attribute">給与</span>
                           <span class="salary"><?= $job['salary'] ?></span>
