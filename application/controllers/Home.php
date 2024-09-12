@@ -370,35 +370,65 @@ class Home extends CI_Controller
 		$this->load->view('job_list', $data);
 	}
 
-	public function jobs_entry($id)
+	public function jobs_entry()
 	{
-		$data['id'] = $id;
-
-		$this->load->view('entry', $data);
+		$this->load->view('entry');
 	}
 
-	public function jobs_confirm($id)
+	public function jobs_confirm()
 	{
+		$last_name = isset($_POST["last_name"]) ? $_POST["last_name"] : "";
+		$first_name = isset($_POST["first_name"]) ? $_POST["first_name"] : "";
+		$last_name_kana = isset($_POST["last_name_kana"]) ? $_POST["last_name_kana"] : "";
+		$first_name_kana = isset($_POST["first_name_kana"]) ? $_POST["first_name_kana"] : "";
+		$b_year = isset($_POST["b_year"]) ? $_POST["b_year"] : "";
+		$b_month = isset($_POST["b_month"]) ? $_POST["b_month"] : "";
+		$b_day = isset($_POST["b_day"]) ? $_POST["b_day"] : "";
+		$age = isset($_POST["age"]) ? $_POST["age"] : "";
+		$tel = isset($_POST["tel"]) ? $_POST["tel"] : "";
+		$email = isset($_POST["email"]) ? $_POST["email"] : "";
+		$prefecture = isset($_POST["prefecture"]) ? $_POST["prefecture"] : "";
+		$zip1 = isset($_POST["zip1"]) ? $_POST["zip1"] : "";
+		$zip2 = isset($_POST["zip2"]) ? $_POST["zip2"] : "";
+		$address1 = isset($_POST["address1"]) ? $_POST["address1"] : "";
+		$address2 = isset($_POST["address2"]) ? $_POST["address2"] : "";
+		$hope = isset($_POST["hope"]) ? $_POST["hope"] : "";
+		$interview_date = isset($_POST["interview_date"]) ? $_POST["interview_date"] : "";
+		$method = isset($_POST["method"]) ? $_POST["method"] : "";
+
 		if (isset($_POST['action']) && $_POST['action'] == 1) {
-			$this->sendmail($id);
+			$this->sendmail();
+		} else if (
+			!empty($last_name) &&
+			!empty($first_name) &&
+			!empty($last_name_kana) &&
+			!empty($first_name_kana) &&
+			!empty($b_year) &&
+			!empty($b_month) &&
+			!empty($b_day) &&
+			!empty($age) &&
+			!empty($tel) &&
+			!empty($email) &&
+			!empty($prefecture) &&
+			!empty($zip1) &&
+			!empty($zip2) &&
+			!empty($address1) &&
+			!empty($address2) &&
+			!empty($hope)
+		) {
+			$this->load->view('confirm');
 		} else {
-			$data['id'] = $id;
-			$this->load->view('confirm', $data);
+			redirect('/jobs/entry');
 		}
-
-
 	}
 
-	public function jobs_complete($id)
+	public function jobs_complete()
 	{
-		if (isset($_SESSION['confirm'])) {
-			unset($_SESSION['confirm']);
-			// mail logic here.
-			// var_dump($_POST);
-
+		if (isset($_SESSION['complete'])) {
+			unset($_SESSION['complete']);
 			$this->load->view('complete');
 		} else {
-			redirect('/jobs/' . $id . '/entry');
+			redirect('/jobs/entry');
 		}
 	}
 
@@ -520,10 +550,10 @@ class Home extends CI_Controller
 		echo json_encode($data);
 	}
 
-	private function sendmail($id)
+	private function sendmail()
 	{
 		$_SESSION['complete'] = '';
-		redirect('/jobs/' . $id . '/complete');
+		redirect('/jobs/complete');
 	}
 
 	private function init_pagination($total_rows, $page, $limit)
