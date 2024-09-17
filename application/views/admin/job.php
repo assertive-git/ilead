@@ -17,6 +17,7 @@ $a_region = !empty($a_region) ? $a_region : '';
 $a_pref = !empty($a_pref) ? $a_pref : '';
 $city = !empty($city) ? $city : '';
 $address = !empty($address) ? $address : '';
+$closest_bus_stop = !empty($closest_bus_stop) ? $closest_bus_stop : '';
 $has_requirement = !empty($has_requirement) ? $has_requirement : '';
 $map_url = !empty($map_url) ? $map_url : '';
 $map_address = !empty($map_address) ? $map_address : '';
@@ -550,6 +551,10 @@ $traits = !empty($traits) ? explode(',', $traits) : [];
                                     <?php endforeach; ?>
                                 <?php endif; ?>
                             </ul>
+                            <div>
+                                <p class="mb-2">バス停</p>
+                                <input type="text" id="closest_bus_stop" class="p-2 w-full" value="<?= $closest_bus_stop ?>">
+                            </div>
                             <script>
                                 remove_stations = [];
 
@@ -1100,6 +1105,7 @@ $traits = !empty($traits) ? explode(',', $traits) : [];
                 var a_pref = $.trim($('#a_pref').children('option:selected').text());
                 var city = $('#city').val();
                 var address = $('#address').val();
+                var closest_bus_stop = $('#closest_bus_stop').val();
                 var has_requirement = $('.has_requirement:checked').val();
                 var map_url = $('#map_url').val();
                 var map_address = $('#map_address').val();
@@ -1161,6 +1167,7 @@ $traits = !empty($traits) ? explode(',', $traits) : [];
                         a_pref: a_pref,
                         city: city,
                         address: address,
+                        closest_bus_stop: closest_bus_stop,
                         has_requirement: has_requirement,
                         map_url: map_url,
                         map_address: map_address,
