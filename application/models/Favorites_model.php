@@ -28,7 +28,7 @@ class Favorites_model extends CI_Model
 
     public function get_all($session_id, $offset, $limit)
     {
-        return $this->db->where('session_id', $session_id)->join('jobs', 'jobs.id = favorites.job_id', 'left')->join('jobs_stations', 'jobs_stations.job_id = jobs.id', 'left')->select('jobs.id, a_pref, city, concat("【", salary_type, "】", "¥", format_number(min_salary), IF(max_salary <> 0, concat("～", format_number(max_salary)), "")) as salary, address, has_requirement, group_concat(concat(line, station, " ", "徒歩", walking_distance, "分") SEPARATOR "<br>") as jobs_stations, category, traits, business_content, title, top_picture, lat, lng')->limit($limit, $offset)->group_by('jobs.id')->get($this->table)->result_array();
+        return $this->db->where('session_id', $session_id)->join('jobs', 'jobs.id = favorites.job_id', 'left')->join('jobs_stations', 'jobs_stations.job_id = jobs.id', 'left')->select('jobs.id, a_pref, city, concat("【", salary_type, "】", format_number(min_salary), IF(max_salary <> 0, concat("～", format_number(max_salary)), "")) as salary, address, has_requirement, group_concat(concat(line, station, " ", "徒歩", walking_distance, "分") SEPARATOR "<br>") as jobs_stations, category, traits, business_content, title, top_picture, lat, lng')->limit($limit, $offset)->group_by('jobs.id')->get($this->table)->result_array();
     }
 
     public function get_all_job_ids($session_id)

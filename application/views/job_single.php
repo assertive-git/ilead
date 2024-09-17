@@ -53,7 +53,7 @@
             <?= $job['title'] ?>
           </p>
           <div class="result_tbl">
-            <div class="result_img1"><img src="/assets/img/result_img.png"></div>
+            <div class="result_img1"><img src="/uploads/top_picture/<?= $job['top_picture'] ?>"></div>
             <div class="table_area">
               <table>
                 <tr>
