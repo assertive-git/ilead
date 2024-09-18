@@ -199,12 +199,13 @@ class Home extends CI_Controller
 	public function jobs($id)
 	{
 		$data['job'] = $this->jobs_model->get($id);
-		$data['job']['jobs_stations'] = $this->jobs_stations_model->get_all($id);
-		$data['job']['custom_fields'] = $this->custom_fields_model->get_all($id);
-
+		
 		if (empty($data['job'])) {
 			redirect('/job_list');
 		}
+
+		$data['job']['jobs_stations'] = $this->jobs_stations_model->get_all($id);
+		$data['job']['custom_fields'] = $this->custom_fields_model->get_all($id);
 
 		$data['favorites'] = [];
 
