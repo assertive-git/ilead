@@ -67,7 +67,9 @@
                 </tr>
                 <tr>
                   <th class="attribute">最寄り駅</th>
-                  <td><?php foreach ($job['jobs_stations'] as $job_station): ?>
+                  <td>
+                  <?php if(empty($job['closest_bus_stop'])): ?>
+                    <?php foreach ($job['jobs_stations'] as $job_station): ?>
                       <?= $job_station['line'] ?>
                       <?= str_replace('駅', '', $job_station['station']) ?>
                       駅
@@ -75,6 +77,9 @@
                       <?= $job_station['walking_distance'] ?>
                       分<br />
                     <?php endforeach; ?>
+                    <?php else: ?>
+                      <?= $job['closest_bus_stop'] ?>
+                    <?php endif; ?>
                   </td>
                 </tr>
                 <tr>

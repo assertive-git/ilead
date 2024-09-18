@@ -52,7 +52,11 @@
                     <tr>
                       <th class="attribute">最寄り駅</th>
                       <td>
-                        <?= $job['jobs_stations'] ?>
+                        <?php if(empty($job['closest_bus_stop'])): ?>
+                          <?= $job['jobs_stations'] ?>
+                        <?php else: ?>
+                            <?= $job['closest_bus_stop'] ?>
+                        <?php endif; ?>
                       </td>
                     </tr>
                     <tr>
