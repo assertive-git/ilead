@@ -155,6 +155,25 @@ class Admin extends CI_Controller
         $this->load->view('admin/footer');
     }
 
+    public function jobs_preview($id) {
+        $data['job'] = $this->jobs_model->get_admin($id);
+		$data['job']['jobs_stations'] = $this->jobs_stations_model->get_all($id);
+		$data['job']['custom_fields'] = $this->custom_fields_model->get_all($id);
+
+		if (empty($data['job'])) {
+			show_404();
+		}
+
+		$data['favorites'] = [];
+
+		if (!empty($_SESSION['session_id'])) {
+			$session_id = $_SESSION['session_id'];
+			$data['favorites'] = $this->favorites_model->get_all_job_ids($session_id);
+		}
+
+		$this->load->view('job_single', $data);
+    }
+
     private function jobs_stations($data)
     {
         $ids = [];

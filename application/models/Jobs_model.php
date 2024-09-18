@@ -86,7 +86,7 @@ class Jobs_model extends CI_Model
 
     public function get_admin($id)
     {
-        return $this->db->where('id', $id)->get($this->table)->row_array();
+        return $this->db->where('id', $id)->select('jobs.id, updated_at, body, company_or_store_name, map_address, map_url, employment_type, job_type, a_pref, city, concat("【", salary_type, "】", IF(min_salary < 10000, "¥", ""), format_number(min_salary), IF(max_salary <> 0, concat("～", format_number(max_salary)), "")) as salary, address, has_requirement, category, traits, business_content, title, top_picture, lat, lng')->get($this->table)->row_array();
     }
 
     public function get($id)

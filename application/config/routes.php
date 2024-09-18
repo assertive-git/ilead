@@ -44,6 +44,7 @@ $route['admin/jobs/p/(:num)']['GET'] = 'admin/jobs_admin_get/$1';
 $route['admin/jobs']['POST'] = 'admin/jobs_admin_post';
 $route['admin/jobs/p']['POST'] = 'admin/jobs_admin_post';
 
+$route['admin/jobs/(:num)/preview']['GET'] = 'admin/jobs_preview/$1';
 $route['admin/jobs/(:num)']['GET'] = 'admin/jobs_get/$1';
 $route['admin/jobs/new']['GET'] = 'admin/jobs_new';
 $route['admin/jobs/update']['POST'] = 'admin/jobs_update';
