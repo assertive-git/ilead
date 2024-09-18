@@ -74,7 +74,7 @@
                         <li><span class="attribute">雇用形態</span><span class="city"><?= $job['employment_type'] ?></span></li>
                         <li>
                           <span class="attribute">給与</span>
-                          <span class="salary"><?= $job['salary'] ?></span>
+                          <span class="salary"><?= $job['salary'] ?>円</span>
                         </li>
                         <li><input class="map_address" type="hidden" value="<?= $job['map_address'] ?>"></li>
                         <li><input class="lat" type="hidden" value="<?= $job['lat'] ?>"></li>

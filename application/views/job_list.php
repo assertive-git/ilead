@@ -78,7 +78,7 @@
                     <table>
                       <tr>
                         <th class="attribute">給与</th>
-                        <td><?= $job['salary'] ?></td>
+                        <td><?= $job['salary'] ?>円</td>
                       </tr>
                       <tr>
                         <th class="attribute">勤務地</th>

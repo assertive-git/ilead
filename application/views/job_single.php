@@ -1,6 +1,5 @@
 ﻿<?php include('header.php'); ?>
 <main id="job_single">
-
   <!-- <div class="registration"><a href="/job_list">まずは簡単登録</a></div> -->
 
   <!-- <section class="search_area">
@@ -58,7 +57,7 @@
               <table>
                 <tr>
                   <th cl ass="attribute">給与</th>
-                  <td><?= $job['salary'] ?></td>
+                  <td><?= $job['salary'] ?>円</td>
                 </tr>
                 <tr>
                   <th class="attribute">勤務地</th>
@@ -111,7 +110,7 @@
             </tr>
             <tr>
               <th class="attribute">給与</th>
-              <td><?= $job['salary'] ?></td>
+              <td><?= $job['salary'] ?>円</td>
             </tr>
             <tr>
               <th class="attribute">職種名</th>
@@ -127,6 +126,7 @@
             <tr>
               <th class="attribute">最寄り駅</th>
               <td>
+                <?php if(empty($job['closest_bus_stop'])): ?>
                 <?php foreach ($job['jobs_stations'] as $job_station): ?>
                   <?= $job_station['line'] ?>
                   <?= str_replace('駅', '', $job_station['station']) ?>
@@ -135,6 +135,9 @@
                   <?= $job_station['walking_distance'] ?>
                   分<br />
                 <?php endforeach; ?>
+                <?php else: ?>
+                  <?= $job['closest_bus_stop'] ?>
+                <?php endif; ?>
               </td>
             </tr>
             <?php foreach ($job['custom_fields'] as $custom_field): ?>

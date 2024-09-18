@@ -81,7 +81,7 @@
     <div class="recruitment_slider_wrap">
       <div class="recruitment_slider">
         <?php foreach ($new_jobs as $new_job): ?>
-          <div class="slide_item"> <a href="/jobs/<?= $new_job['id'] ?>"><img src="assets/img/rec_img1.png"></a>
+          <div class="slide_item"> <a href="/jobs/<?= $new_job['id'] ?>"><img src="/uploads/top_picture/<?= $new_job['top_picture'] ?>"></a>
             <div class="category">
               <?php $categories = explode(',', $new_job['category']) ?>
               <?php for ($i = 0; $i < 2; $i++): ?>
@@ -97,7 +97,7 @@
                   <?= ellipsize($new_job['title'], 43) ?>
                 </a></dt>
               <dd><span class="attribute">勤務地</span><?= $new_job['a_pref'] ?><?= $new_job['city'] ?></dd>
-              <dd><span class="attribute">給与</span><?= $new_job['salary'] ?></dd>
+              <dd><span class="attribute">給与</span><?= $new_job['salary'] ?>円</dd>
             </dl>
           </div>
         <?php endforeach; ?>
@@ -139,7 +139,7 @@
                       <?= ellipsize($job['title'], 25) ?>
                     </dt>
                     <dd><span class="attribute">勤務地</span><?= $job['a_pref'] . $job['city'] ?></dd>
-                    <dd><span class="attribute">給与</span><?= $job['salary'] ?></dd>
+                    <dd><span class="attribute">給与</span><?= $job['salary'] ?>円</dd>
                   </dl>
                 </a> </div>
             <?php endforeach; ?>
@@ -177,7 +177,7 @@
                       <?= ellipsize($job['title'], 25) ?>
                     </dt>
                     <dd><span class="attribute">勤務地</span><?= $job['a_pref'] . $job['city'] ?></dd>
-                    <dd><span class="attribute">給与</span><?= $job['salary'] ?></dd>
+                    <dd><span class="attribute">給与</span><?= $job['salary'] ?>円</dd>
                   </dl>
                 </a> </div>
             <?php endforeach; ?>
