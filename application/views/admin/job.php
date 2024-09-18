@@ -849,11 +849,13 @@ $traits = !empty($traits) ? explode(',', $traits) : [];
                         <div
                             class="flex justify-between pb-4 border border-b-1 border-t-0 border-l-0 border-r-0 border-slate-200">
                             <span class="font-bold">公開</span>
-                            <button
-                                class="border border-slate-200 p-2 flex space-x-1 items-center rounded text-sm <?= empty($id) ? 'hidden' : 'flex' ?> preview">
-                                <i class="fa fa-eye text-[#13b3e7]"></i>
-                                <a id="preview" href="<?= base_url() ?>jobs/<?= $id ?>" target="_blank">プレビュー</a>
-                            </button>
+                            <a id="preview" class="<?= empty($id) ? 'hidden' : '' ?>" href="<?= base_url() ?>admin/jobs/<?= $id ?>/preview" target="_blank">
+                                <button
+                                    class="border border-slate-200 p-2 flex space-x-1 items-center rounded text-sm flex">
+                                    <i class="fa fa-eye text-[#13b3e7]"></i>
+                                    <span>プレビュー</span>
+                                </button>
+                            </a>
                         </div>
                         <div class="flex flex-col space-y-2 text-sm">
                             <div class="flex space-x-1 items-center">
@@ -1218,8 +1220,7 @@ $traits = !empty($traits) ? explode(',', $traits) : [];
                             $('#updated_at').text(updated_at);
                             $('.updated-at').removeClass('hidden').addClass('flex');
 
-                            $('#preview').attr('href', '<?= base_url() ?>jobs/' + id);
-                            $('.preview').removeClass('hidden').addClass('flex');
+                            $('#preview').attr('href', '<?= base_url() ?>admin/jobs/' + id + '/preview').removeClass('hidden');
 
                             $('.delete').removeClass('justify-end').addClass('justify-between');
                             $('.delete-btn').removeClass('hidden');
