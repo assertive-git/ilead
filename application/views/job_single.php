@@ -68,7 +68,6 @@
                 <tr>
                   <th class="attribute">最寄り駅</th>
                   <td>
-                  <?php if(empty($job['closest_bus_stop'])): ?>
                     <?php foreach ($job['jobs_stations'] as $job_station): ?>
                       <?= $job_station['line'] ?>
                       <?= str_replace('駅', '', $job_station['station']) ?>
@@ -77,10 +76,11 @@
                       <?= $job_station['walking_distance'] ?>
                       分<br />
                     <?php endforeach; ?>
-                    <?php else: ?>
-                      <?= $job['closest_bus_stop'] ?>
-                    <?php endif; ?>
                   </td>
+                </tr>
+                <tr>
+                  <th class="attribute">バス停</th>
+                  <td><?= $job['closest_bus_stop'] ?></td>
                 </tr>
                 <tr>
                   <th class="attribute">業務内容</th>
@@ -131,20 +131,20 @@
             <tr>
               <th class="attribute">最寄り駅</th>
               <td>
-                <?php if(empty($job['closest_bus_stop'])): ?>
-                <?php foreach ($job['jobs_stations'] as $job_station): ?>
-                  <?= $job_station['line'] ?>
-                  <?= str_replace('駅', '', $job_station['station']) ?>
-                  駅
-                  徒歩
-                  <?= $job_station['walking_distance'] ?>
-                  分<br />
-                <?php endforeach; ?>
-                <?php else: ?>
-                  <?= $job['closest_bus_stop'] ?>
-                <?php endif; ?>
-              </td>
-            </tr>
+                  <?php foreach ($job['jobs_stations'] as $job_station): ?>
+                    <?= $job_station['line'] ?>
+                    <?= str_replace('駅', '', $job_station['station']) ?>
+                    駅
+                    徒歩
+                    <?= $job_station['walking_distance'] ?>
+                    分<br />
+                  <?php endforeach; ?>
+                </td>
+              </tr>
+              <tr>
+                <th class="attribute">バス停</th>
+                <td><?= $job['closest_bus_stop'] ?></td>
+              </tr>
             <?php foreach ($job['custom_fields'] as $custom_field): ?>
               <tr>
                 <th class="attribute"><?= $custom_field['title'] ?></th>
