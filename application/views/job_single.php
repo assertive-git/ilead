@@ -78,10 +78,12 @@
                     <?php endforeach; ?>
                   </td>
                 </tr>
+                <?php if(!empty($job['closest_bus_stop'])): ?>
                 <tr>
                   <th class="attribute">バス停</th>
                   <td><?= $job['closest_bus_stop'] ?></td>
                 </tr>
+                <?php endif; ?>
                 <tr>
                   <th class="attribute">業務内容</th>
                   <td><?= $job['business_content'] ?></td>
@@ -141,10 +143,12 @@
                   <?php endforeach; ?>
                 </td>
               </tr>
+              <?php if(!empty($job['closest_bus_stop'])): ?>
               <tr>
                 <th class="attribute">バス停</th>
                 <td><?= $job['closest_bus_stop'] ?></td>
               </tr>
+              <?php endif; ?>
             <?php foreach ($job['custom_fields'] as $custom_field): ?>
               <tr>
                 <th class="attribute"><?= $custom_field['title'] ?></th>
