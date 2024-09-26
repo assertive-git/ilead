@@ -252,29 +252,17 @@ $traits = !empty($traits) ? explode(',', $traits) : [];
                     <div class="flex space-x-2">
                         <select id="a_region" name="a_region">
                             <?php foreach ($japan_regions as $region_id => $japan_region): ?>
-                                <?php if (empty($a_region)): ?>
-                                    <option value="<?= $region_id ?>" <?= $japan_region['name'] == '近畿' ? 'selected' : '' ?>>
-                                        <?= $japan_region['name'] ?>
-                                    </option>
-                                <?php else: ?>
-                                    <option value="<?= $region_id ?>" <?= $japan_region['name'] == $a_region ? 'selected' : '' ?>>
-                                        <?= $japan_region['name'] ?>
-                                    </option>
-                                <?php endif; ?>
+                                <option value="<?= $region_id ?>" <?= $japan_region['name'] == $a_region ? 'selected' : '' ?>>
+                                    <?= $japan_region['name'] ?>
+                                </option>
                             <?php endforeach; ?>
                         </select>
                         <select id="a_pref" name="a_pref" class="min-w-[64px]">
                             <?php foreach ($japan_regions as $region_id => $japan_region): ?>
                                 <?php foreach ($japan_region['prefectures'] as $prefecture): ?>
-                                    <?php if ($japan_region['name'] == $a_region): ?>
                                         <option value="<?= $prefecture ?>" <?= $prefecture == $a_pref ? 'selected' : '' ?>>
                                             <?= $prefecture ?>
                                         </option>
-                                    <?php elseif (empty($a_region)): ?>
-                                        <option value="<?= $prefecture ?>" <?= $prefecture == '大阪府' ? 'selected' : '' ?>>
-                                            <?= $prefecture ?>
-                                        </option>
-                                    <?php endif; ?>
                                 <?php endforeach; ?>
                             <?php endforeach; ?>
                         </select>
@@ -358,7 +346,7 @@ $traits = !empty($traits) ? explode(',', $traits) : [];
                                 <div class="xl:space-x-1 space-x-0 space-y-1 xl:space-y-0">
                                     <select class="p-1" id="s_region" name="s_region">
                                         <?php foreach ($japan_regions as $region_id => $japan_region): ?>
-                                            <option value="<?= $region_id ?>" <?= $japan_region['name'] == '近畿' ? 'selected' : '' ?>><?= $japan_region['name'] ?>
+                                            <option value="<?= $region_id ?>"><?= $japan_region['name'] ?>
                                             </option>
                                         <?php endforeach; ?>
                                     </select>
@@ -373,8 +361,8 @@ $traits = !empty($traits) ? explode(',', $traits) : [];
                                     <select class="p-1" id="s_pref" name="s_pref">
                                         <?php foreach ($japan_regions as $region_id => $japan_region): ?>
                                             <?php foreach ($japan_region['prefectures'] as $pref_id => $prefecture): ?>
-                                                <?php if ($region_id == 5): ?>
-                                                    <option value="<?= $pref_id ?>" <?= $pref_id == 27 ? 'selected' : '' ?>>
+                                                <?php if ($region_id == 1): ?>
+                                                    <option value="<?= $pref_id ?>">
                                                         <?= $prefecture ?>
                                                     </option>
                                                 <?php endif; ?>

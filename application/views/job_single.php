@@ -70,11 +70,8 @@
                   <td>
                     <?php foreach ($job['jobs_stations'] as $job_station): ?>
                       <?= $job_station['line'] ?>
-                      <?= str_replace('駅', '', $job_station['station']) ?>
-                      駅
-                      徒歩
-                      <?= $job_station['walking_distance'] ?>
-                      分<br />
+                      <?= str_replace('駅', '', $job_station['station']) ?>駅
+                      徒歩<?= $job_station['walking_distance'] ?>分<br />
                     <?php endforeach; ?>
                   </td>
                 </tr>
@@ -135,11 +132,8 @@
               <td>
                   <?php foreach ($job['jobs_stations'] as $job_station): ?>
                     <?= $job_station['line'] ?>
-                    <?= str_replace('駅', '', $job_station['station']) ?>
-                    駅
-                    徒歩
-                    <?= $job_station['walking_distance'] ?>
-                    分<br />
+                    <?= str_replace('駅', '', $job_station['station']) ?>駅
+                    徒歩<?= $job_station['walking_distance'] ?>分<br />
                   <?php endforeach; ?>
                 </td>
               </tr>
