@@ -1,7 +1,9 @@
 <?php
 
 if (!isset($_SERVER['HTTP_HOST'])) {
-	$_SERVER['HTTP_HOST'] = 'ilead.dv';
+	echo "What server are you on?\n";
+	$input = rtrim(fgets(STDIN));
+	$_SERVER['HTTP_HOST'] = $input;
 }
 
 /**
