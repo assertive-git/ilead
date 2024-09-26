@@ -186,7 +186,7 @@
           }
 
           $('.menu-trigger').addClass('active');
-          $('.menu-trigger img').attr('src', 'assets/img/map_arrow_close.png');
+          $('.menu-trigger img').attr('src', '/public/assets/img/map_arrow_close.png');
 
           $('.list').addClass('open');
 

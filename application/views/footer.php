@@ -70,7 +70,7 @@
       $(this).addClass('active');
       $('.list').addClass('open');
       $('.overlay').addClass('open');
-      img.attr('src', 'assets/img/map_arrow_close.png');
+      img.attr('src', '/public/assets/img/map_arrow_close.png');
       if($(window).width() < 768 && $('.map #_map').css('height') == '50%') {
         $('.map #_map').css({height: '100%'});
       } else {
