@@ -178,11 +178,6 @@
           
           if($(window).width() < 768) {
             $('#_map').css({height: '50%'});
-
-            // if($('.menu-trigger').hasClass('active')) {
-            //   $('.menu-trigger img').attr('src', 'assets/img/map_arrow_open.png');
-            //   $('.list').removeClass('open');
-            // }
           }
 
           $('.menu-trigger').addClass('active');
