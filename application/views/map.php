@@ -386,7 +386,7 @@
     </script>
 
     <script
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB-P4BwT2AfRmPOnP7VysOiGmPBiZmLyxscallback=initMap"></script>
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB-P4BwT2AfRmPOnP7VysOiGmPBiZmLyxs&callback=initMap"></script>
   </section>
 </main>
 
