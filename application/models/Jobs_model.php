@@ -137,7 +137,8 @@ class Jobs_model extends CI_Model
 
     public function get_all($offset, $limit, $areas = [], $stations = [], $employment_types = [], $salary = [], $job_types = [], $categories = [], $traits = [], $freeword = '')
     {
-        $data = $this->db->join('jobs_stations', 'jobs_stations.job_id = jobs.id', 'left');
+
+        $data = $this->db;
 
         if (!empty($areas)) {
             $data->where_in('concat(a_pref, city)', $areas);
@@ -148,7 +149,7 @@ class Jobs_model extends CI_Model
         }
 
         if (!empty($employment_types)) {
-            $this->db->where_in('employment_type', $employment_types);
+            $data->db->where_in('employment_type', $employment_types);
         }
 
         if (!empty($salary)) {
@@ -170,26 +171,26 @@ class Jobs_model extends CI_Model
             }
 
             if (!empty($yearly) || !empty($hourly)) {
-                $this->db->where('(' . $sql . ')');
+                $data->db->where('(' . $sql . ')');
             }
 
         }
 
 
         if (!empty($job_types)) {
-            $this->db->where_in('job_type', $job_types);
+            $data->db->where_in('job_type', $job_types);
         }
 
         if (!empty($categories)) {
-            $this->db->where('category REGEXP "' . $categories . '"');
+            $data->db->where('category REGEXP "' . $categories . '"');
         }
 
         if (!empty($traits)) {
-            $this->db->where('traits REGEXP "' . $traits . '"');
+            $data->db->where('traits REGEXP "' . $traits . '"');
         }
 
         if (!empty($freeword)) {
-            $this->db->where("
+            $data->db->where("
                 (business_content LIKE '%$freeword%' OR
                 title LIKE '%$freeword%' OR
                 body LIKE '%$freeword%' OR
@@ -205,14 +206,14 @@ class Jobs_model extends CI_Model
                 ");
         }
 
-        $data = $data->where('status', '公開')->order_by('id', 'DESC')->group_by('jobs.id, lat, lng, business_content, title, employment_type, category, salary, has_requirement, top_picture, employment_type, pref, city, closest_bus_stop, address, map_address, traits')->limit($limit, $offset)->select('jobs.id as id, lat, lng, business_content, title, employment_type, category, concat("【", salary_type, "】", format_number(min_salary), IF(max_salary <> 0, concat("～", format_number(max_salary)), "")) as salary, has_requirement, top_picture, employment_type, a_pref as pref, city, closest_bus_stop, address, map_address, traits, lat, lng, group_concat(concat(line, station, " ", "徒歩", walking_distance, "分") SEPARATOR "<br>") as jobs_stations')->order_by('employment_type')->get($this->table)->result_array();
+        $data = $data->where('status', '公開')->order_by('id', 'DESC')->group_by('jobs.id, lat, lng, business_content, title, employment_type, category, salary, has_requirement, top_picture, employment_type, pref, city, closest_bus_stop, address, map_address, traits')->limit($limit, $offset)->select('jobs.id as id, lat, lng, business_content, title, employment_type, category, concat("【", salary_type, "】", format_number(min_salary), IF(max_salary <> 0, concat("～", format_number(max_salary)), "")) as salary, has_requirement, top_picture, employment_type, a_pref as pref, city, closest_bus_stop, address, map_address, traits, lat, lng, (select group_concat(concat(line, station, " ", "徒歩", walking_distance, "分") SEPARATOR "<br>") from jobs_stations where jobs.id = jobs_stations.job_id) as jobs_stations')->order_by('employment_type')->get($this->table)->result_array();
 
         return $data;
     }
 
     public function get_all_cnt($areas = [], $stations = [], $employment_types = [], $salary = [], $job_types = [], $categories = [], $traits = [], $freeword = '')
     {
-        $data = $this->db->join('jobs_stations', 'jobs_stations.job_id = jobs.id', 'left');
+        $data = $this->db;
 
         if (!empty($areas)) {
             $data->where_in('concat(a_pref, city)', $areas);
@@ -223,7 +224,7 @@ class Jobs_model extends CI_Model
         }
 
         if (!empty($employment_types)) {
-            $this->db->where_in('employment_type', $employment_types);
+            $data->where_in('employment_type', $employment_types);
         }
 
         if (!empty($salary)) {
@@ -245,26 +246,26 @@ class Jobs_model extends CI_Model
             }
 
             if (!empty($yearly) || !empty($hourly)) {
-                $this->db->where('(' . $sql . ')');
+                $data->db->where('(' . $sql . ')');
             }
 
         }
 
 
         if (!empty($job_types)) {
-            $this->db->where_in('job_type', $job_types);
+            $data->db->where_in('job_type', $job_types);
         }
 
         if (!empty($categories)) {
-            $this->db->where('category REGEXP "' . $categories . '"');
+            $data->db->where('category REGEXP "' . $categories . '"');
         }
 
         if (!empty($traits)) {
-            $this->db->where('traits REGEXP "' . $traits . '"');
+            $data->db->where('traits REGEXP "' . $traits . '"');
         }
 
         if (!empty($freeword)) {
-            $this->db->where("
+            $data->db->where("
                 (business_content LIKE '%$freeword%' OR
                 title LIKE '%$freeword%' OR
                 body LIKE '%$freeword%' OR
@@ -287,11 +288,9 @@ class Jobs_model extends CI_Model
 
     public function get_feed()
     {
-        $data = $this->db->join('jobs_stations', 'jobs_stations.job_id = jobs.id', 'left');
-
-        $data = $data->where('status', '公開')->order_by('id', 'DESC')
+        $data = $this->db->where('status', '公開')->order_by('id', 'DESC')
             ->group_by('jobs.id, lat, lng, business_content, title, employment_type, category, salary, has_requirement, top_picture, employment_type, pref, city, closest_bus_stop, address, map_address, traits')
-            ->select('jobs.id as id, lat, lng, business_content, title, employment_type, category, concat(format_number(min_salary), IF(max_salary <> 0, concat("～", format_number(max_salary)), "")) as salary, has_requirement, top_picture, employment_type, a_pref as pref, city, closest_bus_stop, address, map_address, traits, group_concat(concat(line, station, " ", "徒歩", walking_distance, "分") SEPARATOR "<br>") as jobs_stations')->order_by('employment_type')->get($this->table)->result_array();
+            ->select('jobs.id as id, lat, lng, business_content, title, employment_type, category, concat(format_number(min_salary), IF(max_salary <> 0, concat("～", format_number(max_salary)), "")) as salary, has_requirement, top_picture, employment_type, a_pref as pref, city, closest_bus_stop, address, map_address, traits, (select group_concat(concat(line, station, " ", "徒歩", walking_distance, "分") SEPARATOR "<br>") from jobs_stations where jobs.id = jobs_stations.job_id) as jobs_stations')->order_by('employment_type')->get($this->table)->result_array();
 
         return $data;
     }
@@ -308,7 +307,7 @@ class Jobs_model extends CI_Model
 
     public function get_by_ids($ids)
     {
-        return $this->db->join('jobs_stations', 'jobs_stations.job_id = jobs.id', 'left')->where_in('jobs.id', $ids)->select('jobs.id, a_pref, city, concat("【", salary_type, "】", format_number(min_salary), IF(max_salary <> 0, concat("～", format_number(max_salary)), "")) as salary, address, has_requirement, group_concat(concat(line, station, " ", "徒歩", walking_distance, "分") SEPARATOR "<br>") as jobs_stations, category, traits, business_content, title, top_picture, lat, lng')->group_by('jobs.id, lat, lng, business_content, title, employment_type, category, salary, has_requirement, top_picture, employment_type, pref, city, closest_bus_stop, address, map_address, traits')->get($this->table)->result_array();
+        return $this->db->join('jobs_stations', 'jobs_stations.job_id = jobs.id', 'left')->where_in('jobs.id', $ids)->select('jobs.id, a_pref, city, concat("【", salary_type, "】", format_number(min_salary), IF(max_salary <> 0, concat("～", format_number(max_salary)), "")) as salary, address, has_requirement, (select group_concat(concat(line, station, " ", "徒歩", walking_distance, "分") SEPARATOR "<br>") from jobs_stations where jobs.id = jobs_stations.job_id) as jobs_stations, category, traits, business_content, title, top_picture, lat, lng')->group_by('jobs.id, lat, lng, business_content, title, employment_type, category, salary, has_requirement, top_picture, employment_type, pref, city, closest_bus_stop, address, map_address, traits')->get($this->table)->result_array();
 
 
     }
