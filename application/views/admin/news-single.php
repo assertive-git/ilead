@@ -39,7 +39,7 @@ $updated_at = !empty($updated_at) ? $updated_at : '';
                     </div>
 
                     <!-- Include the Quill library -->
-                    <script src="/assets/js/quill.min.js"></script>
+                    <script src="/public/assets/js/quill.min.js"></script>
 
                     <!-- Initialize Quill editor -->
                     <script>

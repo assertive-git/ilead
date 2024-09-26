@@ -72,7 +72,7 @@
                   </table>
                   <small><?= str_replace(',', ' / ', $job['traits']) ?></small>
                 </div>
-                <div class="list_img"><img src="/uploads/top_picture/<?= $job['top_picture'] ?>"></div>
+                <div class="list_img"><img src="/public/uploads/top_picture/<?= $job['top_picture'] ?>"></div>
               </div>
               
               <ul class="button_area">
@@ -84,7 +84,7 @@
             </div>
           </div>
         <?php endforeach; ?>
-        <script src="/assets/js/favorite_btn.js"></script>
+        <script src="/public/assets/js/favorite_btn.js"></script>
       <?php endif; ?>
 
 

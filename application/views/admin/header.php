@@ -6,8 +6,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>アイリード</title>
-    <link rel="icon" href="/assets/img/favicon.ico">
-    <link rel="stylesheet" href="/assets/css/admin.css">
+    <link rel="icon" href="/public/assets/img/favicon.ico">
+    <link rel="stylesheet" href="/public/assets/css/admin.css">
 
     <!--Noto Sans Japanese-->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -21,7 +21,7 @@
 
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- <link rel="stylesheet" href="/assets/css/output.css"> -->
+    <!-- <link rel="stylesheet" href="/public/assets/css/output.css"> -->
 
     <!-- Quill CSS -->
     <link href="https://cdn.jsdelivr.net/npm/quill@2.0.0-rc.5/dist/quill.snow.css" rel="stylesheet" />

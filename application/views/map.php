@@ -42,7 +42,7 @@
 
   <section class="map">
     <div id="_map" class="google_map"></div>
-    <div class="menu-trigger active"> <span><img src="/assets/img/map_arrow_close.png"></span></div>
+    <div class="menu-trigger active"> <span><img src="/public/assets/img/map_arrow_close.png"></span></div>
     <section class="side_list">
       <div id="list_" class="list open">
         <p>検索結果一覧　全<span class="number"><?= $total_jobs ?></span>件</p>
@@ -56,7 +56,7 @@
                 <div class="info">
                   <h5 class="title"><?= $job['title'] ?></h5>
                   <div class="info-tbl">
-                    <img class="top-picture" src="/uploads/top_picture/<?= $job['top_picture'] ?>" width="100" height="81">
+                    <img class="top-picture" src="/public/uploads/top_picture/<?= $job['top_picture'] ?>" width="100" height="81">
                     <div class="info_inner">
                       <?php if (!empty($job['category'])): ?>
                         <?php $i = 0 ?>
@@ -123,7 +123,7 @@
                 title: data.jobs[i].title,
                 job_id: data.jobs[i].id,
                 icon: {
-                  url: '/assets/img/map/marker-red.png'
+                  url: '/public/assets/img/map/marker-red.png'
                 }
               });
 
@@ -194,7 +194,7 @@
               for (var i = 0; i < markers.length; i++) {
                 if(last_job_id == markers[i].job_id) {
                   markers[i].setAnimation(null);
-                  markers[i].setIcon({url: '/assets/img/map/marker-red.png'});
+                  markers[i].setIcon({url: '/public/assets/img/map/marker-red.png'});
                   break;
                 }
             }
@@ -205,7 +205,7 @@
           for (var i = 0; i < markers.length; i++) {
             if(job_id == markers[i].job_id) {
               markers[i].setAnimation(google.maps.Animation.BOUNCE);
-              markers[i].setIcon({url: '/assets/img/map/marker-yellow.png'});
+              markers[i].setIcon({url: '/public/assets/img/map/marker-yellow.png'});
               last_job_id = job_id;
               break;
             }
@@ -337,7 +337,7 @@
                       title: data.jobs[i].title,
                       job_id: data.jobs[i].id,
                       icon: {
-                        url: '/assets/img/map/marker-red.png'
+                        url: '/public/assets/img/map/marker-red.png'
                       }
                     });
 

@@ -74,7 +74,7 @@ $traits = !empty($traits) ? explode(',', $traits) : [];
                     </div>
 
                     <!-- Include the Quill library -->
-                    <script src="/assets/js/quill.min.js"></script>
+                    <script src="/public/assets/js/quill.min.js"></script>
 
                     <!-- Initialize Quill editor -->
                     <script>
@@ -901,9 +901,9 @@ $traits = !empty($traits) ? explode(',', $traits) : [];
                         </div>
                         <div class="flex flex-col space-y-2 text-sm">
                             <?php if (!empty($top_picture)): ?>
-                                <img id="top_picture" src="/uploads/top_picture/<?= $top_picture ?>" alt="Image">
+                                <img id="top_picture" src="/public/uploads/top_picture/<?= $top_picture ?>" alt="Image">
                             <?php else: ?>
-                                <img id="top_picture" src="/uploads/top_picture/616f869cd0af9.jpg" alt="Image">
+                                <img id="top_picture" src="/public/uploads/top_picture/616f869cd0af9.jpg" alt="Image">
                             <?php endif; ?>
                             <button id="select-top-picture" class="bg-slate-600 text-white px-10 py-2">トップ画像を選択</button>
                         </div>
@@ -913,7 +913,7 @@ $traits = !empty($traits) ? explode(',', $traits) : [];
                             <div class="max-w-screen-md w-full">
                                 <div class="bg-slate-100 p-4 h-[600px] overflow-auto">
                                     <div id="photos-grid" class="grid xl:grid-cols-4 grid-cols-1 gap-4">
-                                        <?php foreach (glob('./uploads/top_picture/*') as $photo): ?>
+                                        <?php foreach (glob('./public/uploads/top_picture/*') as $photo): ?>
                                             <?php $photo = str_replace('./', '/', $photo); ?>
                                             <div class="border flex-1 group relative select-top-picture-highlight">
                                                 <img src="<?= $photo ?>" alt="top picture">
@@ -1000,7 +1000,7 @@ $traits = !empty($traits) ? explode(',', $traits) : [];
                                                 for (i = 0; i < data.top_pictures.length; i++) {
                                                     html += '\
                                                     <div class="border flex-1 group relative select-top-picture-highlight">\
-                                                        <img src="/uploads/top_picture/'+ data.top_pictures[i] + '" alt="top picture">\
+                                                        <img src="/public/uploads/top_picture/'+ data.top_pictures[i] + '" alt="top picture">\
                                                         <button class="absolute top-1/2 left-1/2 bg-red-600 text-white p-2 group-hover:block hidden select-top-picture-delete-image" style="transform: translate(-50%, -50%)">削除</button>\
                                                     </div>';
                                                 }
@@ -1119,7 +1119,7 @@ $traits = !empty($traits) ? explode(',', $traits) : [];
                 var gfj_listing_start_date = $('#gfj_listing_start_date').val();
                 var gfj_listing_end_date = $('#gfj_listing_end_date').val();
                 var status = $('#status').val();
-                var top_picture = $('#top_picture').attr('src').replace('/uploads/top_picture/', '');
+                var top_picture = $('#top_picture').attr('src').replace('/public/uploads/top_picture/', '');
                 var traits = get_checked_values($('.traits:checked'));
 
                 var custom_fields = [];

@@ -81,7 +81,7 @@
     <div class="recruitment_slider_wrap">
       <div class="recruitment_slider">
         <?php foreach ($new_jobs as $new_job): ?>
-          <div class="slide_item"> <a href="/jobs/<?= $new_job['id'] ?>"><img src="/uploads/top_picture/<?= $new_job['top_picture'] ?>"></a>
+          <div class="slide_item"> <a href="/jobs/<?= $new_job['id'] ?>"><img src="/public/uploads/top_picture/<?= $new_job['top_picture'] ?>"></a>
             <div class="category">
               <?php $categories = explode(',', $new_job['category']) ?>
               <?php for ($i = 0; $i < 2; $i++): ?>
@@ -120,7 +120,7 @@
           <div class="temporary_slider">
             <?php foreach ($direct as $job): ?>
               <div class="slide_item"> <a href="/jobs/<?= $job['id'] ?>"><img
-                    src="/uploads/top_picture/<?= $job['top_picture'] ?>">
+                    src="/public/uploads/top_picture/<?= $job['top_picture'] ?>">
                   <div class="category">
                     <?php $i = 0; ?>
                     <?php foreach (explode(',', $job['category']) as $category): ?>
@@ -158,7 +158,7 @@
           <div class="temporary_slider2">
             <?php foreach ($deployment as $job): ?>
               <div class="slide_item"> <a href="/jobs/<?= $job['id'] ?>"><img
-                    src="/uploads/top_picture/<?= $job['top_picture'] ?>">
+                    src="/public/uploads/top_picture/<?= $job['top_picture'] ?>">
                   <div class="category">
                     <?php $i = 0; ?>
                     <?php foreach (explode(',', $job['category']) as $category): ?>

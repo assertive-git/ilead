@@ -52,7 +52,7 @@
             <?= $job['title'] ?>
           </p>
           <div class="result_tbl">
-            <div class="result_img1"><img src="/uploads/top_picture/<?= $job['top_picture'] ?>"></div>
+            <div class="result_img1"><img src="/public/uploads/top_picture/<?= $job['top_picture'] ?>"></div>
             <div class="table_area">
               <table>
                 <tr>
@@ -105,7 +105,7 @@
               <?= $job['body'] ?>
             </div>
           </div>
-          <!-- <img src="/assets/img/detail_img.png" width="336" height="207" class="detail_img"> -->
+          <!-- <img src="/public/assets/img/detail_img.png" width="336" height="207" class="detail_img"> -->
           <table class="company_detail">
             <tr>
               <th cl ass="attribute">会社名または店舗名</th>
@@ -167,7 +167,7 @@
               <a href="/jobs/<?= $job['id'] ?>/entry">応募する</a>
             </li>
           </ul>
-          <script src="/assets/js/favorite_btn.js"></script>
+          <script src="/public/assets/js/favorite_btn.js"></script>
         </div>
       </div>
     </div>
@@ -176,7 +176,7 @@
     <h3>おすすめの求人</h3>
     <div class="recruitment_slider_wrap">
       <div class="recruitment_slider">
-        <div class="slide_item"> <img src="/assets/img/rec_img1.png">
+        <div class="slide_item"> <img src="/public/assets/img/rec_img1.png">
           <div class="category"><span>正社員</span><span>調剤薬局</span></div>
           <dl>
             <dt>20代・30代積極採用の薬剤師求人</dt>
@@ -184,7 +184,7 @@
             <dd><span class="attribute">給与</span>【時給】1,400円</dd>
           </dl>
         </div>
-        <div class="slide_item"> <img src="/assets/img/rec_img1.png">
+        <div class="slide_item"> <img src="/public/assets/img/rec_img1.png">
           <div class="category"><span>正社員</span><span>調剤薬局</span></div>
           <dl>
             <dt>20代・30代積極採用の薬剤師求人</dt>
@@ -192,7 +192,7 @@
             <dd><span class="attribute">給与</span>【時給】1,400円</dd>
           </dl>
         </div>
-        <div class="slide_item"> <img src="/assets/img/rec_img1.png">
+        <div class="slide_item"> <img src="/public/assets/img/rec_img1.png">
           <div class="category"><span>正社員</span><span>調剤薬局</span></div>
           <dl>
             <dt>20代・30代積極採用の薬剤師求人</dt>
@@ -200,7 +200,7 @@
             <dd><span class="attribute">給与</span>【時給】1,400円</dd>
           </dl>
         </div>
-        <div class="slide_item"> <img src="/assets/img/rec_img1.png">
+        <div class="slide_item"> <img src="/public/assets/img/rec_img1.png">
           <div class="category"><span>正社員</span><span>調剤薬局</span></div>
           <dl>
             <dt>20代・30代積極採用の薬剤師求人</dt>
@@ -208,7 +208,7 @@
             <dd><span class="attribute">給与</span>【時給】1,400円</dd>
           </dl>
         </div>
-        <div class="slide_item"> <img src="/assets/img/rec_img1.png">
+        <div class="slide_item"> <img src="/public/assets/img/rec_img1.png">
           <div class="category"><span>正社員</span><span>調剤薬局</span></div>
           <dl>
             <dt>20代・30代積極採用の薬剤師求人</dt>
@@ -216,7 +216,7 @@
             <dd><span class="attribute">給与</span>【時給】1,400円</dd>
           </dl>
         </div>
-        <div class="slide_item"> <img src="/assets/img/rec_img1.png">
+        <div class="slide_item"> <img src="/public/assets/img/rec_img1.png">
           <div class="category"><span>正社員</span><span>調剤薬局</span></div>
           <dl>
             <dt>20代・30代積極採用の薬剤師求人</dt>

@@ -22,10 +22,10 @@
 <link rel="canonical" href="https://xxxxxxxxxxxxxxxxx.co.jp">
 <link rel="icon" href="assets/img/favicon.ico">
 <!-- Tailwind CSS -->
-<!-- <link rel="stylesheet" href="/assets/css/tw.css"> -->
+<!-- <link rel="stylesheet" href="/public/assets/css/tw.css"> -->
 
-<link rel="stylesheet" href="/assets/css/reset.css?v=<?= date('YmdHis') ?>">
-<link rel="stylesheet" href="/assets/css/style.css?v=<?= date('YmdHis') ?>">
+<link rel="stylesheet" href="/public/assets/css/reset.css?v=<?= date('YmdHis') ?>">
+<link rel="stylesheet" href="/public/assets/css/style.css?v=<?= date('YmdHis') ?>">
 
 <!--Adobe font 秀英角ゴシック銀-->
 <script>
@@ -56,8 +56,8 @@
 <!-- <script src="https://kit.fontawesome.com/71bbf25188.js" crossorigin="anonymous"></script> -->
 
 <!-- slick slider -->
-<link rel="stylesheet" href="/assets/css/slick.css">
-<link rel="stylesheet" href="/assets/css/slick-theme.css">
+<link rel="stylesheet" href="/public/assets/css/slick.css">
+<link rel="stylesheet" href="/public/assets/css/slick-theme.css">
 
 <!-- JQuery -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
@@ -68,7 +68,7 @@
   <div class="header_inner">
     <h1 class="logo">
       <a href="/">
-      <img src="/assets/img/logo.svg" alt="アイリード" width="176" height="35">
+      <img src="/public/assets/img/logo.svg" alt="アイリード" width="176" height="35">
       </a>
     </h1>
     <div class="sp">
@@ -92,7 +92,7 @@
           <a href="https://ilead-hr.co.jp/contact">お問い合わせ</a>
         </li>
         <li>
-          <a href="https://www.instagram.com/ilead.company/"><img src="/assets/img/insta_icon.png" alt="instaアイコン"
+          <a href="https://www.instagram.com/ilead.company/"><img src="/public/assets/img/insta_icon.png" alt="instaアイコン"
                 width="24" height="24" class="insta"></a>
         </li>
         <li>
