@@ -1,9 +1,9 @@
 <?php
 
 if (!isset($_SERVER['HTTP_HOST'])) {
-	echo "What server are you on?\n";
-	$input = rtrim(fgets(STDIN));
-	$_SERVER['HTTP_HOST'] = $input;
+	// echo "What server are you on?\n";
+	// $input = rtrim(fgets(STDIN));
+	// $_SERVER['HTTP_HOST'] = $input;
 }
 
 /**
@@ -61,8 +61,6 @@ if (!isset($_SERVER['HTTP_HOST'])) {
  * NOTE: If you change these, also change the error_reporting() code below
  */
 define('ENVIRONMENT', strpos($_SERVER['HTTP_HOST'], 'job.ilead-hr.co.jp') === FALSE ? 'development' : 'production');
-
-echo ENVIRONMENT;
 
 /*
  *---------------------------------------------------------------
