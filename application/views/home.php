@@ -207,7 +207,7 @@
             生まれる本質的なフィッティングの実現を目的とし、<br>
             双方を深く理解した上でご提案を行っています。</p>
         </div>
-        <div class="aboutus_img"><img src="assets/img/aboutus_figure.png" alt="事業構成チャート"></div>
+        <div class="aboutus_img"><img src="/public/assets/img/aboutus_figure.png" alt="事業構成チャート"></div>
         <div><a href="https://ilead-hr.co.jp/joboffer">就業までの流れ</a></div>
       </div>
     </div>
@@ -219,7 +219,7 @@
         <a class="view-more" href="https://www.instagram.com/ilead.company/" class="pc" target="_blank">VIEW MORE</a>
       </div>
       <div class="insta_list">
-        <!-- <img src="assets/img/insta_img.png" alt="インスタ画像" width="638" height="418"> -->
+        <!-- <img src="/public/assets/img/insta_img.png" alt="インスタ画像" width="638" height="418"> -->
         <?php foreach ($instagram_feed as $feed): ?>
           <?php if (!empty($feed->permalink) && !empty($feed->media_url)): ?>
             <a href="<?= $feed->permalink ?>" target="_blank"><img src="<?= $feed->media_url ?>"

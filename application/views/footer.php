@@ -20,8 +20,8 @@
 </footer>
 <!--footer-->
 
-<script src="assets/js/slick.min.js"></script>
-<script src="assets/js/main.js?v=<?= date('YmdHis') ?>"></script>
+<script src="/public/assets/js/slick.min.js"></script>
+<script src="/public/assets/js/main.js?v=<?= date('YmdHis') ?>"></script>
 
 <script>
   //検索モーダル

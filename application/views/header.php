@@ -20,7 +20,7 @@
 <meta property="og:url" content="https://xxxxxxxxxxxxxxxxx.co.jp">
 <meta name="theme-color" content="#FFFFFF">
 <link rel="canonical" href="https://xxxxxxxxxxxxxxxxx.co.jp">
-<link rel="icon" href="assets/img/favicon.ico">
+<link rel="icon" href="/public/assets/img/favicon.ico">
 <!-- Tailwind CSS -->
 <!-- <link rel="stylesheet" href="/public/assets/css/tw.css"> -->
 
