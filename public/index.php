@@ -62,6 +62,8 @@ if (!isset($_SERVER['HTTP_HOST'])) {
  */
 define('ENVIRONMENT', strpos($_SERVER['HTTP_HOST'], 'dv') !== FALSE ? 'development' : 'production');
 
+echo ENVIRONMENT;
+
 /*
  *---------------------------------------------------------------
  * ERROR REPORTING
