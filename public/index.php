@@ -1,7 +1,7 @@
 <?php
 
 if (!isset($_SERVER['HTTP_HOST'])) {
-	// echo "What server are you on?\n";
+	echo "What server are you on?\n";
 	// $input = rtrim(fgets(STDIN));
 	// $_SERVER['HTTP_HOST'] = $input;
 }
