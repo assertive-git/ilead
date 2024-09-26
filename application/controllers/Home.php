@@ -58,6 +58,43 @@ class Home extends CI_Controller
 		$this->load->view('home', $data);
 	}
 
+	public function feed()
+	{
+
+		//Domを生成
+		$dom = new DomDocument('1.0', 'utf-8');
+		$dom->formatOutput = true;
+		$source = $dom->appendChild($dom->createElement('source'));
+		$source->appendChild($dom->createElement('publisher'))->appendChild($dom->createCDATASection('アイリード'));
+		$source->appendChild($dom->createElement('publisherUrl'))->appendChild($dom->createCDATASection('https://ilead-hr.co.jp'));
+		$source->appendChild($dom->createElement('lastBuildDate'))->appendChild($dom->createCDATASection(gmdate("Y-m-d H:i:s")));
+
+		$data = $this->jobs_model->get_feed();
+
+		foreach ($data as $row) {
+			$job = $source->appendChild($dom->createElement('job'));
+			foreach ($row as $key => $value) {
+				$job->appendChild($dom->createElement($key))->appendChild($dom->createCDATASection($value ?? ''));
+			}
+		}
+
+		$dom->save('./public/ilead.xml');
+
+		if (file_exists('./public/ilead.xml')) {
+			// header('Content-Type: text/xml');
+
+			header('Content-Type: application/octet-stream');
+			header("Content-Transfer-Encoding: Binary");
+			header("Content-disposition: attachment; filename=ilead.xml");
+
+
+
+			readfile('./public/ilead.xml');
+		} else {
+			echo "File doesn't exist.";
+		}
+	}
+
 	public function news($page = 1)
 	{
 
@@ -199,7 +236,7 @@ class Home extends CI_Controller
 	public function jobs($id)
 	{
 		$data['job'] = $this->jobs_model->get($id);
-		
+
 		if (empty($data['job'])) {
 			redirect('/job_list');
 		}

@@ -282,7 +282,7 @@ class Admin extends CI_Controller
                     $tmp_name = $_FILES['files']['tmp_name'][$i];
                     $name = uniqid() . '.' . $ext;
 
-                    move_uploaded_file($tmp_name, './uploads/top_picture/' . $name);
+                    move_uploaded_file($tmp_name, './public/uploads/top_picture/' . $name);
 
                     $data[] = $name;
                 }
@@ -905,7 +905,7 @@ class Admin extends CI_Controller
         $doc = new DOMDocument;
         $doc->loadHTML($body);
 
-        $path = './uploads/' . date('Y') . '/' . date('m');
+        $path = './public/uploads/' . date('Y') . '/' . date('m');
 
         if (!file_exists($path)) {
             mkdir($path, 0777, true);

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<source>
+  <publisher><![CDATA[アイリード]]></publisher>
+  <publisherUrl><![CDATA[https://ilead-hr.co.jp]]></publisherUrl>
+  <lastBuildDate><![CDATA[2024-09-26 07:59:07]]></lastBuildDate>
+  <job>
+    <id><![CDATA[16]]></id>
+    <lat><![CDATA[34.6733084]]></lat>
+    <lng><![CDATA[135.4969132]]></lng>
+    <business_content><![CDATA[テスト]]></business_content>
+    <title><![CDATA[テスト]]></title>
+    <employment_type><![CDATA[正社員]]></employment_type>
+    <category><![CDATA[クリニック]]></category>
+    <salary><![CDATA[0]]></salary>
+    <has_requirement><![CDATA[あり]]></has_requirement>
+    <top_picture><![CDATA[66d1351b436a2.jpg]]></top_picture>
+    <pref><![CDATA[大阪府]]></pref>
+    <city><![CDATA[大阪市都島区]]></city>
+    <closest_bus_stop><![CDATA[テスト]]></closest_bus_stop>
+    <address><![CDATA[1-6-5]]></address>
+    <map_address><![CDATA[]]></map_address>
+    <traits><![CDATA[高収入,土日休み,～１８時の職場,駅チカ,住居付き]]></traits>
+    <jobs_stations><![CDATA[]]></jobs_stations>
+  </job>
+</source>

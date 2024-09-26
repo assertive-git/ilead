@@ -206,7 +206,7 @@ class Jobs_model extends CI_Model
         }
 
         $data = $data->where('status', '公開')->order_by('id', 'DESC')->group_by('jobs.id')->limit($limit, $offset)->select('jobs.id as id, lat, lng, business_content, title, employment_type, category, concat("【", salary_type, "】", format_number(min_salary), IF(max_salary <> 0, concat("～", format_number(max_salary)), "")) as salary, has_requirement, top_picture, employment_type, a_pref as pref, city, closest_bus_stop, address, map_address, traits, lat, lng, group_concat(concat(line, station, " ", "徒歩", walking_distance, "分") SEPARATOR "<br>") as jobs_stations')->order_by('employment_type')->get($this->table)->result_array();
-        
+
         return $data;
     }
 
@@ -281,6 +281,15 @@ class Jobs_model extends CI_Model
         }
 
         $data = count($data->where('status', '公開')->select('jobs.id')->group_by('jobs.id')->get($this->table)->result_array());
+
+        return $data;
+    }
+
+    public function get_feed()
+    {
+        $data = $this->db->join('jobs_stations', 'jobs_stations.job_id = jobs.id', 'left');
+
+        $data = $data->where('status', '公開')->order_by('id', 'DESC')->group_by('jobs.id')->select('jobs.id as id, lat, lng, business_content, title, employment_type, category, concat(format_number(min_salary), IF(max_salary <> 0, concat("～", format_number(max_salary)), "")) as salary, has_requirement, top_picture, employment_type, a_pref as pref, city, closest_bus_stop, address, map_address, traits, lat, lng, group_concat(concat(line, station, " ", "徒歩", walking_distance, "分") SEPARATOR "<br>") as jobs_stations')->order_by('employment_type')->get($this->table)->result_array();
 
         return $data;
     }
