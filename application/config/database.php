@@ -75,10 +75,10 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => 'os3-366-16227.vs.sakura.ne.jp',
-	'username' => 'ilead',
-	'password' => 'kxDugjblBM&NM)@CgTRcuGJM',
-	'database' => _ENVIRONMENT === 'production' ? 'ilead' : 'ilead_dev',
+	'hostname' => ENVIRONMENT === 'production' ? 'mysql7.conoha.ne.jp' : 'os3-366-16227.vs.sakura.ne.jp',
+	'username' => 'n3qkq_t_shizu',
+	'password' => 'TOMOfumi1031?',
+	'database' => 'ilead',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,

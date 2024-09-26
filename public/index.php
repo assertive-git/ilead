@@ -4,8 +4,6 @@ if (!isset($_SERVER['HTTP_HOST'])) {
 	$_SERVER['HTTP_HOST'] = 'ilead.dv';
 }
 
-define('_ENVIRONMENT', strpos($_SERVER['HTTP_HOST'], 'dv') !== FALSE ? 'development' : 'production');
-
 /**
  * CodeIgniter
  *
@@ -60,7 +58,7 @@ define('_ENVIRONMENT', strpos($_SERVER['HTTP_HOST'], 'dv') !== FALSE ? 'developm
  *
  * NOTE: If you change these, also change the error_reporting() code below
  */
-define('ENVIRONMENT', isset($_SERVER['CI_ENV']) ? $_SERVER['CI_ENV'] : 'development');
+define('ENVIRONMENT', strpos($_SERVER['HTTP_HOST'], 'dv') !== FALSE ? 'development' : 'production');
 
 /*
  *---------------------------------------------------------------
