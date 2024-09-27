@@ -58,9 +58,8 @@ class Home extends CI_Controller
 		$this->load->view('home', $data);
 	}
 
-	public function feed()
+	public function xml_feed()
 	{
-
 		//Domを生成
 		$dom = new DomDocument('1.0', 'utf-8');
 		$dom->formatOutput = true;
@@ -74,6 +73,9 @@ class Home extends CI_Controller
 		foreach ($data as $row) {
 			$job = $source->appendChild($dom->createElement('job'));
 			foreach ($row as $key => $value) {
+				if ($key == 'top_picture') {
+					$value = base_url() . 'public/uploads/top_picture/' . $value;
+				}
 				$job->appendChild($dom->createElement($key))->appendChild($dom->createCDATASection($value ?? ''));
 			}
 		}
@@ -86,8 +88,6 @@ class Home extends CI_Controller
 			header('Content-Type: application/octet-stream');
 			header("Content-Transfer-Encoding: Binary");
 			header("Content-disposition: attachment; filename=ilead.xml");
-
-
 
 			readfile('./public/ilead.xml');
 		} else {

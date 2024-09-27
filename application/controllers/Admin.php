@@ -594,6 +594,8 @@ class Admin extends CI_Controller
             '最寄り駅 (駅) 3',
             '最寄り駅 (徒歩) 3',
 
+            'バス停',
+
             '必要資格',
 
             '募集要項 (項目) 1',
@@ -707,7 +709,7 @@ class Admin extends CI_Controller
                     break;
             }
 
-            array_splice($row, 32, 0, $values);
+            array_splice($row, 33, 0, $values);
 
 
             fputcsv($output, mb_convert_encoding($row, 'SJIS-win', 'UTF-8'));
@@ -751,22 +753,23 @@ class Admin extends CI_Controller
                 'a_pref' => $column[13],
                 'city' => $column[14],
                 'address' => $column[15],
-                'has_requirement' => $column[31],
-                'map_url' => $column[48],
-                'map_address' => $column[49],
-                'lat' => $column[50],
-                'lng' => $column[51],
-                'gfj' => $column[52],
-                'gfj_employment_type' => $column[53],
-                'gfj_working_hours' => $column[54],
-                'gfj_listing_start_date' => $column[55],
-                'gfj_listing_end_date' => $column[56],
-                'status' => $column[57],
-                'top_picture' => $column[58],
-                'traits' => $column[59],
-                'memo' => $column[60],
-                'created_at' => empty(trim($column[61])) ? date('Y-m-d H:i:s') : $column[61],
-                'updated_at' => empty(trim($column[62])) ? date('Y-m-d H:i:s') : $column[62],
+                'closest_bus_stop' => $column[31],
+                'has_requirement' => $column[32],
+                'map_url' => $column[49],
+                'map_address' => $column[50],
+                'lat' => $column[51],
+                'lng' => $column[52],
+                'gfj' => $column[53],
+                'gfj_employment_type' => $column[54],
+                'gfj_working_hours' => $column[55],
+                'gfj_listing_start_date' => $column[56],
+                'gfj_listing_end_date' => $column[57],
+                'status' => $column[58],
+                'top_picture' => $column[59],
+                'traits' => $column[60],
+                'memo' => $column[61],
+                'created_at' => empty(trim($column[62])) ? date('Y-m-d H:i:s') : $column[62],
+                'updated_at' => empty(trim($column[63])) ? date('Y-m-d H:i:s') : $column[63],
             ];
 
             if (empty($job_id)) {
@@ -836,36 +839,36 @@ class Admin extends CI_Controller
                 'job_id' => $job_id,
                 'data' => [
                     [
-                        'title' => $column[32],
-                        'detail' => $column[33],
+                        'title' => $column[33],
+                        'detail' => $column[34],
                     ],
                     [
-                        'title' => $column[34],
-                        'detail' => $column[35],
+                        'title' => $column[35],
+                        'detail' => $column[36],
                     ],
                     [
-                        'title' => $column[36],
-                        'detail' => $column[37],
+                        'title' => $column[37],
+                        'detail' => $column[38],
                     ],
                     [
-                        'title' => $column[38],
-                        'detail' => $column[39],
+                        'title' => $column[39],
+                        'detail' => $column[40],
                     ],
                     [
-                        'title' => $column[40],
-                        'detail' => $column[41],
+                        'title' => $column[41],
+                        'detail' => $column[42],
                     ],
                     [
-                        'title' => $column[42],
-                        'detail' => $column[43],
+                        'title' => $column[43],
+                        'detail' => $column[44],
                     ],
                     [
-                        'title' => $column[44],
-                        'detail' => $column[45],
+                        'title' => $column[45],
+                        'detail' => $column[46],
                     ],
                     [
-                        'title' => $column[46],
-                        'detail' => $column[47],
+                        'title' => $column[47],
+                        'detail' => $column[48],
                     ]
                 ]
             ];
