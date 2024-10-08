@@ -33,4 +33,4 @@ user_guide_src/cilexer/pycilexer.egg-info/*
 
 application/sessions
 node_modules
-/public/ilead.xml
+*.xml

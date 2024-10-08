@@ -3,7 +3,9 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 $route['default_controller'] = 'home';
 
-$route['feed']['GET'] = 'home/xml_feed';
+$route['feed/indeed']['GET'] = 'home/indeed_feed';
+$route['feed/kyuujin_box']['GET'] = 'home/kyuujin_box_feed';
+$route['feed/stanby']['GET'] = 'home/stanby_feed';
 $route['news']['GET'] = 'home/news';
 $route['news/p']['GET'] = 'home/news';
 $route['news/p/(:num)']['GET'] = 'home/news/$1';

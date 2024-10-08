@@ -58,7 +58,7 @@ class Home extends CI_Controller
 		$this->load->view('home', $data);
 	}
 
-	public function xml_feed()
+	public function indeed_feed()
 	{
 		//Domを生成
 		$dom = new DomDocument('1.0', 'utf-8');
@@ -80,19 +80,86 @@ class Home extends CI_Controller
 			}
 		}
 
-		$dom->save('./public/ilead.xml');
+		$feed = 'indeed';
 
-		if (file_exists('./public/ilead.xml')) {
-			// header('Content-Type: text/xml');
+		$dom->save('./public/ilead_' . $feed . '_feed.xml');
 
-			header('Content-Type: application/octet-stream');
-			header("Content-Transfer-Encoding: Binary");
-			header("Content-disposition: attachment; filename=ilead.xml");
+		// header('Content-Type: text/xml');
 
-			readfile('./public/ilead.xml');
-		} else {
-			echo "File doesn't exist.";
+		header('Content-Type: application/octet-stream');
+		header("Content-Transfer-Encoding: Binary");
+		header("Content-disposition: attachment; filename=ilead_" . $feed . "_feed.xml");
+
+		readfile('./public/ilead_' . $feed . '_feed.xml');
+	}
+
+	public function kyuujin_box_feed()
+	{
+		//Domを生成
+		$dom = new DomDocument('1.0', 'utf-8');
+		$dom->formatOutput = true;
+		$source = $dom->appendChild($dom->createElement('source'));
+		$source->appendChild($dom->createElement('publisher'))->appendChild($dom->createCDATASection('アイリード'));
+		$source->appendChild($dom->createElement('publisherUrl'))->appendChild($dom->createCDATASection('https://ilead-hr.co.jp'));
+		$source->appendChild($dom->createElement('lastBuildDate'))->appendChild($dom->createCDATASection(gmdate("Y-m-d H:i:s")));
+
+		$data = $this->jobs_model->get_feed();
+
+		foreach ($data as $row) {
+			$job = $source->appendChild($dom->createElement('job'));
+			foreach ($row as $key => $value) {
+				if ($key == 'top_picture') {
+					$value = base_url() . 'public/uploads/top_picture/' . $value;
+				}
+				$job->appendChild($dom->createElement($key))->appendChild($dom->createCDATASection($value ?? ''));
+			}
 		}
+
+		$feed = 'kyuujin_box';
+
+		$dom->save('./public/ilead_' . $feed . '_feed.xml');
+
+		// header('Content-Type: text/xml');
+
+		header('Content-Type: application/octet-stream');
+		header("Content-Transfer-Encoding: Binary");
+		header("Content-disposition: attachment; filename=ilead_" . $feed . "_feed.xml");
+
+		readfile('./public/ilead_' . $feed . '_feed.xml');
+	}
+
+	public function stanby_feed()
+	{
+		//Domを生成
+		$dom = new DomDocument('1.0', 'utf-8');
+		$dom->formatOutput = true;
+		$source = $dom->appendChild($dom->createElement('source'));
+		$source->appendChild($dom->createElement('publisher'))->appendChild($dom->createCDATASection('アイリード'));
+		$source->appendChild($dom->createElement('publisherUrl'))->appendChild($dom->createCDATASection('https://ilead-hr.co.jp'));
+
+		$data = $this->jobs_model->get_feed();
+
+		foreach ($data as $row) {
+			$job = $source->appendChild($dom->createElement('job'));
+			foreach ($row as $key => $value) {
+				if ($key == 'top_picture') {
+					$value = base_url() . 'public/uploads/top_picture/' . $value;
+				}
+				$job->appendChild($dom->createElement($key))->appendChild($dom->createCDATASection($value ?? ''));
+			}
+		}
+
+		$feed = 'stanby';
+
+		$dom->save('./public/ilead_' . $feed . '_feed.xml');
+
+		// header('Content-Type: text/xml');
+
+		header('Content-Type: application/octet-stream');
+		header("Content-Transfer-Encoding: Binary");
+		header("Content-disposition: attachment; filename=ilead_" . $feed . "_feed.xml");
+
+		readfile('./public/ilead_' . $feed . '_feed.xml');
 	}
 
 	public function news($page = 1)
