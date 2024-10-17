@@ -158,7 +158,7 @@
               </button>
             </li>
             <li>
-              <a href="/jobs/<?= $job['id'] ?>/entry">応募する</a>
+              <a href="/jobs/entry">応募する</a>
             </li>
           </ul>
           <script src="/public/assets/js/favorite_btn.js"></script>

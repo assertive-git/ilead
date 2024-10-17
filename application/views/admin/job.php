@@ -182,12 +182,12 @@ $traits = !empty($traits) ? explode(',', $traits) : [];
                     </div>
                     <div>
                         <select id="job_type" name="job_type" class="border border-slate-200 p-1">
-                            <option value="薬剤師">薬剤師</option>
-                            <option value="看護師">看護師</option>
-                            <option value="獣医師">獣医師</option>
-                            <option value="事務（病院、薬局）">事務（病院、薬局）</option>
-                            <option value="作業療法士・理学療法士・言語聴覚士">作業療法士・理学療法士・言語聴覚士</option>
-                            <option value="その他">その他</option>
+                            <option <?= $job_type == '薬剤師' ? 'selected' : '' ?> value="薬剤師">薬剤師</option>
+                            <option <?= $job_type == '看護師' ? 'selected' : '' ?> value="看護師">看護師</option>
+                            <option <?= $job_type == '獣医師' ? 'selected' : '' ?> value="獣医師">獣医師</option>
+                            <option <?= $job_type == '事務（病院、薬局）' ? 'selected' : '' ?> value="事務（病院、薬局）">事務（病院、薬局）</option>
+                            <option <?= $job_type == '作業療法士・理学療法士・言語聴覚士' ? 'selected' : '' ?> value="作業療法士・理学療法士・言語聴覚士">作業療法士・理学療法士・言語聴覚士</option>
+                            <option <?= $job_type == 'その他' ? 'selected' : '' ?> value="その他">その他</option>
                         </select>
                     </div>
                 </div>
@@ -800,10 +800,10 @@ $traits = !empty($traits) ? explode(',', $traits) : [];
                         <div class="flex flex-col space-y-2">
                             <span class="font-bold">雇用形態 *</span>
                             <select id="gfj_employment_type" class="p-2" name="gfj_employment_type border-slate-200">
-                                <option value="正社員">正社員</option>
-                                <option value="契約社員">契約社員</option>
-                                <option value="パート">パート</option>
-                                <option value="派遣・在籍出向">派遣・在籍出向</option>
+                                <option <?= $gfj_employment_type == '正社員' ? 'selected' : '' ?>value="FULL_TIME">正社員</option>
+                                <option <?= $gfj_employment_type == '契約社員' ? 'selected' : '' ?>value="CONTRACTOR">契約社員</option>
+                                <option <?= $gfj_employment_type == 'パート' ? 'selected' : '' ?>value="PART_TIME">パート</option>
+                                <option <?= $gfj_employment_type == '派遣・在籍出向' ? 'selected' : '' ?>value="CONTRACTOR">派遣・在籍出向</option>
                             </select>
                         </div>
                         <div class="flex flex-col space-y-2">
