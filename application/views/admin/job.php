@@ -800,10 +800,10 @@ $traits = !empty($traits) ? explode(',', $traits) : [];
                         <div class="flex flex-col space-y-2">
                             <span class="font-bold">雇用形態 *</span>
                             <select id="gfj_employment_type" class="p-2" name="gfj_employment_type border-slate-200">
-                                <option <?= $gfj_employment_type == '正社員' ? 'selected' : '' ?>value="FULL_TIME">正社員</option>
-                                <option <?= $gfj_employment_type == '契約社員' ? 'selected' : '' ?>value="CONTRACTOR">契約社員</option>
-                                <option <?= $gfj_employment_type == 'パート' ? 'selected' : '' ?>value="PART_TIME">パート</option>
-                                <option <?= $gfj_employment_type == '派遣・在籍出向' ? 'selected' : '' ?>value="CONTRACTOR">派遣・在籍出向</option>
+                                <option <?= $gfj_employment_type == 'FULL_TIME' ? 'selected' : '' ?>value="FULL_TIME">正社員</option>
+                                <option <?= $gfj_employment_type == 'CONTRACTOR' ? 'selected' : '' ?>value="CONTRACTOR">契約社員</option>
+                                <option <?= $gfj_employment_type == 'PART_TIME' ? 'selected' : '' ?>value="PART_TIME">パート</option>
+                                <option <?= $gfj_employment_type == 'TEMPORARY' ? 'selected' : '' ?>value="TEMPORARY">派遣・在籍出向</option>
                             </select>
                         </div>
                         <div class="flex flex-col space-y-2">
