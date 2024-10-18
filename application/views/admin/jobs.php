@@ -66,9 +66,11 @@
             </select>
             <button class="bg-gray-500 px-2 py-1 text-white" id="rows">更新</button>
         </form>
+        <?php if($total_jobs > 25): ?>
         <div class="pagination space-x-5 flex max-w-lg mx-auto justify-center items-center bg-gray-500 text-white p-2">
             <?= $this->pagination->create_links(); ?>
         </div>
+        <?php endif; ?>
         <div class="overflow-auto">
             <table class="bg-white p-8 border-collapse text-sm w-full" style="min-width: 1280px">
                 <thead>
@@ -322,6 +324,9 @@
                 });
             </script>
         </div>
+
+        <?php if($total_jobs > 25): ?>
         <div class="pagination space-x-5 flex max-w-lg mx-auto justify-center items-center bg-gray-500 text-white p-2">
             <?= $this->pagination->create_links(); ?>
         </div>
+        <?php endif; ?>

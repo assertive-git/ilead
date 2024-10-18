@@ -6,6 +6,7 @@ $id = !empty($id) ? $id : '';
 $business_content = !empty($business_content) ? $business_content : '';
 $title = !empty($title) ? $title : '';
 $body = !empty($body) ? $body : '';
+$job_type = !empty($job_type) ? $job_type : '';
 $tantosha = !empty($tantosha) ? $tantosha : '';
 $company_or_store_name = !empty($company_or_store_name) ? $company_or_store_name : '';
 $employment_type = !empty($employment_type) ? explode(',', $employment_type) : [];
