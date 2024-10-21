@@ -150,7 +150,7 @@ class Jobs_model extends CI_Model
         }
 
         if (!empty($employment_types)) {
-            $data->db->where_in('employment_type', $employment_types);
+            $data->where_in('employment_type', $employment_types);
         }
 
         if (!empty($salary)) {
@@ -172,26 +172,26 @@ class Jobs_model extends CI_Model
             }
 
             if (!empty($yearly) || !empty($hourly)) {
-                $data->db->where('(' . $sql . ')');
+                $data->where('(' . $sql . ')');
             }
 
         }
 
 
         if (!empty($job_types)) {
-            $data->db->where_in('job_type', $job_types);
+            $data->where_in('job_type', $job_types);
         }
 
         if (!empty($categories)) {
-            $data->db->where('category REGEXP "' . $categories . '"');
+            $data->where('category REGEXP "' . $categories . '"');
         }
 
         if (!empty($traits)) {
-            $data->db->where('traits REGEXP "' . $traits . '"');
+            $data->where('traits REGEXP "' . $traits . '"');
         }
 
         if (!empty($freeword)) {
-            $data->db->where("
+            $data->where("
                 (business_content LIKE '%$freeword%' OR
                 title LIKE '%$freeword%' OR
                 body LIKE '%$freeword%' OR
@@ -248,26 +248,26 @@ class Jobs_model extends CI_Model
             }
 
             if (!empty($yearly) || !empty($hourly)) {
-                $data->db->where('(' . $sql . ')');
+                $data->where('(' . $sql . ')');
             }
 
         }
 
 
         if (!empty($job_types)) {
-            $data->db->where_in('job_type', $job_types);
+            $data->where_in('job_type', $job_types);
         }
 
         if (!empty($categories)) {
-            $data->db->where('category REGEXP "' . $categories . '"');
+            $data->where('category REGEXP "' . $categories . '"');
         }
 
         if (!empty($traits)) {
-            $data->db->where('traits REGEXP "' . $traits . '"');
+            $data->where('traits REGEXP "' . $traits . '"');
         }
 
         if (!empty($freeword)) {
-            $data->db->where("
+            $data->where("
                 (business_content LIKE '%$freeword%' OR
                 title LIKE '%$freeword%' OR
                 body LIKE '%$freeword%' OR
