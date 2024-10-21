@@ -145,7 +145,8 @@ class Jobs_model extends CI_Model
         }
 
         if (!empty($stations)) {
-            $data->where_in('concat(line, station)', $stations);
+            $stations = str_replace(["(", ")"], ["\\\\(", "\\\\)"], implode('|', $stations));
+            $data->having('jobs_stations REGEXP "' . $stations . '"');
         }
 
         if (!empty($employment_types)) {
@@ -220,7 +221,8 @@ class Jobs_model extends CI_Model
         }
 
         if (!empty($stations)) {
-            $data->where_in('concat(line, station)', $stations);
+            $stations = str_replace(["(", ")"], ["\\\\(", "\\\\)"], implode('|', $stations));
+            $data->having('jobs_stations REGEXP "' . $stations . '"');
         }
 
         if (!empty($employment_types)) {
@@ -281,7 +283,8 @@ class Jobs_model extends CI_Model
                 ");
         }
 
-        $data = count($data->where('status', '公開')->select('jobs.id')->group_by('jobs.id')->get($this->table)->result_array());
+        // $data = count($data->where('status', '公開')->select('jobs.id')->group_by('jobs.id')->get($this->table)->result_array());
+        $data = count($data->where('status', '公開')->order_by('id', 'DESC')->group_by('jobs.id, lat, lng, business_content, title, employment_type, category, salary, has_requirement, top_picture, employment_type, pref, city, closest_bus_stop, address, map_address, traits')->select('jobs.id as id, lat, lng, business_content, title, employment_type, category, concat("【", salary_type, "】", format_number(min_salary), IF(max_salary <> 0, concat("～", format_number(max_salary)), "")) as salary, has_requirement, top_picture, employment_type, a_pref as pref, city, closest_bus_stop, address, map_address, traits, lat, lng, (select group_concat(concat(line, station, " ", "徒歩", walking_distance, "分") SEPARATOR "<br>") from jobs_stations where jobs.id = jobs_stations.job_id) as jobs_stations')->get($this->table)->result_array());
 
         return $data;
     }
