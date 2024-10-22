@@ -75,11 +75,11 @@
                     <?php endforeach; ?>
                   </td>
                 </tr>
-                <?php if(!empty($job['closest_bus_stop'])): ?>
-                <tr>
-                  <th class="attribute">バス停</th>
-                  <td><?= $job['closest_bus_stop'] ?></td>
-                </tr>
+                <?php if (!empty($job['closest_bus_stop'])): ?>
+                  <tr>
+                    <th class="attribute">バス停</th>
+                    <td><?= $job['closest_bus_stop'] ?></td>
+                  </tr>
                 <?php endif; ?>
                 <tr>
                   <th class="attribute">業務内容</th>
@@ -130,19 +130,19 @@
             <tr>
               <th class="attribute">最寄り駅</th>
               <td>
-                  <?php foreach ($job['jobs_stations'] as $job_station): ?>
-                    <?= $job_station['line'] ?>
-                    <?= str_replace('駅', '', $job_station['station']) ?>駅
-                    徒歩<?= $job_station['walking_distance'] ?>分<br />
-                  <?php endforeach; ?>
-                </td>
-              </tr>
-              <?php if(!empty($job['closest_bus_stop'])): ?>
+                <?php foreach ($job['jobs_stations'] as $job_station): ?>
+                  <?= $job_station['line'] ?>
+                  <?= str_replace('駅', '', $job_station['station']) ?>駅
+                  徒歩<?= $job_station['walking_distance'] ?>分<br />
+                <?php endforeach; ?>
+              </td>
+            </tr>
+            <?php if (!empty($job['closest_bus_stop'])): ?>
               <tr>
                 <th class="attribute">バス停</th>
                 <td><?= $job['closest_bus_stop'] ?></td>
               </tr>
-              <?php endif; ?>
+            <?php endif; ?>
             <?php foreach ($job['custom_fields'] as $custom_field): ?>
               <tr>
                 <th class="attribute"><?= $custom_field['title'] ?></th>
@@ -221,5 +221,53 @@
       </div>
     </div>
   </section> -->
+
+  <?php if ($job['gfj']): ?>
+    <script type="application/ld+json">
+          {
+            "@context": "http://schema.org/",
+            "@type": "JobPosting",
+            "title": "<?= $job['title'] ?>",
+            "description": "<?= str_replace(['"', "\\"], ["", ""], strip_tags($job['body'], '<br>')) ?>",
+            "identifier": {
+              "@type": "PropertyValue",
+              "name": "",
+              "value": "MC-022"
+            },
+            "hiringOrganization": {
+              "@type": "Organization",
+              "name": "株式会社アイリード",
+              "sameAs": "<?= base_url() ?>",
+              "logo": "<?= $job['top_picture'] ?>"
+            },
+            "employmentType": "<?= $job['employment_type'] ?>",
+            "workHours": "<?= $job['gfj_working_hours'] ?>",
+            "datePosted": "<?= $job['gfj_listing_start_date'] ?>",
+            "validThrough": "<?= date('Y-m-d', strtotime(date("Y-m-d", time()) . " + 365 day")) ?>",
+            "jobLocation": {
+              "@type": "Place",
+              "address": {
+                "@type": "PostalAddress",
+                "streetAddress": "<?= $job['address'] ?>",
+                "addressLocality": "<?= $job['city'] ?>",
+                "addressRegion": "<?= $job['a_pref'] ?>",
+                "postalCode": "",
+                "addressCountry": "JA"
+              }
+            },
+            "baseSalary": {
+              "@type": "MonetaryAmount",
+              "currency": "JPY",
+              "value": {
+                "@type": "QuantitativeValue",
+                "minValue": "<?= $job['min_salary'] ?>",
+                "maxValue": "<?= $job['max_salary']?>",
+                "unitText": "<?= $job['gfj_employment_type'] ?>"
+              }
+            }
+          }
+      </>
+    </script>
+  <?php endif; ?>
 </main>
 <?php include('footer.php'); ?>
