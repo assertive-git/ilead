@@ -251,7 +251,7 @@
             "streetAddress": "<?= $job['address'] ?>",
             "addressLocality": "<?= $job['city'] ?>",
             "addressRegion": "<?= $job['a_pref'] ?>",
-            "postalCode": "",
+            "postalCode": "0000000",
             "addressCountry": "JA"
           }
         },
