@@ -238,7 +238,7 @@
           "@type": "Organization",
           "name": "株式会社アイリード",
           "sameAs": "<?= base_url() ?>",
-          "logo": "<?= $job['top_picture'] ?>"
+          "logo": "/public/uploads/<?= $job['top_picture'] ?>"
         },
         "employmentType": "<?= $job['employment_type'] ?>",
         "workHours": "<?= $job['gfj_working_hours'] ?>",
