@@ -224,49 +224,48 @@
 
   <?php if ($job['gfj']): ?>
     <script type="application/ld+json">
-          {
-            "@context": "http://schema.org/",
-            "@type": "JobPosting",
-            "title": "<?= $job['title'] ?>",
-            "description": "<?= str_replace(['"', "\\"], ["", ""], strip_tags($job['body'], '<br>')) ?>",
-            "identifier": {
-              "@type": "PropertyValue",
-              "name": "",
-              "value": "MC-022"
-            },
-            "hiringOrganization": {
-              "@type": "Organization",
-              "name": "株式会社アイリード",
-              "sameAs": "<?= base_url() ?>",
-              "logo": "<?= $job['top_picture'] ?>"
-            },
-            "employmentType": "<?= $job['employment_type'] ?>",
-            "workHours": "<?= $job['gfj_working_hours'] ?>",
-            "datePosted": "<?= $job['gfj_listing_start_date'] ?>",
-            "validThrough": "<?= date('Y-m-d', strtotime(date("Y-m-d", time()) . " + 365 day")) ?>",
-            "jobLocation": {
-              "@type": "Place",
-              "address": {
-                "@type": "PostalAddress",
-                "streetAddress": "<?= $job['address'] ?>",
-                "addressLocality": "<?= $job['city'] ?>",
-                "addressRegion": "<?= $job['a_pref'] ?>",
-                "postalCode": "",
-                "addressCountry": "JA"
-              }
-            },
-            "baseSalary": {
-              "@type": "MonetaryAmount",
-              "currency": "JPY",
-              "value": {
-                "@type": "QuantitativeValue",
-                "minValue": "<?= $job['min_salary'] ?>",
-                "maxValue": "<?= $job['max_salary']?>",
-                "unitText": "<?= $job['gfj_employment_type'] ?>"
-              }
-            }
+      {
+        "@context": "http://schema.org/",
+        "@type": "JobPosting",
+        "title": "<?= $job['title'] ?>",
+        "description": "<?= str_replace(['"', "\\"], ["", ""], strip_tags($job['body'], '<br>')) ?>",
+        "identifier": {
+          "@type": "PropertyValue",
+          "name": "",
+          "value": "MC-022"
+        },
+        "hiringOrganization": {
+          "@type": "Organization",
+          "name": "株式会社アイリード",
+          "sameAs": "<?= base_url() ?>",
+          "logo": "<?= $job['top_picture'] ?>"
+        },
+        "employmentType": "<?= $job['employment_type'] ?>",
+        "workHours": "<?= $job['gfj_working_hours'] ?>",
+        "datePosted": "<?= $job['gfj_listing_start_date'] ?>",
+        "validThrough": "<?= date('Y-m-d', strtotime(date("Y-m-d", time()) . " + 365 day")) ?>",
+        "jobLocation": {
+          "@type": "Place",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "<?= $job['address'] ?>",
+            "addressLocality": "<?= $job['city'] ?>",
+            "addressRegion": "<?= $job['a_pref'] ?>",
+            "postalCode": "",
+            "addressCountry": "JA"
           }
-      </>
+        },
+        "baseSalary": {
+          "@type": "MonetaryAmount",
+          "currency": "JPY",
+          "value": {
+            "@type": "QuantitativeValue",
+            "minValue": "<?= $job['min_salary'] ?>",
+            "maxValue": "<?= $job['max_salary']?>",
+            "unitText": "<?= $job['gfj_employment_type'] ?>"
+          }
+        }
+      }
     </script>
   <?php endif; ?>
 </main>
