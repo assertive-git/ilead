@@ -62,6 +62,8 @@ if (!isset($_SERVER['HTTP_HOST'])) {
  */
 define('ENVIRONMENT', strpos($_SERVER['HTTP_HOST'], 'job.ilead-hr.co.jp') === FALSE ? 'development' : 'production');
 
+echo ENVIRONMENT;
+
 /*
  *---------------------------------------------------------------
  * ERROR REPORTING
