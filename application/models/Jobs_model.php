@@ -301,7 +301,7 @@ class Jobs_model extends CI_Model
     {
         $data = $this->db->where('status', '公開')->order_by('id', 'DESC')
             ->group_by('jobs.id, lat, lng, business_content, title, employment_type, category, salary, has_requirement, top_picture, employment_type, a_pref, city, address')
-            ->select('jobs.id as id as referencenumber, company_or_store_name as company, "アイリード株式会社" as agency, CONCAT("' . base_url() . '", "jobs/", jobs.id) as url, title, employment_type as jobType, category, concat(format_number(min_salary), IF(max_salary <> 0, concat("～", format_number(max_salary)), "")) as salary, has_requirement as experience, top_picture as imageUrls, employment_type, a_pref as state, city, address, (select group_concat(concat(line, station, " ", "徒歩", walking_distance, "分") SEPARATOR "<br>") from jobs_stations where jobs.id = jobs_stations.job_id) as station, body as description, created_at as postDate')->order_by('employment_type')->get($this->table)->result_array();
+            ->select('jobs.id as referencenumber, company_or_store_name as company, "アイリード株式会社" as agency, CONCAT("' . base_url() . '", "jobs/", jobs.id) as url, title, employment_type as jobType, category, concat(format_number(min_salary), IF(max_salary <> 0, concat("～", format_number(max_salary)), "")) as salary, has_requirement as experience, top_picture as imageUrls, employment_type, a_pref as state, city, address, (select group_concat(concat(line, station, " ", "徒歩", walking_distance, "分") SEPARATOR "<br>") from jobs_stations where jobs.id = jobs_stations.job_id) as station, body as description, created_at as postDate')->order_by('employment_type')->get($this->table)->result_array();
 
         return $data;
     }
