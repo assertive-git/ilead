@@ -155,33 +155,34 @@ class Admin extends CI_Controller
         $this->load->view('admin/footer');
     }
 
-    public function jobs_preview($id) {
+    public function jobs_preview($id)
+    {
         $data['job'] = $this->jobs_model->get_admin($id);
-		$data['job']['jobs_stations'] = $this->jobs_stations_model->get_all($id);
-		$data['job']['custom_fields'] = $this->custom_fields_model->get_all($id);
+        $data['job']['jobs_stations'] = $this->jobs_stations_model->get_all($id);
+        $data['job']['custom_fields'] = $this->custom_fields_model->get_all($id);
 
-		if (empty($data['job'])) {
-			show_404();
-		}
+        if (empty($data['job'])) {
+            show_404();
+        }
 
-		$data['favorites'] = [];
+        $data['favorites'] = [];
 
-		if (!empty($_SESSION['session_id'])) {
-			$session_id = $_SESSION['session_id'];
-			$data['favorites'] = $this->favorites_model->get_all_job_ids($session_id);
-		}
+        if (!empty($_SESSION['session_id'])) {
+            $session_id = $_SESSION['session_id'];
+            $data['favorites'] = $this->favorites_model->get_all_job_ids($session_id);
+        }
 
-		$this->load->view('job_single', $data);
+        $this->load->view('job_single', $data);
     }
 
     private function jobs_stations($data)
     {
         $ids = [];
 
-        foreach($data as $row) {
+        foreach ($data as $row) {
             $ids[] = $this->jobs_stations_model->insert($row);
         }
-            
+
         return $ids;
     }
 
@@ -319,11 +320,32 @@ class Admin extends CI_Controller
             $jobs = $this->jobs_model->get_multiple($job_ids);
 
             foreach ($jobs as $job) {
+                $orig_job_id = $job['id'];
                 unset($job['id']);
                 unset($job['created_at']);
                 unset($job['updated_at']);
 
                 $this->jobs_model->insert($job);
+
+                $job_id = $this->db->insert_id();
+
+                $stations = $this->jobs_stations_model->get_all($orig_job_id);
+
+                foreach ($stations as $station) {
+                    unset($station['id']);
+                    unset($station['created_at']);
+                    $station['job_id'] = $job_id;
+                    $this->jobs_stations_model->insert($station);
+                }
+
+                $cfs = $this->custom_fields_model->get_all($orig_job_id);
+
+                foreach ($cfs as $cf) {
+                    unset($cf['id']);
+                    unset($cf['created_at']);
+                    $cf['job_id'] = $job_id;
+                    $this->custom_fields_model->insert($cf);
+                }
             }
         }
 
