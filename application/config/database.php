@@ -78,7 +78,7 @@ $db['default'] = array(
 	'hostname' => ENVIRONMENT === 'production' ? 'mysql7.conoha.ne.jp' : 'os3-366-16227.vs.sakura.ne.jp',
 	'username' => 'n3qkq_t_shizu',
 	'password' => 'TOMOfumi1031?',
-	'database' => 'n3qkq_ilead',
+	'database' => ENVIRONMENT === 'production' ? 'n3qkq_ilead' : 'ilead_local',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,
