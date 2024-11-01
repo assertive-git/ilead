@@ -64,6 +64,8 @@
 </head>
 
 <body>
+  <?php echo ENVIRONMENT ?>
+  <?php echo $_SERVER['HTTP_HOST'] ?>
 <header>
   <div class="header_inner">
     <h1 class="logo">
