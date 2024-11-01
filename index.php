@@ -60,7 +60,7 @@ if (!isset($_SERVER['HTTP_HOST'])) {
  *
  * NOTE: If you change these, also change the error_reporting() code below
  */
-define('ENVIRONMENT', strpos($_SERVER['HTTP_HOST'], 'ilead.trend-search.info') === FALSE ? 'development' : 'production');
+define('ENVIRONMENT', strpos($_SERVER['HTTP_HOST'], 'job.ilead-hr.co.jp') === FALSE ? 'development' : 'production');
 
 /*
  *---------------------------------------------------------------
