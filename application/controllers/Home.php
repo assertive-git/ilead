@@ -68,12 +68,12 @@ class Home extends CI_Controller
 		$source->appendChild($dom->createElement('publisherUrl'))->appendChild($dom->createCDATASection('https://ilead-hr.co.jp'));
 		$source->appendChild($dom->createElement('lastBuildDate'))->appendChild($dom->createCDATASection(gmdate("Y-m-d H:i:s")));
 
-		$data = $this->jobs_model->get_feed();
+		$data = $this->jobs_model->get_feed_indeed();
 
 		foreach ($data as $row) {
 			$job = $source->appendChild($dom->createElement('job'));
 			foreach ($row as $key => $value) {
-				if ($key == 'top_picture') {
+				if ($key == 'imageUrls') {
 					$value = base_url() . 'public/uploads/top_picture/' . $value;
 				}
 				$job->appendChild($dom->createElement($key))->appendChild($dom->createCDATASection($value ?? ''));
@@ -103,12 +103,12 @@ class Home extends CI_Controller
 		$source->appendChild($dom->createElement('publisherUrl'))->appendChild($dom->createCDATASection('https://ilead-hr.co.jp'));
 		$source->appendChild($dom->createElement('lastBuildDate'))->appendChild($dom->createCDATASection(gmdate("Y-m-d H:i:s")));
 
-		$data = $this->jobs_model->get_feed();
+		$data = $this->jobs_model->get_feed_kyuujin_box();
 
 		foreach ($data as $row) {
 			$job = $source->appendChild($dom->createElement('job'));
 			foreach ($row as $key => $value) {
-				if ($key == 'top_picture') {
+				if ($key == 'imageUrls') {
 					$value = base_url() . 'public/uploads/top_picture/' . $value;
 				}
 				$job->appendChild($dom->createElement($key))->appendChild($dom->createCDATASection($value ?? ''));
@@ -137,12 +137,12 @@ class Home extends CI_Controller
 		$source->appendChild($dom->createElement('publisher'))->appendChild($dom->createCDATASection('アイリード'));
 		$source->appendChild($dom->createElement('publisherUrl'))->appendChild($dom->createCDATASection('https://ilead-hr.co.jp'));
 
-		$data = $this->jobs_model->get_feed();
+		$data = $this->jobs_model->get_feed_stanby();
 
 		foreach ($data as $row) {
 			$job = $source->appendChild($dom->createElement('job'));
 			foreach ($row as $key => $value) {
-				if ($key == 'top_picture') {
+				if ($key == 'imageurls') {
 					$value = base_url() . 'public/uploads/top_picture/' . $value;
 				}
 				$job->appendChild($dom->createElement($key))->appendChild($dom->createCDATASection($value ?? ''));
