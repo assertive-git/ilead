@@ -300,12 +300,32 @@ class Admin extends CI_Controller
             $jobs = $this->jobs_model->get_multiple($job_ids);
 
             foreach ($jobs as $job) {
-
+                $orig_job_id = $job['id'];
                 unset($job['id']);
                 unset($job['created_at']);
                 unset($job['updated_at']);
 
                 $this->jobs_model->insert($job);
+
+                $job_id = $this->db->insert_id();
+
+                $stations = $this->jobs_stations_model->get_all($orig_job_id);
+
+                foreach ($stations as $station) {
+                    unset($station['id']);
+                    unset($station['created_at']);
+                    $station['job_id'] = $job_id;
+                    $this->jobs_stations_model->insert($station);
+                }
+
+                $cfs = $this->custom_fields_model->get_all($orig_job_id);
+
+                foreach ($cfs as $cf) {
+                    unset($cf['id']);
+                    unset($cf['created_at']);
+                    $cf['job_id'] = $job_id;
+                    $this->custom_fields_model->insert($cf);
+                }
             }
 
         }
