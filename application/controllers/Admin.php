@@ -724,8 +724,6 @@ class Admin extends CI_Controller
                     break;
             }
 
-
-
             array_splice($row, 16, 0, $values);
 
             // custom fields splice begins @ index 32
@@ -739,6 +737,7 @@ class Admin extends CI_Controller
 
                 unset($custom_field['id']);
                 unset($custom_field['created_at']);
+                unset($custom_field['sort_order']);
 
                 foreach ($custom_field as $key => $value) {
                     $values[$values_index] = $value;
