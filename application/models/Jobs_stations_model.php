@@ -32,7 +32,7 @@ class Jobs_stations_model extends CI_Model
         $this->db->where('id', $id)->delete($this->table);
     }
 
-    public function update_by_date($date, $job_id, $data) {
-        $this->db->where('created_at', $date)->where('job_id', $job_id)->update($this->table, $data);
+    public function update_by_date($date, $job_id, $data, $id) {
+        $this->db->where('created_at', $date)->where('job_id', $job_id)->where('id', $id)->update($this->table, $data);
     }
 }

@@ -803,8 +803,8 @@ class Admin extends CI_Controller
                 'gfj' => $column[53],
                 'gfj_employment_type' => $column[54],
                 'gfj_working_hours' => $column[55],
-                'gfj_listing_start_date' => $column[56],
-                'gfj_listing_end_date' => $column[57],
+                'gfj_listing_start_date' => DateTime::createFromFormat('Y/m/j', $column[56])->format('Y-m-d'),
+                'gfj_listing_end_date' => DateTime::createFromFormat('Y/m/j', $column[57])->format('Y-m-d'),
                 'status' => $column[58],
                 'top_picture' => $column[59],
                 'traits' => $column[60],
@@ -863,7 +863,8 @@ class Admin extends CI_Controller
                     !empty($data['walking_distance'])
                 ) {
                     $station_date = $stations[$i]['created_at'];
-                    $this->jobs_stations_model->update_by_date($station_date, $job_id, $data);
+                    $station_id = $stations[$i]['id'];
+                    $this->jobs_stations_model->update_by_date($station_date, $job_id, $data, $station_id);
                 } else if (
                     !empty($data['region']) &&
                     !empty($data['pref']) &&
@@ -916,7 +917,7 @@ class Admin extends CI_Controller
 
             $custom_fields = $this->custom_fields_model->get_all($job_id);
 
-            $custom_fields_data_count = count($station_data['data']);
+            $custom_fields_data_count = count($custom_fields_data['data']);
 
             for ($i = 0; $i < $custom_fields_data_count; $i++) {
 
@@ -927,8 +928,9 @@ class Admin extends CI_Controller
                     !empty($data['title']) &&
                     !empty($data['detail'])
                 ) {
-                    $custom_fields_date = $stations[$i]['created_at'];
-                    $this->custom_fields_model->update_by_date($custom_fields_date, $job_id, $data);
+                    $custom_fields_date = $custom_fields[$i]['created_at'];
+                    $id = $custom_fields[$i]['id'];
+                    $this->custom_fields_model->update_by_date($custom_fields_date, $job_id, $data, $id);
                 } else if (
                     !empty($data['title']) &&
                     !empty($data['detail'])
