@@ -659,6 +659,9 @@ $traits = !empty($traits) ? explode(',', $traits) : [];
                         var remove_custom_fields = [];
 
                         $('#add-columns').click(function () {
+
+                            if($('.custom-field').length >= 8) return;
+
                             $('#custom-fields #sortable').append($('#render-custom-field').html());
                             $('#custom-fields #sortable').children().last().addClass('custom-field');
                         });
