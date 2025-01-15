@@ -89,7 +89,9 @@
 .slick-slide img
 {
     display: block;
-    width:100%;
+    width: 244px;
+    height: 163px;
+    object-fit: cover;
 }
 .slick-slide.slick-loading img
 {
