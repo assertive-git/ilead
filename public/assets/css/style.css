@@ -2250,7 +2250,7 @@ main .job_result .job_result_inner .job_result_wrap .inner .result_img1 {
 
 main .job_result .job_result_inner .job_result_wrap .inner .result_img1 img {
   width: 100%;
-  height: 256px;
+  height: 100%;
   object-fit: cover;
 }
 
@@ -2523,7 +2523,7 @@ main .job_result .area.is-active {
 
 .list_img img {
   width: 100%;
-  height: 256px;
+  height: 100%;
   object-fit: cover;
 }
 
