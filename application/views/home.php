@@ -9,8 +9,10 @@
     </p>
   </section>
 
-  <div class="registration"><a href="/jobs/entry">まずは簡単登録</a></div>
-  <div class="tel"><a href="tel:06-6210-4371">お電話はこちら</a></div>
+  <div class="fixed_btn_list">
+    <div class="registration"><a href="/jobs/entry">まずは簡単登録</a></div>
+    <div class="tel"><a href="tel:06-6210-4371">お電話はこちら</a></div>
+  </div>
 
 
   <section class="search">
@@ -216,7 +218,7 @@
     <div class="instagram_inner">
       <div class="text">
         <h2><span>アイリードを見る</span> Instagram</h2>
-        <a class="view-more" href="https://www.instagram.com/ilead.company/" class="pc" target="_blank">VIEW MORE</a>
+        <a class="view-more pc" href="https://www.instagram.com/ilead.company/" target="_blank">VIEW MORE</a>
       </div>
       <div class="insta_list">
         <!-- <img src="/public/assets/img/insta_img.png" alt="インスタ画像" width="638" height="418"> -->
