@@ -75,7 +75,7 @@ $method = isset($_POST["method"]) ? $_POST["method"] : "";
 <?php include ('header.php'); ?>
 
 <div id="form" class="confirm">
-  <form name="inquiry" class="form" action="/jobs/confirm" method="post" id="formInquiry">
+  <form name="inquiry" class="form" action="/jobs/entry/confirm" method="post" id="formInquiry">
     <div class="contact_h">送信内容のご確認</div>
     <p> 以下の内容で送信します。よろしいですか？ </p>
     <div class="progressbar">

@@ -498,8 +498,6 @@ class Home extends CI_Controller
 		$address1 = isset($_POST["address1"]) ? $_POST["address1"] : "";
 		$address2 = isset($_POST["address2"]) ? $_POST["address2"] : "";
 		$hope = isset($_POST["hope"]) ? $_POST["hope"] : "";
-		$interview_date = isset($_POST["interview_date"]) ? $_POST["interview_date"] : "";
-		$method = isset($_POST["method"]) ? $_POST["method"] : "";
 
 		if (isset($_POST['action']) && $_POST['action'] == 1) {
 			$this->sendmail();
@@ -657,8 +655,9 @@ class Home extends CI_Controller
 
 	private function sendmail()
 	{
-		$_SESSION['complete'] = '';
-		redirect('/jobs/complete');
+		$this->load->view('sendmail');
+		$_SESSION['complete'] = "";
+		redirect('/jobs/entry/complete');
 	}
 
 	private function init_pagination($total_rows, $page, $limit)

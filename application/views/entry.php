@@ -80,7 +80,8 @@ $method = isset( $_POST[ "method" ] ) ? $_POST[ "method" ] : "";
     <div class="item">STEP.2 ご確認</div>
     <div class="item">STEP.3 完了</div>
   </div>
-  <form name="inquiry" action="/jobs/confirm" method="post" id="formInquiry">
+  <form class="h-adr" name="inquiry" action="/jobs/entry/confirm" method="post" id="formInquiry">
+    <span class="p-country-name" style="display:none;">Japan</span>
     <dl>
       <dt>氏名<span>必須</span></dt>
       <dd class="name">
@@ -143,12 +144,12 @@ $method = isset( $_POST[ "method" ] ) ? $_POST[ "method" ] : "";
       <dt>お住まいの地域<span>必須</span></dt>
       <div class="address">
         <dd class="zip">〒
-          <input name="zip1" maxlength="3" placeholder="000" required>
+          <input name="zip1" maxlength="3" placeholder="000" class="p-postal-code" required>
           -
-          <input name="zip2" maxlength="4" placeholder="0000" required>
+          <input name="zip2" maxlength="4" placeholder="0000" class="p-postal-code" required>
         </dd>
         <dd>
-          <select name="prefecture" class="todofuken" required>
+          <select name="prefecture" class="todofuken p-region" required>
             <option value="">都道府県を選択</option>
             <?php foreach ($prefectures as $prefecture): ?>
             <option value="<?= $prefecture ?>">
@@ -158,7 +159,7 @@ $method = isset( $_POST[ "method" ] ) ? $_POST[ "method" ] : "";
           </select>
         </dd>
         <dd>
-          <input type="text" name="address1" placeholder="市区町村" style="width:100%;" required>
+          <input type="text" name="address1" placeholder="市区町村" class="p-locality p-street-address" style="width:100%;" required>
         </dd>
         <dd>
           <input type="text" name="address2" placeholder="番地　建物名・部屋番号" style="width:100%;" required>
@@ -188,8 +189,8 @@ $method = isset( $_POST[ "method" ] ) ? $_POST[ "method" ] : "";
         <dd>
           <div>
             <select name="method">
-              <option value="method1">面接方法1</option>
-              <option value="method2">面接方法2</option>
+              <option value="面接方法1">面接方法1</option>
+              <option value="面接方法2">面接方法2</option>
             </select>
           </div>
         </dd>
@@ -241,4 +242,6 @@ function entryChange2(){
 }
 }
 </script>
+<script src="https://yubinbango.github.io/yubinbango/yubinbango.js"></script>
+
 <?php include ('footer.php'); ?>
