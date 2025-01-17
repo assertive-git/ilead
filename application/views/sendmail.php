@@ -79,7 +79,7 @@ HP : https://ilead-hr.co.jp/
 
 // ----- 送信処理（お客様宛）
 $to = $email;
-$header = "From: -f " . $from;
+$header = "From: " . $from;
 
 $subject = "【アイリード株式会社 | 薬剤師のお仕事】にご登録ありがとうございます。";
 mb_send_mail($to, $subject, $body, $header);
@@ -108,6 +108,6 @@ $body2 .= '面接方法：' . $method . "\n";
 
 // ----- 送信処理（管理者宛）
 $to = $admin_mail;
-$header = "From: -f " . $from . "\n";
+$header = "From: " . $from . "\n";
 $subject = "【薬剤師のお仕事】LPより登録がありました。";
 mb_send_mail($to, $subject, $body2, $header);
