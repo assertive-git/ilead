@@ -119,7 +119,7 @@
               </div>
             </div>
           <?php endforeach; ?>
-          <script src="/assets/js/favorite_btn.js"></script>
+          <script src="/public/assets/js/favorite_btn.js"></script>
         <?php endif; ?>
       </div>
       <p class="number2">新着求人：<span class="big"><?= $total_jobs ?></span>件
