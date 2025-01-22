@@ -2746,6 +2746,9 @@ main .job_result .area.is-active {
   border-radius: 4px;
   padding: 0.4em 0.8em;
   font-size: 1.6rem;
+  -webkit-appearance: menulist; /* Chrome、Safari、Opera */
+    -moz-appearance: menulist;    /* Firefox */
+    appearance: menulist;         /* 標準の指定 */　
 }
 
 #form form dd input::placeholder {
@@ -3484,11 +3487,11 @@ main#map .search_area .map_in {
 
   .modal_container .button_area {
     width: 100%;
-    padding: 6vw;
+    padding: 4vw 6vw 13vw 6vw;
     position: absolute;
     bottom: 0px;
     background-color: #fff;
-    height: 25vh;
+    height: 52vw;
   }
 
   #map .modal_container .button_area {
@@ -4116,6 +4119,9 @@ main#map .search_area .map_in {
   #form form dd select {
     font-size: 1.4rem;
     padding: 0.4em;
+    -webkit-appearance: menulist; /* Chrome、Safari、Opera */
+    -moz-appearance: menulist;    /* Firefox */
+    appearance: menulist;         /* 標準の指定 */　
   }
 
   #form form dt span {
