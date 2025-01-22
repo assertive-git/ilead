@@ -34,7 +34,7 @@ $admin_mail = "h.nakayama@assertive.co.jp";
 
 //$body .= "【日時】\n";
 //$body .= date('Y-m-d H:i:s', time()) . "\n";
-$body .= $name . "様\n";
+$body .= $last_name . $first_name . "様\n";
 $body .= "
 この度はご登録いただき、誠にありがとうございました。
 
@@ -45,7 +45,7 @@ $body .= "
 \n";
 
 
-$body .= '氏名' . $last_name . $first_name . "\n";
+$body .= '氏名：' . $last_name . $first_name . "\n";
 $body .= 'フリガナ：' . $last_name_kana . $first_name_kana . "\n";
 $body .= '生年月日：' . $b_year . "-" . $b_month . "-" . $b_day . "\n";
 $body .= '年齢：' . $age . "\n";
