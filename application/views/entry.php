@@ -52,26 +52,26 @@ $prefectures = array(
 ?>
 <!-- form postデータ取得 -->
 <?php
-$last_name = isset( $_POST[ "last_name" ] ) ? $_POST[ "last_name" ] : "";
-$first_name = isset( $_POST[ "first_name" ] ) ? $_POST[ "first_name" ] : "";
-$last_name_kana = isset( $_POST[ "last_name_kana" ] ) ? $_POST[ "last_name_kana" ] : "";
-$first_name_kana = isset( $_POST[ "first_name_kana" ] ) ? $_POST[ "first_name_kana" ] : "";
-$b_year = isset( $_POST[ "b_year" ] ) ? $_POST[ "b_year" ] : "";
-$b_month = isset( $_POST[ "b_month" ] ) ? $_POST[ "b_month" ] : "";
-$b_day = isset( $_POST[ "b_day" ] ) ? $_POST[ "b_day" ] : "";
-$age = isset( $_POST[ "age" ] ) ? $_POST[ "age" ] : "";
-$tel = isset( $_POST[ "tel" ] ) ? $_POST[ "tel" ] : "";
-$email = isset( $_POST[ "email" ] ) ? $_POST[ "email" ] : "";
-$prefecture = isset( $_POST[ "prefecture" ] ) ? $_POST[ "prefecture" ] : "";
-$zip1 = isset( $_POST[ "zip1" ] ) ? $_POST[ "zip1" ] : "";
-$zip2 = isset( $_POST[ "zip2" ] ) ? $_POST[ "zip2" ] : "";
-$address1 = isset( $_POST[ "address1" ] ) ? $_POST[ "address1" ] : "";
-$address2 = isset( $_POST[ "address2" ] ) ? $_POST[ "address2" ] : "";
-$hope = isset( $_POST[ "hope" ] ) ? $_POST[ "hope" ] : "";
-$interview_date = isset( $_POST[ "interview_date" ] ) ? $_POST[ "interview_date" ] : "";
-$method = isset( $_POST[ "method" ] ) ? $_POST[ "method" ] : "";
+$last_name = isset($_POST["last_name"]) ? $_POST["last_name"] : "";
+$first_name = isset($_POST["first_name"]) ? $_POST["first_name"] : "";
+$last_name_kana = isset($_POST["last_name_kana"]) ? $_POST["last_name_kana"] : "";
+$first_name_kana = isset($_POST["first_name_kana"]) ? $_POST["first_name_kana"] : "";
+$b_year = isset($_POST["b_year"]) ? $_POST["b_year"] : "";
+$b_month = isset($_POST["b_month"]) ? $_POST["b_month"] : "";
+$b_day = isset($_POST["b_day"]) ? $_POST["b_day"] : "";
+$age = isset($_POST["age"]) ? $_POST["age"] : "";
+$tel = isset($_POST["tel"]) ? $_POST["tel"] : "";
+$email = isset($_POST["email"]) ? $_POST["email"] : "";
+$prefecture = isset($_POST["prefecture"]) ? $_POST["prefecture"] : "";
+$zip1 = isset($_POST["zip1"]) ? $_POST["zip1"] : "";
+$zip2 = isset($_POST["zip2"]) ? $_POST["zip2"] : "";
+$address1 = isset($_POST["address1"]) ? $_POST["address1"] : "";
+$address2 = isset($_POST["address2"]) ? $_POST["address2"] : "";
+$hope = isset($_POST["hope"]) ? $_POST["hope"] : "";
+$interview_date = isset($_POST["interview_date"]) ? $_POST["interview_date"] : "";
+$method = isset($_POST["method"]) ? $_POST["method"] : "";
 ?>
-<?php include ('header.php'); ?>
+<?php include('header.php'); ?>
 <main id="form">
   <!--▼▼▼form▼▼▼-->
   <h2>簡単登録</h2>
@@ -87,11 +87,11 @@ $method = isset( $_POST[ "method" ] ) ? $_POST[ "method" ] : "";
       <dd class="name">
         <label for="sei">姓
           <input id="sei" type="text" name="last_name" placeholder="例）山本"
-              value="<?php echo htmlspecialchars($last_name, ENT_QUOTES, 'UTF-8'); ?>" required>
+            value="<?php echo htmlspecialchars($last_name, ENT_QUOTES, 'UTF-8'); ?>" required>
         </label>
         <label for="mei">&emsp;名
           <input id="mei" type="text" name="first_name" placeholder="例）太郎"
-              value="<?php echo htmlspecialchars($first_name, ENT_QUOTES, 'UTF-8'); ?>" required>
+            value="<?php echo htmlspecialchars($first_name, ENT_QUOTES, 'UTF-8'); ?>" required>
         </label>
       </dd>
     </dl>
@@ -100,11 +100,11 @@ $method = isset( $_POST[ "method" ] ) ? $_POST[ "method" ] : "";
       <dd class="kana">
         <label for="kana_sei">セイ
           <input id="kana_sei" type="text" name="last_name_kana" placeholder="例）ヤマモト"
-              value="<?php echo htmlspecialchars($last_name_kana, ENT_QUOTES, 'UTF-8'); ?>"  required>
+            value="<?php echo htmlspecialchars($last_name_kana, ENT_QUOTES, 'UTF-8'); ?>" required>
         </label>
         <label for="kana_mei">&emsp;メイ
           <input id="kana_mei" type="text" name="first_name_kana" placeholder="例）タロウ"
-              value="<?php echo htmlspecialchars($first_name_kana, ENT_QUOTES, 'UTF-8'); ?>" required>
+            value="<?php echo htmlspecialchars($first_name_kana, ENT_QUOTES, 'UTF-8'); ?>" required>
         </label>
       </dd>
     </dl>
@@ -116,20 +116,22 @@ $method = isset( $_POST[ "method" ] ) ? $_POST[ "method" ] : "";
         <input type="text" name="b_month" class="birthday-month" placeholder="01" required>
         月&emsp;
         <input type="text" name="b_day" class="birthday-day" placeholder="01" required>
-        日 </dd>
+        日
+      </dd>
     </dl>
     <dl>
       <dt>年齢<span>必須</span></dt>
       <dd>
         <input type="text" id="age" name="age" type="text" style="width: 85px" required>
-        歳 </dd>
+        歳
+      </dd>
     </dl>
     <dl>
       <dt>電話番号<span>必須</span></dt>
       <dd>
         <div>
           <input type="text" name="tel" placeholder="00000000000"
-              value="<?php echo htmlspecialchars($tel, ENT_QUOTES, 'UTF-8'); ?>" required>
+            value="<?php echo htmlspecialchars($tel, ENT_QUOTES, 'UTF-8'); ?>" required>
         </div>
       </dd>
     </dl>
@@ -137,7 +139,7 @@ $method = isset( $_POST[ "method" ] ) ? $_POST[ "method" ] : "";
       <dt>メールアドレス<span>必須</span></dt>
       <dd class="mail_add">
         <input type="email" name="email" placeholder="例）example@xxxx.com"
-            value="<?php echo htmlspecialchars($email, ENT_QUOTES, 'UTF-8'); ?>" class="width-long" required>
+          value="<?php echo htmlspecialchars($email, ENT_QUOTES, 'UTF-8'); ?>" class="width-long" required>
       </dd>
     </dl>
     <dl>
@@ -152,9 +154,9 @@ $method = isset( $_POST[ "method" ] ) ? $_POST[ "method" ] : "";
           <select name="prefecture" class="todofuken p-region" required>
             <option value="">都道府県を選択</option>
             <?php foreach ($prefectures as $prefecture): ?>
-            <option value="<?= $prefecture ?>">
-            <?= $prefecture ?>
-            </option>
+              <option value="<?= $prefecture ?>">
+                <?= $prefecture ?>
+              </option>
             <?php endforeach; ?>
           </select>
         </dd>
@@ -181,7 +183,7 @@ $method = isset( $_POST[ "method" ] ) ? $_POST[ "method" ] : "";
       <dl>
         <dt>面接希望日</dt>
         <dd>
-          <input type="date" name="interview_date">
+          <input type="date" value="2025-01-01" name="interview_date">
         </dd>
       </dl>
       <dl>
@@ -220,28 +222,28 @@ $method = isset( $_POST[ "method" ] ) ? $_POST[ "method" ] : "";
   <!--▲▲▲form▲▲▲-->
 </main>
 <script>
-    var selecterBox = document.getElementById('sample');
+  var selecterBox = document.getElementById('sample');
 
-    function formSwitch() {
-        check = document.getElementsByClassName('js-check')
-        if (check[1].checked) {
-            selecterBox.style.display = "none";
+  function formSwitch() {
+    check = document.getElementsByClassName('js-check')
+    if (check[1].checked) {
+      selecterBox.style.display = "none";
 
-        } else if (check[0].checked) {
-            selecterBox.style.display = "block";
+    } else if (check[0].checked) {
+      selecterBox.style.display = "block";
 
-        } else {
-            selecterBox.style.display = "none";
-        }
+    } else {
+      selecterBox.style.display = "none";
     }
-    window.addEventListener('load', formSwitch());
+  }
+  window.addEventListener('load', formSwitch());
 
-function entryChange2(){
-    if(document.getElementById('changeSelect')){
-    id = document.getElementById('changeSelect').value;
-}
-}
+  function entryChange2() {
+    if (document.getElementById('changeSelect')) {
+      id = document.getElementById('changeSelect').value;
+    }
+  }
 </script>
 <script src="https://yubinbango.github.io/yubinbango/yubinbango.js"></script>
 
-<?php include ('footer.php'); ?>
+<?php include('footer.php'); ?>
