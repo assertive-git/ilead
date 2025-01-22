@@ -183,7 +183,7 @@ $method = isset($_POST["method"]) ? $_POST["method"] : "";
       <dl>
         <dt>面接希望日</dt>
         <dd>
-          <input type="date" value="2025-01-01" name="interview_date">
+          <input type="date" value="<?php echo date('Y-m-d'); ?>" name="interview_date">
         </dd>
       </dl>
       <dl>

@@ -4112,16 +4112,17 @@ main#map .search_area .map_in {
   }
 
   #form form dd input {
-    font-size: 1.4rem;
+    font-size: 1.6rem;
     padding: 0.2em 0.7em;
   }
 
   #form form dd select {
-    font-size: 1.4rem;
+    font-size: 1.6rem;
     padding: 0.4em;
     -webkit-appearance: menulist; /* Chrome、Safari、Opera */
     -moz-appearance: menulist;    /* Firefox */
     appearance: menulist;         /* 標準の指定 */　
+    width: 40%;
   }
 
   #form form dt span {
