@@ -38,10 +38,10 @@ $admin_mail = "a.ruiz@assertive.co.jp";
 
 
 
-//$body = "";
+$body = "";
 
-//$body .= "【日時】\n";
-//$body .= date('Y-m-d H:i:s', time()) . "\n";
+$body .= "【日時】\n";
+$body .= date('Y-m-d H:i:s', time()) . "\n";
 $body .= $last_name . $first_name . "様\n";
 $body .= "
 この度はご登録いただき、誠にありがとうございました。
@@ -62,7 +62,7 @@ $body .= '生年月日：' . $b_year . "-" . $b_month . "-" . $b_day . "\n";
 $body .= '年齢：' . $age . "\n";
 $body .= '電話番号：' . $tel . "\n";
 $body .= 'メールアドレス：' . $email . "\n";
-$body .= 'お住まいの地域：' . $zip1 . '-' . $zip2 . $pref . $address1 . ' ' . $address2 . "\n";
+$body .= 'お住まいの地域：' . $zip1 . '-' . $zip2 . $prefecture . $address1 . ' ' . $address2 . "\n";
 $body .= '面談希望：' . $hope . "\n";
 $body .= '面談希望日：' . $interview_date . "\n";
 $body .= '面談方法：' . $method . "\n";
@@ -117,7 +117,7 @@ $body2 .= '生年月日：' . $b_year . "-" . $b_month . "-" . $b_day . "\n";
 $body2 .= '年齢：' . $age . "\n";
 $body2 .= '電話番号：' . $tel . "\n";
 $body2 .= 'メールアドレス：' . $email . "\n";
-$body2 .= 'お住まいの地域：' . $zip1 . '-' . $zip2 . $pref . $address1 . ' ' . $address2 . "\n";
+$body2 .= 'お住まいの地域：' . $zip1 . '-' . $zip2 . $prefecture . $address1 . ' ' . $address2 . "\n";
 $body2 .= '面談希望：' . $hope . "\n";
 $body2 .= '面談希望日：' . $interview_date . "\n";
 $body2 .= '面談方法：' . $method . "\n";
@@ -126,4 +126,5 @@ $body2 .= '面談方法：' . $method . "\n";
 $to = $admin_mail;
 $header = "From: " . $from . "\n";
 $subject = "【薬剤師のお仕事】LPより登録がありました。";
+exit;
 mb_send_mail($to, $subject, $body2, $header, "-f" . $from);
