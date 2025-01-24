@@ -81,7 +81,11 @@ $method = isset($_POST["method"]) ? $_POST["method"] : "";
     <div class="item">STEP.2 ご確認</div>
     <div class="item">STEP.3 完了</div>
   </div>
-  <form class="h-adr" name="inquiry" action="/jobs/entry/<?= $job_id ?>/confirm" method="post" id="formInquiry">
+  <?php if(!empty($job_id)): ?>
+    <form class="h-adr" name="inquiry" action="/jobs/entry/<?= $job_id ?>/confirm" method="post" id="formInquiry">
+  <?php else: ?>
+    <form class="h-adr" name="inquiry" action="/jobs/entry/confirm" method="post" id="formInquiry">
+    <?php endif; ?>
     <span class="p-country-name" style="display:none;">Japan</span>
     <dl>
       <dt>氏名<span>必須</span></dt>

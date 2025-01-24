@@ -70,6 +70,7 @@ $address2 = isset($_POST["address2"]) ? $_POST["address2"] : "";
 $hope = isset($_POST["hope"]) ? $_POST["hope"] : "";
 $interview_date = isset($_POST["interview_date"]) ? $_POST["interview_date"] : "";
 $method = isset($_POST["method"]) ? $_POST["method"] : "";
+
 ?>
 
 <?php include ('header.php'); ?>
