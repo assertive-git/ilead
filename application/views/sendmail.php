@@ -126,5 +126,4 @@ $body2 .= '面談方法：' . $method . "\n";
 $to = $admin_mail;
 $header = "From: " . $from . "\n";
 $subject = "【薬剤師のお仕事】LPより登録がありました。";
-exit;
 mb_send_mail($to, $subject, $body2, $header, "-f" . $from);
