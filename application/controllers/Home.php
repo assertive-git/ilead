@@ -506,7 +506,7 @@ class Home extends CI_Controller
 			if (empty($job)) {
 				$job = [];
 			}
-			
+
 			$this->sendmail($job);
 		} else if (
 			!empty($last_name) &&
@@ -528,7 +528,7 @@ class Home extends CI_Controller
 		) {
 			$this->load->view('confirm', ['job_id' => $job_id]);
 		} else {
-			redirect('/jobs');
+			redirect('/job_list');
 		}
 	}
 
@@ -538,7 +538,7 @@ class Home extends CI_Controller
 			unset($_SESSION['complete']);
 			$this->load->view('complete');
 		} else {
-			redirect('/jobs');
+			redirect('/job_list');
 		}
 	}
 
