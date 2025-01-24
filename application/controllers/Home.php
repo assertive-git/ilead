@@ -656,10 +656,10 @@ class Home extends CI_Controller
 
 	private function sendmail($job)
 	{
-		$job_id = $job['id'];
 		$this->load->view('sendmail', ['job' => $job]);
 		$_SESSION['complete'] = "";
-		redirect('/jobs/entry/' . $job_id . '/complete');
+
+		redirect(!empty($job) ? '/jobs/entry/' . $job['id'] . '/complete' : '/jobs/entry/complete');
 	}
 
 	private function init_pagination($total_rows, $page, $limit)
