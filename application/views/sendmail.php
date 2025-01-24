@@ -19,8 +19,13 @@ $hope = isset($_POST["hope"]) ? $_POST["hope"] : "";
 $interview_date = isset($_POST["interview_date"]) ? $_POST["interview_date"] : "";
 $method = isset($_POST["method"]) ? $_POST["method"] : "";
 
-$job_title = $job['title'];
-$job_memo = $job['memo'];
+if (!empty($job)) {
+    $job_title = $job['title'];
+    $job_memo = $job['memo'];
+} else {
+    $job_title = "LPより登録がありました。";
+}
+
 
 
 
@@ -30,9 +35,9 @@ mb_internal_encoding("UTF-8");
 
 // ----- メール送信
 //$admin_mail = "s.sugiyama@assertive.co.jp";
-$from = "contact@ilead.trend-search.info";
-// $admin_mail = "a.ruiz@assertive.co.jp";
+// $from = "contact@ilead.trend-search.info";
 $admin_mail = "h.nakayama@assertive.co.jp";
+$admin_mail = "a.ruiz@assertive.co.jp";
 
 
 
@@ -50,7 +55,9 @@ $body .= "
 【ご登録内容】-----------------------------------------
 \n";
 
-$body .= $job['title'] . "\n\n";
+if (!empty($job)) {
+    $body .= $job_title . "\n\n";
+}
 
 $body .= '氏名：' . $last_name . $first_name . "\n";
 $body .= 'フリガナ：' . $last_name_kana . $first_name_kana . "\n";
@@ -92,9 +99,14 @@ $subject = "【アイリード株式会社 | 薬剤師のお仕事】に応募�
 mb_send_mail($to, $subject, $body, $header, "-f" . $from);
 
 $body2 = "";
-$body2 .= $job_title . "\n";
-$body2 .= $job_memo . "\n";
-$body2 .= "に応募がありました。\n\n";
+
+if (!empty($job)) {
+    $body2 .= $job_title . "\n";
+    $body2 .= $job_memo . "\n";
+    $body2 .= "に応募がありました。\n\n";
+} else {
+    $body2 .= $job_title . "\n\n";
+}
 
 $body2 .= "【ご登録内容】-----------------------------------------\n";
 

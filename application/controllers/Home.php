@@ -15,17 +15,6 @@ class Home extends CI_Controller
 		if (isset($_SESSION['search_sess'])) {
 			unset($_SESSION['search_sess']);
 		}
-
-		if (strpos($_SERVER['REQUEST_URI'], 'entry') !== FALSE) {
-
-			$job_id = $this->uri->segment(3);
-
-			$job = $this->jobs_model->get($job_id);
-
-			if (empty($job)) {
-				redirect('/job_list');
-			}
-		}
 	}
 
 	public function index()
@@ -486,12 +475,12 @@ class Home extends CI_Controller
 		$this->load->view('job_list', $data);
 	}
 
-	public function jobs_entry($job_id)
+	public function jobs_entry($job_id = null)
 	{
 		$this->load->view('entry', ['job_id' => $job_id]);
 	}
 
-	public function jobs_confirm($job_id)
+	public function jobs_confirm($job_id = null)
 	{
 		$last_name = isset($_POST["last_name"]) ? $_POST["last_name"] : "";
 		$first_name = isset($_POST["first_name"]) ? $_POST["first_name"] : "";

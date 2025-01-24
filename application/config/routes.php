@@ -20,6 +20,11 @@ $route['jobs/(:num)']['GET'] = 'home/jobs/$1';
 $route['jobs/entry/(:num)']['GET'] = 'home/jobs_entry/$1';
 $route['jobs/entry/(:num)/confirm']['POST'] = 'home/jobs_confirm/$1';
 $route['jobs/entry/(:num)/complete']['GET'] = 'home/jobs_complete/$1';
+
+$route['jobs/entry']['GET'] = 'home/jobs_entry';
+$route['jobs/entry/confirm']['GET'] = 'home/jobs_confirm';
+$route['jobs/entry/complete']['GET'] = 'home/jobs_complete';
+
 $route['get_lines']['POST'] = 'home/get_lines';
 $route['get_stations']['POST'] = 'home/get_stations';
 $route['get_prefs_lines_and_stations']['POST'] = 'home/get_prefs_lines_stations';
