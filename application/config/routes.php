@@ -22,7 +22,7 @@ $route['jobs/entry/(:num)/confirm']['POST'] = 'home/jobs_confirm/$1';
 $route['jobs/entry/(:num)/complete']['GET'] = 'home/jobs_complete/$1';
 
 $route['jobs/entry']['GET'] = 'home/jobs_entry';
-$route['jobs/entry/confirm']['GET'] = 'home/jobs_confirm';
+$route['jobs/entry/confirm']['POST'] = 'home/jobs_confirm';
 $route['jobs/entry/complete']['GET'] = 'home/jobs_complete';
 
 $route['get_lines']['POST'] = 'home/get_lines';

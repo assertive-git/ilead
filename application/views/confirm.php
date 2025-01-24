@@ -73,93 +73,94 @@ $method = isset($_POST["method"]) ? $_POST["method"] : "";
 
 ?>
 
-<?php include ('header.php'); ?>
+<?php include('header.php'); ?>
 
 <div id="form" class="confirm">
-  <?php if(!empty($job_id)): ?>
+  <?php if (!empty($job_id)): ?>
     <form name="inquiry" class="form" action="/jobs/entry/<?= $job_id ?>/confirm" method="post" id="formInquiry">
     <?php else: ?>
-    <form name="inquiry" class="form" action="/jobs/entry/confirm" method="post" id="formInquiry">
-    <div class="contact_h">送信内容のご確認</div>
-    <p> 以下の内容で送信します。よろしいですか？ </p>
-    <div class="progressbar">
-      <div class="item">STEP.1 ご入力</div>
-      <div class="item active">STEP.2 ご確認</div>
-      <div class="item">STEP.3 完了</div>
-    </div>
-    <div class="form_cont">
-      <dl>
-        <dt>氏名<span>必須</span></dt>
-        <dd> <?php echo htmlspecialchars($last_name . $first_name, ENT_QUOTES, 'UTF-8'); ?> </dd>
-      </dl>
-      <dl>
-        <dt>フリガナ<span>必須</span></dt>
-        <dd> <?php echo htmlspecialchars($last_name_kana . $first_name_kana, ENT_QUOTES, 'UTF-8'); ?> </dd>
-      </dl>
-      <dl>
-        <dt>生年月日<span>必須</span></dt>
-        <dd> <?php echo htmlspecialchars($b_year . '年' . $b_month . '月' . $b_day . '日', ENT_QUOTES, 'UTF-8'); ?>
-        </dd>
-      </dl>
-      <dl>
-        <dt>年齢<span>必須</span></dt>
-        <dd> <?php echo htmlspecialchars($age, ENT_QUOTES, 'UTF-8'); ?>歳 </dd>
-      </dl>
-      <dl>
-        <dt>電話番号<span>必須</span></dt>
-        <dd> <?php echo htmlspecialchars($tel, ENT_QUOTES, 'UTF-8'); ?></dd>
-      </dl>
-      <dl>
-        <dt>メールアドレス<span>必須</span></dt>
-        <dd> <?php echo htmlspecialchars($email, ENT_QUOTES, 'UTF-8'); ?> </dd>
-      </dl>
-      <dl>
-        <dt>おすまいの地域<span>必須</span></dt>
-        <dd>
-          <?php echo htmlspecialchars('〒' . $zip1 . '-' . $zip2 . ' ' . $prefecture . $address1 . $address2, ENT_QUOTES, 'UTF-8'); ?>
-        </dd>
-      </dl>
-      <dl>
-        <dt>面接希望</dt>
-        <dd> <?php echo htmlspecialchars($hope, ENT_QUOTES, 'UTF-8'); ?> </dd>
-      </dl>
-      <dl>
-        <dt>面接希望日</dt>
-        <dd> <?php echo htmlspecialchars($interview_date, ENT_QUOTES, 'UTF-8'); ?> </dd>
-      </dl>
-      <dl>
-        <dt>面接方法</dt>
-        <dd> <?php echo htmlspecialchars($method, ENT_QUOTES, 'UTF-8'); ?> </dd>
-      </dl>
-      <div class="form_btn">
-        <input type="button" value="修正する" class="btn btn_submit_back" onClick="history.back()">
-        <input type="submit" value="送信する" class="btn btn_submit_send">
-
-
-        <!-- データ送信 -->
-        <input type="hidden" name="last_name" value="<?php echo $last_name ?>" />
-        <input type="hidden" name="first_name" value="<?php echo $first_name ?>" />
-        <input type="hidden" name="last_name_kana" value="<?php echo $last_name_kana ?>" />
-        <input type="hidden" name="first_name_kana" value="<?php echo $first_name_kana ?>" />
-        <input type="hidden" name="b_year" value="<?php echo $b_year ?>" />
-        <input type="hidden" name="b_month" value="<?php echo $b_month ?>" />
-        <input type="hidden" name="b_day" value="<?php echo $b_day ?>" />
-        <input type="hidden" name="age" value="<?php echo $age ?>" />
-        <input type="hidden" name="tel" value="<?php echo $tel ?>" />
-        <input type="hidden" name="email" value="<?php echo $email ?>" />
-        <input type="hidden" name="prefecture" value="<?php echo $prefecture ?>" />
-        <input type="hidden" name="zip1" value="<?php echo $zip1 ?>" />
-        <input type="hidden" name="zip2" value="<?php echo $zip2 ?>" />
-        <input type="hidden" name="address1" value="<?php echo $address1 ?>" />
-        <input type="hidden" name="address2" value="<?php echo $address2 ?>" />
-        <input type="hidden" name="hope" value="<?php echo $hope ?>" />
-        <input type="hidden" name="interview_date" value="<?php echo $interview_date ?>" />
-        <input type="hidden" name="method" value="<?php echo $method ?>" />
-
-        <input type="hidden" name="action" value="1">
+      <form name="inquiry" class="form" action="/jobs/entry/confirm" method="post" id="formInquiry">
+      <?php endif; ?>
+      <div class="contact_h">送信内容のご確認</div>
+      <p> 以下の内容で送信します。よろしいですか？ </p>
+      <div class="progressbar">
+        <div class="item">STEP.1 ご入力</div>
+        <div class="item active">STEP.2 ご確認</div>
+        <div class="item">STEP.3 完了</div>
       </div>
-    </div>
-  </form>
+      <div class="form_cont">
+        <dl>
+          <dt>氏名<span>必須</span></dt>
+          <dd> <?php echo htmlspecialchars($last_name . $first_name, ENT_QUOTES, 'UTF-8'); ?> </dd>
+        </dl>
+        <dl>
+          <dt>フリガナ<span>必須</span></dt>
+          <dd> <?php echo htmlspecialchars($last_name_kana . $first_name_kana, ENT_QUOTES, 'UTF-8'); ?> </dd>
+        </dl>
+        <dl>
+          <dt>生年月日<span>必須</span></dt>
+          <dd> <?php echo htmlspecialchars($b_year . '年' . $b_month . '月' . $b_day . '日', ENT_QUOTES, 'UTF-8'); ?>
+          </dd>
+        </dl>
+        <dl>
+          <dt>年齢<span>必須</span></dt>
+          <dd> <?php echo htmlspecialchars($age, ENT_QUOTES, 'UTF-8'); ?>歳 </dd>
+        </dl>
+        <dl>
+          <dt>電話番号<span>必須</span></dt>
+          <dd> <?php echo htmlspecialchars($tel, ENT_QUOTES, 'UTF-8'); ?></dd>
+        </dl>
+        <dl>
+          <dt>メールアドレス<span>必須</span></dt>
+          <dd> <?php echo htmlspecialchars($email, ENT_QUOTES, 'UTF-8'); ?> </dd>
+        </dl>
+        <dl>
+          <dt>おすまいの地域<span>必須</span></dt>
+          <dd>
+            <?php echo htmlspecialchars('〒' . $zip1 . '-' . $zip2 . ' ' . $prefecture . $address1 . $address2, ENT_QUOTES, 'UTF-8'); ?>
+          </dd>
+        </dl>
+        <dl>
+          <dt>面接希望</dt>
+          <dd> <?php echo htmlspecialchars($hope, ENT_QUOTES, 'UTF-8'); ?> </dd>
+        </dl>
+        <dl>
+          <dt>面接希望日</dt>
+          <dd> <?php echo htmlspecialchars($interview_date, ENT_QUOTES, 'UTF-8'); ?> </dd>
+        </dl>
+        <dl>
+          <dt>面接方法</dt>
+          <dd> <?php echo htmlspecialchars($method, ENT_QUOTES, 'UTF-8'); ?> </dd>
+        </dl>
+        <div class="form_btn">
+          <input type="button" value="修正する" class="btn btn_submit_back" onClick="history.back()">
+          <input type="submit" value="送信する" class="btn btn_submit_send">
+
+
+          <!-- データ送信 -->
+          <input type="hidden" name="last_name" value="<?php echo $last_name ?>" />
+          <input type="hidden" name="first_name" value="<?php echo $first_name ?>" />
+          <input type="hidden" name="last_name_kana" value="<?php echo $last_name_kana ?>" />
+          <input type="hidden" name="first_name_kana" value="<?php echo $first_name_kana ?>" />
+          <input type="hidden" name="b_year" value="<?php echo $b_year ?>" />
+          <input type="hidden" name="b_month" value="<?php echo $b_month ?>" />
+          <input type="hidden" name="b_day" value="<?php echo $b_day ?>" />
+          <input type="hidden" name="age" value="<?php echo $age ?>" />
+          <input type="hidden" name="tel" value="<?php echo $tel ?>" />
+          <input type="hidden" name="email" value="<?php echo $email ?>" />
+          <input type="hidden" name="prefecture" value="<?php echo $prefecture ?>" />
+          <input type="hidden" name="zip1" value="<?php echo $zip1 ?>" />
+          <input type="hidden" name="zip2" value="<?php echo $zip2 ?>" />
+          <input type="hidden" name="address1" value="<?php echo $address1 ?>" />
+          <input type="hidden" name="address2" value="<?php echo $address2 ?>" />
+          <input type="hidden" name="hope" value="<?php echo $hope ?>" />
+          <input type="hidden" name="interview_date" value="<?php echo $interview_date ?>" />
+          <input type="hidden" name="method" value="<?php echo $method ?>" />
+
+          <input type="hidden" name="action" value="1">
+        </div>
+      </div>
+    </form>
 </div>
 
-<?php include ('footer.php'); ?>
+<?php include('footer.php'); ?>

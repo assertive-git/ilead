@@ -499,8 +499,8 @@ class Home extends CI_Controller
 		$address2 = isset($_POST["address2"]) ? $_POST["address2"] : "";
 		$hope = isset($_POST["hope"]) ? $_POST["hope"] : "";
 
-		if (isset($job_id) && isset($_POST['action']) && $_POST['action'] == 1) {
-			$job = $this->jobs_model->get($job_id);
+		if (isset($_POST['action']) && $_POST['action'] == 1) {
+			$job = !empty($this->jobs_model->get($job_id)) ?? [];
 			$this->sendmail($job);
 		} else if (
 			!empty($last_name) &&
