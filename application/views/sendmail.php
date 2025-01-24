@@ -92,11 +92,9 @@ mb_send_mail($to, $subject, $body, $header, "-f" . $from);
 $body2 = "";
 $body2 .= $job_title . "\n";
 $body2 .= $job_memo . "\n";
-$body2 .= "\n";
 $body2 .= "に応募がありました。\n";
 
-$body .= "ご登録内容】-----------------------------------------
-\n";
+$body2 .= "【ご登録内容】-----------------------------------------\n";
 
 $body2 .= "【日時】\n";
 $body2 .= date('Y-m-d H:i:s', time()) . "\n";
