@@ -26,9 +26,6 @@ if (!empty($job)) {
     $job_title = "LPより登録がありました。";
 }
 
-
-
-
 // ----- 文字コード
 mb_language("uni");
 mb_internal_encoding("UTF-8");
