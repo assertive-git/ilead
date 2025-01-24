@@ -57,9 +57,9 @@ $body .= '年齢：' . $age . "\n";
 $body .= '電話番号：' . $tel . "\n";
 $body .= 'メールアドレス：' . $email . "\n";
 $body .= 'お住まいの地域：' . $zip1 . '-' . $zip2 . $pref . $address1 . ' ' . $address2 . "\n";
-$body .= '面接希望：' . $hope . "\n";
-$body .= '面接希望日：' . $interview_date . "\n";
-$body .= '面接方法：' . $method . "\n";
+$body .= '面談希望：' . $hope . "\n";
+$body .= '面談希望日：' . $interview_date . "\n";
+$body .= '面談方法：' . $method . "\n";
 
 $body .= "
 なお、3営業日経ちましてもご連絡がない場合は、
@@ -107,9 +107,9 @@ $body2 .= '年齢：' . $age . "\n";
 $body2 .= '電話番号：' . $tel . "\n";
 $body2 .= 'メールアドレス：' . $email . "\n";
 $body2 .= 'お住まいの地域：' . $zip1 . '-' . $zip2 . $pref . $address1 . ' ' . $address2 . "\n";
-$body2 .= '面接希望：' . $hope . "\n";
-$body2 .= '面接希望日：' . $interview_date . "\n";
-$body2 .= '面接方法：' . $method . "\n";
+$body2 .= '面談希望：' . $hope . "\n";
+$body2 .= '面談希望日：' . $interview_date . "\n";
+$body2 .= '面談方法：' . $method . "\n";
 
 // ----- 送信処理（管理者宛）
 $to = $admin_mail;
