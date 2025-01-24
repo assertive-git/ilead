@@ -70,6 +70,7 @@ $address2 = isset($_POST["address2"]) ? $_POST["address2"] : "";
 $hope = isset($_POST["hope"]) ? $_POST["hope"] : "";
 $interview_date = isset($_POST["interview_date"]) ? $_POST["interview_date"] : "";
 $method = isset($_POST["method"]) ? $_POST["method"] : "";
+
 ?>
 <?php include('header.php'); ?>
 <main id="form">
@@ -80,7 +81,7 @@ $method = isset($_POST["method"]) ? $_POST["method"] : "";
     <div class="item">STEP.2 ご確認</div>
     <div class="item">STEP.3 完了</div>
   </div>
-  <form class="h-adr" name="inquiry" action="/jobs/entry/confirm" method="post" id="formInquiry">
+  <form class="h-adr" name="inquiry" action="/jobs/entry/<?= $job_id ?>/confirm" method="post" id="formInquiry">
     <span class="p-country-name" style="display:none;">Japan</span>
     <dl>
       <dt>氏名<span>必須</span></dt>
@@ -169,7 +170,7 @@ $method = isset($_POST["method"]) ? $_POST["method"] : "";
       </div>
     </dl>
     <dl>
-      <dt>面接希望<span>必須</span></dt>
+      <dt>面談希望<span>必須</span></dt>
       <dd>
         <label for="yes">
           <input id="yes" type="radio" name="hope" value="する" class="js-check" onclick="formSwitch()" checked>
@@ -181,18 +182,19 @@ $method = isset($_POST["method"]) ? $_POST["method"] : "";
     </dl>
     <div id="sample">
       <dl>
-        <dt>面接希望日</dt>
+        <dt>面談希望日</dt>
         <dd>
           <input type="date" value="<?php echo date('Y-m-d'); ?>" name="interview_date">
         </dd>
       </dl>
       <dl>
-        <dt>面接方法</dt>
+        <dt>面談方法</dt>
         <dd>
           <div>
             <select name="method">
-              <option value="面接方法1">面接方法1</option>
-              <option value="面接方法2">面接方法2</option>
+              <option value="対面">対面</option>
+              <option value="WEB">WEB</option>
+              <option value="どちらでも可">どちらでも可</option>
             </select>
           </div>
         </dd>

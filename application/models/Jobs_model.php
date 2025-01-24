@@ -91,7 +91,7 @@ class Jobs_model extends CI_Model
 
     public function get($id)
     {
-        return $this->db->where('id', $id)->where('status', '公開')->select('jobs.id, body, company_or_store_name, map_address, map_url, employment_type, job_type, a_pref, city, concat("【", salary_type, "】", format_number(min_salary), IF(max_salary <> 0, concat("～", format_number(max_salary)), "")) as salary, closest_bus_stop, address, has_requirement, category, traits, business_content, title, top_picture, gfj, gfj_working_hours, gfj_listing_start_date, gfj_employment_type, IF(min_salary = 0, "", min_salary) as min_salary, IF(max_salary = 0, "", max_salary) as max_salary, lat, lng')->get($this->table)->row_array();
+        return $this->db->where('id', $id)->where('status', '公開')->select('jobs.id, title, body, memo, company_or_store_name, map_address, map_url, employment_type, job_type, a_pref, city, concat("【", salary_type, "】", format_number(min_salary), IF(max_salary <> 0, concat("～", format_number(max_salary)), "")) as salary, closest_bus_stop, address, has_requirement, category, traits, business_content, title, top_picture, gfj, gfj_working_hours, gfj_listing_start_date, gfj_employment_type, IF(min_salary = 0, "", min_salary) as min_salary, IF(max_salary = 0, "", max_salary) as max_salary, lat, lng')->get($this->table)->row_array();
     }
 
     public function get_keys()

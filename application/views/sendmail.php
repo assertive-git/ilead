@@ -19,6 +19,10 @@ $hope = isset($_POST["hope"]) ? $_POST["hope"] : "";
 $interview_date = isset($_POST["interview_date"]) ? $_POST["interview_date"] : "";
 $method = isset($_POST["method"]) ? $_POST["method"] : "";
 
+$job_title = $job['title'];
+$job_memo = $job['memo'];
+
+
 
 // ----- 文字コード
 mb_language("uni");
@@ -42,8 +46,9 @@ $body .= "
 担当より3営業日以内に折り返しご連絡させて頂きます。
 
 【ご登録内容】-----------------------------------------
-\n";
+\n\n";
 
+$body .= $job['title'] . "\n\n";
 
 $body .= '氏名：' . $last_name . $first_name . "\n";
 $body .= 'フリガナ：' . $last_name_kana . $first_name_kana . "\n";
@@ -81,14 +86,16 @@ HP : https://ilead-hr.co.jp/
 $to = $email;
 $header = "From: " . $from;
 
-$subject = "【アイリード株式会社 | 薬剤師のお仕事】にご登録ありがとうございます。";
+$subject = "【アイリード株式会社 | 薬剤師のお仕事】に応募ありがとうございます。";
 mb_send_mail($to, $subject, $body, $header, "-f" . $from);
 
 $body2 = "";
-$body2 .= "
-登録がありました。
+$body2 .= $job_title . "\n";
+$body2 .= $job_memo . "\n";
+$body2 .= "\n";
+$body2 .= "に応募がありました。\n";
 
-【ご登録内容】-----------------------------------------
+$body .= "ご登録内容】-----------------------------------------
 \n";
 
 $body2 .= "【日時】\n";

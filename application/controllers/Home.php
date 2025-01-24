@@ -15,6 +15,17 @@ class Home extends CI_Controller
 		if (isset($_SESSION['search_sess'])) {
 			unset($_SESSION['search_sess']);
 		}
+
+		if (strpos($_SERVER['REQUEST_URI'], 'entry') !== FALSE) {
+
+			$job_id = $this->uri->segment(3);
+
+			$job = $this->jobs_model->get($job_id);
+
+			if (empty($job)) {
+				redirect('/job_list');
+			}
+		}
 	}
 
 	public function index()
@@ -475,12 +486,12 @@ class Home extends CI_Controller
 		$this->load->view('job_list', $data);
 	}
 
-	public function jobs_entry()
+	public function jobs_entry($job_id)
 	{
-		$this->load->view('entry');
+		$this->load->view('entry', ['job_id' => $job_id]);
 	}
 
-	public function jobs_confirm()
+	public function jobs_confirm($job_id)
 	{
 		$last_name = isset($_POST["last_name"]) ? $_POST["last_name"] : "";
 		$first_name = isset($_POST["first_name"]) ? $_POST["first_name"] : "";
@@ -499,8 +510,9 @@ class Home extends CI_Controller
 		$address2 = isset($_POST["address2"]) ? $_POST["address2"] : "";
 		$hope = isset($_POST["hope"]) ? $_POST["hope"] : "";
 
-		if (isset($_POST['action']) && $_POST['action'] == 1) {
-			$this->sendmail();
+		if (isset($job_id) && isset($_POST['action']) && $_POST['action'] == 1) {
+			$job = $this->jobs_model->get($job_id);
+			$this->sendmail($job);
 		} else if (
 			!empty($last_name) &&
 			!empty($first_name) &&
@@ -519,9 +531,9 @@ class Home extends CI_Controller
 			!empty($address2) &&
 			!empty($hope)
 		) {
-			$this->load->view('confirm');
+			$this->load->view('confirm', ['job_id' => $job_id]);
 		} else {
-			redirect('/jobs/entry');
+			redirect('/jobs');
 		}
 	}
 
@@ -531,7 +543,7 @@ class Home extends CI_Controller
 			unset($_SESSION['complete']);
 			$this->load->view('complete');
 		} else {
-			redirect('/jobs/entry');
+			redirect('/jobs');
 		}
 	}
 
@@ -653,11 +665,12 @@ class Home extends CI_Controller
 		echo json_encode($data);
 	}
 
-	private function sendmail()
+	private function sendmail($job)
 	{
-		$this->load->view('sendmail');
+		$job_id = $job['id'];
+		$this->load->view('sendmail', ['job' => $job]);
 		$_SESSION['complete'] = "";
-		redirect('/jobs/entry/complete');
+		redirect('/jobs/entry/' . $job_id . '/complete');
 	}
 
 	private function init_pagination($total_rows, $page, $limit)
