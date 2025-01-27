@@ -477,7 +477,9 @@ class Home extends CI_Controller
 
 	public function jobs_entry($job_id = null)
 	{
-		$this->load->view('entry', ['job_id' => $job_id]);
+		$job = $this->jobs_model->get($job_id);
+		$title = !empty($job['title']) ? $job['title'] : '';
+		$this->load->view('entry', ['job_id' => $job_id, 'title' => $title]);
 	}
 
 	public function jobs_confirm($job_id = null)

@@ -52,6 +52,7 @@ $prefectures = array(
 ?>
 <!-- form postデータ取得 -->
 <?php
+$title = isset($_POST["title"]) ? $_POST["title"] : "";
 $last_name = isset($_POST["last_name"]) ? $_POST["last_name"] : "";
 $first_name = isset($_POST["first_name"]) ? $_POST["first_name"] : "";
 $last_name_kana = isset($_POST["last_name_kana"]) ? $_POST["last_name_kana"] : "";
@@ -89,6 +90,12 @@ $method = isset($_POST["method"]) ? $_POST["method"] : "";
         <div class="item">STEP.3 完了</div>
       </div>
       <div class="form_cont">
+        <?php if(!empty($title)): ?>
+        <dl>
+          <dt>タイトル<span>必須</span></dt>
+          <dd> <?php echo htmlspecialchars($title, ENT_QUOTES, 'UTF-8'); ?> </dd>
+        </dl>
+        <?php endif; ?>
         <dl>
           <dt>氏名<span>必須</span></dt>
           <dd> <?php echo htmlspecialchars($last_name . $first_name, ENT_QUOTES, 'UTF-8'); ?> </dd>
@@ -138,6 +145,7 @@ $method = isset($_POST["method"]) ? $_POST["method"] : "";
 
 
           <!-- データ送信 -->
+          <input type="hidden" name="title" value="<?php echo $title ?>" />
           <input type="hidden" name="last_name" value="<?php echo $last_name ?>" />
           <input type="hidden" name="first_name" value="<?php echo $first_name ?>" />
           <input type="hidden" name="last_name_kana" value="<?php echo $last_name_kana ?>" />

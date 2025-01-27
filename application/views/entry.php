@@ -87,6 +87,17 @@ $method = isset($_POST["method"]) ? $_POST["method"] : "";
     <form class="h-adr" name="inquiry" action="/jobs/entry/confirm" method="post" id="formInquiry">
     <?php endif; ?>
     <span class="p-country-name" style="display:none;">Japan</span>
+    <?php if(!empty($title)): ?>
+    <dl>
+      <dt>タイトル</dt>
+      <dd class="title">
+        <label>
+          <span><?= $title ?></span>
+          <input type="hidden" name="title" value="<?php echo htmlspecialchars($title, ENT_QUOTES, 'UTF-8'); ?>">
+        </label>
+      </dd>
+    </dl>
+    <?php endif; ?>
     <dl>
       <dt>氏名<span>必須</span></dt>
       <dd class="name">
