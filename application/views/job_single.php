@@ -22,6 +22,10 @@
       </div>
     </div>
   </section> -->
+  <div class="fixed_btn_list">
+    <div class="registration"><a href="/jobs/entry">まずは簡単登録</a></div>
+    <div class="tel"><a href="tel:06-6210-4371">お電話はこちら</a></div>
+  </div>
   <section class="search_result">
     <?php if (!empty($_GET['favorites'])): ?>
       <a href="/favorites">
@@ -261,7 +265,7 @@
           "value": {
             "@type": "QuantitativeValue",
             "minValue": "<?= $job['min_salary'] ?>",
-            "maxValue": "<?= $job['max_salary']?>",
+            "maxValue": "<?= $job['max_salary'] ?>",
             "unitText": "<?= $job['gfj_employment_type'] ?>"
           }
         }
