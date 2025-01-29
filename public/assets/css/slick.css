@@ -76,7 +76,7 @@
   float: right;
 }
 
-.slick-slide a {
+.slick-slide a.img_box{
   display: block;
   width:100%;
   /*width: 244px;*/
