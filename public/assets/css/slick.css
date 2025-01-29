@@ -76,9 +76,9 @@
   float: right;
 }
 
-.slick-slide a.img_box{
+.slick-slide .img_box {
   display: block;
-  width:100%;
+  width: 100%;
   /*width: 244px;*/
   /*height: 163px;*/
   aspect-ratio: 244/163;
@@ -88,8 +88,9 @@
   width: 100%;
   /*display: block;
     width: 244px;
-    height: 163px;
-    object-fit: cover;*/
+    height: 163px;*/
+  aspect-ratio: 244/163;
+  object-fit: cover;
 }
 .slick-slide.slick-loading img {
   display: none;
