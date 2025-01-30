@@ -34,9 +34,8 @@ mb_internal_encoding("UTF-8");
 //$admin_mail = "s.sugiyama@assertive.co.jp";
 $from = "contact@ilead.trend-search.info";
 // $admin_mail = "a.ruiz@assertive.co.jp";
-$admin_mail = "h.nakayama@assertive.co.jp";
-
-
+// $admin_mail = "h.nakayama@assertive.co.jp";
+$admin_mail = "info@ilead-hr.co.jp";
 
 $body = "";
 

@@ -701,22 +701,24 @@ class Home extends CI_Controller
 
 	public function refresh_instagram_token()
 	{
-		if (is_cli()) {
+		// if (is_cli()) {
 
 			$access_token = $this->db->get('instagram_access_token')->row_array()['access_token'];
 
-			$json = json_decode(file_get_contents('https://graph.instagram.com/refresh_access_token?grant_type=ig_refresh_token&access_token=' . $access_token));
+			$json = json_decode(file_get_contents('https://graph.instagram.com/access_token?grant_type=ig_exchange_token&client_secret=e7a8ec98c867ff4279a83bd9e15cc686&access_token=' . $access_token));
+
+			echo 'https://graph.instagram.com/access_token?grant_type=ig_exchange_token&client_secret=e7a8ec98c867ff4279a83bd9e15cc686&access_token=' . $access_token;exit;
+
+			var_dump($json);exit;
 
 			if (!empty($json->access_token)) {
 				$this->update_instagram_access_token($json->access_token);
 			}
 
-
-
-		} else {
-			echo 'Unauthorized Access!';
-			http_response_code(404);
-		}
+		// } else {
+			// echo 'Unauthorized Access!';
+			// http_response_code(404);
+		// }
 	}
 
 	private function update_instagram_access_token($access_token)
