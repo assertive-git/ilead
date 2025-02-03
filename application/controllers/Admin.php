@@ -775,6 +775,11 @@ class Admin extends CI_Controller
                 $i++;
                 continue;
             }
+            
+            $i++;
+
+            echo $i . '<br>';
+
 
             $job_id = $column[0];
 
