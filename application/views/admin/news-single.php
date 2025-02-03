@@ -129,71 +129,68 @@ $updated_at = !empty($updated_at) ? $updated_at : '';
 
             $('#update').click(function () {
 
+                var id = $('#id').val();
                 var body = $('.ql-editor').html();
+                var title = $('#title').val();
+                var status = $('#status').val();
 
                 $.ajax({
                     type: "POST",
-                    url: '/admin/base64_to_png',
+                    url: '/admin/news/update',
                     dataType: 'json',
                     data: {
-                        body: body
+                        id: id,
+                        title: title,
+                        body: body,
+                        status: status,
                     },
                     success: function (data) {
 
-                        $('.ql-editor img').each(function (i, el) {
-                            var img = $(this);
-                            var src = $(this).attr('src');
+                        var imgs = data.imgs;
 
-                            if (src.indexOf('data:image') !== -1 && src.indexOf('base64') !== -1) {
-                                img.attr('src', data[i]);
-                                img.removeAttr('alt');
-                            }
-                        });
+                        if(imgs.length != 0) {
 
-                        var id = $('#id').val();
-                        var title = $('#title').val();
-                        var body = $('.ql-editor').html();
-                        var status = $('#status').val();
+                            var ii = 0;
 
-                        $.ajax({
-                            type: "POST",
-                            url: '/admin/news/update',
-                            data: {
-                                id: id,
-                                title: title,
-                                body: body,
-                                status: status,
-                            },
-                            success: function (data) {
-                                if (data.id) {
-                                    var id = data.id;
-                                    var updated_at = data.updated_at;
-
-                                    window.history.pushState({}, null, '/admin/news/' + id);
-                                    $('#id').val(id);
-
-                                    $('#job_id').text('<?= base_url() ?>news/' + id).attr('href', '/news/' + id);
-                                    $('.job-id').removeClass('hidden').addClass('flex');
-
-                                    $('#updated_at').text(updated_at);
-                                    $('.updated-at').removeClass('hidden').addClass('flex');
-
-                                    $('#preview').attr('href', '<?= base_url() ?>news/' + id)
-                                    $('.preview').removeClass('hidden').addClass('flex');
-
-                                    $('.delete').removeClass('justify-end').addClass('justify-between');
-                                    $('.delete-btn').removeClass('hidden');
-                                    $('.delete-btn a').attr('href', '/admin/news/' + id + '/delete');
-
-                                    $('#updated-successfully').fadeIn(function () {
-                                        setTimeout(function () {
-                                            $('#updated-successfully').fadeOut();
-                                        }, 3000);
-                                    });
+                            $('.ql-editor img').each(function (i, el) {
+                                var img = $(this);
+                                var src = $(this).attr('src');
+                                if (src.indexOf('data:image') !== -1 && src.indexOf('base64') !== -1) {
+                                    img.attr('src', imgs[ii]);
+                                    img.removeAttr('alt');
+                                    ii++;
                                 }
-                            },
-                            dataType: 'json'
-                        });
+                            });
+                        }
+
+                        if (data.id) {
+                            var id = data.id;
+                            var updated_at = data.updated_at;
+
+                            window.history.pushState({}, null, '/admin/news/' + id);
+                            $('#id').val(id);
+
+                            $('#article-id').text('<?= base_url() ?>news/' + id).attr('href', '/news/' + id)
+                            $('.article-id').removeClass('hidden');
+
+                            $('.preview').removeClass('hidden').addClass('flex');
+
+                            $('#updated_at').text(updated_at);
+                            $('.updated-at').removeClass('hidden').addClass('flex');
+
+                            $('#preview').attr('href', '<?= base_url() ?>news/' + id)
+
+                            $('.delete').removeClass('justify-end').addClass('justify-between');
+                            $('.delete-btn').removeClass('hidden');
+                            $('.delete-btn a').attr('href', '/admin/news/' + id + '/delete');
+
+                            $('#updated-successfully').fadeIn(function () {
+                                setTimeout(function () {
+                                    $('#updated-successfully').fadeOut();
+                                }, 3000);
+                            });
+                        }
+                            
                     }
                 });
             });

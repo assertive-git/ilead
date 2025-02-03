@@ -552,6 +552,8 @@ class Admin extends CI_Controller
     public function news_update()
     {
 
+        $imgs = $this->base64_to_png();
+
         if (empty($_POST['id'])) {
             $id = $this->news_model->insert($_POST);
         } else {
@@ -561,7 +563,7 @@ class Admin extends CI_Controller
 
         $updated_at = $this->news_model->get_admin($id)['updated_at'];
 
-        echo json_encode(['id' => $id, 'updated_at' => $updated_at]);
+        echo json_encode(['id' => $id, 'updated_at' => $updated_at, 'imgs' => $imgs]);
     }
 
     public function news_delete($id)

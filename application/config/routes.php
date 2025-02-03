@@ -70,7 +70,7 @@ $route['admin/jobs/csv_export']['GET'] = 'admin/jobs_csv_export';
 $route['admin/jobs/csv_import']['POST'] = 'admin/jobs_csv_import';
 
 $route['admin/get_lines_stations']['POST'] = 'admin/get_lines_stations';
-$route['admin/base64_to_png']['POST'] = 'admin/base64_to_png';
+// $route['admin/base64_to_png']['POST'] = 'admin/base64_to_png';
 
 
 /* news */
