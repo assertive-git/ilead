@@ -1,4 +1,9 @@
 <?php
+
+echo ini_get("upload_max_filesize") . '<br>';
+echo ini_get("post_max_size");
+
+
 defined('BASEPATH') or exit('No direct script access allowed');
 
 class Admin extends CI_Controller
@@ -775,7 +780,7 @@ class Admin extends CI_Controller
                 $i++;
                 continue;
             }
-            
+
 
             $job_id = $column[0];
 
@@ -816,7 +821,7 @@ class Admin extends CI_Controller
 
             if (empty($job_id)) {
                 $job_id = $this->jobs_model->insert($job_data);
-            } else if($this->jobs_model->exists($job_id)) {
+            } else if ($this->jobs_model->exists($job_id)) {
                 $this->jobs_model->update($job_id, $job_data);
             } else {
                 continue;
