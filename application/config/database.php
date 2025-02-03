@@ -75,7 +75,7 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => 'localhost',
+	'hostname' => ENVIRONMENT == 'production' ? 'mysql7.conoha.ne.jp' : 'localhost',
 	'username' => 'n3qkq_t_shizu',
 	'password' => 'TOMOfumi1031?',
 	'database' => ENVIRONMENT == 'production' ? 'n3qkq_job' : 'ilead_local',
