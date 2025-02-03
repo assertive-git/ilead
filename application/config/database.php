@@ -75,7 +75,7 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => 'os3-366-16227.vs.sakura.ne.jp',
+	'hostname' => 'localhost',
 	'username' => 'n3qkq_t_shizu',
 	'password' => 'TOMOfumi1031?',
 	'database' => ENVIRONMENT == 'production' ? 'n3qkq_job' : 'ilead_local',
