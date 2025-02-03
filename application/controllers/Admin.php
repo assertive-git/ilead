@@ -1,9 +1,5 @@
 <?php
 
-echo ini_get("upload_max_filesize") . '<br>';
-echo ini_get("post_max_size");
-
-
 defined('BASEPATH') or exit('No direct script access allowed');
 
 class Admin extends CI_Controller
