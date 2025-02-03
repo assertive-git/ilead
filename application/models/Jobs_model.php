@@ -342,4 +342,10 @@ class Jobs_model extends CI_Model
         return $this->db->where('employment_type <>', '派遣・在籍出向')->limit(6)->select('jobs.id, body, company_or_store_name, employment_type, job_type, a_pref, city, concat("【", salary_type, "】", format_number(min_salary), IF(max_salary <> 0, concat("～", format_number(max_salary)), "")) as salary, address, has_requirement, category, traits, business_content, title, top_picture, lat, lng')->get($this->table)->result_array();
 
     }
+
+    public function exists($job_id)
+    {
+        $result = $this->db->where('id', $job_id)->get($this->table)->row_array();
+        return !empty($result);
+    }
 }

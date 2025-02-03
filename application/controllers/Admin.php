@@ -815,8 +815,10 @@ class Admin extends CI_Controller
 
             if (empty($job_id)) {
                 $job_id = $this->jobs_model->insert($job_data);
-            } else {
+            } else if($this->jobs_model->exists($job_id)) {
                 $this->jobs_model->update($job_id, $job_data);
+            } else {
+                continue;
             }
 
             $station_data = [
