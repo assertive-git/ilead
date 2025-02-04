@@ -75,7 +75,7 @@
                 <?php if (file_exists('./public/uploads/top_picture/' . $job['top_picture'])): ?>
                   <div class="list_img"><img src="/public/uploads/top_picture/<?= $job['top_picture'] ?>"></div>
                 <?php else: ?>
-                  <div class="list_img"><img src="/public/uploads/top_picture/dummy.jpg"></div>
+                  <div class="list_img"><img src="/public/assets/img/dummy.jpg"></div>
                 <?php endif; ?>
               </div>
               
