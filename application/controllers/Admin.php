@@ -817,6 +817,10 @@ class Admin extends CI_Controller
                 'updated_at' => empty(trim($column[63])) ? date('Y-m-d H:i:s') : $column[63],
             ];
 
+            if (empty($job_data['title']) || empty($job_data['body'])) {
+                continue;
+            }
+
             if (empty($job_id)) {
                 $job_id = $this->jobs_model->insert($job_data);
             } else if ($this->jobs_model->exists($job_id)) {
