@@ -59,7 +59,7 @@
             <?php if (file_exists('./public/uploads/top_picture/' . $job['top_picture'])): ?>
               <div class="result_img1"><img src="/public/uploads/top_picture/<?= $job['top_picture'] ?>"></div>
             <?php else: ?>
-              <div class="result_img1"><img src="/public/uploads/top_picture/616f869cd0af9.jpg"></div>
+              <div class="result_img1"><img src="/public/uploads/top_picture/6711f65d51ecc.jpg"></div>
             <?php endif; ?>
             <div class="table_area">
               <table>
