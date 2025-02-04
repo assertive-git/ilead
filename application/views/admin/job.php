@@ -892,7 +892,7 @@ $traits = !empty($traits) ? explode(',', $traits) : [];
                             <span class="font-bold">トップ画像</span>
                         </div>
                         <div class="flex flex-col space-y-2 text-sm">
-                            <?php if (!empty($top_picture)): ?>
+                            <?php if (!empty($top_picture) && file_exists('./' . $top_picture)): ?>
                                 <img id="top_picture" src="/public/uploads/top_picture/<?= $top_picture ?>" alt="Image">
                             <?php else: ?>
                                 <img id="top_picture" src="/public/uploads/top_picture/616f869cd0af9.jpg" alt="Image">
