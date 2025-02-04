@@ -13,7 +13,7 @@ class Home extends CI_Controller
 		}
 
 		if ($this->router->fetch_method() != 'job_list_get' && isset($_SESSION['search_sess'])) {
-			unset($_SESSION['search_sess']);
+			// unset($_SESSION['search_sess']);
 		}
 	}
 
@@ -328,8 +328,8 @@ class Home extends CI_Controller
 		$employment_types = isset($_SESSION['search_sess']['employment_types']) ? $_SESSION['search_sess']['employment_types'] : [];
 		$salary = isset($_SESSION['search_sess']['salary']) ? $_SESSION['search_sess']['salary'] : [];
 		$job_types = isset($_SESSION['search_sess']['job_types']) ? $_SESSION['search_sess']['job_types'] : [];
-		$categories = isset($_SESSION['search_sess']['categories']) ? implode('|', $_SESSION['search_sess']['categories']) : [];
-		$traits = isset($_SESSION['search_sess']['traits']) ? implode('|', $_SESSION['search_sess']['traits']) : [];
+		$categories = isset($_SESSION['search_sess']['categories']) ? $_SESSION['search_sess']['categories'] : [];
+		$traits = isset($_SESSION['search_sess']['traits']) ? $_SESSION['search_sess']['traits'] : [];
 		$freeword = isset($_SESSION['search_sess']['freeword']) ? $_SESSION['search_sess']['freeword'] : '';
 
 		$region_area = isset($_SESSION['search_sess']['region_area']) ? $_SESSION['search_sess']['region_area'] : '';
@@ -706,12 +706,6 @@ class Home extends CI_Controller
 		$access_token = $this->db->get('instagram_access_token')->row_array()['access_token'];
 
 		$json = json_decode(file_get_contents('https://graph.instagram.com/access_token?grant_type=ig_exchange_token&client_secret=e7a8ec98c867ff4279a83bd9e15cc686&access_token=' . $access_token));
-
-		echo 'https://graph.instagram.com/access_token?grant_type=ig_exchange_token&client_secret=e7a8ec98c867ff4279a83bd9e15cc686&access_token=' . $access_token;
-		exit;
-
-		var_dump($json);
-		exit;
 
 		if (!empty($json->access_token)) {
 			$this->update_instagram_access_token($json->access_token);

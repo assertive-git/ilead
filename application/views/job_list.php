@@ -88,11 +88,11 @@
                         <th class="attribute">最寄り駅</th>
                         <td><?= $job['jobs_stations'] ?></td>
                       </tr>
-                      <?php if(!empty($job['closest_bus_stop'])): ?>
-                      <tr>
-                        <th class="attribute">バス停</th>
-                        <td><?= $job['closest_bus_stop'] ?></td>
-                      </tr>
+                      <?php if (!empty($job['closest_bus_stop'])): ?>
+                        <tr>
+                          <th class="attribute">バス停</th>
+                          <td><?= $job['closest_bus_stop'] ?></td>
+                        </tr>
                       <?php endif; ?>
                       <tr>
                         <th class="attribute">業務内容</th>
@@ -105,7 +105,11 @@
                     </table>
                     <small><?= str_replace(',', ' / ', $job['traits']) ?></small>
                   </div>
-                  <div class="list_img"><img src="/public/uploads/top_picture/<?= $job['top_picture'] ?>"></div>
+                  <?php if (file_exists('./public/uploads/top_picture/' . $job['top_picture'])): ?>
+                    <div class="list_img"><img src="/public/uploads/top_picture/<?= $job['top_picture'] ?>"></div>
+                  <?php else: ?>
+                    <div class="list_img"><img src="/public/uploads/top_picture/616f869cd0af9.jpg"></div>
+                  <?php endif; ?>
                 </div>
 
                 <ul class="button_area">
