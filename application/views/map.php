@@ -59,7 +59,7 @@
                     <?php if (file_exists('./public/uploads/top_picture/' . $job['top_picture'])): ?>
                     <img class="top-picture"><img src="/public/uploads/top_picture/<?= $job['top_picture'] ?>" width="100" height="81">
                     <?php else: ?>
-                    <img class="top-picture"><img src="/public/uploads/top_picture/616f869cd0af9.jpg" width="100" height="81">
+                    <img class="top-picture"><img src="/public/uploads/top_picture/dummy.jpg" width="100" height="81">
                     <?php endif; ?>
                     <div class="info_inner">
                       <?php if (!empty($job['category'])): ?>

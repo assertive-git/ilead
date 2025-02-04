@@ -895,7 +895,7 @@ $traits = !empty($traits) ? explode(',', $traits) : [];
                             <?php if (!empty($top_picture) && file_exists("./public/uploads/top_picture/" . $top_picture)): ?>
                                 <img id="top_picture" src="/public/uploads/top_picture/<?= $top_picture ?>" alt="Image">
                             <?php else: ?>
-                                <img id="top_picture" src="/public/uploads/top_picture/616f869cd0af9.jpg" alt="Image">
+                                <img id="top_picture" src="/public/uploads/top_picture/dummy.jpg" alt="Image">
                             <?php endif; ?>
                             <button id="select-top-picture" class="bg-slate-600 text-white px-10 py-2">トップ画像を選択</button>
                         </div>
