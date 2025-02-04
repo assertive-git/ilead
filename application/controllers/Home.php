@@ -12,7 +12,7 @@ class Home extends CI_Controller
 			$_SESSION['session_id'] = session_create_id();
 		}
 
-		if (isset($_SESSION['search_sess'])) {
+		if ($this->router->fetch_method() != 'job_list_get' && isset($_SESSION['search_sess'])) {
 			unset($_SESSION['search_sess']);
 		}
 	}
@@ -703,21 +703,23 @@ class Home extends CI_Controller
 	{
 		// if (is_cli()) {
 
-			$access_token = $this->db->get('instagram_access_token')->row_array()['access_token'];
+		$access_token = $this->db->get('instagram_access_token')->row_array()['access_token'];
 
-			$json = json_decode(file_get_contents('https://graph.instagram.com/access_token?grant_type=ig_exchange_token&client_secret=e7a8ec98c867ff4279a83bd9e15cc686&access_token=' . $access_token));
+		$json = json_decode(file_get_contents('https://graph.instagram.com/access_token?grant_type=ig_exchange_token&client_secret=e7a8ec98c867ff4279a83bd9e15cc686&access_token=' . $access_token));
 
-			echo 'https://graph.instagram.com/access_token?grant_type=ig_exchange_token&client_secret=e7a8ec98c867ff4279a83bd9e15cc686&access_token=' . $access_token;exit;
+		echo 'https://graph.instagram.com/access_token?grant_type=ig_exchange_token&client_secret=e7a8ec98c867ff4279a83bd9e15cc686&access_token=' . $access_token;
+		exit;
 
-			var_dump($json);exit;
+		var_dump($json);
+		exit;
 
-			if (!empty($json->access_token)) {
-				$this->update_instagram_access_token($json->access_token);
-			}
+		if (!empty($json->access_token)) {
+			$this->update_instagram_access_token($json->access_token);
+		}
 
 		// } else {
-			// echo 'Unauthorized Access!';
-			// http_response_code(404);
+		// echo 'Unauthorized Access!';
+		// http_response_code(404);
 		// }
 	}
 

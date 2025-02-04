@@ -75,10 +75,10 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => ENVIRONMENT == 'production' ? 'mysql7.conoha.ne.jp' : 'os3-366-16227.vs.sakura.ne.jp',
+	'hostname' => ENVIRONMENT == 'production' ? 'mysql7.conoha.ne.jp' : 'localhost',
 	'username' => 'n3qkq_t_shizu',
 	'password' => 'TOMOfumi1031?',
-	'database' => ENVIRONMENT == 'production' ? 'n3qkq_job' : 'ilead_local',
+	'database' => 'n3qkq_job',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,
