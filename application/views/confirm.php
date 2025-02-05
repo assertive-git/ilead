@@ -90,11 +90,11 @@ $method = isset($_POST["method"]) ? $_POST["method"] : "";
         <div class="item">STEP.3 完了</div>
       </div>
       <div class="form_cont">
-        <?php if(!empty($title)): ?>
-        <dl>
-          <dt>タイトル<span>必須</span></dt>
-          <dd> <?php echo htmlspecialchars($title, ENT_QUOTES, 'UTF-8'); ?> </dd>
-        </dl>
+        <?php if (!empty($title)): ?>
+          <dl>
+            <dt>タイトル<span>必須</span></dt>
+            <dd> <?php echo htmlspecialchars($title, ENT_QUOTES, 'UTF-8'); ?> </dd>
+          </dl>
         <?php endif; ?>
         <dl>
           <dt>氏名<span>必須</span></dt>
@@ -128,17 +128,19 @@ $method = isset($_POST["method"]) ? $_POST["method"] : "";
           </dd>
         </dl>
         <dl>
-          <dt>面接希望</dt>
+          <dt>面談希望</dt>
           <dd> <?php echo htmlspecialchars($hope, ENT_QUOTES, 'UTF-8'); ?> </dd>
         </dl>
-        <dl>
-          <dt>面接希望日</dt>
-          <dd> <?php echo htmlspecialchars($interview_date, ENT_QUOTES, 'UTF-8'); ?> </dd>
-        </dl>
-        <dl>
-          <dt>面接方法</dt>
-          <dd> <?php echo htmlspecialchars($method, ENT_QUOTES, 'UTF-8'); ?> </dd>
-        </dl>
+        <?php if ($hope == "する"): ?>
+          <dl>
+            <dt>面談希望日</dt>
+            <dd> <?php echo htmlspecialchars($interview_date, ENT_QUOTES, 'UTF-8'); ?> </dd>
+          </dl>
+          <dl>
+            <dt>面談方法</dt>
+            <dd> <?php echo htmlspecialchars($method, ENT_QUOTES, 'UTF-8'); ?> </dd>
+          </dl>
+        <?php endif; ?>
         <div class="form_btn">
           <input type="button" value="修正する" class="btn btn_submit_back" onClick="history.back()">
           <input type="submit" value="送信する" class="btn btn_submit_send">

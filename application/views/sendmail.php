@@ -63,9 +63,10 @@ $body .= '電話番号：' . $tel . "\n";
 $body .= 'メールアドレス：' . $email . "\n";
 $body .= 'お住まいの地域：' . $zip1 . '-' . $zip2 . $prefecture . $address1 . ' ' . $address2 . "\n";
 $body .= '面談希望：' . $hope . "\n";
-$body .= '面談希望日：' . $interview_date . "\n";
-$body .= '面談方法：' . $method . "\n";
-
+if ($hope == "する") {
+    $body .= '面談希望日：' . $interview_date . "\n";
+    $body .= '面談方法：' . $method . "\n";
+}
 $body .= "
 なお、3営業日経ちましてもご連絡がない場合は、
 大変お手数ではございますが、下記の電話番号までご連絡をいただけますと幸いです。
@@ -113,14 +114,15 @@ $body2 .= "【お客様情報】\n";
 $body2 .= '氏名：' . $last_name . $first_name . "\n";
 $body2 .= 'フリガナ：' . $last_name_kana . $first_name_kana . "\n";
 $body2 .= '生年月日：' . $b_year . "-" . $b_month . "-" . $b_day . "\n";
-$body2 .= '年齢：' . $age . "\n";
 $body2 .= '電話番号：' . $tel . "\n";
+$body2 .= '年齢：' . $age . "\n";
 $body2 .= 'メールアドレス：' . $email . "\n";
 $body2 .= 'お住まいの地域：' . $zip1 . '-' . $zip2 . $prefecture . $address1 . ' ' . $address2 . "\n";
 $body2 .= '面談希望：' . $hope . "\n";
-$body2 .= '面談希望日：' . $interview_date . "\n";
-$body2 .= '面談方法：' . $method . "\n";
-
+if ($hope == "する") {
+    $body2 .= '面談希望日：' . $interview_date . "\n";
+    $body2 .= '面談方法：' . $method . "\n";
+}
 // ----- 送信処理（管理者宛）
 $to = $admin_mail;
 $header = "From: " . $from . "\n";
