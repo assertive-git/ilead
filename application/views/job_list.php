@@ -1,6 +1,10 @@
 ﻿<?php include('header.php'); ?>
 
 <main id="job_list">
+  <div class="fixed_btn_list">
+    <div class="registration"><a href="/jobs/entry">まずは簡単登録</a></div>
+    <div class="tel"><a href="tel:06-6210-4371">お電話はこちら</a></div>
+  </div>
 
   <input id="block-01" type="checkbox" class="toggle">
   <label class="menu_accordion sp" for="block-01">検索条件を変更する</label>
