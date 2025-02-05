@@ -1,6 +1,10 @@
 ﻿<?php include('header.php'); ?>
 
 <main id="job_list">
+  <div class="fixed_btn_list">
+    <div class="registration"><a href="/jobs/entry">まずは簡単登録</a></div>
+    <div class="tel"><a href="tel:06-6210-4371">お電話はこちら</a></div>
+  </div>
 
   <input id="block-01" type="checkbox" class="toggle">
   <label class="menu_accordion sp" for="block-01">検索条件を変更する</label>
@@ -88,11 +92,11 @@
                         <th class="attribute">最寄り駅</th>
                         <td><?= $job['jobs_stations'] ?></td>
                       </tr>
-                      <?php if(!empty($job['closest_bus_stop'])): ?>
-                      <tr>
-                        <th class="attribute">バス停</th>
-                        <td><?= $job['closest_bus_stop'] ?></td>
-                      </tr>
+                      <?php if (!empty($job['closest_bus_stop'])): ?>
+                        <tr>
+                          <th class="attribute">バス停</th>
+                          <td><?= $job['closest_bus_stop'] ?></td>
+                        </tr>
                       <?php endif; ?>
                       <tr>
                         <th class="attribute">業務内容</th>
