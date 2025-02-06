@@ -23,7 +23,8 @@
     </div>
   </section> -->
   <div class="fixed_btn_list">
-    <div class="registration"><a href="/jobs/entry/<?= $job['id'] ?>">まずは簡単登録</a></div>
+    <div class="registration sp"><a style="background-color: #ff8900" href="/jobs/entry/<?= $job['id'] ?>">応募する</a></div>
+    <div class="registration pc"><a href="/jobs/entry/<?= $job['id'] ?>">まずは簡単登録</a></div>
     <div class="tel"><a href="tel:06-6210-4371">お電話はこちら</a></div>
   </div>
   <section class="search_result">

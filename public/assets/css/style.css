@@ -24,6 +24,26 @@ body {
   display: none;
 }
 
+.registration.pc {
+  display: block;
+}
+
+@media(max-width: 768px) {
+  .registration.pc {
+    display: none;
+  }
+}
+
+.registration.sp {
+  display: none;
+}
+
+@media(max-width: 768px) {
+  .registration.sp {
+    display: block;
+  }
+}
+
 h2 {
   font-size: min(65 / 1200 * 100vw, 7.5rem);
   color: #004191;
