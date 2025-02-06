@@ -480,8 +480,6 @@ class Home extends CI_Controller
 
 		if (!empty($job_id)) {
 			$_SESSION['job_id'] = $job_id;
-		} else {
-			$job_id = $_SESSION['job_id'];
 		}
 
 		$job = $this->jobs_model->get($job_id);

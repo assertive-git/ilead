@@ -23,7 +23,7 @@
     </div>
   </section> -->
   <div class="fixed_btn_list">
-    <div class="registration"><a href="/jobs/entry">まずは簡単登録</a></div>
+    <div class="registration"><a href="/jobs/entry/<?= !empty($_SESSION['job_id']) ? $_SESSION['job_id'] : '' ?>">まずは簡単登録</a></div>
     <div class="tel"><a href="tel:06-6210-4371">お電話はこちら</a></div>
   </div>
   <section class="search_result">
