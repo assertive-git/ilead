@@ -21,7 +21,7 @@ class Home extends CI_Controller
 	{
 		$data = [];
 
-		$data['total_jobs'] = 4333;
+		$data['total_jobs'] = $this->jobs_model->get_all_cnt();
 		$data['new_jobs'] = $this->jobs_model->get_new_jobs();
 		$data['direct'] = $this->jobs_model->get_direct();
 		$data['deployment'] = $this->jobs_model->get_deployment();
