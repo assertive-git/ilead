@@ -23,10 +23,10 @@ class Home extends CI_Controller
 
 		$data['total_jobs'] = 4333;
 		$data['new_jobs'] = $this->jobs_model->get_new_jobs();
-		// $data['direct'] = $this->jobs_model->get_direct();
-		// $data['deployment'] = $this->jobs_model->get_deployment();
-		// $data['news'] = $this->news_model->get_new_news();
-		// $data['instagram_feed'] = $this->instagram_feed();
+		$data['direct'] = $this->jobs_model->get_direct();
+		$data['deployment'] = $this->jobs_model->get_deployment();
+		$data['news'] = $this->news_model->get_new_news();
+		$data['instagram_feed'] = $this->instagram_feed();
 
 		// $pls_data = [];
 
