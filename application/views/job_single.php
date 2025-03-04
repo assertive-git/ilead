@@ -29,7 +29,7 @@
   </div>
   <section class="search_result">
     <?php if (!empty($_GET['favorites'])): ?>
-      <a href="/favorites">
+      <a href="javascript:void(0);" onclick="history.back(-1);return false;">
         <button id="return" class="arrow_before favorites">検討中リストへ戻る</button>
       </a>
     <?php else: ?>
