@@ -96,10 +96,6 @@
                             <ul
                                 class="absolute cursor-pointer bg-white border text-black p-1 whitespace-nowrap hidden nav-settings-child top-10 xl:ml-[-45px] ml-[-90px] z-10">
                                 <li class="px-4 py-1 hover:bg-slate-200">
-                                    <i class="fas fa-info-circle"></i>
-                                    <a href="/admin/logout">アカウント</a>
-                                </li>
-                                <li class="px-4 py-1 hover:bg-slate-200">
                                     <i class="fas fa-sign-out"></i>
                                     <a href="/admin/logout">ログアウト</a>
                                 </li>
