@@ -389,5 +389,10 @@
   </section>
 </main>
 
+<script>
+  if (window.history.replaceState) {
+    window.history.replaceState( null, null, window.location.href );
+  }
+</script>
 
 <div class="pc"><?php include ('footer.php'); ?></div>
