@@ -190,14 +190,23 @@ class Home extends CI_Controller
 
 	public function map_get()
 	{
-		$areas = [];
-		$stations = [];
-		$employment_types = [];
-		$salary = [];
-		$job_types = [];
-		$categories = [];
-		$traits = [];
-		$freeword = '';
+		// $areas = [];
+		// $stations = [];
+		// $employment_types = [];
+		// $salary = [];
+		// $job_types = [];
+		// $categories = [];
+		// $traits = [];
+		// $freeword = '';
+
+		$areas = isset($_SESSION['search_sess']['areas']) ? $_SESSION['search_sess']['areas'] : [];
+		$stations = isset($_SESSION['search_sess']['stations']) ? $_SESSION['search_sess']['stations'] : [];
+		$employment_types = isset($_SESSION['search_sess']['employment_types']) ? $_SESSION['search_sess']['employment_types'] : [];
+		$salary = isset($_SESSION['search_sess']['salary']) ? $_SESSION['search_sess']['salary'] : [];
+		$job_types = isset($_SESSION['search_sess']['job_types']) ? $_SESSION['search_sess']['job_types'] : [];
+		$categories = isset($_SESSION['search_sess']['categories']) ? $_SESSION['search_sess']['categories'] : [];
+		$traits = isset($_SESSION['search_sess']['traits']) ? $_SESSION['search_sess']['traits'] : [];
+		$freeword = isset($_SESSION['search_sess']['freeword']) ? $_SESSION['search_sess']['freeword'] : '';
 
 		$offset = 0;
 		$limit = 50;
@@ -243,6 +252,15 @@ class Home extends CI_Controller
 		$categories = isset($_POST['categories']) ? implode('|', $_POST['categories']) : [];
 		$traits = isset($_POST['traits']) ? implode('|', $_POST['traits']) : [];
 		$freeword = isset($_POST['freeword']) ? $_POST['freeword'] : '';
+
+		$_SESSION['search_sess']['areas'] = $areas;
+		$_SESSION['search_sess']['stations'] = $stations;
+		$_SESSION['search_sess']['employment_types'] = $employment_types;
+		$_SESSION['search_sess']['salary'] = $salary;
+		$_SESSION['search_sess']['job_types'] = $job_types;
+		$_SESSION['search_sess']['categories'] = $categories;
+		$_SESSION['search_sess']['traits'] = $traits;
+		$_SESSION['search_sess']['freeword'] = $freeword;
 
 		$offset = isset($_POST['offset']) ? $_POST['offset'] : 0;
 		$limit = 50;
