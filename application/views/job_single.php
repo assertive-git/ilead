@@ -33,7 +33,7 @@
         <button id="return" class="arrow_before favorites">検討中リストへ戻る</button>
       </a>
     <?php else: ?>
-      <a href="/job_list">
+      <a href="javascript:void(0);" onclick="history.back(-1);return false;">
         <button id="return" class="arrow_before">
           一覧へ戻る
         </button>
