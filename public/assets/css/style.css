@@ -1160,16 +1160,18 @@ main .search .button_area button.reset {
 
 .plus.active {
   display: none;
-  font-size: 24px;
+  font-size: 24px !important;
   color: #65b9e7 !important;
 }
 
+.search_inner li.active .plus.not-active,
 .main7 li.active .plus.not-active {
   display: none;
 }
 
+.search_inner li.active .plus.active,
 .main7 li.active .plus.active {
-  display: block;
+  display: block !important;
 }
 
 /*-----タブメニュー-----*/
@@ -1963,6 +1965,11 @@ main .search_area .search_inner {
   flex-wrap: wrap;
   width: 96%;
   margin: 0 auto;
+}
+
+main .search_area .search_inner li.active {
+  color: #65b9e7;
+  border: 2px solid #65b9e7;
 }
 
 main .search_area .search_inner ul {

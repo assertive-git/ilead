@@ -15,9 +15,8 @@
     <form class="search_form" action="/job_list" method="POST">
       <div class="search_inner">
         <ul>
-          <li class="areas"><button type="button" data-modal="modal1" class="modal-toggle">エリアを選ぶ<span
-                class="plus <?= !empty($areas) ? 'active' : '' ?>">+</span></button>
-          </li>
+          <li class="areas <?= !empty($areas) ? 'active' : '' ?>"><button type="button" data-modal="modal1" class="modal-toggle">エリアを選ぶ<span
+                class="plus not-active">+</span><i class="fa-solid fa-circle-check plus active"></i></button>
           <li class="stations"><button type="button" data-modal="modal2" class="modal-toggle">沿線・駅を選ぶ<span
                 class="plus <?= !empty($stations) ? 'active' : '' ?>">+</span></button></li>
           <li class="job_types"><button type="button" data-modal="modal3" class="modal-toggle">職種を選ぶ<span
@@ -27,7 +26,7 @@
           <li class="employment_types"><button type="button" data-modal="modal5" class="modal-toggle">雇用形態/給与を選ぶ<span
                 class="plus <?= !empty($employment_types) ? 'active' : '' ?>">+</span></button></li>
           <li class="traits"><button type="button" data-modal="modal6" class="modal-toggle">こだわり<span
-                class="plus <?= !empty($traits) ? 'active' : '' ?>">+</span></button>
+                class="plus not-active">+</span><i class="fa-solid fa-circle-check plus active <?= !empty($traits) ? 'show' : '' ?>"></i></button>
           </li>
           <li class="freeword">
             <input type="text" placeholder="フリーワード" name="freeword" value="<?= $freeword ?>">
