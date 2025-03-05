@@ -1,4 +1,4 @@
-﻿<?php include ('header.php'); ?>
+﻿<?php include('header.php'); ?>
 
 <main id="map">
 
@@ -9,19 +9,19 @@
     <form id="list" class="area is-active" action="/map" method="POST">
       <div class="search_inner map_in">
         <ul>
-          <li class="areas"><button type="button" data-modal="modal1" class="modal-toggle">エリアを選ぶ<span
-                class="plus <?= !empty($areas) ? 'active' : '' ?>">+</span></button>
+          <li class="areas <?= !empty($areas) ? 'active' : '' ?>"><button type="button" data-modal="modal1" class="modal-toggle">エリアを選ぶ<span
+                class="plus not-active">+</span><i class="fa-solid fa-circle-check plus active"></i></button>
           </li>
-          <li class="stations"><button type="button" data-modal="modal2" class="modal-toggle">沿線・駅を選ぶ<span
-                class="plus <?= !empty($stations) ? 'active' : '' ?>">+</span></button></li>
-            <li class="job_types"><button type="button" data-modal="modal3" class="modal-toggle">職種を選ぶ<span
-                class="plus <?= !empty($job_types) ? 'active' : '' ?>">+</span></button></li>
-          <li class="categories"><button type="button" data-modal="modal4" class="modal-toggle">施設・種別を選ぶ<span
-                class="plus <?= !empty($categories) ? 'active' : '' ?>">+</span></button></li>
-          <li class="employment_types"><button type="button" data-modal="modal5" class="modal-toggle">雇用形態/給与を選ぶ<span
-                class="plus <?= !empty($employment_types) ? 'active' : '' ?>">+</span></button></li>
-          <li class="traits"><button type="button" data-modal="modal6" class="modal-toggle">こだわり<span
-                class="plus <?= !empty($traits) ? 'active' : '' ?>">+</span></button>
+          <li class="stations <?= !empty($stations) ? 'active' : '' ?>"><button type="button" data-modal="modal2" class="modal-toggle">沿線・駅を選ぶ<span
+                class="plus not-active">+</span><i class="fa-solid fa-circle-check plus active"></i></button></li>
+            <li class="job_types <?= !empty($job_types) ? 'active' : '' ?>"><button type="button" data-modal="modal3" class="modal-toggle">職種を選ぶ<span
+                class="plus not-active">+</span><i class="fa-solid fa-circle-check plus active"></i></button></li>
+          <li class="categories <?= !empty($categories) ? 'active' : '' ?>"><button type="button" data-modal="modal4" class="modal-toggle">施設・種別を選ぶ<span
+                class="plus not-active">+</span><i class="fa-solid fa-circle-check plus active"></i></button></li>
+          <li class="employment_types <?= !empty($employment_types) ? 'active' : '' ?>"><button type="button" data-modal="modal5" class="modal-toggle">雇用形態/給与を選ぶ<span
+                class="plus not-active">+</span><i class="fa-solid fa-circle-check plus active"></i></button></li>
+          <li class="traits <?= !empty($traits) ? 'active' : '' ?>"><button type="button" data-modal="modal6" class="modal-toggle">こだわり<span
+                class="plus not-active">+</span><i class="fa-solid fa-circle-check plus active"></i></button>
           </li>
           <li class="freeword">
             <input name="freeword" type="text" placeholder="フリーワード">
@@ -48,51 +48,51 @@
         <p>検索結果一覧　全<span class="number"><?= $total_jobs ?></span>件</p>
         <?php $job_ids = []; ?>
         <?php foreach ($jobs as $job): ?>
-          <?php $job_ids[] = $job['id']; ?>
-          <ul class="list_inner">
-            <li>
-              <!-- <a href=""> -->
-              <div id="<?= $job['id'] ?>" class="list_item id" job-link="/jobs/<?= $job['id'] ?>">
-                <div class="info">
-                  <h5 class="title"><?= $job['title'] ?></h5>
-                  <div class="info-tbl">
-                    <?php if (file_exists('./public/uploads/top_picture/' . $job['top_picture'])): ?>
-                    <img class="top-picture"><img src="/public/uploads/top_picture/<?= $job['top_picture'] ?>" width="100" height="81">
-                    <?php else: ?>
-                    <img class="top-picture"><img src="/public/assets/img/dummy.jpg" width="100" height="81">
-                    <?php endif; ?>
-                    <div class="info_inner">
-                      <?php if (!empty($job['category'])): ?>
-                        <?php $i = 0 ?>
-                        <div class="category">
-                          <?php foreach (explode(',', $job['category']) as $category): ?>
-                            <span><?= $category ?></span>
-                            <?php $i++; ?>
-                            <?php if ($i == 2)
-                              break ?>
-                          <?php endforeach ?>
-                        </div>
+            <?php $job_ids[] = $job['id']; ?>
+            <ul class="list_inner">
+              <li>
+                <!-- <a href=""> -->
+                <div id="<?= $job['id'] ?>" class="list_item id" job-link="/jobs/<?= $job['id'] ?>">
+                  <div class="info">
+                    <h5 class="title"><?= $job['title'] ?></h5>
+                    <div class="info-tbl">
+                      <?php if (file_exists('./public/uploads/top_picture/' . $job['top_picture'])): ?>
+                        <img class="top-picture"><img src="/public/uploads/top_picture/<?= $job['top_picture'] ?>" width="100" height="81">
+                      <?php else: ?>
+                        <img class="top-picture"><img src="/public/assets/img/dummy.jpg" width="100" height="81">
                       <?php endif; ?>
-                      <ul>
-                        <!-- <li><span class="attribute">勤務地</span><span class="city"><?= $job['city'] ?></span></li> -->
-                        <li><span class="attribute">雇用形態</span><span class="city"><?= $job['employment_type'] ?></span></li>
-                        <li>
-                          <span class="attribute">給与</span>
-                          <span class="salary"><?= $job['salary'] ?>円</span>
-                        </li>
-                        <li><input class="map_address" type="hidden" value="<?= $job['map_address'] ?>"></li>
-                        <li><input class="lat" type="hidden" value="<?= $job['lat'] ?>"></li>
-                        <li><input class="lng" type="hidden" value="<?= $job['lng'] ?>"></li>
-                      </ul>
+                      <div class="info_inner">
+                        <?php if (!empty($job['category'])): ?>
+                            <?php $i = 0 ?>
+                            <div class="category">
+                              <?php foreach (explode(',', $job['category']) as $category): ?>
+                                  <span><?= $category ?></span>
+                                  <?php $i++; ?>
+                                  <?php if ($i == 2)
+                                    break ?>
+                              <?php endforeach ?>
+                            </div>
+                        <?php endif; ?>
+                        <ul>
+                          <!-- <li><span class="attribute">勤務地</span><span class="city"><?= $job['city'] ?></span></li> -->
+                          <li><span class="attribute">雇用形態</span><span class="city"><?= $job['employment_type'] ?></span></li>
+                          <li>
+                            <span class="attribute">給与</span>
+                            <span class="salary"><?= $job['salary'] ?>円</span>
+                          </li>
+                          <li><input class="map_address" type="hidden" value="<?= $job['map_address'] ?>"></li>
+                          <li><input class="lat" type="hidden" value="<?= $job['lat'] ?>"></li>
+                          <li><input class="lng" type="hidden" value="<?= $job['lng'] ?>"></li>
+                        </ul>
+                      </div>
                     </div>
-                  </div>
                   
+                  </div>
+                  <div class="arrow"><i class="fa-solid fa-angle-right"></i></div>
                 </div>
-                <div class="arrow"><i class="fa-solid fa-angle-right"></i></div>
-              </div>
-              <!-- </a> -->
-            </li>
-          </ul>
+                <!-- </a> -->
+              </li>
+            </ul>
         <?php endforeach; ?>
       </div>
   </section>
@@ -395,4 +395,4 @@
   }
 </script>
 
-<div class="pc"><?php include ('footer.php'); ?></div>
+<div class="pc"><?php include('footer.php'); ?></div>
