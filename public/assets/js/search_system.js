@@ -353,12 +353,12 @@ function reset_all_pluses() {
 }
 
 function set_pluses() {
-    $('input[name="areas[]"]:checked').length ? $('.areas .plus').addClass('active') : $('.areas .plus').removeClass('active');
-    $('input[name="stations[]"]:checked').length ? $('.stations .plus').addClass('active') : $('.stations .plus').removeClass('active');
-    $('input[name="categories[]"]:checked').length ? $('.categories .plus').addClass('active') : $('.categories .plus').removeClass('active');
-    $('input[name="job_types[]"]:checked').length ? $('.job_types .plus').addClass('active') : $('.job_types .plus').removeClass('active');
-    $('input[name="employment_types[]"]:checked').length || $('select[name="salary[yearly]"]').val() || $('select[name="salary[hourly]"]').val() ? $('.employment_types .plus').addClass('active') : $('.employment_types .plus').removeClass('active');
-    $('input[name="traits[]"]:checked').length ? $('.traits .plus').addClass('active') : $('.traits .plus').removeClass('active');
+    $('input[name="areas[]"]:checked').length ? $('.areas').addClass('active') : $('.areas').removeClass('active');
+    $('input[name="stations[]"]:checked').length ? $('.stations').addClass('active') : $('.stations').removeClass('active');
+    $('input[name="categories[]"]:checked').length ? $('.categories').addClass('active') : $('.categories').removeClass('active');
+    $('input[name="job_types[]"]:checked').length ? $('.job_types').addClass('active') : $('.job_types').removeClass('active');
+    $('input[name="employment_types[]"]:checked').length || $('select[name="salary[yearly]"]').val() || $('select[name="salary[hourly]"]').val() ? $('.employment_types').addClass('active') : $('.employment_types').removeClass('active');
+    $('input[name="traits[]"]:checked').length ? $('.traits').addClass('active') : $('.traits').removeClass('active');
 }
 
 function reset_one_plus(modal) {

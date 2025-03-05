@@ -25,32 +25,32 @@
         <ul class="main7">
           <li class="areas">
             <button type="button" type="button" class="modal-toggle btn-example" data-modal="modal1">
-              エリア<small>を選ぶ</small><span class="plus">+</span>
+              エリア<small>を選ぶ</small><span class="plus not-active">+</span><i class="fa-solid fa-circle-check plus active"></i>
             </button>
           </li>
           <li class="stations">
             <button type="button" type="button" class="modal-toggle btn-example" data-modal="modal2">
-              沿線・駅<small>を選ぶ</small><span class="plus">+</span>
+              沿線・駅<small>を選ぶ</small><span class="plus not-active">+</span><i class="fa-solid fa-circle-check plus active"></i>
             </button>
           </li>
           <li class="job_types">
             <button type="button" type="button" class="modal-toggle btn-example" data-modal="modal3">
-              職種<small>を選ぶ</small><span class="plus">+</span>
+              職種<small>を選ぶ</small><span class="plus not-active">+</span><i class="fa-solid fa-circle-check plus active"></i>
             </button>
           </li>
           <li class="categories">
             <button type="button" type="button" class="modal-toggle btn-example" data-modal="modal4">
-              施設・種別<small>を選ぶ</small><span class="plus">+</span>
+              施設・種別<small>を選ぶ</small><span class="plus not-active">+</span><i class="fa-solid fa-circle-check plus active"></i>
             </button>
           </li>
           <li class="employment_types">
             <button type="button" type="button" class="modal-toggle btn-example" data-modal="modal5">
-              雇用形態/給与<small>を選ぶ</small><span class="plus">+</span>
+              雇用形態/給与<small>を選ぶ</small><span class="plus not-active">+</span><i class="fa-solid fa-circle-check plus active"></i>
             </button>
           </li>
           <li class="traits">
             <button type="button" type="button" class="modal-toggle btn-example" data-modal="modal6">
-              こだわり<small>を選ぶ</small><span class="plus">+</span>
+              こだわり<small>を選ぶ</small><span class="plus not-active">+</span><i class="fa-solid fa-circle-check plus active"></i>
             </button>
           </li>
           <li class="freeword">
