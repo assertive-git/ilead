@@ -93,7 +93,7 @@
                         <tr class="border border-black pb-4 border-t-0 border-l-0 border-r-0">
                             <td class="p-2"><input class="check_one check" job-id="<?= $job['id'] ?>" type="checkbox"></td>
                             <td class="p-2"><a class="text-[#13b3e7] pr-2" href="/jobs/<?= $job['id'] ?>"
-                                    target="_blank"><?= $job['id'] ?></a></td>
+                                    target="_blank" rel="opener"><?= $job['id'] ?></a></td>
                             <td class="p-2">
                                 <div class="flex flex-col space-y-1">
                                     <span><?= ellipsize($job['title'], 43) ?></span>

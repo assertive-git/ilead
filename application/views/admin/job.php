@@ -51,7 +51,7 @@ $traits = !empty($traits) ? explode(',', $traits) : [];
                     <i class="fa fa-building text-[#13b3e7]"></i>
                     <span class="font-bold">求人URL:</span>
                     <a id="job_id" class="underline" href="/jobs/<?= $id ?>"
-                        target="_blank"><?= base_url() ?>jobs/<?= $id ?></a>
+                        target="_blank" rel="opener"><?= base_url() ?>jobs/<?= $id ?></a>
                 </div>
 
                 <div class="flex flex-col space-y-2">
