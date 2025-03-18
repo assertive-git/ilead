@@ -1,10 +1,13 @@
 /* init code */
 
 /* last_update_check */
-var last_update_check = Date.now()
+var changeTotal = 1
+var changeCounter = 0
 
 var lines_stations
 var areas
+
+
 
 if (sessionStorage.getItem('lines_stations')) {
     lines_stations = JSON.parse(sessionStorage.getItem('lines_stations'))
@@ -81,6 +84,8 @@ if (sessionStorage.getItem('areas')) {
 
         var checked = $(this).is(':checked')
         var areas = $(this).siblings('.areas')
+        changeTotal = areas.length
+        changeCounter = 0
 
         areas.prop('checked', checked)
         areas.change()
@@ -91,16 +96,11 @@ if (sessionStorage.getItem('areas')) {
         var checked = $(this).is(':checked')
         var stations = $(this).closest('li').siblings('li').find('.stations')
 
+        changeTotal = stations.length
+        changeCounter = 0
+
         stations.prop('checked', checked)
         stations.change()
-    })
-
-    $('body').on('change', '.stations', function () {
-        var stations_all = $(this).closest('.scroll_inner').find('li').eq(0).find('.stations_all')
-        var stations_checked = $(this).closest('.scroll_inner').find('.stations:checked')
-        var stations = $(this).closest('.scroll_inner').find('.stations')
-
-        stations_all.prop('checked', stations_checked.length == stations.length)
     })
 
     $('body').on('change', '.areas', function () {
@@ -109,6 +109,15 @@ if (sessionStorage.getItem('areas')) {
         var areas = $(this).closest('.choice').find('.areas')
 
         areas_all.prop('checked', areas_checked.length == areas.length)
+
+        changeCounter += 1
+
+        if (changeCounter == changeTotal) {
+            set_pluses()
+            total_jobs_update()
+            changeTotal = 1
+            changeCounter = 0
+        }
     })
 
 
@@ -132,7 +141,7 @@ if (sessionStorage.getItem('areas')) {
 
 /* 検索の該当件数更新 */
 (function () {
-    $('body').on('change', '.modal input[name="areas[]"], .modal input[name="job_types[]"], .modal input[name="employment_types[]"], .modal input[name="categories[]"], .modal select[name="salary[yearly]"], .modal select[name="salary[hourly]"], .modal input[name="traits[]"]', function () {
+    $('body').on('change', '.modal input[name="job_types[]"], .modal input[name="employment_types[]"], .modal input[name="categories[]"], .modal select[name="salary[yearly]"], .modal select[name="salary[hourly]"], .modal input[name="traits[]"]', function () {
         set_pluses()
         total_jobs_update()
     })
@@ -447,8 +456,13 @@ function total_jobs_update() {
         }
     })
 
-    $('body').on('change', ".stations", "stations_all", function () {
+    $('body').on('change', ".stations", function () {
 
+        var stations_all = $(this).closest('.scroll_inner').find('li').eq(0).find('.stations_all')
+        var stations_checked = $(this).closest('.scroll_inner').find('.stations:checked')
+        var stations = $(this).closest('.scroll_inner').find('.stations')
+
+        stations_all.prop('checked', stations_checked.length == stations.length)
 
         var info = $(this).val().split('_')
 
@@ -506,8 +520,14 @@ function total_jobs_update() {
             }
         }
 
-        set_pluses()
-        total_jobs_update()
+        changeCounter += 1
+
+        if (changeCounter == changeTotal) {
+            set_pluses()
+            total_jobs_update()
+            changeTotal = 1
+            changeCounter = 0
+        }
     })
 
     function addToMemory_Area(region, prefArea) {
