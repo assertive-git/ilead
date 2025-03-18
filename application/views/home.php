@@ -83,7 +83,12 @@
     <div class="recruitment_slider_wrap">
       <div class="recruitment_slider">
         <?php foreach ($new_jobs as $new_job): ?>
-          <div class="slide_item"> <a href="/jobs/<?= $new_job['id'] ?>" target="_blank" rel="opener" class="img_box"><img src="/public/uploads/top_picture/<?= $new_job['top_picture'] ?>"></a>
+          <div class="slide_item"> <a href="/jobs/<?= $new_job['id'] ?>" target="_blank" rel="opener" class="img_box">
+          <?php if (file_exists('./public/uploads/top_picture/' . $new_job['top_picture'])): ?>
+                <img src="/public/uploads/top_picture/<?= $new_job['top_picture'] ?>">
+            <?php else: ?>
+              <img src="/public/assets/img/dummy.jpg">
+            <?php endif; ?>
             <div class="category">
               <?php $categories = explode(',', $new_job['category']) ?>
               <?php for ($i = 0; $i < 2; $i++): ?>
@@ -95,13 +100,13 @@
               <?php endfor; ?>
             </div>
             <dl>
-              <dt><a href="/jobs/<?= $new_job['id'] ?>" target="_blank" rel="opener">
+                <dt>
                   <?= ellipsize($new_job['title'], 43) ?>
-                </a></dt>
+                </dt>
               <dd><span class="attribute">勤務地</span><?= $new_job['a_pref'] ?><?= $new_job['city'] ?></dd>
               <dd><span class="attribute">給与</span><?= $new_job['salary'] ?>円</dd>
             </dl>
-          </div>
+          </a></div>
         <?php endforeach; ?>
       </div>
 
