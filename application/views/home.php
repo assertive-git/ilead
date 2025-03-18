@@ -121,8 +121,12 @@
         <div class="temporary_slider_wrap">
           <div class="temporary_slider">
             <?php foreach ($direct as $job): ?>
-              <div class="slide_item"> <a href="/jobs/<?= $job['id'] ?>" target="_blank" rel="opener" class="img_box"><img
-                    src="/public/uploads/top_picture/<?= $job['top_picture'] ?>">
+              <div class="slide_item"> <a href="/jobs/<?= $job['id'] ?>" target="_blank" rel="opener" class="img_box">
+              <?php if (file_exists('./public/uploads/top_picture/' . $job['top_picture'])): ?>
+                <img src="/public/uploads/top_picture/<?= $job['top_picture'] ?>">
+            <?php else: ?>
+              <img src="/public/assets/img/dummy.jpg">
+            <?php endif; ?>
                   <div class="category">
                     <?php $i = 0; ?>
                     <?php foreach (explode(',', $job['category']) as $category): ?>
