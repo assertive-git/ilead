@@ -52,14 +52,12 @@ if (sessionStorage.getItem('areas')) {
     $('.region_area').change(function () {
 
         $('#modal1 .prefectures_group').hide()
-        $('.area-box').hide()
-        $('.area-box').eq(0).show()
         var index = $(this).index('.region_area')
 
         // select prefecture with same index
+        $('#modal1 .prefectures_group').eq(index).find('.prefectures_area').eq(0).click()
         $('#modal1 .prefectures_group').eq(index).css({ display: 'flex' })
-
-        $('.prefectures_area').prop('checked', false)
+        // $('.prefectures_area').prop('checked', false)
     })
 
     $('.prefectures_area').change(function () {
@@ -77,7 +75,25 @@ if (sessionStorage.getItem('areas')) {
         var index = $(this).index('.region_lines_stations')
 
         // select prefecture with same index
+        $('#modal2 .prefectures_group').eq(index).find('.prefectures_lines_stations').eq(0).click()
         $('#modal2 .prefectures_group').eq(index).css({ display: 'flex' })
+    })
+
+    $(".prefectures_lines_stations").change(function () {
+
+        var pref = $(this).val()
+    
+        // $(".choice_ttl").hide()
+        $(".to_pref").hide()
+    
+        // line pref title
+        $('.choice_ttl').text(pref).attr('line_pref_title', pref).show()
+    
+        // line title
+        $(".to_pref[line_pref='" + pref + "']").show()
+    
+        // station list
+        $(".to_pref[line_pref='" + pref + "']").find('.line').eq(0).click()
     })
 
     $('body').on('change', '.areas_all', function () {
@@ -147,40 +163,6 @@ if (sessionStorage.getItem('areas')) {
     })
 }())
 
-$('.region_area').change(function () {
-    var region = $(this).val()
-
-    var el = $('label[region_id="' + region + '"]').siblings('.prefectures_area').eq(0)
-
-    el.click()
-
-})
-
-$('.region_lines_stations').change(function () {
-    var region = $(this).val()
-
-    var el = $('label[region_id="' + region + '"]').siblings('.prefectures_lines_stations').eq(0)
-
-    el.click()
-
-})
-
-$(".prefectures_lines_stations").change(function () {
-
-    var pref = $(this).val()
-
-    // $(".choice_ttl").hide()
-    $(".to_pref").hide()
-
-    // line pref title
-    $('.choice_ttl').text(pref).attr('line_pref_title', pref).show()
-
-    // line title
-    $(".to_pref[line_pref='" + pref + "']").show()
-
-    // station list
-    $(".to_pref[line_pref='" + pref + "']").find('.line').eq(0).click()
-})
 
 $('.line').change(function () {
 
