@@ -89,7 +89,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <nav class="pc pc_nav">
       <ul class="nav_list">
         <li>
-          <a href="/job_list">求人情報</a>
+          <a class="job_list_reset" href="/job_list?reset=1">求人情報</a>
         </li>
         <li>
           <a href="https://ilead-hr.co.jp/business">事業紹介</a>
@@ -119,7 +119,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="menu-content">
         <ul class="nav_list">
           <li>
-            <a href="/job_list">求人情報</a>
+            <a class="job_list_reset" href="/job_list?reset=1">求人情報</a>
           </li>
           <li>
             <a href="https://ilead-hr.co.jp/business">事業紹介</a>

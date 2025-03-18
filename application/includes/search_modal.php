@@ -1,5 +1,5 @@
-﻿<?php include (APPPATH . 'includes/japan_regions.php'); ?>
-<?php include (APPPATH . 'includes/japan_areas.php'); ?>
+﻿<?php include(APPPATH . 'includes/japan_regions.php'); ?>
+<?php include(APPPATH . 'includes/japan_areas.php'); ?>
 <div class="modals">
 
   <!-- modal1 -->
@@ -11,9 +11,10 @@
         <div class="region">
           <div class="wrap">
             <?php foreach ($japan_regions as $key => $japan_region): ?>
-              <input type="radio" id="region_area_<?= $key ?>" class="region_area" name="region_area"
-                value="<?= $japan_region['name'] ?>" <?= $region_area == $japan_region['name'] ? 'checked' : '' ?>>
-              <label for="region_area_<?= $key ?>"><?= $japan_region['name'] ?></label>
+                      <input type="checkbox" name="region_areas[]" value="<?= $japan_region['name'] ?>">
+                      <input type="radio" id="region_area_<?= $key ?>" class="region_area" name="region_area"
+                        value="<?= $japan_region['name'] ?>" <?= $region_area == $japan_region['name'] ? 'checked' : '' ?>>
+                      <label for="region_area_<?= $key ?>"><?= $japan_region['name'] ?></label>
             <?php endforeach; ?>
           </div>
 
@@ -21,13 +22,14 @@
         <div class="prefectures">
           <div class="wrap">
             <?php foreach ($japan_regions as $key => $japan_region): ?>
-              <div class="prefectures_group" style="<?= $region_area == $japan_region['name'] ? 'display:flex' : '' ?>">
-                <?php foreach ($japan_region['prefectures'] as $key2 => $pref): ?>
-                  <input class="prefectures_area" id="prefectures_area_<?= $key ?>_<?= $key2 ?>" type="radio"
-                    value="<?= $pref ?>" <?= $prefectures_area == $pref ? 'checked' : '' ?> name="prefectures_area">
-                  <label for="prefectures_area_<?= $key ?>_<?= $key2 ?>"><?= $pref ?></label>
-                <?php endforeach; ?>
-              </div>
+                      <div class="prefectures_group" style="<?= $region_area == $japan_region['name'] ? 'display:flex' : '' ?>">
+                        <?php foreach ($japan_region['prefectures'] as $key2 => $pref): ?>
+                                  <input type="checkbox" name="prefectures_areas[]" value="<?= $pref ?>">
+                                  <input class="prefectures_area" id="prefectures_area_<?= $key ?>_<?= $key2 ?>" type="radio"
+                                    value="<?= $pref ?>" <?= $prefectures_area == $pref ? 'checked' : '' ?> name="prefectures_area">
+                                  <label region_id="<?= $japan_region['name'] ?>" for="prefectures_area_<?= $key ?>_<?= $key2 ?>"><?= $pref ?></label>
+                        <?php endforeach; ?>
+                      </div>
             <?php endforeach; ?>
           </div>
 
@@ -36,24 +38,24 @@
           <div class="choice"></div>
         </div>
         <?php $i = 1; ?>
-        <?php foreach ($japan_areas as $japan_area): ?>
-          <?php foreach ($japan_area as $pref_key => $japan_pref): ?>
-            <div class="search_inner2 area-box hide" style="<?= $prefectures_area == $pref_key ? 'display:block' : '' ?>">
-              <div class="choice">
-                <input type="checkbox" class="areas_all" id="areas_all_<?= $i ?>" name="areas[]" value="all_<?= $i ?>"
-                  <?= in_array('all_' . $i, $areas) ? 'checked' : ''; ?>>
-                <label for="areas_all_<?= $i ?>">すべて</label>
-                <?php $j = 1; ?>
-                <?php foreach ($japan_pref as $japan_city): ?>
-                  <input type="checkbox" id="areas_<?= $i ?>_<?= $j ?>" name="areas[]"
-                    value="<?= $pref_key ?><?= $japan_city ?>" <?= in_array($pref_key . $japan_city, $areas) ? 'checked' : ''; ?>>
-                  <label for="areas_<?= $i ?>_<?= $j ?>"><?= $japan_city ?></label>
-                  <?php $j++; ?>
-                <?php endforeach; ?>
-              </div>
-            </div>
-          <?php endforeach; ?>
-          <?php $i++; ?>
+        <?php foreach ($japan_areas as $region => $japan_area): ?>
+            <?php foreach ($japan_area as $pref_key => $japan_pref): ?>
+                      <div class="search_inner2 area-box hide" style="<?= $prefectures_area == $pref_key ? 'display:block' : '' ?>">
+                        <div class="choice">
+                          <input type="checkbox" class="areas_all" id="areas_all_<?= $i ?>" name="areas[]" value="all_<?= $i ?>"
+                            <?= in_array('all_' . $i, $areas) ? 'checked' : ''; ?>>
+                          <label for="areas_all_<?= $i ?>">すべて</label>
+                          <?php $j = 1; ?>
+                          <?php foreach ($japan_pref as $japan_city): ?>
+                            <input region_id="<?= $region ?>" pref_key="<?= $pref_key ?>" type="checkbox" id="areas_<?= $i ?>_<?= $j ?>" class="areas" name="areas[]"
+                              value="<?= $pref_key ?><?= $japan_city ?>" <?= in_array($pref_key . $japan_city, $areas) ? 'checked' : ''; ?>>
+                            <label for="areas_<?= $i ?>_<?= $j ?>"><?= $japan_city ?></label>
+                            <?php $j++; ?>
+                          <?php endforeach; ?>
+                          <?php $i++; ?>
+                        </div>
+                      </div>
+            <?php endforeach; ?>
         <?php endforeach; ?>
         <ul class="button_area">
           <li class="applicable">該当件数<span class="big total_jobs">
@@ -79,78 +81,58 @@
         <div class="region">
           <div class="wrap">
             <?php foreach ($japan_regions as $key => $japan_region): ?>
-              <input type="radio" id="region_lines_stations_<?= $key ?>" class="region_lines_stations"
-                name="region_lines_stations" value="<?= $japan_region['name'] ?>"
-                <?= $region_lines_stations == $japan_region['name'] ? 'checked' : '' ?>>
-              <label for="region_lines_stations_<?= $key ?>"><?= $japan_region['name'] ?></label>
+                      <input type="checkbox" name="region_lines_stations_cb" value="<?= $japan_region['name'] ?>">
+                      <input type="radio" id="region_lines_stations_<?= $key ?>" class="region_lines_stations"
+                        name="region_lines_stations" value="<?= $japan_region['name'] ?>">
+                      <label for="region_lines_stations_<?= $key ?>"><?= $japan_region['name'] ?></label>
             <?php endforeach; ?>
           </div>
         </div>
         <div class="prefectures">
           <div class="wrap">
             <?php foreach ($japan_regions as $key => $japan_region): ?>
-              <div class="prefectures_group"
-                style="<?= $region_lines_stations == $japan_region['name'] ? 'display:flex' : '' ?>">
-                <?php foreach ($japan_region['prefectures'] as $key2 => $pref): ?>
-                  <input class="prefectures_lines_stations" id="prefectures_lines_stations_<?= $key ?>_<?= $key2 ?>"
-                    type="radio" value="<?= $pref ?>" <?= $prefectures_lines_stations == $pref ? 'checked' : '' ?>
-                    name="prefectures_lines_stations">
-                  <label for="prefectures_lines_stations_<?= $key ?>_<?= $key2 ?>"><?= $pref ?></label>
-                <?php endforeach; ?>
-              </div>
+                      <div class="prefectures_group"
+                        style="<?= $region_lines_stations == $japan_region['name'] ? 'display:flex' : '' ?>">
+                        <?php foreach ($japan_region['prefectures'] as $key2 => $pref): ?>
+                                  <input type="checkbox" name="prefectures_lines_stations_cb" value="<?= $pref ?>">
+                                  <input class="prefectures_lines_stations" id="prefectures_lines_stations_<?= $key ?>_<?= $key2 ?>"
+                                    type="radio" value="<?= $pref ?>"
+                                    name="prefectures_lines_stations">
+                                  <label region_id="<?= $japan_region['name'] ?>" for="prefectures_lines_stations_<?= $key ?>_<?= $key2 ?>"><?= $pref ?></label>
+                        <?php endforeach; ?>
+                      </div>
           <?php endforeach; ?>
           </div>
           
         </div>
-        <div class="choice2" style="<?= !empty($stations) ? '' : 'display: flex' ?>">
-          <div class="route first">
+        <div class="choice2">
+          <div class="route">
             <h5>路線を選択</h5>
             <div class="choice_inner">
-              <p class="choice_ttl"><span class="choice_ttl_pref"></span></p>
-              <ul class="scroll_inner"></ul>
+              <p line_pref_title="" class="choice_ttl"><span class="choice_ttl_pref"></span></p>
+              <ul class="scroll_inner">
+                <?php foreach ($lines as $line): ?>
+                    <?php if ($line != $line['line']): ?>
+                      <li style="display: none" class="to_pref" line_pref="<?= $line['pref'] ?>"><input style="display: none" type="checkbox" class="line_name_cb"><label><input class="line" line_cd="<?= $line['line_cd'] ?>" pref_cd="<?= $line['pref_cd'] ?>" style="display: none" type="radio" name="line"><div class="line_name"><?= $line['line'] ?></div></label></li>
+                    <?php endif; ?>
+              <?php endforeach; ?>
+              </ul>
             </div>
           </div>
 
-          <div class="station first">
+          <div class="station">
             <h5>駅を選択</h5>
             <div class="choice_inner">
               <p class="choice_ttl"><span class="choice_ttl_line"></span></p>
-              <ul class="scroll_inner"></ul>
+              <ul class="scroll_inner">
+                
+              </ul>
+            </div>
+            <!-- STATIONS -->
+            <div id="stations">
             </div>
           </div>
         </div>
-
-        <!--  saved line here -->
-        <?php if (!empty($ln)): ?>
-          <div class="choice2 saved_line" id="<?= $prefectures_lines_stations ?>" style="display: flex">
-            <input style="display: none" type="radio" name="ln" value="<?= $ln ?>">
-            <div class="route">
-              <h5>路線を選択</h5>
-              <div class="choice_inner">
-                <p class="choice_ttl"><span class="choice_ttl_pref"><?= $prefectures_lines_stations ?></span></p>
-                <ul class="scroll_inner"></ul>
-              </div>
-            </div>
-
-            <div class="station" style="display: block">
-              <h5>駅を選択</h5>
-              <div class="choice_inner">
-                <p class="choice_ttl"><span class="choice_ttl_line"><?= $ln ?></span></p>
-                <ul class="scroll_inner"></ul>
-              </div>
-            </div>
-          </div>
-        <?php endif; ?>
-
-        <!--  saved stations_all here -->
-        <?php foreach ($stations_all as $station_all): ?>
-          <input type="checkbox" style="display: none" checked name="stations_all[]" value="<?= $station_all ?>">
-        <?php endforeach; ?>
-
-        <!--  saved stations here -->
-        <?php foreach ($stations as $station): ?>
-          <input type="checkbox" style="display: none" checked name="stations[]" value="<?= $station ?>">
-        <?php endforeach; ?>
 
         <ul class="button_area">
           <li class="applicable">該当件数<span class="big total_jobs">

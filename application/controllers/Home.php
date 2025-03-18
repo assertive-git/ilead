@@ -12,14 +12,15 @@ class Home extends CI_Controller
 			$_SESSION['session_id'] = session_create_id();
 		}
 
-		if ($this->router->fetch_method() != 'job_list_get' && isset($_SESSION['search_sess'])) {
-			// unset($_SESSION['search_sess']);
+		if(isset($_GET['reset']) && $_GET['reset'] == 1) {
+			$_SESSION['search_sess'] = [];
 		}
 	}
 
 	public function index()
 	{
 		$data = [];
+
 
 		$data['total_jobs'] = $this->jobs_model->get_all_cnt();
 		$data['new_jobs'] = $this->jobs_model->get_new_jobs();
@@ -28,31 +29,34 @@ class Home extends CI_Controller
 		$data['news'] = $this->news_model->get_new_news();
 		$data['instagram_feed'] = $this->instagram_feed();
 
-		// $pls_data = [];
+		$areas = isset($_SESSION['search_sess']['areas']) ? $_SESSION['search_sess']['areas'] : [];
+		$employment_types = isset($_SESSION['search_sess']['employment_types']) ? $_SESSION['search_sess']['employment_types'] : [];
+		$salary = isset($_SESSION['search_sess']['salary']) ? $_SESSION['search_sess']['salary'] : [];
+		$job_types = isset($_SESSION['search_sess']['job_types']) ? $_SESSION['search_sess']['job_types'] : [];
+		$categories = isset($_SESSION['search_sess']['categories']) ? $_SESSION['search_sess']['categories'] : [];
+		$traits = isset($_SESSION['search_sess']['traits']) ? $_SESSION['search_sess']['traits'] : [];
+		$freeword = isset($_SESSION['search_sess']['freeword']) ? $_SESSION['search_sess']['freeword'] : '';
 
-		// $japan_lines_stations = $this->stations_model->get_all_prefs_lines_stations();
+		$region_area = isset($_SESSION['search_sess']['region_area']) ? $_SESSION['search_sess']['region_area'] : '';
+		$prefectures_area = isset($_SESSION['search_sess']['prefectures_area']) ? $_SESSION['search_sess']['prefectures_area'] : '';
 
+		$region_lines_stations = isset($_SESSION['search_sess']['region_lines_stations']) ? $_SESSION['search_sess']['region_lines_stations'] : '';
+		$prefectures_lines_stations = isset($_SESSION['search_sess']['prefectures_lines_stations']) ? $_SESSION['search_sess']['prefectures_lines_stations'] : '';
 
-		// foreach ($japan_lines_stations as $pref_line_station) {
-		// 	$pls_data[$pref_line_station['prefecture']][$pref_line_station['line_name']][] = $pref_line_station['station_name'];
-		// }
-
-		// $data['japan_lines_stations'] = $pls_data;
-
-		$data['region_area'] = '';
-		$data['prefectures_area'] = '';
-		$data['areas'] = [];
-		$data['stations'] = [];
-		$data['job_types'] = [];
-		$data['categories'] = [];
-		$data['employment_types'] = [];
-		$data['traits'] = [];
-
-		$data['region_lines_stations'] = '';
-		$data['prefectures_lines_stations'] = '';
-		$data['ln'] = '';
-		$data['stations_all'] = [];
-
+		$data['region_area'] = $region_area;
+		$data['prefectures_area'] = $prefectures_area;
+		$data['areas'] = $areas;
+		$data['salary'] = $salary;
+		$data['job_types'] = $job_types;
+		$data['categories'] = $categories;
+		$data['employment_types'] = $employment_types;
+		$data['traits'] = $traits;
+		$data['freeword'] = $freeword;
+		
+		$data['region_lines_stations'] = $region_lines_stations;
+		$data['prefectures_lines_stations'] = $prefectures_lines_stations;
+		
+		$data['lines'] = $this->lines_model->get_lines();
 
 
 		$this->load->view('home', $data);
@@ -190,15 +194,6 @@ class Home extends CI_Controller
 
 	public function map_get()
 	{
-		// $areas = [];
-		// $stations = [];
-		// $employment_types = [];
-		// $salary = [];
-		// $job_types = [];
-		// $categories = [];
-		// $traits = [];
-		// $freeword = '';
-
 		$areas = isset($_SESSION['search_sess']['areas']) ? $_SESSION['search_sess']['areas'] : [];
 		$stations = isset($_SESSION['search_sess']['stations']) ? $_SESSION['search_sess']['stations'] : [];
 		$employment_types = isset($_SESSION['search_sess']['employment_types']) ? $_SESSION['search_sess']['employment_types'] : [];
@@ -222,22 +217,14 @@ class Home extends CI_Controller
 		$data['categories'] = $categories;
 		$data['traits'] = $traits;
 		$data['freeword'] = $freeword;
-
+		
 		$data['region_area'] = '';
 		$data['prefectures_area'] = '';
-
+		
 		$data['region_lines_stations'] = '';
 		$data['prefectures_lines_stations'] = '';
-		$data['ln'] = '';
-		$data['stations_all'] = [];
 
-		// $japan_lines_stations = $this->stations_model->get_all_prefs_lines_stations();
-
-		// foreach ($japan_lines_stations as $pref_line_station) {
-		// 	$pls_data[$pref_line_station['prefecture']][$pref_line_station['line_name']][] = $pref_line_station['station_name'];
-		// }
-
-		// $data['japan_lines_stations'] = $pls_data;
+		$data['lines'] = $this->lines_model->get_lines();
 
 		$this->load->view('map', $data);
 	}
@@ -270,6 +257,7 @@ class Home extends CI_Controller
 		$data['total_jobs'] = $this->jobs_model->get_all_cnt($areas, $stations, $employment_types, $salary, $job_types, $categories, $traits, $freeword);
 
 		$data['areas'] = $areas;
+		$data['lines'] = $this->lines_model->get_lines();
 		$data['stations'] = $stations;
 		$data['salary'] = $salary;
 		$data['employment_types'] = $employment_types;
@@ -283,16 +271,7 @@ class Home extends CI_Controller
 
 		$data['region_lines_stations'] = isset($_POST['region_lines_stations']) ? $_POST['region_lines_stations'] : '';
 		$data['prefectures_lines_stations'] = isset($_POST['prefectures_lines_stations']) ? $_POST['prefectures_lines_stations'] : '';
-		$data['ln'] = isset($_POST['ln']) ? $_POST['ln'] : '';
-		$data['stations_all'] = isset($_POST['stations_all']) ? $_POST['stations_all'] : [];
 
-		// $japan_lines_stations = $this->stations_model->get_all_prefs_lines_stations();
-
-		// foreach ($japan_lines_stations as $pref_line_station) {
-		// 	$pls_data[$pref_line_station['prefecture']][$pref_line_station['line_name']][] = $pref_line_station['station_name'];
-		// }
-
-		// $data['japan_lines_stations'] = $pls_data;
 
 		if (isset($_POST['ajax'])) {
 			echo json_encode($data);
@@ -315,7 +294,6 @@ class Home extends CI_Controller
 		$cnt = $this->jobs_model->get_all_cnt($areas, $stations, $employment_types, $salary, $job_types, $categories, $traits, $freeword);
 
 		echo json_encode(['total_jobs' => $cnt]);
-
 	}
 
 	public function jobs($id)
@@ -351,20 +329,18 @@ class Home extends CI_Controller
 		$freeword = isset($_SESSION['search_sess']['freeword']) ? $_SESSION['search_sess']['freeword'] : '';
 
 		$region_area = isset($_SESSION['search_sess']['region_area']) ? $_SESSION['search_sess']['region_area'] : '';
-		$prefectures_area = isset($_SESSION['search_sess']['prefecturs_area']) ? $_SESSION['search_sess']['prefectures_area'] : '';
+		$prefectures_area = isset($_SESSION['search_sess']['prefectures_area']) ? $_SESSION['search_sess']['prefectures_area'] : '';
 
 		$region_lines_stations = isset($_SESSION['search_sess']['region_lines_stations']) ? $_SESSION['search_sess']['region_lines_stations'] : '';
 		$prefectures_lines_stations = isset($_SESSION['search_sess']['prefectures_lines_stations']) ? $_SESSION['search_sess']['prefectures_lines_stations'] : '';
-		$ln = isset($_SESSION['search_sess']['ln']) ? $_SESSION['search_sess']['ln'] : '';
-		$stations_all = isset($_SESSION['search_sess']['stations_all']) ? $_SESSION['search_sess']['stations_all'] : [];
 
 		$limit = 10;
 		$offset = ($page * $limit) - $limit;
 		$data['jobs'] = $this->jobs_model->get_all($offset, $limit, $areas, $stations, $employment_types, $salary, $job_types, $categories, $traits, $freeword);
 
-		if (count($data['jobs']) == 0) {
-			redirect('/job_list');
-		}
+		// if (count($data['jobs']) == 0) {
+			// redirect('/job_list');
+		// }
 
 		$data['total_jobs'] = $this->jobs_model->get_all_cnt($areas, $stations, $employment_types, $salary, $job_types, $categories, $traits, $freeword);
 
@@ -378,6 +354,7 @@ class Home extends CI_Controller
 		$this->init_pagination($data['total_jobs'], 'job_list', $limit);
 
 		$data['areas'] = $areas;
+		$data['lines'] = $this->lines_model->get_lines();
 		$data['stations'] = $stations;
 		$data['salary'] = $salary;
 		$data['employment_types'] = $employment_types;
@@ -388,10 +365,9 @@ class Home extends CI_Controller
 
 		$data['region_area'] = $region_area;
 		$data['prefectures_area'] = $prefectures_area;
+
 		$data['region_lines_stations'] = $region_lines_stations;
 		$data['prefectures_lines_stations'] = $prefectures_lines_stations;
-		$data['ln'] = $ln;
-		$data['stations_all'] = $stations_all;
 
 		$data['favorites'] = [];
 
@@ -425,10 +401,9 @@ class Home extends CI_Controller
 
 		$region_area = isset($_POST['region_area']) ? $_POST['region_area'] : '';
 		$prefectures_area = isset($_POST['prefectures_area']) ? $_POST['prefectures_area'] : '';
+
 		$region_lines_stations = isset($_POST['region_lines_stations']) ? $_POST['region_lines_stations'] : '';
 		$prefectures_lines_stations = isset($_POST['prefectures_lines_stations']) ? $_POST['prefectures_lines_stations'] : '';
-		$ln = isset($_POST['ln']) ? $_POST['ln'] : '';
-		$stations_all = isset($_POST['stations_all']) ? $_POST['stations_all'] : [];
 
 		$_SESSION['search_sess']['areas'] = $areas;
 		$_SESSION['search_sess']['stations'] = $stations;
@@ -444,8 +419,6 @@ class Home extends CI_Controller
 
 		$_SESSION['search_sess']['region_lines_stations'] = $region_lines_stations;
 		$_SESSION['search_sess']['prefectures_lines_stations'] = $prefectures_lines_stations;
-		$_SESSION['search_sess']['ln'] = $ln;
-		$_SESSION['search_sess']['stations_all'] = $stations_all;
 
 		$limit = 10;
 		$offset = (1 * $limit) - $limit;
@@ -459,6 +432,7 @@ class Home extends CI_Controller
 		$this->init_pagination($data['total_jobs'], 'job_list', $limit);
 
 		$data['areas'] = $areas;
+		$data['lines'] = $this->lines_model->get_lines();
 		$data['stations'] = $stations;
 		$data['salary'] = $salary;
 		$data['employment_types'] = $employment_types;
@@ -472,8 +446,6 @@ class Home extends CI_Controller
 
 		$data['region_lines_stations'] = $region_lines_stations;
 		$data['prefectures_lines_stations'] = $prefectures_lines_stations;
-		$data['ln'] = $ln;
-		$data['stations_all'] = $stations_all;
 
 		$data['favorites'] = [];
 
@@ -669,12 +641,12 @@ class Home extends CI_Controller
 	{
 		$data = [];
 
-		if (!empty($_POST['line_cd']) && !empty($_POST['pref'])) {
+		if (!empty($_POST['line_cd']) && !empty($_POST['pref_cd'])) {
 
 			$line_cd = $_POST['line_cd'];
-			$pref = $_POST['pref'];
+			$pref_cd = $_POST['pref_cd'];
 
-			$data = $this->stations_model->get_by_line_cd_pref($line_cd, $pref);
+			$data = $this->stations_model->get_by_line_pref_cd($line_cd, $pref_cd);
 		}
 
 		echo json_encode($data);

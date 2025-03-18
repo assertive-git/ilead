@@ -23,12 +23,12 @@
     <form id="list" class="area is-active" action="/job_list" method="POST">
       <div class="search_inner">
         <ul class="main7">
-          <li class="areas">
+          <li class="areas_h">
             <button type="button" type="button" class="modal-toggle btn-example" data-modal="modal1">
               エリア<small>を選ぶ</small><span class="plus not-active">+</span><i class="fa-solid fa-circle-check plus active"></i>
             </button>
           </li>
-          <li class="stations">
+          <li class="stations_h">
             <button type="button" type="button" class="modal-toggle btn-example" data-modal="modal2">
               沿線・駅<small>を選ぶ</small><span class="plus not-active">+</span><i class="fa-solid fa-circle-check plus active"></i>
             </button>
@@ -57,7 +57,7 @@
             <h4>フリーワード検索<br class="sp">
               <span>勤務地、条件など好きな言葉で検索する</span>
             </h4>
-            <input type="text" placeholder="例：残業なし" name="freeword">
+            <input type="text" placeholder="例：残業なし" name="freeword" value="<?= $freeword ?>">
           </li>
           <li class="number_text">
             <p class="number">該当件数<span class="big total_jobs">

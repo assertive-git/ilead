@@ -24,7 +24,7 @@
                 class="plus not-active">+</span><i class="fa-solid fa-circle-check plus active"></i></button>
           </li>
           <li class="freeword">
-            <input name="freeword" type="text" placeholder="フリーワード">
+            <input name="freeword" type="text" placeholder="フリーワード" value="<?= $freeword ?>">
             <input type="submit" value="&#xf002">
           </li>
           <li class="search-submit">
@@ -215,7 +215,8 @@
           }
 
           if ($(this).hasClass('active')) {
-            window.location.href = $(this).attr('job-link');
+            // window.location.href = $(this).attr('job-link');
+            window.open($(this).attr('job-link'), '_blank');
             return;
           } else {
             $(this).addClass('active');
@@ -236,7 +237,7 @@
         });
 
         var stations = [];
-        var _stations = $('input[name="stations[]"]:checked');
+        var _stations = $('input[name="stations[]"]');
         $(_stations).each(function (i, el) {
           stations.push($(_stations[i]).val());
         });

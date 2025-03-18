@@ -493,10 +493,18 @@ main .search .area.is-active {
 }
 
 .modal_container .region input:checked+label,
-.modal_container .prefectures input:checked+label {
+.modal_container .prefectures input:checked+label,
+.modal_container .region label.active,
+.modal_container .prefectures label.active {
   background: #13b3e7;
   color: #fff;
 }
+
+.modal_container .region label.active,  
+.modal_container .prefectures label.active {
+  background: #3270cd;
+}
+
 
 .modal_container .region input,
 .modal_container .prefectures input {
@@ -572,7 +580,7 @@ main .search .area.is-active {
 }
 
 .modal_container .choice2 {
-  display: none;
+  display: flex;
   background-color: #f3f7f7;
   width: 100%;
   padding: 40px 80px;
@@ -586,9 +594,9 @@ main .search .area.is-active {
   margin-bottom: 0.2rem;
 }
 
-.modal_container .choice2 .route.first {
+/* .modal_container .choice2 .route.first {
   visibility: hidden;
-}
+} */
 
 .modal_container .choice2 .route {
   max-width: 40%;
@@ -596,7 +604,7 @@ main .search .area.is-active {
 }
 
 .modal_container .choice2 .station {
-  display: none;
+  /* display: none; */
   max-width: 60%;
   flex: 1;
 }
@@ -605,10 +613,10 @@ main .search .area.is-active {
   padding: 0.6rem 2rem;
 }
 
-.modal_container .choice2 .station.first {
+/* .modal_container .choice2 .station.first {
   display: block;
   visibility: hidden;
-}
+} */
 
 .modal_container .choice2 .choice_inner label {
   cursor: pointer;
@@ -635,9 +643,14 @@ main .search .area.is-active {
   padding: 0.6rem 2rem;
 }
 
-.modal_container .choice2 .choice_inner li input:checked+.line_name {
+.modal_container .choice2 .choice_inner li input:checked+.line_name,
+.modal_container .choice2 .choice_inner li .line_name.active {
   color: white;
   background-color: #65b9e7;
+}
+
+.modal_container .choice2 .choice_inner li .line_name.active {
+  background-color: #3270cd;
 }
 
 .modal_container .choice2 .choice_inner li label {

@@ -28,9 +28,9 @@ class Stations_model extends CI_Model
         return $this->db->query($sql)->result_array();
     }
 
-    public function get_by_line_cd_pref($line_cd, $pref)
+    public function get_by_line_pref_cd($line_cd, $pref_cd)
     {
-        $data = $this->db->join('prefectures', 'prefectures.pref_cd = stations.pref_cd')->where('line_cd', $line_cd)->where('prefecture', $pref)->get('stations')->result_array();
+        $data = $this->db->join('prefectures', 'prefectures.pref_cd = stations.pref_cd')->join('lines', 'lines.line_cd = stations.line_cd')->where('stations.line_cd', $line_cd)->where('prefectures.pref_cd', $pref_cd)->order_by('stations.line_cd, stations.station_cd')->select('line_name as line, station_name as station, stations.line_cd, prefecture as pref')->get('stations')->result_array();
 
         return $data;
     }

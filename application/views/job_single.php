@@ -29,11 +29,11 @@
   </div>
   <section class="search_result">
     <?php if (!empty($_GET['favorites'])): ?>
-      <a href="javascript:void(0);" onclick="history.back();return false;">
+      <a href="javascript:void(0);">
         <button id="return" class="arrow_before favorites">検討中リストへ戻る</button>
       </a>
     <?php else: ?>
-      <a href="javascript:void(0);" onclick="history.back();return false;">
+      <a href="javascript:void(0);">
         <button id="return" class="arrow_before">
           一覧へ戻る
         </button>
@@ -134,16 +134,6 @@
               <td><?= $job['a_pref'] ?>
                 <?= $job['city'] ?>
                 <?= $job['address'] ?>
-              </td>
-            </tr>
-            <tr>
-              <th class="attribute">最寄り駅</th>
-              <td>
-                <?php foreach ($job['jobs_stations'] as $job_station): ?>
-                  <?= $job_station['line'] ?>
-                  <?= str_replace('駅', '', $job_station['station']) ?>駅
-                  徒歩<?= $job_station['walking_distance'] ?>分<br />
-                <?php endforeach; ?>
               </td>
             </tr>
             <?php if (!empty($job['closest_bus_stop'])): ?>
@@ -277,5 +267,16 @@
         }
       </script>
   <?php endif; ?>
+
+  <script>
+    $('#return').click(function() {
+      if (window.opener) {
+            window.opener.focus();  // Focus the opener tab
+            window.close();         // Close the current tab
+      } else {
+          console.log("NO WINDOW FOUND")
+      }
+    });
+  </script>
 </main>
 <?php include('footer.php'); ?>

@@ -15,10 +15,10 @@
     <form class="search_form" action="/job_list" method="POST">
       <div class="search_inner">
         <ul>
-          <li class="areas <?= !empty($areas) ? 'active' : '' ?>"><button type="button" data-modal="modal1" class="modal-toggle">エリアを選ぶ<span
+          <li class="areas_h <?= !empty($areas) ? 'active' : '' ?>"><button type="button" data-modal="modal1" class="modal-toggle">エリアを選ぶ<span
                 class="plus not-active">+</span><i class="fa-solid fa-circle-check plus active"></i></button>
           </li>
-          <li class="stations <?= !empty($stations) ? 'active' : '' ?>"><button type="button" data-modal="modal2" class="modal-toggle">沿線・駅を選ぶ<span
+          <li class="stations_h <?= !empty($stations) ? 'active' : '' ?>"><button type="button" data-modal="modal2" class="modal-toggle">沿線・駅を選ぶ<span
                 class="plus not-active">+</span><i class="fa-solid fa-circle-check plus active"></i></button></li>
             <li class="job_types <?= !empty($job_types) ? 'active' : '' ?>"><button type="button" data-modal="modal3" class="modal-toggle">職種を選ぶ<span
                 class="plus not-active">+</span><i class="fa-solid fa-circle-check plus active"></i></button></li>
@@ -122,7 +122,7 @@
                                   status="<?= !in_array($job['id'], $favorites) ? 0 : 1 ?>" job-id="<?= $job['id'] ?>">★
                                   <?= in_array($job['id'], $favorites) ? '検討中リストから削除する' : '検討中リストに追加する' ?></button>
                               </li>
-                              <li><a href="/jobs/<?= $job['id'] ?>">詳細を見る</a></li>
+                              <li><a href="/jobs/<?= $job['id'] ?>" target="_blank" rel="opener">詳細を見る</a></li>
                             </ul>
                           </div>
                         </div>
