@@ -9,10 +9,10 @@
     <form id="list" class="area is-active" action="/map" method="POST">
       <div class="search_inner map_in">
         <ul>
-          <li class="areas <?= !empty($areas) ? 'active' : '' ?>"><button type="button" data-modal="modal1" class="modal-toggle">エリアを選ぶ<span
+          <li class="areas_h <?= !empty($areas) ? 'active' : '' ?>"><button type="button" data-modal="modal1" class="modal-toggle">エリアを選ぶ<span
                 class="plus not-active">+</span><i class="fa-solid fa-circle-check plus active"></i></button>
           </li>
-          <li class="stations <?= !empty($stations) ? 'active' : '' ?>"><button type="button" data-modal="modal2" class="modal-toggle">沿線・駅を選ぶ<span
+          <li class="stations_h <?= !empty($stations) ? 'active' : '' ?>"><button type="button" data-modal="modal2" class="modal-toggle">沿線・駅を選ぶ<span
                 class="plus not-active">+</span><i class="fa-solid fa-circle-check plus active"></i></button></li>
             <li class="job_types <?= !empty($job_types) ? 'active' : '' ?>"><button type="button" data-modal="modal3" class="modal-toggle">職種を選ぶ<span
                 class="plus not-active">+</span><i class="fa-solid fa-circle-check plus active"></i></button></li>
