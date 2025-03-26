@@ -312,7 +312,9 @@ class Jobs_model extends CI_Model
                 ");
         }
 
-        $data = 4314;
+        $data = count($data->where('status', '公開')->select('jobs.id')->group_by('jobs.id')->get($this->table)->result_array());
+
+        var_dump($data);exit;
 
         return $data;
     }
