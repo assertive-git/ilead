@@ -422,14 +422,12 @@ class Home extends CI_Controller
 
 		$limit = 10;
 		$offset = (1 * $limit) - $limit;
-		// $data['jobs'] = $this->jobs_model->get_all($offset, $limit, $areas, $stations, $employment_types, $salary, $job_types, $categories, $traits, $freeword);
-		$data['jobs'] = [];
+		$data['jobs'] = $this->jobs_model->get_all($offset, $limit, $areas, $stations, $employment_types, $salary, $job_types, $categories, $traits, $freeword);
 
 		$data['current_index_start'] = 1;
 		$data['current_index_end'] = $limit;
 
 		$data['total_jobs'] = $this->jobs_model->get_all_cnt($areas, $stations, $employment_types, $salary, $job_types, $categories, $traits, $freeword);
-		$data['total_jobs'] = 4315;
 
 		$this->init_pagination($data['total_jobs'], 'job_list', $limit);
 
