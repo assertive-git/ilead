@@ -422,7 +422,8 @@ class Home extends CI_Controller
 
 		$limit = 10;
 		$offset = (1 * $limit) - $limit;
-		$data['jobs'] = $this->jobs_model->get_all($offset, $limit, $areas, $stations, $employment_types, $salary, $job_types, $categories, $traits, $freeword);
+		// $data['jobs'] = $this->jobs_model->get_all($offset, $limit, $areas, $stations, $employment_types, $salary, $job_types, $categories, $traits, $freeword);
+		$data['jobs'] = [];
 
 		$data['current_index_start'] = 1;
 		$data['current_index_end'] = $limit;
