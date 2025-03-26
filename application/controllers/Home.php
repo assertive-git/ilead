@@ -250,7 +250,7 @@ class Home extends CI_Controller
 		$_SESSION['search_sess']['freeword'] = $freeword;
 
 		$offset = isset($_POST['offset']) ? $_POST['offset'] : 0;
-		$limit = 50;
+		$limit = 9999;
 
 		$data['jobs'] = $this->jobs_model->get_all($offset, $limit, $areas, $stations, $employment_types, $salary, $job_types, $categories, $traits, $freeword);
 
