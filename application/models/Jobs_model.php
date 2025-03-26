@@ -312,8 +312,6 @@ class Jobs_model extends CI_Model
                 ");
         }
 
-        exit;
-
         $data = 4314;
 
         return $data;
