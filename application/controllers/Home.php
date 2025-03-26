@@ -336,7 +336,8 @@ class Home extends CI_Controller
 
 		$limit = 10;
 		$offset = ($page * $limit) - $limit;
-		$data['jobs'] = $this->jobs_model->get_all($offset, $limit, $areas, $stations, $employment_types, $salary, $job_types, $categories, $traits, $freeword);
+		// $data['jobs'] = $this->jobs_model->get_all($offset, $limit, $areas, $stations, $employment_types, $salary, $job_types, $categories, $traits, $freeword);
+		$data['jobs'] = [];
 
 		// if (count($data['jobs']) == 0) {
 			// redirect('/job_list');
