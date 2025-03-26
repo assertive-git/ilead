@@ -342,7 +342,8 @@ class Home extends CI_Controller
 			// redirect('/job_list');
 		// }
 
-		$data['total_jobs'] = $this->jobs_model->get_all_cnt($areas, $stations, $employment_types, $salary, $job_types, $categories, $traits, $freeword);
+		// $data['total_jobs'] = $this->jobs_model->get_all_cnt($areas, $stations, $employment_types, $salary, $job_types, $categories, $traits, $freeword);
+		$data['total_jobs'] = 4314;
 
 		$data['current_index_start'] = ($limit * ($page - 1)) + 1;
 		$data['current_index_end'] = ($limit * ($page - 1)) + $limit;
