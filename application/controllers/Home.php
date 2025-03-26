@@ -336,15 +336,13 @@ class Home extends CI_Controller
 
 		$limit = 10;
 		$offset = ($page * $limit) - $limit;
-		// $data['jobs'] = $this->jobs_model->get_all($offset, $limit, $areas, $stations, $employment_types, $salary, $job_types, $categories, $traits, $freeword);
-		$data['jobs'] = [];
+		$data['jobs'] = $this->jobs_model->get_all($offset, $limit, $areas, $stations, $employment_types, $salary, $job_types, $categories, $traits, $freeword);
 
 		// if (count($data['jobs']) == 0) {
 			// redirect('/job_list');
 		// }
 
-		// $data['total_jobs'] = $this->jobs_model->get_all_cnt($areas, $stations, $employment_types, $salary, $job_types, $categories, $traits, $freeword);
-		$data['total_jobs'] = 4314;
+		$data['total_jobs'] = $this->jobs_model->get_all_cnt($areas, $stations, $employment_types, $salary, $job_types, $categories, $traits, $freeword);
 
 		$data['current_index_start'] = ($limit * ($page - 1)) + 1;
 		$data['current_index_end'] = ($limit * ($page - 1)) + $limit;
@@ -355,28 +353,28 @@ class Home extends CI_Controller
 
 		$this->init_pagination($data['total_jobs'], 'job_list', $limit);
 
-		// $data['areas'] = $areas;
-		// $data['lines'] = $this->lines_model->get_lines();
-		// $data['stations'] = $stations;
-		// $data['salary'] = $salary;
-		// $data['employment_types'] = $employment_types;
-		// $data['job_types'] = $job_types;
-		// $data['categories'] = $categories;
-		// $data['traits'] = $traits;
-		// $data['freeword'] = $freeword;
+		$data['areas'] = $areas;
+		$data['lines'] = $this->lines_model->get_lines();
+		$data['stations'] = $stations;
+		$data['salary'] = $salary;
+		$data['employment_types'] = $employment_types;
+		$data['job_types'] = $job_types;
+		$data['categories'] = $categories;
+		$data['traits'] = $traits;
+		$data['freeword'] = $freeword;
 
-		// $data['region_area'] = $region_area;
-		// $data['prefectures_area'] = $prefectures_area;
+		$data['region_area'] = $region_area;
+		$data['prefectures_area'] = $prefectures_area;
 
-		// $data['region_lines_stations'] = $region_lines_stations;
-		// $data['prefectures_lines_stations'] = $prefectures_lines_stations;
+		$data['region_lines_stations'] = $region_lines_stations;
+		$data['prefectures_lines_stations'] = $prefectures_lines_stations;
 
-		// $data['favorites'] = [];
+		$data['favorites'] = [];
 
-		// if (!empty($_SESSION['session_id'])) {
-		// 	$session_id = $_SESSION['session_id'];
-		// 	$data['favorites'] = $this->favorites_model->get_all_job_ids($session_id);
-		// }
+		if (!empty($_SESSION['session_id'])) {
+			$session_id = $_SESSION['session_id'];
+			$data['favorites'] = $this->favorites_model->get_all_job_ids($session_id);
+		}
 
 		// $japan_lines_stations = $this->stations_model->get_all_prefs_lines_stations();
 
@@ -429,7 +427,8 @@ class Home extends CI_Controller
 		$data['current_index_start'] = 1;
 		$data['current_index_end'] = $limit;
 
-		$data['total_jobs'] = $this->jobs_model->get_all_cnt($areas, $stations, $employment_types, $salary, $job_types, $categories, $traits, $freeword);
+		// $data['total_jobs'] = $this->jobs_model->get_all_cnt($areas, $stations, $employment_types, $salary, $job_types, $categories, $traits, $freeword);
+		$data['total_jobs'] = 4314;
 
 		$this->init_pagination($data['total_jobs'], 'job_list', $limit);
 
