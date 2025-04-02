@@ -785,7 +785,7 @@ $traits = !empty($traits) ? explode(',', $traits) : [];
                     </script>
 
                     <script
-                        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAmVMSJ-FB7idtnAQajLhCIo2SV7VZd7uw&callback=initMap"></script>
+                        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB-P4BwT2AfRmPOnP7VysOiGmPBiZmLyxs&callback=initMap"></script>
 
                 </div>
 

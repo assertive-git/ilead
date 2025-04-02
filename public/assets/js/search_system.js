@@ -295,7 +295,6 @@ function reset_one_plus(modal) {
         $('#region_area_1').click()
         $('#prefectures_area_1_13').click()
         areas = []
-        sessionStorage.setItem('areas', [])
     }
 
     if (modal == "modal2") {
@@ -303,7 +302,6 @@ function reset_one_plus(modal) {
         $('#prefectures_lines_stations_1_13').click()
         $('.line_name').removeClass('active')
         lines_stations = []
-        sessionStorage.setItem('lines_stations', [])
         $('#stations').html('')
     }
 
