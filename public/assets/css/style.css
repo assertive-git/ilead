@@ -2016,7 +2016,7 @@ main .search_area .search_inner ul li.freeword {
   padding: 1.2rem 5rem 1rem 2rem;
 }
 
-main .search_area .search_inner ul li.freeword input[type="submit"] {
+main .search_area .search_inner ul li.freeword input[type="button"] {
   cursor: pointer;
   font-family: FontAwesome;
   border: none;
@@ -2057,7 +2057,7 @@ main .search_area .search_inner ul li.search-submit {
   }
 }
 
-main .search_area .search_inner ul li.search-submit input[type="submit"] {
+main .search_area .search_inner ul li.search-submit input[type="button"] {
   cursor: pointer;
   height: 100%;
   width: 250px;

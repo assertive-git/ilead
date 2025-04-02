@@ -67,7 +67,7 @@
         </ul>
         <ul class="button_area">
           <li>
-            <button type="submit" class="submit">検索する <i class="fa-solid fa-magnifying-glass"></i></button>
+            <button type="button" class="submit submit_t">検索する <i class="fa-solid fa-magnifying-glass"></i></button>
           </li>
           <li>
             <!--<button type="button" class="reset">すべてクリア</button>-->

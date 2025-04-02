@@ -82,16 +82,16 @@ if (sessionStorage.getItem('areas')) {
     $(".prefectures_lines_stations").change(function () {
 
         var pref = $(this).val()
-    
+
         // $(".choice_ttl").hide()
         $(".to_pref").hide()
-    
+
         // line pref title
         $('.choice_ttl').text(pref).attr('line_pref_title', pref).show()
-    
+
         // line title
         $(".to_pref[line_pref='" + pref + "']").show()
-    
+
         // station list
         $(".to_pref[line_pref='" + pref + "']").find('.line').eq(0).click()
     })
@@ -516,26 +516,29 @@ function total_jobs_update() {
         var index = areas.indexOf(region + "_" + prefArea)
         if (index === -1) {
             areas.push(region + "_" + prefArea)
-            sessionStorage.setItem('areas', JSON.stringify(areas))
         }
+
+        console.log(areas)
     }
 
     function removeFromMemory_Area(region, prefArea) {
         var index = areas.indexOf(region + "_" + prefArea)
         if (index !== -1) {
             areas.splice(index, 1)
-            sessionStorage.setItem('areas', JSON.stringify(areas))
         }
+
+        console.log(areas)
     }
 
     function addToMemory_LS(region, pref, line_name, station) {
         var index = lines_stations.indexOf(region + "_" + pref + "_" + line_name + "_" + station)
         if (index === -1) {
             lines_stations.push(region + "_" + pref + "_" + line_name + "_" + station)
-            sessionStorage.setItem('lines_stations', JSON.stringify(lines_stations))
         }
 
         $("#stations").append('<input class="stations_hidden" type="hidden" value="' + line_name + station + '" name="stations[]">')
+
+        console.log(lines_stations)
     }
 
 
@@ -543,10 +546,11 @@ function total_jobs_update() {
         var index = lines_stations.indexOf(region + "_" + pref + "_" + line_name + "_" + station)
         if (index !== -1) {
             lines_stations.splice(index, 1)
-            sessionStorage.setItem('lines_stations', JSON.stringify(lines_stations))
         }
 
         $('.stations_hidden[value="' + line_name + station + '"]').remove()
+
+        console.log(lines_stations)
     }
 
     // initial check for existing regions, prefectures, lines
@@ -626,6 +630,23 @@ function total_jobs_update() {
 
         $("#stations").append('<input class="stations_hidden" type="hidden" value="' + line_name + station + '" name="stations[]">')
     }
+
+    $('.submit_t').click(function (e) {
+
+        sessionStorage.setItem('lines_stations', JSON.stringify(lines_stations))
+        sessionStorage.setItem('areas', JSON.stringify(areas))
+
+        // for (var i = 0; i < lines_stations.length; i++) {
+        //     var item = lines_stations[i].split('_')
+
+        //     var line_name = item[2]
+        //     var station = item[3]
+
+        //     $("#stations").append('<input class="stations_hidden" type="hidden" value="' + line_name + station + '" name="stations[]">')
+        // }
+
+        $('form').submit()
+    })
 
     set_pluses()
     total_jobs_update()
