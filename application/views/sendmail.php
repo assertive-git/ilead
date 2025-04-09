@@ -40,6 +40,9 @@ $admin_mail = "info@ilead-hr.co.jp";
 $body = "";
 
 $body .= "【日時】\n";
+
+date_default_timezone_set('Asia/Tokyo');
+
 $body .= date('Y-m-d H:i:s', time()) . "\n";
 $body .= $last_name . $first_name . "様\n";
 $body .= "
