@@ -501,8 +501,8 @@ main .search .area.is-active {
   border: 3px solid #13b3e7;
 }
 
-.modal_container .region input:checked+label::after,
-.modal_container .prefectures input:checked+label::after,
+/* .modal_container .region input:checked+label::after,
+.modal_container .prefectures input:checked+label::after, */
 .modal_container .region label.active::after,
 .modal_container .prefectures label.active::after {
   font-family: "Font Awesome 5 Free";
