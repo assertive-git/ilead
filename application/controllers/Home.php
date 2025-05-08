@@ -226,6 +226,13 @@ class Home extends CI_Controller
 
 		$data['lines'] = $this->lines_model->get_lines();
 
+		$data['favorites'] = [];
+
+		if (!empty($_SESSION['session_id'])) {
+			$session_id = $_SESSION['session_id'];
+			$data['favorites'] = $this->favorites_model->get_all_job_ids($session_id);
+		}
+
 		$this->load->view('map', $data);
 	}
 
@@ -272,6 +279,12 @@ class Home extends CI_Controller
 		$data['region_lines_stations'] = isset($_POST['region_lines_stations']) ? $_POST['region_lines_stations'] : '';
 		$data['prefectures_lines_stations'] = isset($_POST['prefectures_lines_stations']) ? $_POST['prefectures_lines_stations'] : '';
 
+		$data['favorites'] = [];
+
+		if (!empty($_SESSION['session_id'])) {
+			$session_id = $_SESSION['session_id'];
+			$data['favorites'] = $this->favorites_model->get_all_job_ids($session_id);
+		}
 
 		if (isset($_POST['ajax'])) {
 			echo json_encode($data);

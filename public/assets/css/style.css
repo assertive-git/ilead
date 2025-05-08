@@ -486,23 +486,39 @@ main .search .area.is-active {
   width: auto;
   white-space: nowrap;
   color: #000;
-  padding: 0 2rem;
+  padding: 0 1rem 0 3rem;
   text-align: center;
   cursor: pointer;
   height: 5rem;
 }
 
 .modal_container .region input:checked+label,
-.modal_container .prefectures input:checked+label,
-.modal_container .region label.active,
-.modal_container .prefectures label.active {
-  background: #13b3e7;
-  color: #fff;
+.modal_container .prefectures input:checked+label
+ {
+  /* background: #13b3e7;
+  color: #fff; */
+  position: relative;
+  border: 3px solid #13b3e7;
+}
+
+.modal_container .region input:checked+label::after,
+.modal_container .prefectures input:checked+label::after,
+.modal_container .region label.active::after,
+.modal_container .prefectures label.active::after {
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  border-radius: 22px;
+  position: absolute;
+  left: 1rem;
+  color: #13b3e7;
+  font-size: 1.5rem;
+  content: "\f058";
 }
 
 .modal_container .region label.active,  
 .modal_container .prefectures label.active {
-  background: #3270cd;
+  /* background: #3270cd; */
+  position: relative;
 }
 
 
@@ -868,6 +884,30 @@ main .picup .area2 {
   flex-wrap: wrap;
   gap: 0.6rem;
   margin-bottom: 0.6rem;
+}
+
+#map .favorite_btn {
+  color: gray;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  right: 10px;
+  top: 10px;
+  font-size: 1.4rem;
+  padding: 6px;
+  position: absolute;
+  border: 3px solid gray;
+  border-radius: 4px;
+}
+
+#map .favorite_btn[status="1"] {
+  color: white;
+  background-color: #FFC000;
+  border: 3px solid #FFC000;
+}
+
+#map .list_item {
+  position: relative;
 }
 
 #map .list_item .category span {
@@ -1242,6 +1282,10 @@ main .search .area.is-active {
   /*ふわっと表示させるためのアニメーション*/
   animation-duration: 2s;
   animation-fill-mode: forwards;
+}
+
+.clearfix {
+  clear: both;
 }
 
 /*---▼モーダル▼---*/
@@ -3044,7 +3088,7 @@ main#map .search_area .map_in {
   display: flex;
   align-items: center;
   width: 363px;
-  padding: 1.4rem;
+  padding: 4.4rem 1.4rem 1.4rem 1.4rem;
 }
 
 #map .list_item .info {

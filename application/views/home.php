@@ -70,7 +70,7 @@
             <button type="button" class="submit submit_t">検索する <i class="fa-solid fa-magnifying-glass"></i></button>
           </li>
           <li>
-            <!--<button type="button" class="reset">すべてクリア</button>-->
+            <!--<button type="button" class="reset">クリア</button>-->
           </li>
         </ul>
       </div>

@@ -32,7 +32,7 @@
           </li>
         </ul>
         <div class="button_area">
-          <!-- <button type="reset" class="reset">すべてクリア</button> -->
+          <!-- <button type="reset" class="reset">クリア</button> -->
         </div>
       </div>
       <?php include APPPATH . 'includes/search_modal.php' ?>
@@ -53,6 +53,7 @@
               <li>
                 <!-- <a href=""> -->
                 <div id="<?= $job['id'] ?>" class="list_item id" job-link="/jobs/<?= $job['id'] ?>">
+                  <button class="favorite_btn<?= in_array($job['id'], $favorites) ? ' favorite_btn--remove' : '' ?>" status="<?= !in_array($job['id'], $favorites) ? 0 : 1 ?>" job-id="<?= $job['id'] ?>"><i class="fa-solid fa-star"></i></button>
                   <div class="info">
                     <h5 class="title"><?= $job['title'] ?></h5>
                     <div class="info-tbl">
@@ -94,6 +95,7 @@
               </li>
             </ul>
         <?php endforeach; ?>
+        <script src="/public/assets/js/favorite_btn.js"></script>
       </div>
   </section>
 

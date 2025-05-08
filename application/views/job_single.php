@@ -18,7 +18,7 @@
         </li>
       </ul>
       <div class="button_area">
-        <button type="reset" class="reset">すべてクリア</button>
+        <button type="reset" class="reset">クリア</button>
       </div>
     </div>
   </section> -->

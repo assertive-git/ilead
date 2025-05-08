@@ -1,4 +1,7 @@
-$('.favorite_btn').click(function () {
+$('.favorite_btn').click(function (e) {
+
+    e.stopPropagation()
+    
     var self = $(this);
     var status = $(this).attr('status');
 
@@ -15,7 +18,9 @@ $('.favorite_btn').click(function () {
                 success: function () {
                     self.addClass('favorite_btn--remove');
                     self.attr('status', '1');
-                    self.text('★ 検討中リストから削除する');
+                    if(!location.href.includes('/map')) {
+                        self.text('★ 検討中リストから削除する');
+                    }
                 },
             });
         }
@@ -35,7 +40,10 @@ $('.favorite_btn').click(function () {
                     } else {
                         self.removeClass('favorite_btn--remove');
                         self.attr('status', '0');
-                        self.text('★ 検討中リストに追加する');
+
+                        if(!location.href.includes('/map')) {
+                            self.text('★ 検討中リストに追加する');
+                        }
                     }
                 },
             });
