@@ -36,7 +36,7 @@
                   <?php endforeach; ?>
                 </div>
               <?php endif; ?>
-              <p class="result_title">店舗責任者候補を募集！薬剤師として成長したい方歓迎！</p>
+              <p class="result_title"><?= ellipsize($job['title'], 43) ?></p>
 
               <div class="result_tbl">
                 <div class="table_area">
