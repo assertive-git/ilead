@@ -1,4 +1,4 @@
-$('.favorite_btn').click(function (e) {
+$('body').on('click', '.favorite_btn', function (e) {
 
     e.stopPropagation()
     

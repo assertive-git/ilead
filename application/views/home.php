@@ -73,6 +73,17 @@
             <!--<button type="button" class="reset">クリア</button>-->
           </li>
         </ul>
+        <br />
+        <div class="flex justify-center">
+          <div class="flex flex-col">
+            <strong>＜Google Map検索の表示について＞</strong>
+            <ul>
+              <li>入力条件に該当する求人件数が多い場合、地図の表示までにお時間がかかることがあります。</li>
+              <li>スムーズにご覧いただくため、表示件数は300件以下を水晶しております。</li>
+              <li>表示が遅い場合は、検索条件を絞り込んで再検索していただくことで、改善されます。</li>
+            </ul>
+          </div>
+        </div>
       </div>
       <?php include_once APPPATH . 'includes/search_modal.php' ?>
     </form>

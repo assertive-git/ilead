@@ -118,6 +118,8 @@
           dataType: 'json',
           success: function (data) {
 
+            console.log(data.jobs)
+
             bounds = new google.maps.LatLngBounds();
 
             for (i = 0; i < data.jobs.length; i++) {
@@ -276,110 +278,117 @@
         var offset = 0;
 
 
-        $('div[id="list_"]').on('scroll', function (e) {
+        // $('div[id="list_"]').on('scroll', function (e) {
 
-          var list = $(this);
+        //   var list = $(this);
 
-          if (list.scrollTop() + list.innerHeight() >= list[0].scrollHeight - 1) {
+        //   if (list.scrollTop() + list.innerHeight() >= list[0].scrollHeight - 1) {
 
-            offset += 50;
+        //     offset += 50;
 
-            $.ajax({
-              type: "POST",
-              url: '/map',
-              data: {
-                areas: areas,
-                stations: stations,
-                salary: {
-                  yearly: yearly,
-                  hourly: hourly,
-                },
-                categories: categories,
-                job_types: job_types,
-                employment_types: employment_types,
-                traits: traits,
-                freeword: freeword,
-                offset: offset,
-                ajax: 1,
-              },
-              dataType: 'json',
-              success: function (data) {
+        //     $.ajax({
+        //       type: "POST",
+        //       url: '/map',
+        //       data: {
+        //         areas: areas,
+        //         stations: stations,
+        //         salary: {
+        //           yearly: yearly,
+        //           hourly: hourly,
+        //         },
+        //         categories: categories,
+        //         job_types: job_types,
+        //         employment_types: employment_types,
+        //         traits: traits,
+        //         freeword: freeword,
+        //         offset: offset,
+        //         ajax: 1,
+        //       },
+        //       dataType: 'json',
+        //       success: function (data) {
 
-                if (data.jobs.length != 0) {
+        //         if (data.jobs.length != 0) {
 
-                  for (var i = 0; i < data.jobs.length; i++) {
+        //           console.log(data.jobs)
 
-                    var clone = $('.list_inner').eq(0).clone();
-                    clone.find('.id').attr('id', data.jobs[i].id).attr('job-link', '/jobs/' + data.jobs[i].id).removeClass('active');
-                    clone.find('.title').text(data.jobs[i].title);
-                    clone.find('.top-picture').text(data.jobs[i].top_picture);
-                    clone.find('.category').children('span').remove();
+        //           for (var i = 0; i < data.jobs.length; i++) {
 
-                    if (data.jobs[i].category) {
-                      var category = data.jobs[i].category.split(',');
-                      for (var j = 0; j < category.length; j++) {
-                        clone.find('.category').append('<span>' + category[j] + '</span>');
+        //             var clone = $('.list_inner').eq(0).clone();
+        //             clone.find('.id').attr('id', data.jobs[i].id).attr('job-link', '/jobs/' + data.jobs[i].id).removeClass('active');
+        //             clone.find('.title').text(data.jobs[i].title);
+        //             clone.find('.top-picture').text(data.jobs[i].top_picture);
+        //             clone.find('.category').children('span').remove();
+        //             clone.find('.favorite_btn').attr('job-id', data.jobs[i].id)
 
-                        if (j == 1) {
-                          break;
-                        }
-                      }
-                    }
+        //             // status
+        //             var status = data.favorites.indexOf(data.jobs[i].id) !== -1 ? 1 : 0
+        //             clone.find('.favorite_btn').attr('status', status)
 
-                    clone.find('.city').text(data.jobs[i].city);
-                    clone.find('.salary').text(data.jobs[i].salary);
+        //             if (data.jobs[i].category) {
+        //               var category = data.jobs[i].category.split(',');
+        //               for (var j = 0; j < category.length; j++) {
+        //                 clone.find('.category').append('<span>' + category[j] + '</span>');
 
-                    list.append(clone);
+        //                 if (j == 1) {
+        //                   break;
+        //                 }
+        //               }
+        //             }
 
-                    if (!data.jobs[i].lat || !data.jobs[i].lng) continue;
+        //             clone.find('.city').text(data.jobs[i].city);
+        //             clone.find('.salary').text(data.jobs[i].salary);
 
+        //             list.append(clone);
 
-                    var marker = new google.maps.Marker({
-                      position: { lat: parseFloat(data.jobs[i].lat), lng: parseFloat(data.jobs[i].lng) },
-                      title: data.jobs[i].title,
-                      job_id: data.jobs[i].id,
-                      icon: {
-                        url: '/public/assets/img/map/marker-red.png'
-                      }
-                    });
+        //             if (!data.jobs[i].lat || !data.jobs[i].lng) continue;
 
 
-                    google.maps.event.addListener(marker, "click", function (event) {
+        //             var marker = new google.maps.Marker({
+        //               position: { lat: parseFloat(data.jobs[i].lat), lng: parseFloat(data.jobs[i].lng) },
+        //               title: data.jobs[i].title,
+        //               job_id: data.jobs[i].id,
+        //               icon: {
+        //                 url: '/public/assets/img/map/marker-red.png'
+        //               }
+        //             });
 
-                      var job_id = this.job_id;
 
-                      if (!$('#' + job_id).hasClass('active')) {
-                        $('#' + job_id).click();
+        //             google.maps.event.addListener(marker, "click", function (event) {
 
-                        var $parentDiv = $('#list_');
-                        var $targetDiv = $('#' + job_id);
+        //               var job_id = this.job_id;
 
-                        // Parent's height and current scroll position
-                        var parentHeight = $parentDiv.height();
-                        var parentScrollTop = $parentDiv.scrollTop();
+        //               if (!$('#' + job_id).hasClass('active')) {
+        //                 $('#' + job_id).click();
 
-                        // Target element's position within the parent
-                        var targetOffset = $targetDiv.position().top;
-                        var targetHeight = $targetDiv.outerHeight();
+        //                 var $parentDiv = $('#list_');
+        //                 var $targetDiv = $('#' + job_id);
 
-                        // Calculate the scroll position to center the target div, considering current scrollTop
-                        var scrollPosition = parentScrollTop + targetOffset - (parentHeight / 2) + (targetHeight / 2);
+        //                 // Parent's height and current scroll position
+        //                 var parentHeight = $parentDiv.height();
+        //                 var parentScrollTop = $parentDiv.scrollTop();
 
-                        $parentDiv.animate({
-                            scrollTop: scrollPosition
-                        }, 600);
-                      }
-                    });
+        //                 // Target element's position within the parent
+        //                 var targetOffset = $targetDiv.position().top;
+        //                 var targetHeight = $targetDiv.outerHeight();
 
-                    marker.setMap(map);
+        //                 // Calculate the scroll position to center the target div, considering current scrollTop
+        //                 var scrollPosition = parentScrollTop + targetOffset - (parentHeight / 2) + (targetHeight / 2);
 
-                    markers.push(marker);
-                  }
-                }
-              }
-            });
-          }
-        });
+        //                 $parentDiv.animate({
+        //                     scrollTop: scrollPosition
+        //                 }, 600);
+        //               }
+        //             });
+
+        //             marker.setMap(map);
+
+        //             markers.push(marker);
+        //           }
+        //         }
+        //       }
+        //     });
+        //   }
+        // });
 
         $('.menu-trigger').appendTo('#_map');
 
