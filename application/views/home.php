@@ -74,7 +74,7 @@
           </li>
         </ul>
         <br />
-        <div class="flex justify-center">
+        <div class="hide justify-center map-disclaimer">
           <div class="flex flex-col">
             <strong>＜Google Map検索の表示について＞</strong>
             <ul>

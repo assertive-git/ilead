@@ -106,7 +106,9 @@ function GethashID(hashIDName) {
 
       if (hashIDName == '#list') {
         $('form').attr('action', '/job_list')
+        $('.map-disclaimer').removeClass('flex').addClass('hide')
       } else {
+        $('.map-disclaimer').removeClass('hide').addClass('flex')
         $('form').attr('action', '/map');
       }
     });
