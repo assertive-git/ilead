@@ -631,6 +631,12 @@ function total_jobs_update() {
 
     $('.submit_t').click(function (e) {
 
+        if(!$('input[name="employment_types[]"]').is(':checked')) {
+            alert('雇用形態の選択は必須です。')
+            return
+        } 
+            
+
         sessionStorage.setItem('lines_stations', JSON.stringify(lines_stations))
         sessionStorage.setItem('areas', JSON.stringify(areas))
 

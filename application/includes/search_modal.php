@@ -157,17 +157,17 @@
         <h4>職種を選ぶ</h4>
         <div class="search_inner2">
           <div class="choice">
-            <input type="checkbox" id="occupation1" name="job_types[]" <?= in_array('薬剤師', $job_types) ? 'checked' : '' ?> value="薬剤師">
+            <input type="radio" id="occupation1" name="job_types[]" <?= in_array('薬剤師', $job_types) ? 'checked' : '' ?> value="薬剤師">
             <label for="occupation1">薬剤師</label>
-            <input type="checkbox" id="occupation2" name="job_types[]" <?= in_array('看護師', $job_types) ? 'checked' : '' ?> value="看護師">
+            <input type="radio" id="occupation2" name="job_types[]" <?= in_array('看護師', $job_types) ? 'checked' : '' ?> value="看護師">
             <label for="occupation2">看護師</label>
-            <input type="checkbox" id="occupation3" name="job_types[]" <?= in_array('獣医師', $job_types) ? 'checked' : '' ?> value="獣医師">
+            <input type="radio" id="occupation3" name="job_types[]" <?= in_array('獣医師', $job_types) ? 'checked' : '' ?> value="獣医師">
             <label for="occupation3">獣医師</label>
-            <input type="checkbox" id="occupation4" name="job_types[]" <?= in_array('事務（病院、薬局）', $job_types) ? 'checked' : '' ?> value="事務（病院、薬局）">
+            <input type="radio" id="occupation4" name="job_types[]" <?= in_array('事務（病院、薬局）', $job_types) ? 'checked' : '' ?> value="事務（病院、薬局）">
             <label for="occupation4">事務（病院、薬局）</label>
-            <input type="checkbox" id="occupation5" name="job_types[]" <?= in_array('作業療法士・理学療法士・言語聴覚士', $job_types) ? 'checked' : '' ?> value="作業療法士・理学療法士・言語聴覚士">
+            <input type="radio" id="occupation5" name="job_types[]" <?= in_array('作業療法士・理学療法士・言語聴覚士', $job_types) ? 'checked' : '' ?> value="作業療法士・理学療法士・言語聴覚士">
             <label for="occupation5">作業療法士<br>理学療法士<br>言語聴覚士</label>
-            <input type="checkbox" id="occupation6" name="job_types[]" <?= in_array('その他', $job_types) ? 'checked' : '' ?> value="その他">
+            <input type="radio" id="occupation6" name="job_types[]" <?= in_array('その他', $job_types) ? 'checked' : '' ?> value="その他">
             <label for="occupation6">その他</label>
           </div>
         </div>
@@ -241,13 +241,13 @@
         <div class="search_inner2">
           <h5>雇用形態</h5>
           <div class="choice">
-            <input type="checkbox" id="status1" name="employment_types[]" <?= in_array('正社員', $employment_types) ? 'checked' : '' ?> value="正社員">
+            <input type="radio" id="status1" name="employment_types[]" <?= in_array('正社員', $employment_types) ? 'checked' : '' ?> value="正社員">
             <label for="status1">正社員</label>
-            <input type="checkbox" id="status2" name="employment_types[]" <?= in_array('契約社員', $employment_types) ? 'checked' : '' ?> value="契約社員">
+            <input type="radio" id="status2" name="employment_types[]" <?= in_array('契約社員', $employment_types) ? 'checked' : '' ?> value="契約社員">
             <label for="status2">契約社員</label>
-            <input type="checkbox" id="status3" name="employment_types[]" <?= in_array('パート', $employment_types) ? 'checked' : '' ?> value="パート">
+            <input type="radio" id="status3" name="employment_types[]" <?= in_array('パート', $employment_types) ? 'checked' : '' ?> value="パート">
             <label for="status3">パート</label>
-            <input type="checkbox" id="status4" name="employment_types[]" <?= in_array('派遣・在籍出向', $employment_types) ? 'checked' : '' ?> value="派遣・在籍出向">
+            <input type="radio" id="status4" name="employment_types[]" <?= in_array('派遣・在籍出向', $employment_types) ? 'checked' : '' ?> value="派遣・在籍出向">
             <label for="status4">派遣・在籍出向</label>
           </div>
           <h5 class="salary_ttl">給与</h5>
