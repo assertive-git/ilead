@@ -3119,6 +3119,12 @@ main#map .search_area .map_in {
   flex: 1;
 }
 
+@media(max-width: 768px) {
+  #map .list_item .info {
+    padding-right: 20px;
+  }
+}
+
 #map .list_item .info img {
   object-fit: cover;
 }
