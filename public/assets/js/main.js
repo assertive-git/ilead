@@ -107,13 +107,13 @@ function GethashID(hashIDName) {
       if (hashIDName == '#list') {
         $('form').attr('action', '/job_list')
         $('.map-disclaimer').removeClass('flex').addClass('hide')
-        $('employment_types[]').attr('type', 'checkbox')
-        $('job_types[]').attr('type', 'checkbox')
+        $('input[name="employment_types[]"]').attr('type', 'checkbox')
+        $('input[name="job_types[]"]').attr('type', 'checkbox')
       } else {
         $('.map-disclaimer').removeClass('hide').addClass('flex')
         $('form').attr('action', '/map');
-        $('employment_types[]').attr('type', 'radio')
-        $('job_types[]').attr('type', 'radio')
+        $('input[name="employment_types[]"]').attr('type', 'radio')
+        $('input[name="job_types[]"]').attr('type', 'radio')
       }
     });
 
