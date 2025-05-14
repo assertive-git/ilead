@@ -9,14 +9,14 @@ var areas
 
 
 
-if (sessionStorage.getItem('lines_stations')) {
-    lines_stations = JSON.parse(sessionStorage.getItem('lines_stations'))
+if (localStorage.getItem('lines_stations')) {
+    lines_stations = JSON.parse(localStorage.getItem('lines_stations'))
 } else {
     lines_stations = []
 }
 
-if (sessionStorage.getItem('areas')) {
-    areas = JSON.parse(sessionStorage.getItem('areas'))
+if (localStorage.getItem('areas')) {
+    areas = JSON.parse(localStorage.getItem('areas'))
 } else {
     areas = []
 }
@@ -637,8 +637,8 @@ function total_jobs_update() {
         } 
             
 
-        sessionStorage.setItem('lines_stations', JSON.stringify(lines_stations))
-        sessionStorage.setItem('areas', JSON.stringify(areas))
+        localStorage.setItem('lines_stations', JSON.stringify(lines_stations))
+        localStorage.setItem('areas', JSON.stringify(areas))
 
         // for (var i = 0; i < lines_stations.length; i++) {
         //     var item = lines_stations[i].split('_')
@@ -665,8 +665,8 @@ function total_jobs_update() {
     })
 
     function resetFromMemory() {
-        sessionStorage.setItem('lines_stations', [])
-        sessionStorage.setItem('areas', [])
+        localStorage.setItem('lines_stations', [])
+        localStorage.setItem('areas', [])
     }
 })();
 
