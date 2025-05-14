@@ -631,11 +631,11 @@ function total_jobs_update() {
 
     $('.submit_t').click(function (e) {
 
-        if(!$('input[name="employment_types[]"]').is(':checked')) {
+        if ($('#list').attr('action') == '/map' && !$('input[name="employment_types[]"]').is(':checked')) {
             alert('雇用形態の選択は必須です。')
             return
-        } 
-            
+        }
+
 
         localStorage.setItem('lines_stations', JSON.stringify(lines_stations))
         localStorage.setItem('areas', JSON.stringify(areas))
