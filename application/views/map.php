@@ -55,7 +55,7 @@
                 <div id="<?= $job['id'] ?>" class="list_item id" job-link="/jobs/<?= $job['id'] ?>">
                   <button class="favorite_btn<?= in_array($job['id'], $favorites) ? ' favorite_btn--remove' : '' ?>" status="<?= !in_array($job['id'], $favorites) ? 0 : 1 ?>" job-id="<?= $job['id'] ?>"><i class="fa-solid fa-star"></i></button>
                   <div class="info">
-                    <h5 class="title"><?= $job['title'] ?></h5>
+                    <h5 class="title"><?= ellipsize($job['title'], 60) ?></h5>
                     <div class="info-tbl">
                       <?php if (file_exists('./public/uploads/top_picture/' . $job['top_picture'])): ?>
                         <img class="top-picture"><img src="/public/uploads/top_picture/<?= $job['top_picture'] ?>" width="100" height="81">
