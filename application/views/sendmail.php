@@ -23,7 +23,7 @@ if (!empty($job)) {
     $job_title = $job['title'];
     $job_memo = $job['memo'];
 } else {
-    $job_title = "LPより登録がありました。";
+    $job_title = "ポータルサイトより登録がありました。";
 }
 
 // ----- 文字コード
@@ -33,9 +33,9 @@ mb_internal_encoding("UTF-8");
 // ----- メール送信
 //$admin_mail = "s.sugiyama@assertive.co.jp";
 $from = "contact@job.ilead-hr.co.jp";
-// $admin_mail = "a.ruiz@assertive.co.jp";
+$admin_mail = "a.ruiz@assertive.co.jp";
 // $admin_mail = "h.nakayama@assertive.co.jp";
-$admin_mail = "info@ilead-hr.co.jp";
+// $admin_mail = "info@ilead-hr.co.jp";
 
 $body = "";
 
@@ -129,5 +129,5 @@ if ($hope == "する") {
 // ----- 送信処理（管理者宛）
 $to = $admin_mail;
 $header = "From: " . $from . "\n";
-$subject = "【薬剤師のお仕事】LPより登録がありました。";
+$subject = "【薬剤師のお仕事】ポータルサイトより登録がありました。";
 mb_send_mail($to, $subject, $body2, $header, "-f" . $from);
