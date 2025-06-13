@@ -160,7 +160,7 @@
               <a href="/jobs/entry/<?= $job['id'] ?>">応募する</a>
             </li>
           </ul>
-          <script src="/public/assets/js/favorite_btn.js"></script>
+          <script src="/public/assets/js/favorite_btn.js?v=<?= date('YmdHis') ?>"></script>
         </div>
       </div>
     </div>
@@ -274,7 +274,7 @@
             window.opener.focus();  // Focus the opener tab
             window.close();         // Close the current tab
       } else {
-          console.log("NO WINDOW FOUND")
+          location.replace('/job_list')
       }
     });
   </script>

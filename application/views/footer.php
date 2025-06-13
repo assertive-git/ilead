@@ -13,7 +13,7 @@
     </a>
   </div>
   <div class="footer_area">
-    <div class="logo"> <a href="./"> <img src="/public/assets/img/logo.svg" alt="アイリード" width="176" height="35"> </a> </div>
+    <div class="logo"> <a href="/"> <img src="/public/assets/img/logo.svg" alt="アイリード" width="176" height="35"> </a> </div>
     <p><span class="company_name">アイリード株式会社</span><br>
       〒541-0056大阪府大阪市中央区久太郎町2-5-28 久太郎町恒和ビル4F</p>
   </div>

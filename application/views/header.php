@@ -115,6 +115,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="hamburger-menu sp">
       <input type="checkbox" id="menu-btn-check">
       <label for="menu-btn-check" class="menu-btn"><span></span></label>
+      <script>
+        $('#menu-btn-check').change(function() {
+          // $('.progressbar').css({visibility: $(this).is(':checked') ? 'hidden' : 'visible'})
+        })
+      </script>
       <!--ここからメニュー-->
       <div class="menu-content">
         <ul class="nav_list">

@@ -76,11 +76,10 @@
         <br />
         <div class="hide justify-center map-disclaimer">
           <div class="flex flex-col">
-            <strong>＜Google Map検索の表示について＞</strong>
+            <strong>＜Googl地図検索の表示について</strong>
             <ul>
-              <li>入力条件に該当する求人件数が多い場合、地図の表示までにお時間がかかることがあります。</li>
-              <li>スムーズにご覧いただくため、表示件数は300件以下を推奨しております。</li>
-              <li>表示が遅い場合は、検索条件を絞り込んで再検索していただくことで、改善されます。</li>
+              <li>地図表示が遅い場合は、検索条件を絞り込んでください。</li>
+              <li>（目安：300～400件以下）</li>
             </ul>
           </div>
         </div>

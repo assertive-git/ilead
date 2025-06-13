@@ -88,7 +88,7 @@
             </div>
           </div>
         <?php endforeach; ?>
-        <script src="/public/assets/js/favorite_btn.js"></script>
+        <script src="/public/assets/js/favorite_btn.js?v=<?= date('YmdHis') ?>"></script>
       <?php endif; ?>
 
 

@@ -1042,7 +1042,7 @@ main .picup .area2 {
   top: 0;
   left: 100%;
   /*leftの値を変更してメニューを画面外へ*/
-  z-index: 80;
+  z-index: 99;
   background-color: #65b9e7;
   transition: all 0.5s;
   /*アニメーション設定*/
@@ -2717,6 +2717,8 @@ main .job_result .area.is-active {
 
 /*---stepナビ---*/
 #form .progressbar {
+  position: relative;
+  z-index: 0;
   display: flex;
   margin: 4rem auto;
   width: 744px;

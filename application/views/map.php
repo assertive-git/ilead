@@ -2,6 +2,8 @@
 
 <main id="map">
 
+  <div id="updated-successfully" style="background: #65b9e7; color: #fff; text-align: center; height: 40px; line-height: 40px; position: fixed; width: 100%; left: 0; top: 0; z-index: 9999; display: none"></div>
+
   <input id="block-01" type="checkbox" class="toggle">
   <label class="menu_accordion sp" for="block-01">検索条件を変更する</label>
 
@@ -95,7 +97,7 @@
               </li>
             </ul>
         <?php endforeach; ?>
-        <script src="/public/assets/js/favorite_btn.js"></script>
+        <script src="/public/assets/js/favorite_btn.js?v=<?= date('YmdHis') ?>"></script>
       </div>
   </section>
 
