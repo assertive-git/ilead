@@ -76,7 +76,7 @@
         <br />
         <div class="hide justify-center map-disclaimer">
           <div class="flex flex-col">
-            <strong>＜Googl地図検索の表示について</strong>
+            <strong>＜Google地図検索の表示について</strong>
             <ul>
               <li>地図表示が遅い場合は、検索条件を絞り込んでください。</li>
               <li>（目安：300～400件以下）</li>
