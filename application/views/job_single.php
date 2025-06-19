@@ -276,12 +276,12 @@
       }
 
       if(isLineApp) {
-        location.replace('/job_list')
+        location.href = '/job_list'
       } else if (window.opener) {
             window.opener.focus();  // Focus the opener tab
             window.close();         // Close the current tab
       } else {
-          location.replace('/job_list')
+          location.href = '/job_list'
       }
     });
   </script>
