@@ -29,12 +29,12 @@
   </div>
   <section class="search_result">
     <?php if (!empty($_GET['favorites'])): ?>
-      <a href="javascript:void(0);">
-        <button id="return" class="arrow_before favorites">検討中リストへ戻る</button>
+      <a id="return" href="javascript:void(0);">
+        <button class="arrow_before favorites">検討中リストへ戻る</button>
       </a>
     <?php else: ?>
-      <a href="javascript:void(0);">
-        <button id="return" class="arrow_before">
+      <a id="return" href="javascript:void(0)">
+        <button class="arrow_before">
           一覧へ戻る
         </button>
       </a>
