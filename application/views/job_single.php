@@ -29,11 +29,11 @@
   </div>
   <section class="search_result">
     <?php if (!empty($_GET['favorites'])): ?>
-      <a id="return_btn" href="javascript:void(0);">
+      <a href="javascript:void(0);">
         <button id="return" class="arrow_before favorites">検討中リストへ戻る</button>
       </a>
     <?php else: ?>
-      <a id="return_btn" href="javascript:void(0);">
+      <a href="javascript:void(0);">
         <button id="return" class="arrow_before">
           一覧へ戻る
         </button>
@@ -269,17 +269,19 @@
   <?php endif; ?>
 
   <script>
-    $('#return_btn').click(function () {
-    try {
-        if (window.opener && !window.opener.closed) {
-            window.opener.focus(); // May fail silently
-            window.close(); // Will likely fail on mobile
-        } else {
-            throw new Error('No opener or opener is closed');
-        }
-    } catch (e) {
-            location.href = '/job_list'; // Fallback for Android and unsupported browsers
-        }
+    $('#return').click(function() {
+
+      var isAndroid = /Android/i.test(navigator.userAgent);
+
+
+      if(isAndroid) {
+        location.replace('/job_list')
+      } else if (window.opener) {
+            window.opener.focus();  // Focus the opener tab
+            window.close();         // Close the current tab
+      } else {
+          location.replace('/job_list')
+      }
     });
   </script>
 </main>
