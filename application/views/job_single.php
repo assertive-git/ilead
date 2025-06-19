@@ -275,7 +275,7 @@
           return /Line/i.test(navigator.userAgent);
       }
 
-      if(isLineApp) {
+      if(isLineApp()) {
         location.href = '/job_list'
       } else if (window.opener) {
             window.opener.focus();  // Focus the opener tab
