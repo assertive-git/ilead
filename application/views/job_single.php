@@ -269,13 +269,17 @@
   <?php endif; ?>
 
   <script>
-    $('#return').click(function() {
-      if (window.opener) {
-            window.opener.focus();  // Focus the opener tab
-            window.close();         // Close the current tab
-      } else {
-          location.replace('/job_list')
-      }
+    $('#return').click(function () {
+    try {
+        if (window.opener && !window.opener.closed) {
+            window.opener.focus(); // May fail silently
+            window.close(); // Will likely fail on mobile
+        } else {
+            throw new Error('No opener or opener is closed');
+        }
+    } catch (e) {
+            location.href = '/job_list'; // Fallback for Android and unsupported browsers
+        }
     });
   </script>
 </main>
