@@ -271,10 +271,11 @@
   <script>
     $('#return').click(function() {
 
-      var isAndroid = /Android/i.test(navigator.userAgent);
+      function isLineApp() {
+          return /Line/i.test(navigator.userAgent);
+      }
 
-
-      if(isAndroid) {
+      if(isLineApp) {
         location.replace('/job_list')
       } else if (window.opener) {
             window.opener.focus();  // Focus the opener tab
