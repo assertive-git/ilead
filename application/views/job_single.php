@@ -29,12 +29,12 @@
   </div>
   <section class="search_result">
     <?php if (!empty($_GET['favorites'])): ?>
-      <a id="return" href="javascript:void(0);">
-        <button class="arrow_before favorites">検討中リストへ戻る</button>
+      <a id="return_btn" href="javascript:void(0);">
+        <button id="return" class="arrow_before favorites">検討中リストへ戻る</button>
       </a>
     <?php else: ?>
-      <a id="return" href="javascript:void(0)">
-        <button class="arrow_before">
+      <a id="return_btn" href="javascript:void(0);">
+        <button id="return" class="arrow_before">
           一覧へ戻る
         </button>
       </a>
@@ -269,7 +269,7 @@
   <?php endif; ?>
 
   <script>
-    $('#return').click(function () {
+    $('#return_btn').click(function () {
     try {
         if (window.opener && !window.opener.closed) {
             window.opener.focus(); // May fail silently

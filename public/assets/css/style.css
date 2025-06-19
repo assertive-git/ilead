@@ -3954,11 +3954,11 @@ main#map .search_area .map_in {
     padding-bottom: 2rem;
   }
 
-  button#return.arrow_before:before {
+  button.arrow_before:before {
     left: -175%;
   }
 
-  button#return.arrow_before:after {
+  button.arrow_before:after {
     left: -157%;
   }
 
