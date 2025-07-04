@@ -1,12 +1,19 @@
 <?php include('header.php'); ?>
 <main>
   <section class="main_img">
-    <p class="main_copy">薬剤師による、<br>
+    <!-- <p class="main_copy">薬剤師による、<br>
       薬剤師のための<br class="sp">
       転職支援<br>
       <span class="sub_copy">Career change support by <br class="sp">
         pharmacists for pharmacists</span>
-    </p>
+    </p> -->
+
+    <ul class="mv_slider">
+      <li><img src="/public/assets/img/mv1.png" alt="メインスライダー1_pc" class="pc"><img src="/public/assets/img/mv1_sp.png" alt="メインスライダー1_sp" class="sp"></li>
+      <li><img src="/public/assets/img/mv2.png" alt="メインスライダー2_pc" class="pc"><img src="/public/assets/img/mv2_sp.png" alt="メインスライダー2_sp" class="sp"></li>
+      <li><img src="/public/assets/img/mv3.png" alt="メインスライダー3_pc" class="pc"><img src="/public/assets/img/mv3_sp.png" alt="メインスライダー3_sp" class="sp"></li>
+      <li><img src="/public/assets/img/mv4.png" alt="メインスライダー4_pc" class="pc"><img src="/public/assets/img/mv4_sp.png" alt="メインスライダー4_sp" class="sp"></li>
+    </ul>
   </section>
 
   <div class="fixed_btn_list">
@@ -137,11 +144,11 @@
           <div class="temporary_slider">
             <?php foreach ($direct as $job): ?>
               <div class="slide_item"> <a href="/jobs/<?= $job['id'] ?>" target="_blank" rel="opener" class="img_box">
-              <?php if (file_exists('./public/uploads/top_picture/' . $job['top_picture'])): ?>
-                <img src="/public/uploads/top_picture/<?= $job['top_picture'] ?>">
-            <?php else: ?>
-              <img src="/public/assets/img/dummy.jpg">
-            <?php endif; ?>
+                  <?php if (file_exists('./public/uploads/top_picture/' . $job['top_picture'])): ?>
+                    <img src="/public/uploads/top_picture/<?= $job['top_picture'] ?>">
+                  <?php else: ?>
+                    <img src="/public/assets/img/dummy.jpg">
+                  <?php endif; ?>
                   <div class="category">
                     <?php $i = 0; ?>
                     <?php foreach (explode(',', $job['category']) as $category): ?>

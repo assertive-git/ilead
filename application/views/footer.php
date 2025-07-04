@@ -27,23 +27,23 @@
   //検索モーダル
   const modalBtns = document.querySelectorAll(".modal-toggle");
   let current_modal = null;
-  modalBtns.forEach(function (btn) {
-    btn.onclick = function () {
+  modalBtns.forEach(function(btn) {
+    btn.onclick = function() {
       var modal = btn.getAttribute('data-modal');
       current_modal = modal;
       document.getElementById(modal).style.display = "block";
-      
+
     };
   });
   const closeBtns = document.querySelectorAll(".modal-close");
-  closeBtns.forEach(function (btn) {
-    btn.onclick = function () {
+  closeBtns.forEach(function(btn) {
+    btn.onclick = function() {
       var modal = btn.closest('.modal');
       modal.style.display = "none";
     };
   });
 
-  window.onclick = function (event) {
+  window.onclick = function(event) {
     if (event.target.className === "modal") {
       event.target.style.display = "none";
     }
@@ -52,7 +52,7 @@
 
 <script>
   //マップページ横メニュー
-  $('.menu-trigger').on('click', function () {
+  $('.menu-trigger').on('click', function() {
 
     var img = $(this).children('span').children('img');
 
@@ -61,20 +61,28 @@
       $('.list').removeClass('open');
       $('.overlay').removeClass('open');
       img.attr('src', '/public/assets/img/map_arrow_open.png');
-      if($(window).width() < 768 && $('.map #_map').css('height') == '100%') {
-        $('.map #_map').css({height: '50%'});
+      if ($(window).width() < 768 && $('.map #_map').css('height') == '100%') {
+        $('.map #_map').css({
+          height: '50%'
+        });
       } else {
-        $('.map #_map').css({height: '100%'});
+        $('.map #_map').css({
+          height: '100%'
+        });
       }
     } else {
       $(this).addClass('active');
       $('.list').addClass('open');
       $('.overlay').addClass('open');
       img.attr('src', '/public/assets/img/map_arrow_close.png');
-      if($(window).width() < 768 && $('.map #_map').css('height') == '50%') {
-        $('.map #_map').css({height: '100%'});
+      if ($(window).width() < 768 && $('.map #_map').css('height') == '50%') {
+        $('.map #_map').css({
+          height: '100%'
+        });
       } else {
-        $('.map #_map').css({height: '50%'});
+        $('.map #_map').css({
+          height: '50%'
+        });
       }
     }
   });
