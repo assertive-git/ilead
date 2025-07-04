@@ -1,4 +1,22 @@
 //slickslider
+$('.mv_slider').slick({
+  slidesToShow: 1,
+  slidesToScroll: 1,
+  arrows: false,
+  autoplay:true,
+  autoplaySpeed:3000,
+  swipe: true,
+  pauseOnHover: false,
+
+  responsive: [{
+    breakpoint: 768,
+    settings: {
+      slidesToShow: 1,
+      arrows: false,
+    },
+  }, ],
+});
+
 $('.recruitment_slider').slick({
   dots: true,
   //variableWidth: true,
