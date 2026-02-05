@@ -168,7 +168,7 @@
             <input type="checkbox" id="occupation5" name="job_types[]" <?= in_array('作業療法士・理学療法士・言語聴覚士', $job_types) ? 'checked' : '' ?> value="作業療法士・理学療法士・言語聴覚士">
             <label for="occupation5">作業療法士<br>理学療法士<br>言語聴覚士</label>
             <input type="checkbox" id="occupation6" name="job_types[]" <?= in_array('その他', $job_types) ? 'checked' : '' ?> value="その他">
-            <label for="occupation6">事務（病院、薬局）その他</label>
+            <label for="occupation6">事務（病院、薬局）<br>その他</label>
           </div>
         </div>
         <ul class="button_area">
