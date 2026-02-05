@@ -61,24 +61,6 @@ class Home extends CI_Controller
 		$this->load->view('home', $data);
 	}
 
-	public function only_for_devs() {
-		$sql = "
-			UPDATE jobs
-			SET job_type = REPLACE(job_type, '事務（病院、薬局）', '愛玩動物看護師')
-			WHERE job_type LIKE '%事務（病院、薬局）%' AND NOT job_type LIKE '%事務（病院、薬局）その他%'
-		";
-		$this->db->query($sql);
-
-		$sql = "
-			UPDATE jobs
-			SET job_type = REPLACE(job_type, 'その他', '事務（病院、薬局）その他')
-			WHERE job_type LIKE '%その他%' AND NOT job_type LIKE '%事務（病院、薬局）その他%';
-		";
-		$this->db->query($sql);
-
-		echo "SETUP OK.";
-	}
-
 	public function indeed_feed()
 	{
 		//Domを生成

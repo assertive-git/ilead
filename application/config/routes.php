@@ -3,7 +3,6 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 $route['default_controller'] = 'home';
 
-$route['only_for_devs']['GET'] = 'home/only_for_devs';
 $route['stations']['GET'] = 'home/stations';
 
 $route['feed/indeed']['GET'] = 'home/indeed_feed';
