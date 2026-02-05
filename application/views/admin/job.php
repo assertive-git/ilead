@@ -186,9 +186,9 @@ $traits = !empty($traits) ? explode(',', $traits) : [];
                             <option <?= $job_type == '薬剤師' ? 'selected' : '' ?> value="薬剤師">薬剤師</option>
                             <option <?= $job_type == '看護師' ? 'selected' : '' ?> value="看護師">看護師</option>
                             <option <?= $job_type == '獣医師' ? 'selected' : '' ?> value="獣医師">獣医師</option>
-                            <option <?= $job_type == '事務（病院、薬局）' ? 'selected' : '' ?> value="事務（病院、薬局）">愛玩動物看護師</option>
+                            <option <?= $job_type == '愛玩動物看護師' ? 'selected' : '' ?> value="愛玩動物看護師">愛玩動物看護師</option>
                             <option <?= $job_type == '作業療法士・理学療法士・言語聴覚士' ? 'selected' : '' ?> value="作業療法士・理学療法士・言語聴覚士">作業療法士・理学療法士・言語聴覚士</option>
-                            <option <?= $job_type == 'その他' ? 'selected' : '' ?> value="その他">事務（病院、薬局）その他</option>
+                            <option <?= $job_type == '事務（病院、薬局）その他' ? 'selected' : '' ?> value="事務（病院、薬局）その他">事務（病院、薬局）その他</option>
                         </select>
                     </div>
                 </div>

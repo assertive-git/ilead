@@ -163,11 +163,11 @@
             <label for="occupation2">看護師</label>
             <input type="checkbox" id="occupation3" name="job_types[]" <?= in_array('獣医師', $job_types) ? 'checked' : '' ?> value="獣医師">
             <label for="occupation3">獣医師</label>
-            <input type="checkbox" id="occupation4" name="job_types[]" <?= in_array('事務（病院、薬局）', $job_types) ? 'checked' : '' ?> value="事務（病院、薬局）">
+            <input type="checkbox" id="occupation4" name="job_types[]" <?= in_array('愛玩動物看護師', $job_types) ? 'checked' : '' ?> value="愛玩動物看護師">
             <label for="occupation4">愛玩動物看護師</label>
             <input type="checkbox" id="occupation5" name="job_types[]" <?= in_array('作業療法士・理学療法士・言語聴覚士', $job_types) ? 'checked' : '' ?> value="作業療法士・理学療法士・言語聴覚士">
             <label for="occupation5">作業療法士<br>理学療法士<br>言語聴覚士</label>
-            <input type="checkbox" id="occupation6" name="job_types[]" <?= in_array('その他', $job_types) ? 'checked' : '' ?> value="その他">
+            <input type="checkbox" id="occupation6" name="job_types[]" <?= in_array('事務（病院、薬局）その他', $job_types) ? 'checked' : '' ?> value="事務（病院、薬局）その他">
             <label for="occupation6">事務（病院、薬局）<br>その他</label>
           </div>
         </div>
