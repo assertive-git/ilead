@@ -21,7 +21,6 @@ class Home extends CI_Controller
 	{
 		$data = [];
 
-
 		$data['total_jobs'] = $this->jobs_model->get_all_cnt();
 		$data['new_jobs'] = $this->jobs_model->get_new_jobs();
 		$data['direct'] = $this->jobs_model->get_direct();
@@ -60,6 +59,24 @@ class Home extends CI_Controller
 
 
 		$this->load->view('home', $data);
+	}
+
+	public function only_for_devs() {
+		$sql = "
+			UPDATE jobs
+			SET job_type = REPLACE(job_type, '事務（病院、薬局）', '愛玩動物看護師')
+			WHERE job_type LIKE '%事務（病院、薬局）%' AND NOT job_type LIKE '%事務（病院、薬局）その他%'
+		";
+		$this->db->query($sql);
+
+		$sql = "
+			UPDATE jobs
+			SET job_type = REPLACE(job_type, 'その他', '事務（病院、薬局）その他')
+			WHERE job_type LIKE '%その他%' AND NOT job_type LIKE '%事務（病院、薬局）その他%';
+		";
+		$this->db->query($sql);
+
+		echo "SETUP OK.";
 	}
 
 	public function indeed_feed()
@@ -690,13 +707,13 @@ class Home extends CI_Controller
 	private function instagram_feed()
 	{
 
-		$access_token = $this->db->get('instagram_access_token')->row_array()['access_token'];
+		// $access_token = $this->db->get('instagram_access_token')->row_array()['access_token'];
 
-		$feed = json_decode(file_get_contents('https://graph.instagram.com/v20.0/me/media?access_token=' . $access_token . '&fields=id%2Ccaption%2Cmedia_type%2Cmedia_url%2Cpermalink&limit=6'));
+		// $feed = json_decode(file_get_contents('https://graph.instagram.com/v20.0/me/media?access_token=' . $access_token . '&fields=id%2Ccaption%2Cmedia_type%2Cmedia_url%2Cpermalink&limit=6'));
 
-		if (isset($feed->data)) {
-			return $feed->data;
-		}
+		// if (isset($feed->data)) {
+		// 	return $feed->data;
+		// }
 
 
 		return [];
